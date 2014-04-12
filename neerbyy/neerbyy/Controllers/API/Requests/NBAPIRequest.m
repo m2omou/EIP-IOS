@@ -36,6 +36,7 @@ static NSString * const kNBAPIParamKeyLongitude = @"longitude";
 static NSString * const kNBAPIParamKeyLatitude = @"latitude";
 static NSString * const kNBAPIParamKeyContent = @"content";
 static NSString * const kNBAPIParamKeyFile = @"file";
+static NSString * const kNBAPIParamKeyLimit = @"limit";
 
 static NSString * const kNBAPIEndpointLogin = @"sessions.json";
 static NSString * const kNBAPIEndpointRegister = @"users.json";
@@ -99,7 +100,8 @@ static NSString * const kNBAPIEndpointPublications = @"publications.json";
 + (NBAPINetworkOperation *)fetchPlacesAroundCoordinate:(CLLocationCoordinate2D)coordinate
 {
     NSDictionary *parameters = @{kNBAPIParamKeyLongitude : @(coordinate.longitude),
-                                 kNBAPIParamKeyLatitude : @(coordinate.latitude)};
+                                 kNBAPIParamKeyLatitude : @(coordinate.latitude),
+                                 kNBAPIParamKeyLimit: @50};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPlaces
                                                                       params:parameters
