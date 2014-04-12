@@ -35,6 +35,8 @@
     {
         self.viewControllers = [NSMutableDictionary dictionary];
         [self registerForLoginNotifications];
+        if (self.persistanceManager.isConnected)
+            [self loginWithCurrentUser];
     }
     
     return self;
@@ -115,6 +117,22 @@
 }
 
 #pragma mark - Convenience methods - Login/Logout
+
+- (void)loginWithCurrentUser
+{
+    NBPersistanceManager *persistanceManager = self.persistanceManager;
+    NSString *username = persistanceManager.currentUser.username;
+    NSString *password = persistanceManager.currentUserPassword;
+    
+    NBAPINetworkOperation *loginOperation = [NBAPIRequest loginWithUsername:username password:password];
+    
+    [loginOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NBAPIResponseUser *response = (NBAPIResponseUser *)operation.APIResponse;
+        persistanceManager.currentUser = response.user;
+    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+
+    [loginOperation enqueue];
+}
 
 - (void)logoutUser
 {

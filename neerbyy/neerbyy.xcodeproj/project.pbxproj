@@ -12,7 +12,7 @@
 		9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */; };
 		9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */; };
 		9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */; };
-		9C284E3918F9462B000AFC06 /* UINavigationController+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3818F9462B000AFC06 /* UINavigationController+NBAdditions.m */; };
+		9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4475D018F96B63006A9FD7 /* NBKeychain.m */; };
 		9C5BE940183219CB00CFA647 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE93F183219CB00CFA647 /* Foundation.framework */; };
 		9C5BE942183219CB00CFA647 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE941183219CB00CFA647 /* CoreGraphics.framework */; };
 		9C5BE944183219CB00CFA647 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE943183219CB00CFA647 /* UIKit.framework */; };
@@ -109,8 +109,8 @@
 		9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDictionaryDecoder.m; sourceTree = "<group>"; };
 		9C284E3418F9321C000AFC06 /* NSUserDefaults+NBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NBAdditions.h"; sourceTree = "<group>"; };
 		9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NBAdditions.m"; sourceTree = "<group>"; };
-		9C284E3718F9462B000AFC06 /* UINavigationController+NBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+NBAdditions.h"; sourceTree = "<group>"; };
-		9C284E3818F9462B000AFC06 /* UINavigationController+NBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+NBAdditions.m"; sourceTree = "<group>"; };
+		9C4475CF18F96B63006A9FD7 /* NBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBKeychain.h; sourceTree = "<group>"; };
+		9C4475D018F96B63006A9FD7 /* NBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBKeychain.m; sourceTree = "<group>"; };
 		9C5BE93C183219CB00CFA647 /* neerbyy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neerbyy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5BE93F183219CB00CFA647 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C5BE941183219CB00CFA647 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -400,8 +400,6 @@
 				9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */,
 				9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */,
 				9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */,
-				9C284E3718F9462B000AFC06 /* UINavigationController+NBAdditions.h */,
-				9C284E3818F9462B000AFC06 /* UINavigationController+NBAdditions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -462,6 +460,8 @@
 			children = (
 				9CA460CC18DD40E700A0DD44 /* NBPersistanceManager.h */,
 				9CA460CD18DD40E700A0DD44 /* NBPersistanceManager.m */,
+				9C4475CF18F96B63006A9FD7 /* NBKeychain.h */,
+				9C4475D018F96B63006A9FD7 /* NBKeychain.m */,
 			);
 			path = Persistance;
 			sourceTree = "<group>";
@@ -1009,8 +1009,8 @@
 				9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */,
 				9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */,
 				9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */,
+				9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */,
 				9CBBC15C18DDC0DA005C5D66 /* NBCommentTableViewCell.m in Sources */,
-				9C284E3918F9462B000AFC06 /* UINavigationController+NBAdditions.m in Sources */,
 				9CBBC14518DDA2F8005C5D66 /* MBGenericTableViewController.m in Sources */,
 				9CA4616718DD40E700A0DD44 /* main.m in Sources */,
 				9CDC8E9218DE8660006BC096 /* NBMessagingViewController.m in Sources */,

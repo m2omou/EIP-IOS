@@ -8,7 +8,6 @@
 
 #import "NBRegisterViewController.h"
 #import "NBLoginViewController.h"
-#import "UINavigationController+NBAdditions.h"
 #import "NBUser.h"
 
 
@@ -84,7 +83,7 @@
 
     [registerOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponseUser *response = (NBAPIResponseUser *)completedOperation.APIResponse;
-        [self setupCurrentUserAndGoBackToLogin:response.user];
+        [self setupAndGoBackToLoginWithCurrentUser:response.user password:self.passwordTextField.text];
     } errorHandler:^(NBAPINetworkOperation *completedOperation, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](completedOperation, error);
         [self enableValidationButtonIfNeeded];
@@ -99,15 +98,11 @@
     [self.pickImageButton setImage:image forState:UIControlStateNormal];
 }
 
-- (void)setupCurrentUserAndGoBackToLogin:(NBUser *)user
+- (void)setupAndGoBackToLoginWithCurrentUser:(NBUser *)user password:(NSString *)password
 {
-    self.persistanceManager.currentUser = user;
-    
-    NSString *username = self.usernameTextField.text;
-    NSString *password = self.passwordTextField.text;
-
-    NBLoginViewController *loginViewController = [self.navigationController previousViewControllerOfClass:[NBLoginViewController class]];
-    [loginViewController connectWithUsername:username password:password];
+    NBPersistanceManager *persistanceManager = self.persistanceManager;
+    persistanceManager.currentUser = user;
+    persistanceManager.currentUserPassword = password;
     
     [self goBackToLogin];
 }

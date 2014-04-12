@@ -36,6 +36,14 @@
     [self themeTextFieldsView];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (self.persistanceManager.isConnected)
+        [self fillFormWithCurrentUserAndTryToConnect];
+}
+
 #pragma mark - Theming
 
 - (void)themeTextFieldsView
@@ -67,17 +75,16 @@
     [self dismiss];
 }
 
-#pragma mark - Public methods
+#pragma mark - Private methods - Connection
 
-- (void)connectWithUsername:(NSString *)username password:(NSString *)password
+- (void)fillFormWithCurrentUserAndTryToConnect
 {
-    self.usernameTextField.text = username;
-    self.passwordTextField.text = password;
+    NBPersistanceManager *persistanceManager = self.persistanceManager;
+    self.usernameTextField.text = persistanceManager.currentUser.username;
+    self.passwordTextField.text = persistanceManager.currentUserPassword;
     
     [self animateAndTryToConnect];
 }
-
-#pragma mark - Private methods - Connection
 
 - (void)tryToConnect
 {
@@ -94,7 +101,7 @@
     [loginOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponseUser *response = (NBAPIResponseUser *)completedOperation.APIResponse;
 
-        [self setupCurrentUserAndDismiss:response.user];
+        [self setupAndDismissWithCurrentUser:response.user password:self.passwordTextField.text];
         
     } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](operation, error);
@@ -146,9 +153,12 @@
 
 #pragma mark - Private method - Others
 
-- (void)setupCurrentUserAndDismiss:(NBUser *)user
+- (void)setupAndDismissWithCurrentUser:(NBUser *)user password:(NSString *)password
 {
-    self.persistanceManager.currentUser = user;
+    NBPersistanceManager *persistanceManager = self.persistanceManager;
+    persistanceManager.currentUser = user;
+    persistanceManager.currentUserPassword = password;
+
     [self dismiss];
 }
 

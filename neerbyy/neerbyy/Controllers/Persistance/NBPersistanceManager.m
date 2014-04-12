@@ -9,6 +9,7 @@
 #import "NBPersistanceManager.h"
 #import "NSUserDefaults+NBAdditions.h"
 #import "NBUser.h"
+#import "NBKeychain.h"
 
 
 #pragma mark - Constants
@@ -18,6 +19,7 @@ NSString * const kNBNotificationUserLoggedOut = @"userLoggedOut";
 
 static NSString * const kNBPersistanceHasSeenConnectionKey = @"hasSeenConnection";
 static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
+static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";
 
 #pragma mark -
 
@@ -59,6 +61,17 @@ static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
     }
 }
 
+- (void)setCurrentUserPassword:(NSString *)currentUserPassword
+{
+    [NBKeychain setObject:currentUserPassword forKey:kNBPersistanceCurrentPasswordKey];
+}
+
+- (NSString *)currentUserPassword
+{
+    NSString *password = [NBKeychain objectForKey:kNBPersistanceCurrentPasswordKey];
+    return password;
+}
+
 - (BOOL)isConnected
 {
     NBUser *user = self.currentUser;
@@ -72,6 +85,7 @@ static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
 {
     _currentUser = nil;
     [NSUserDefaults removeObjectForKey:kNBPersistanceCurrentUserKey];
+    [NBKeychain removeObjectForKey:kNBPersistanceCurrentPasswordKey];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNBNotificationUserLoggedOut object:self];
 }
 
