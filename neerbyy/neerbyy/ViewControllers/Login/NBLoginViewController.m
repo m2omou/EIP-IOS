@@ -67,6 +67,16 @@
     [self dismiss];
 }
 
+#pragma mark - Public methods
+
+- (void)connectWithUsername:(NSString *)username password:(NSString *)password
+{
+    self.usernameTextField.text = username;
+    self.passwordTextField.text = password;
+    
+    [self animateAndTryToConnect];
+}
+
 #pragma mark - Private methods - Connection
 
 - (void)tryToConnect

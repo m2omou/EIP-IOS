@@ -11,4 +11,6 @@
 
 @interface NBLoginViewController : NBGenericFormViewController
 
+- (void)connectWithUsername:(NSString *)username password:(NSString *)password;
+
 @end

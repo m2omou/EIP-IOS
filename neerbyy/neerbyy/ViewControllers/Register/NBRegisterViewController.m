@@ -7,6 +7,8 @@
 //
 
 #import "NBRegisterViewController.h"
+#import "NBLoginViewController.h"
+#import "UINavigationController+NBAdditions.h"
 #import "NBUser.h"
 
 
@@ -100,6 +102,13 @@
 - (void)setupCurrentUserAndGoBackToLogin:(NBUser *)user
 {
     self.persistanceManager.currentUser = user;
+    
+    NSString *username = self.usernameTextField.text;
+    NSString *password = self.passwordTextField.text;
+
+    NBLoginViewController *loginViewController = [self.navigationController previousViewControllerOfClass:[NBLoginViewController class]];
+    [loginViewController connectWithUsername:username password:password];
+    
     [self goBackToLogin];
 }
 
