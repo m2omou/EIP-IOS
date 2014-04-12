@@ -25,7 +25,7 @@
     [super viewDidLoad];
 
     NBTheme *theme = [NBTheme sharedTheme];
-    self.view.backgroundColor = theme.lightGrayColor;
+    self.view.backgroundColor = theme.whiteColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,35 +71,11 @@
     [alertView show];
 }
 
-- (void)displayAlertErrorWithDescription:(NSString *)description
-{
-    NSString *title = @"Oups";
-    [self displayAlertWithTitle:title description:description];
-}
-
-- (void)displayAlertWithError:(NSError *)error
-{
-    NSString *description = error.localizedDescription;
-    [self displayAlertErrorWithDescription:description];
-}
-
 #pragma mark - Public methods - Menu display
 
 - (void)showSlidingMenu:(id)sender
 {
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
-}
-
-#pragma mark - Success & error handlers
-
-- (NBAPINetworkResponseErrorHandler)defaultErrorHandler
-{
-    NBAPINetworkResponseErrorHandler errorHandler = ^(NBAPINetworkOperation *completedOperation, NSError *error)
-    {
-        [self displayAlertWithError:error];
-    };
-    
-    return errorHandler;
 }
 
 #pragma mark - Properties

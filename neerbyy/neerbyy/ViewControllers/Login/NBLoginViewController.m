@@ -9,6 +9,7 @@
 #import "NBLoginViewController.h"
 #import "NBUser.h"
 
+
 @interface NBLoginViewController ()
 
 @property (strong, nonatomic) IBOutlet NBTextField *usernameTextField;
@@ -21,6 +22,7 @@
 
 @end
 
+
 @implementation NBLoginViewController
 
 #pragma mark - View lifecycle
@@ -28,18 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.hidesNavigationBar = YES;
     
     [self themeTextFieldsView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self fillFormWithCurrentUserDataAndTryToConnect];
-}
+#pragma mark - Theming
 
 - (void)themeTextFieldsView
 {
@@ -67,61 +64,10 @@
 
 - (IBAction)pressedContinueAsGuestButton:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Private methods - Reponse handlers
-
-- (NBAPINetworkResponseSuccessHandler)loggedInHandler
-{
-    NBAPINetworkResponseSuccessHandler loggedInHandler = ^(NBAPINetworkOperation *completedOperation)
-    {
-        NBAPIResponseLogin *response = (NBAPIResponseLogin *)completedOperation.APIResponse;
-        if (response.hasError)
-        {
-            [self resetConnectionAnimation];
-            [self displayAlertErrorWithDescription:response.responseMessage];
-            return ;
-        }
-
-        NBUser *loggedUser = response.user;
-        loggedUser.password = self.passwordTextField.text;
-
-        NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
-        persistanceManager.currentUser = loggedUser;
-
-        [self dismissViewControllerAnimated:YES completion:nil];
-    };
-    
-    return loggedInHandler;
-}
-
-- (NBAPINetworkResponseErrorHandler)loggedInErrorHandler
-{
-    NBAPINetworkResponseErrorHandler defaultErrorHandler = ^(NBAPINetworkOperation *completedOperation, NSError *error)
-    {
-        [self resetConnectionAnimation];
-        super.defaultErrorHandler(completedOperation, error);
-    };
-    
-    return defaultErrorHandler;
+    [self dismiss];
 }
 
 #pragma mark - Private methods - Connection
-
-- (void)fillFormWithCurrentUserDataAndTryToConnect
-{
-    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
-    NBUser *currentUser = persistanceManager.currentUser;
-    
-    if (currentUser != nil)
-    {
-        self.usernameTextField.text = currentUser.username;
-        self.passwordTextField.text = currentUser.password;
-        
-        [self validateForm];
-    }
-}
 
 - (void)tryToConnect
 {
@@ -134,8 +80,17 @@
 - (void)tryToConnectWithUsername:(NSString *)username password:(NSString *)password
 {
     NBAPINetworkOperation *loginOperation = [NBAPIRequest loginWithUsername:username password:password];
-    [loginOperation addCompletionHandler:[self loggedInHandler]
-                            errorHandler:[self loggedInErrorHandler]];
+
+    [loginOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
+        NBAPIResponseUser *response = (NBAPIResponseUser *)completedOperation.APIResponse;
+
+        [self setupCurrentUserAndDismiss:response.user];
+        
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](operation, error);
+        [self resetConnectionAnimation];
+    }];
+
     [loginOperation enqueue];
 }
 
@@ -177,6 +132,19 @@
         
         self.validationButton.userInteractionEnabled = YES;
     }];
+}
+
+#pragma mark - Private method - Others
+
+- (void)setupCurrentUserAndDismiss:(NBUser *)user
+{
+    self.persistanceManager.currentUser = user;
+    [self dismiss];
+}
+
+- (void)dismiss
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

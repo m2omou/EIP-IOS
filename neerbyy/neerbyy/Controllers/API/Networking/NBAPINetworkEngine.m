@@ -8,19 +8,20 @@
 
 #import "NBAPINetworkEngine.h"
 #import "NBAPINetworkOperation.h"
+#import "NSDictionary+URLEncoding.h"
+#import "NBAPINetworkOperation+UIImage.h"
 
 
 #pragma mark - Constants
 
 static NSString * const kNBAPIHostname = @"neerbyy.com";
-static NSUInteger const kNBAPIPort = 80;
 
 #pragma mark -
 
 
 @implementation NBAPINetworkEngine
 
-#pragma mark - Public methods
+#pragma mark - Singleton
 
 + (instancetype)engine
 {
@@ -29,16 +30,29 @@ static NSUInteger const kNBAPIPort = 80;
     
     dispatch_once(&once_token, ^{
         engine = [[NBAPINetworkEngine alloc] initWithHostName:kNBAPIHostname];
-        engine.portNumber = kNBAPIPort;
         [engine registerOperationSubclass:[NBAPINetworkOperation class]];
     });
     
     return engine;
 }
 
-- (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)body httpMethod:(NSString *)method
+#pragma mark - Public methods
+
++ (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey httpMethod:(NSString *)method
 {
-    NBAPINetworkOperation *operation = (NBAPINetworkOperation *)[super operationWithPath:path params:body httpMethod:method];
+    return [self operationWithPath:path params:params mainKey:mainKey image:nil imageKey:nil httpMethod:method];
+}
+
++ (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey image:(UIImage *)image imageKey:(NSString *)imageKey httpMethod:(NSString *)method
+{
+    params = [params encodeNestedDictionaryWithPrefix:mainKey];
+
+    NBAPINetworkOperation *operation = (NBAPINetworkOperation *)[[NBAPINetworkEngine engine] operationWithPath:path
+                                                                                                        params:params
+                                                                                                    httpMethod:method];
+    
+    if (image)
+        [operation addImage:image withKey:imageKey mainKey:mainKey];
     
 #ifdef DEBUG
     [operation addCompletionHandler:^(NBAPINetworkOperation *operation) {

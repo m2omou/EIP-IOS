@@ -15,6 +15,8 @@ typedef NSString *(^NBGenericTableViewControllerFilterBlock)(id data);
 
 @interface NBGenericTableViewController : UITableViewController
 
+@property (assign, nonatomic, getter = reloadsOnNewData) BOOL shouldReloadOnNewData;
+
 @property (strong, nonatomic) NSArray *data;
 @property (strong, nonatomic) NSString *reuseIdentifier;
 

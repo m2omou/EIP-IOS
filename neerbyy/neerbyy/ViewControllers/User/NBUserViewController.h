@@ -8,6 +8,7 @@
 
 #import "NBGenericViewController.h"
 
+
 @interface NBUserViewController : NBGenericViewController
 
 @end

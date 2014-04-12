@@ -9,6 +9,7 @@
 #import "MBGenericTableViewController.h"
 #import "NBTheme.h"
 
+
 @interface NBGenericTableViewController ()
 
 @property (strong, nonatomic) NSArray *originalData;
@@ -24,6 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.shouldReloadOnNewData = YES;
 
     self.tableView.backgroundColor = [UIColor clearColor];
 }
@@ -95,6 +98,9 @@
         self.originalData = data;
 
     _data = data;
+    
+    if (self.reloadsOnNewData)
+        [self.tableView reloadData];
 }
 
 #pragma mark - Convenience methods

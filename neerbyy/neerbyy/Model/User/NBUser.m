@@ -9,40 +9,47 @@
 #import "NBUser.h"
 
 
+#pragma mark - Constants
+
+static NSString * const kNBUserIdentifierKey = @"id";
+static NSString * const kNBUserUsernameKey = @"username";
+static NSString * const kNBUserFirstnameKey = @"firstname";
+static NSString * const kNBUserLastnameKey = @"lastname";
+static NSString * const kNBUserEmailKey = @"email";
+static NSString * const kNBUserAvatarURLKey = @"avatar";
+
+#pragma mark -
+
+
 @implementation NBUser
 
-#pragma mark - NSKeyValueCoding
+#pragma mark - NSCoding
 
-- (void)setValue:(id)value forKey:(NSString *)key
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if ([key isEqualToString:kNBAPIUserIDKey])
-        self.identifier = [self data:value ofType:[NSNumber class]];
-    else if ([key isEqualToString:kNBAPIUserUsernameKey])
-        self.username = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIUserFirsnameKey])
-        self.firstname = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIUserLastnameKey])
-        self.lastname = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIUserEmailKey])
-        self.email = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIUserPasswordKey])
-        self.password = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIUserAvatarKey])
-        self.avatarURL = [self data:value ofType:[NSString class]];
+    self = [super init];
+    
+    if (self)
+    {
+        self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBUserIdentifierKey];
+        self.username = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserUsernameKey];
+        self.firstname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserFirstnameKey];
+        self.lastname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserLastnameKey];
+        self.email = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserEmailKey];
+        self.avatarURL = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserAvatarURLKey];
+    }
+    
+    return self;
 }
 
-#pragma mark - NBAbstractModel
-
-- (NSDictionary *)dictionaryWithModel
+- (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    return @{kNBAPIUserIDKey:       NilToEmpty(self.identifier, NSString),
-             kNBAPIUserUsernameKey: NilToEmpty(self.username, NSString),
-             kNBAPIUserFirsnameKey: NilToEmpty(self.firstname, NSString),
-             kNBAPIUserLastnameKey: NilToEmpty(self.lastname, NSString),
-             kNBAPIUserEmailKey:    NilToEmpty(self.email, NSString),
-             kNBAPIUserPasswordKey: NilToEmpty(self.password, NSString),
-             kNBAPIUserAvatarKey:   NilToEmpty(self.avatarURL, NSString)
-             };
+    [aCoder encodeObject:self.identifier forKey:kNBUserIdentifierKey];
+    [aCoder encodeObject:self.username forKey:kNBUserUsernameKey];
+    [aCoder encodeObject:self.firstname forKey:kNBUserFirstnameKey];
+    [aCoder encodeObject:self.lastname forKey:kNBUserLastnameKey];
+    [aCoder encodeObject:self.email forKey:kNBUserEmailKey];
+    [aCoder encodeObject:self.avatarURL forKey:kNBUserAvatarURLKey];
 }
 
 @end

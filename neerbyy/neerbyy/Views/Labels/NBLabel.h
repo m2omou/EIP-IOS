@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface NBLabel : UILabel
 
 - (instancetype)initWithFontSize:(CGFloat)fontSize;

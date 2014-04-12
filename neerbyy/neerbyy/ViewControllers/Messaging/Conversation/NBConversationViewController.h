@@ -8,6 +8,7 @@
 
 #import "NBGenericViewController.h"
 
+
 @interface NBConversationViewController : NBGenericViewController
 
 @end

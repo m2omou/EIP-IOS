@@ -12,11 +12,13 @@
 #import "NBMenuTableViewCell.h"
 #import <UIViewController+ECSlidingViewController.h>
 
+
 @interface NBMenuTableViewController ()
 
 @property (strong, nonatomic) NSIndexPath *selectedIndexPath;
 
 @end
+
 
 @implementation NBMenuTableViewController
 

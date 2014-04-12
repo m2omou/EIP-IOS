@@ -8,6 +8,7 @@
 
 #import "MBGenericTableViewController.h"
 
+
 @interface NBCommentListViewController : NBGenericTableViewController
 
 @property (strong, nonatomic) NSArray *comments;

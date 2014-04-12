@@ -6,17 +6,13 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
-#import "NBAbstractModel.h"
-
-
-@interface NBUser : NBAbstractModel
+@interface NBUser : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSNumber *identifier;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *firstname;
 @property (strong, nonatomic) NSString *lastname;
 @property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *avatarURL;
 
 @end

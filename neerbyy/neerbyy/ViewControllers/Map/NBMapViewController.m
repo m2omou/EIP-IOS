@@ -46,6 +46,8 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
     [self themeFilterView];
 }
 
+#pragma mark - Theming
+
 - (void)themeFilterView
 {
     NBTheme *theme = [NBTheme sharedTheme];
@@ -115,34 +117,14 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
 
 #pragma mark - User interactions
 
-- (IBAction)pressedFilterButton:(id)sender {
-
-}
-
-- (IBAction)pressedLocationButton:(id)sender {
-    [self centerMapOnUser];
-}
-
-#pragma mark - Success & error handlers
-
-- (NBAPINetworkResponseSuccessHandler)fetchedPlaceHandler
+- (IBAction)pressedFilterButton:(id)sender
 {
-    NBAPINetworkResponseSuccessHandler fetechedPlaceHandler = ^(NBAPINetworkOperation *completedOperation)
-    {
-        NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
 
-        NSArray *places = response.places;
-        for (NBPlace *place in places)
-        {
-            if ([self isPlaceOnMap:place] == NO)
-            {
-                NBPlaceAnnotation *placeAnnotation = [[NBPlaceAnnotation alloc] initWithPlace:place];
-                [self.mapView addAnnotation:placeAnnotation];
-            }
-        }
-    };
-    
-    return fetechedPlaceHandler;
+}
+
+- (IBAction)pressedLocationButton:(id)sender
+{
+    [self centerMapOnUser];
 }
 
 #pragma mark - Private methods - Filter view
@@ -202,11 +184,25 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
 - (void)loadPlacesInMap
 {
     CLLocationCoordinate2D centerCoordinate = self.mapView.centerCoordinate;
-    NSNumber *limit = @50;
     
-    NBAPINetworkOperation *fetchPlacesOperation = [NBAPIRequest fetchPlacesAroundCoordinate:centerCoordinate withLimit:limit];
-    [fetchPlacesOperation addCompletionHandler:[self fetchedPlaceHandler]
-                                  errorHandler:self.defaultErrorHandler];
+    NBAPINetworkOperation *fetchPlacesOperation = [NBAPIRequest fetchPlacesAroundCoordinate:centerCoordinate];
+    [fetchPlacesOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
+         NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
+         
+         NSArray *places = response.places;
+         for (NBPlace *place in places)
+         {
+             if ([self isPlaceOnMap:place] == NO)
+             {
+                 NBPlaceAnnotation *placeAnnotation = [[NBPlaceAnnotation alloc] initWithPlace:place];
+                 [self.mapView addAnnotation:placeAnnotation];
+             }
+         }
+        
+    } errorHandler:^(NBAPINetworkOperation *completedOperation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](completedOperation, error);
+    }];
+    
     [fetchPlacesOperation enqueue];
 }
 
@@ -217,9 +213,7 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
     MKCoordinateSpan spanCoordinates = self.mapView.region.span;
     if (spanCoordinates.longitudeDelta <= minZoomLevelToLoadPlaces ||
         spanCoordinates.latitudeDelta <= minZoomLevelToLoadPlaces)
-    {
         return YES;
-    }
     
     return NO;
 }
@@ -231,13 +225,9 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
     NSArray *filteredArray = [currentAnnotations filteredArrayUsingPredicate:predicate];
 
     if ([filteredArray count] == 0)
-    {
         return NO;
-    }
     else
-    {
         return YES;
-    }
 }
 
 @end

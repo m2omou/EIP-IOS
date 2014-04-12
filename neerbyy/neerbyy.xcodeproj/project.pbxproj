@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7D457A843AB44E648D84945C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09EDAD57733945B587154639 /* libPods.a */; };
 		8AAA866DDCAF43598FF12833 /* libPods-neerbyyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3798AB256C4580A0AF9F4F /* libPods-neerbyyTests.a */; };
+		9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */; };
+		9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */; };
+		9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */; };
 		9C5BE940183219CB00CFA647 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE93F183219CB00CFA647 /* Foundation.framework */; };
 		9C5BE942183219CB00CFA647 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE941183219CB00CFA647 /* CoreGraphics.framework */; };
 		9C5BE944183219CB00CFA647 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE943183219CB00CFA647 /* UIKit.framework */; };
@@ -33,7 +36,6 @@
 		9CA4616018DD40E700A0DD44 /* NBAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460CA18DD40E700A0DD44 /* NBAPIResponse.m */; };
 		9CA4616118DD40E700A0DD44 /* NBPersistanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460CD18DD40E700A0DD44 /* NBPersistanceManager.m */; };
 		9CA4616218DD40E700A0DD44 /* NBTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460D018DD40E700A0DD44 /* NBTheme.m */; };
-		9CA4616318DD40E700A0DD44 /* NBAbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460D418DD40E700A0DD44 /* NBAbstractModel.m */; };
 		9CA4616418DD40E700A0DD44 /* NBPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460D718DD40E700A0DD44 /* NBPlace.m */; };
 		9CA4616518DD40E700A0DD44 /* NBPlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460D918DD40E700A0DD44 /* NBPlaceAnnotation.m */; };
 		9CA4616618DD40E700A0DD44 /* NBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460DC18DD40E700A0DD44 /* NBUser.m */; };
@@ -75,6 +77,7 @@
 		9CBBC16918DDC52D005C5D66 /* NBUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBBC16818DDC52D005C5D66 /* NBUserViewController.m */; };
 		9CBBC16E18DDC5C3005C5D66 /* NBPlaceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBBC16D18DDC5C3005C5D66 /* NBPlaceListViewController.m */; };
 		9CBBC17118DDC635005C5D66 /* NBPlaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBBC17018DDC635005C5D66 /* NBPlaceTableViewCell.m */; };
+		9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CCF976818F12DE600FE1697 /* NBNewPublicationViewController.m */; };
 		9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC8E8918DE85E1006BC096 /* NBFeedViewController.m */; };
 		9CDC8E8D18DE8607006BC096 /* NBFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC8E8C18DE8607006BC096 /* NBFavoritesViewController.m */; };
 		9CDC8E9218DE8660006BC096 /* NBMessagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC8E9118DE8660006BC096 /* NBMessagingViewController.m */; };
@@ -99,6 +102,12 @@
 /* Begin PBXFileReference section */
 		09EDAD57733945B587154639 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8911DB5BA5024EDE953B8C5A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9C284E2D18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NBAPINetworkOperation+UIImage.h"; sourceTree = "<group>"; };
+		9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NBAPINetworkOperation+UIImage.m"; sourceTree = "<group>"; };
+		9C284E3118F92F36000AFC06 /* NBDictionaryDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDictionaryDecoder.h; sourceTree = "<group>"; };
+		9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDictionaryDecoder.m; sourceTree = "<group>"; };
+		9C284E3418F9321C000AFC06 /* NSUserDefaults+NBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NBAdditions.h"; sourceTree = "<group>"; };
+		9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NBAdditions.m"; sourceTree = "<group>"; };
 		9C5BE93C183219CB00CFA647 /* neerbyy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neerbyy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5BE93F183219CB00CFA647 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C5BE941183219CB00CFA647 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,8 +141,6 @@
 		9CA460CD18DD40E700A0DD44 /* NBPersistanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBPersistanceManager.m; sourceTree = "<group>"; };
 		9CA460CF18DD40E700A0DD44 /* NBTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBTheme.h; sourceTree = "<group>"; };
 		9CA460D018DD40E700A0DD44 /* NBTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBTheme.m; sourceTree = "<group>"; };
-		9CA460D318DD40E700A0DD44 /* NBAbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBAbstractModel.h; sourceTree = "<group>"; };
-		9CA460D418DD40E700A0DD44 /* NBAbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAbstractModel.m; sourceTree = "<group>"; };
 		9CA460D618DD40E700A0DD44 /* NBPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBPlace.h; sourceTree = "<group>"; };
 		9CA460D718DD40E700A0DD44 /* NBPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBPlace.m; sourceTree = "<group>"; };
 		9CA460D818DD40E700A0DD44 /* NBPlaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBPlaceAnnotation.h; sourceTree = "<group>"; };
@@ -208,6 +215,8 @@
 		9CBBC16D18DDC5C3005C5D66 /* NBPlaceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPlaceListViewController.m; path = "Place/Place list/NBPlaceListViewController.m"; sourceTree = "<group>"; };
 		9CBBC16F18DDC635005C5D66 /* NBPlaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBPlaceTableViewCell.h; path = "Place/Place list/NBPlaceTableViewCell.h"; sourceTree = "<group>"; };
 		9CBBC17018DDC635005C5D66 /* NBPlaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPlaceTableViewCell.m; path = "Place/Place list/NBPlaceTableViewCell.m"; sourceTree = "<group>"; };
+		9CCF976718F12DE600FE1697 /* NBNewPublicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBNewPublicationViewController.h; path = Publication/NBNewPublicationViewController.h; sourceTree = "<group>"; };
+		9CCF976818F12DE600FE1697 /* NBNewPublicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBNewPublicationViewController.m; path = Publication/NBNewPublicationViewController.m; sourceTree = "<group>"; };
 		9CDC8E8818DE85E1006BC096 /* NBFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBFeedViewController.h; path = Feed/NBFeedViewController.h; sourceTree = "<group>"; };
 		9CDC8E8918DE85E1006BC096 /* NBFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBFeedViewController.m; path = Feed/NBFeedViewController.m; sourceTree = "<group>"; };
 		9CDC8E8B18DE8607006BC096 /* NBFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBFavoritesViewController.h; path = Favorites/NBFavoritesViewController.h; sourceTree = "<group>"; };
@@ -258,6 +267,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C284E3018F92F36000AFC06 /* Coder */ = {
+			isa = PBXGroup;
+			children = (
+				9C284E3118F92F36000AFC06 /* NBDictionaryDecoder.h */,
+				9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */,
+			);
+			path = Coder;
+			sourceTree = "<group>";
+		};
 		9C5BE933183219CB00CFA647 = {
 			isa = PBXGroup;
 			children = (
@@ -367,14 +385,18 @@
 		9CA4606118DD40E700A0DD44 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9C284E3418F9321C000AFC06 /* NSUserDefaults+NBAdditions.h */,
+				9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */,
 				9CBBC15318DDB442005C5D66 /* UIImage+Blur.h */,
 				9CBBC15418DDB442005C5D66 /* UIImage+Blur.m */,
-				9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */,
-				9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */,
 				9CA4606418DD40E700A0DD44 /* UITextField+Required.h */,
 				9CA4606518DD40E700A0DD44 /* UITextField+Required.m */,
 				9CBBC12C18DD67BD005C5D66 /* UIStoryboard+NBAdditions.h */,
 				9CBBC12D18DD67BD005C5D66 /* UIStoryboard+NBAdditions.m */,
+				9C284E2D18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.h */,
+				9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */,
+				9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */,
+				9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -382,6 +404,7 @@
 		9CA4606818DD40E700A0DD44 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9C284E3018F92F36000AFC06 /* Coder */,
 				9CA4606918DD40E700A0DD44 /* API */,
 				9CA460CB18DD40E700A0DD44 /* Persistance */,
 				9CA460CE18DD40E700A0DD44 /* Theme */,
@@ -450,20 +473,10 @@
 		9CA460D118DD40E700A0DD44 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9CA460D218DD40E700A0DD44 /* Abstract */,
 				9CA460D518DD40E700A0DD44 /* Place */,
 				9CA460DA18DD40E700A0DD44 /* User */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9CA460D218DD40E700A0DD44 /* Abstract */ = {
-			isa = PBXGroup;
-			children = (
-				9CA460D318DD40E700A0DD44 /* NBAbstractModel.h */,
-				9CA460D418DD40E700A0DD44 /* NBAbstractModel.m */,
-			);
-			path = Abstract;
 			sourceTree = "<group>";
 		};
 		9CA460D518DD40E700A0DD44 /* Place */ = {
@@ -597,8 +610,8 @@
 		9CA460FE18DD40E700A0DD44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9CBBC13A18DD924D005C5D66 /* TableView Cells */,
 				9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */,
+				9CBBC13A18DD924D005C5D66 /* TableView Cells */,
 				9CA460FF18DD40E700A0DD44 /* Buttons */,
 				9CBBC14C18DDB3CC005C5D66 /* ImageView */,
 				9CA4610218DD40E700A0DD44 /* Labels */,
@@ -670,6 +683,8 @@
 				9CBBC16018DDC4D6005C5D66 /* Publication list */,
 				9CBBC15D18DDC4CE005C5D66 /* NBPublicationViewController.h */,
 				9CBBC15E18DDC4CE005C5D66 /* NBPublicationViewController.m */,
+				9CCF976718F12DE600FE1697 /* NBNewPublicationViewController.h */,
+				9CCF976818F12DE600FE1697 /* NBNewPublicationViewController.m */,
 			);
 			name = Publications;
 			sourceTree = "<group>";
@@ -979,6 +994,7 @@
 				9CA4616418DD40E700A0DD44 /* NBPlace.m in Sources */,
 				9CDC8EA318DE96C7006BC096 /* NBMessageTableViewCell.m in Sources */,
 				9CA4616F18DD40E700A0DD44 /* NBMenuTableViewCell.m in Sources */,
+				9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */,
 				9CDC8E9718DE896D006BC096 /* NBConversationListViewController.m in Sources */,
 				9CA4615F18DD40E700A0DD44 /* NBAPIRequest.m in Sources */,
 				9CA4616C18DD40E700A0DD44 /* NBLoginViewController.m in Sources */,
@@ -987,6 +1003,7 @@
 				9CA4616218DD40E700A0DD44 /* NBTheme.m in Sources */,
 				9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */,
 				9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */,
+				9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */,
 				9CBBC15C18DDC0DA005C5D66 /* NBCommentTableViewCell.m in Sources */,
 				9CBBC14518DDA2F8005C5D66 /* MBGenericTableViewController.m in Sources */,
 				9CA4616718DD40E700A0DD44 /* main.m in Sources */,
@@ -1002,9 +1019,9 @@
 				9CA4617518DD40E700A0DD44 /* NBTextField.m in Sources */,
 				9CDC8E8D18DE8607006BC096 /* NBFavoritesViewController.m in Sources */,
 				9CA4617418DD40E700A0DD44 /* NBLabel.m in Sources */,
+				9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */,
 				9CA4616D18DD40E700A0DD44 /* NBAnnotationView.m in Sources */,
 				9CA4617118DD40E700A0DD44 /* NBMenuViewController.m in Sources */,
-				9CA4616318DD40E700A0DD44 /* NBAbstractModel.m in Sources */,
 				9CBBC15118DDB3CC005C5D66 /* NBBlurredZoomedImageView.m in Sources */,
 				9CA4610B18DD40E700A0DD44 /* NBAPINetworkEngine.m in Sources */,
 				9CA4616B18DD40E700A0DD44 /* NBGenericViewController.m in Sources */,
@@ -1018,6 +1035,7 @@
 				9CBBC17118DDC635005C5D66 /* NBPlaceTableViewCell.m in Sources */,
 				9CBBC15218DDB3CC005C5D66 /* NBCircleImageView.m in Sources */,
 				9CA4616918DD40E700A0DD44 /* NBForgotPasswordViewController.m in Sources */,
+				9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */,
 				9CA4616E18DD40E700A0DD44 /* NBMapViewController.m in Sources */,
 				9CBBC16E18DDC5C3005C5D66 /* NBPlaceListViewController.m in Sources */,
 				9CBBC16618DDC4FF005C5D66 /* NBPublicationTableViewCell.m in Sources */,

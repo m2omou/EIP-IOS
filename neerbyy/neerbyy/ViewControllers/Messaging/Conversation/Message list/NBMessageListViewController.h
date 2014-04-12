@@ -8,6 +8,7 @@
 
 #import "MBGenericTableViewController.h"
 
+
 @interface NBMessageListViewController : NBGenericTableViewController
 
 @property (strong, nonatomic) NSArray *messages;

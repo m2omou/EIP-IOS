@@ -13,6 +13,7 @@ typedef enum {
     kNBTextFieldTypePassword
 } NBTextFieldType;
 
+
 @interface NBTextField : UITextField
 
 @property (assign, nonatomic) NBTextFieldType textFieldType;

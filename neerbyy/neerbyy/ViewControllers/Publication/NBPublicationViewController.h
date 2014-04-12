@@ -8,6 +8,7 @@
 
 #import "NBGenericViewController.h"
 
+
 @interface NBPublicationViewController : NBGenericViewController
 
 @end

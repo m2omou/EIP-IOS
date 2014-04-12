@@ -9,6 +9,7 @@
 #import "NBAnnotationView.h"
 #import "NBTheme.h"
 
+
 @interface NBAnnotationView ()
 
 @property (strong, nonatomic) UIButton *calloutView;
@@ -36,23 +37,23 @@
 
 - (void)initCalloutView
 {
+    NBTheme *theme = [NBTheme sharedTheme];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     
     CGFloat height = 30.f;
     CGFloat width = 100.f;
     button.frame = CGRectMake((self.image.size.width - width) / 2.f,
                               -(self.image.size.height + height) / 2.f - 4.f,
-                              width,
-                              height);
+                              width, height);
     
     button.layer.cornerRadius = 5.f;
-
-    [button setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.8f]];
-    [button setTitle:self.annotation.title.uppercaseString forState:UIControlStateNormal];
     button.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+
+    [button setBackgroundColor:[theme.lightGreenColor colorWithAlphaComponent:0.9f]];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitle:self.annotation.title.uppercaseString forState:UIControlStateNormal];
     [button addTarget:self action:@selector(tappedCallout:) forControlEvents:UIControlEventTouchUpInside];
     
-    NBTheme *theme = [NBTheme sharedTheme];
     button.titleLabel.font = [theme.boldFont fontWithSize:10.f];
 
     self.calloutView = button;
@@ -102,9 +103,11 @@
 
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
 {
-    UIView* hitView = [super hitTest:point withEvent:event];
+    UIView *hitView = [super hitTest:point withEvent:event];
+    
     if (hitView != nil)
         [self.superview bringSubviewToFront:self];
+
     return hitView;
 }
 
@@ -113,12 +116,12 @@
     CGRect rect = self.bounds;
     BOOL isInside = CGRectContainsPoint(rect, point);
 
-    if(isInside == NO)
+    if (isInside == NO)
     {
         for (UIView *view in self.subviews)
         {
             isInside = CGRectContainsPoint(view.frame, point);
-            if(isInside)
+            if (isInside)
                 break;
         }
     }
@@ -128,9 +131,7 @@
 - (void)tappedCallout:(UIButton *)callout
 {
     if (self.onCalloutTap)
-    {
         self.onCalloutTap(self);
-    }
 }
 
 @end

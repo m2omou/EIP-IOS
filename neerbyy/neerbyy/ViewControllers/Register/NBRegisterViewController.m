@@ -9,6 +9,7 @@
 #import "NBRegisterViewController.h"
 #import "NBUser.h"
 
+
 @interface NBRegisterViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet NBTextField *usernameTextField;
@@ -20,6 +21,7 @@
 
 @end
 
+
 @implementation NBRegisterViewController
 
 #pragma mark - View life cycle
@@ -28,6 +30,13 @@
 {
     [super viewDidLoad];
 
+    [self themeTextFields];
+}
+
+#pragma mark - Theming
+
+- (void)themeTextFields
+{
     self.pickImageButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
     self.usernameTextField.textFieldType = kNBTextFieldTypeUsername;
     self.emailTextField.textFieldType = kNBTextFieldTypeEmail;
@@ -60,50 +69,6 @@
     [self registerUser];
 }
 
-#pragma mark - Response handlers
-
-- (NBAPINetworkResponseSuccessHandler)registerHandler
-{
-    NBAPINetworkResponseSuccessHandler registerHandler = ^(NBAPINetworkOperation *completedOperation)
-    {
-        NBAPIResponseLogin *response = (NBAPIResponseLogin *)completedOperation.APIResponse;
-        if (response.hasError)
-        {
-            [self enableValidationButtonIfNeeded];
-            [self displayAlertErrorWithDescription:response.responseMessage];
-            return ;
-        }
-        
-        NBUser *loggedUser = response.user;
-        loggedUser.password = self.passwordTextField.text;
-
-        NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
-        persistanceManager.currentUser = loggedUser;
-
-        [self goBackToLogin];
-    };
-    
-    return registerHandler;
-}
-
-- (NBAPINetworkResponseErrorHandler)registerErrorHandler
-{
-    NBAPINetworkResponseErrorHandler registerErrorHandler = ^(NBAPINetworkOperation *completedOperation, NSError *error)
-    {
-        [self enableValidationButtonIfNeeded];
-        super.defaultErrorHandler(completedOperation, error);
-    };
-    
-    return registerErrorHandler;
-}
-
-#pragma mark - Changing view controller
-
-- (void)goBackToLogin
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark - Convinience methods
 
 - (void)registerUser
@@ -114,8 +79,15 @@
     UIImage *avatar = self.avatar;
     
     NBAPINetworkOperation *registerOperation = [NBAPIRequest registerWithUsername:username password:password email:email avatar:avatar];
-    [registerOperation addCompletionHandler:[self registerHandler]
-                               errorHandler:[self registerErrorHandler]];
+
+    [registerOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
+        NBAPIResponseUser *response = (NBAPIResponseUser *)completedOperation.APIResponse;
+        [self setupCurrentUserAndGoBackToLogin:response.user];
+    } errorHandler:^(NBAPINetworkOperation *completedOperation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](completedOperation, error);
+        [self enableValidationButtonIfNeeded];
+    }];
+    
     [registerOperation enqueue];
 }
 
@@ -123,6 +95,17 @@
 {
     self.avatar = image;
     [self.pickImageButton setImage:image forState:UIControlStateNormal];
+}
+
+- (void)setupCurrentUserAndGoBackToLogin:(NBUser *)user
+{
+    self.persistanceManager.currentUser = user;
+    [self goBackToLogin];
+}
+
+- (void)goBackToLogin
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

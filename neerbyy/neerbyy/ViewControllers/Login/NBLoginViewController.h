@@ -8,7 +8,6 @@
 
 #import "NBGenericFormViewController.h"
 
-extern NSString * const kNBNotificationUserLoggedIn;
 
 @interface NBLoginViewController : NBGenericFormViewController
 

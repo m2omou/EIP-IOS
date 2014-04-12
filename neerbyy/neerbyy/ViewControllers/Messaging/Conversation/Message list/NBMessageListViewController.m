@@ -9,6 +9,7 @@
 #import "NBMessageListViewController.h"
 #import "NBMessageTableViewCell.h"
 
+
 #pragma mark - Constants
 
 static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdentifier";
@@ -19,6 +20,7 @@ static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdent
 @interface NBMessageListViewController ()
 
 @end
+
 
 @implementation NBMessageListViewController
 

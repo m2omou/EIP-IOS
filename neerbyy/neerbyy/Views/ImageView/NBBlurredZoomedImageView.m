@@ -9,7 +9,13 @@
 #import "NBBlurredZoomedImageView.h"
 #import "UIImage+Blur.h"
 
+
+#pragma mark - Constants
+
 static CGFloat const kNBBlurredZoomedImageViewDefaultBlur = 20.f;
+
+#pragma mark -
+
 
 @interface NBBlurredZoomedImageView ()
 

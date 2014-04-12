@@ -8,6 +8,7 @@
 
 #import "NBTableViewCell.h"
 
+
 @interface NBCommentTableViewCell : NBTableViewCell
 
 - (void)configureWithComment:(id)comment;

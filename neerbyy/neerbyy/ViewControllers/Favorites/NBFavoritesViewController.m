@@ -8,9 +8,11 @@
 
 #import "NBFavoritesViewController.h"
 
+
 @interface NBFavoritesViewController ()
 
 @end
+
 
 @implementation NBFavoritesViewController
 

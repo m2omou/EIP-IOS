@@ -21,6 +21,7 @@ static NSString * const kNBConversationCellIdentifier = @"NBConversationTableVie
 
 @end
 
+
 @implementation NBConversationListViewController
 
 #pragma mark - View lifecycle

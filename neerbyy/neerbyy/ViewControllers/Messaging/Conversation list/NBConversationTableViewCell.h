@@ -8,6 +8,7 @@
 
 #import "NBTableViewCell.h"
 
+
 @interface NBConversationTableViewCell : NBTableViewCell
 
 - (void)configureWithConversation:(id)conversation;

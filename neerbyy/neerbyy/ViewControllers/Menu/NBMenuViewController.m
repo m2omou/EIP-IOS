@@ -12,6 +12,7 @@
 #import "NBMenuTableViewController.h"
 #import "NBUser.h"
 
+
 @interface NBMenuViewController () <NBMenuTableViewControllerDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *viewControllers;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *connectionToogleButton;
 
 @end
+
 
 @implementation NBMenuViewController
 
@@ -47,10 +49,16 @@
 {
     [super viewDidLoad];
     
+    [self themeView];
     [self themeNavigationBarInformations];
 }
 
 #pragma mark - Theming
+
+- (void)themeView
+{
+    self.view.backgroundColor = self.theme.lightGrayColor;
+}
 
 - (void)themeNavigationBarInformations
 {
@@ -110,7 +118,7 @@
 
 - (void)logoutUser
 {
-    self.persistanceManager.currentUser = nil;
+    [self.persistanceManager logout];
 }
 
 - (void)presentLoginViewController
@@ -166,8 +174,7 @@
     
     if (viewController == nil)
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"iPhoneStoryboard" bundle:nil];
-        viewController = [storyboard instantiateViewControllerWithIdentifier:identifier];
+        viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:identifier];
         self.viewControllers[identifier] = viewController;
     }
     

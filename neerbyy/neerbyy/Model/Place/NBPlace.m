@@ -9,6 +9,16 @@
 #import "NBPlace.h"
 
 
+#pragma mark - Constant values
+
+static NSString * const kNBPlaceIDKey = @"id";
+static NSString * const kNBPlaceNameKey = @"name";
+static NSString * const kNBPlaceLogintudeKey = @"longitude";
+static NSString * const kNBPlaceLatitudeKey = @"latitude";
+
+#pragma mark -
+
+
 @interface NBPlace ()
 
 @property (assign, nonatomic) CGFloat longitude;
@@ -19,18 +29,29 @@
 
 @implementation NBPlace
 
-#pragma mark - NSKeyValueCoding
+#pragma mark - NSCoding
 
-- (void)setValue:(id)value forKey:(NSString *)key
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if ([key isEqualToString:kNBAPIPlaceIDKey])
-        self.identifier = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIPlaceNameKey])
-        self.name = [self data:value ofType:[NSString class]];
-    else if ([key isEqualToString:kNBAPIPlaceLongitudeKey])
-        self.longitude = [[self data:value ofType:[NSNumber class]] doubleValue];
-    else if ([key isEqualToString:kNBAPIPlaceLatitudeKey])
-        self.latitude = [[self data:value ofType:[NSNumber class]] doubleValue];
+    self = [super init];
+    
+    if (self)
+    {
+        self.identifier = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceIDKey];
+        self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceNameKey];
+        self.longitude = [aDecoder decodeFloatForKey:kNBPlaceLogintudeKey];
+        self.latitude = [aDecoder decodeFloatForKey:kNBPlaceLatitudeKey];
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.identifier forKey:kNBPlaceIDKey];
+    [aCoder encodeObject:self.name forKey:kNBPlaceNameKey];
+    [aCoder encodeFloat:self.longitude forKey:kNBPlaceLogintudeKey];
+    [aCoder encodeFloat:self.latitude forKey:kNBPlaceLatitudeKey];
 }
 
 #pragma mark - Properties

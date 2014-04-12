@@ -18,6 +18,7 @@
 
 @end
 
+
 @implementation NBMessageTableViewCell
 
 #pragma mark - Public methods

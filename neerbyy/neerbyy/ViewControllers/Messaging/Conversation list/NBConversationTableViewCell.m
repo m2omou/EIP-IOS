@@ -8,6 +8,7 @@
 
 #import "NBConversationTableViewCell.h"
 
+
 @implementation NBConversationTableViewCell
 
 #pragma mark - Public methods

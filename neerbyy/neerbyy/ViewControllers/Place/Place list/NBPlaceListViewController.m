@@ -9,6 +9,7 @@
 #import "NBPlaceListViewController.h"
 #import "NBPlaceTableViewCell.h"
 
+
 #pragma mark - Constants
 
 static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifier";
@@ -19,6 +20,7 @@ static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifie
 @interface NBPlaceListViewController ()
 
 @end
+
 
 @implementation NBPlaceListViewController
 

@@ -17,11 +17,12 @@ typedef void (^NBAPINetworkResponseErrorHandler)(NBAPINetworkOperation *operatio
 
 @interface NBAPINetworkOperation : MKNetworkOperation
 
++ (NBAPINetworkResponseErrorHandler)defaultErrorHandler;
+
 @property (readonly, nonatomic) NBAPIResponse *APIResponse;
 @property (strong, nonatomic) Class APIResponseClass;
 
-- (void)addCompletionHandler:(NBAPINetworkResponseSuccessHandler)completionHandler
-                errorHandler:(NBAPINetworkResponseErrorHandler)errorHandler;
+- (void)addCompletionHandler:(NBAPINetworkResponseSuccessHandler)completionHandler errorHandler:(NBAPINetworkResponseErrorHandler)errorHandler;
 - (void)enqueue;
 
 @end

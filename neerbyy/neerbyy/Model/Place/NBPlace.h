@@ -7,10 +7,9 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "NBAbstractModel.h"
 
 
-@interface NBPlace : NBAbstractModel
+@interface NBPlace : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *name;

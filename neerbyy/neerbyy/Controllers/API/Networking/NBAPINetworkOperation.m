@@ -18,22 +18,48 @@ typedef void (^NBAPINetworkResponseExceptionHandler)(NSException *exception);
 
 #pragma mark - Public methods
 
++ (NBAPINetworkResponseErrorHandler)defaultErrorHandler
+{
+    return ^(NBAPINetworkOperation *operation, NSError *error) {
+        NBAPIResponse *response = operation.APIResponse;
+        NSString *message = ((response.responseMessage ?: error.localizedDescription) ?: @"Une erreur inconnue s'est produite !");
+        [[[UIAlertView alloc] initWithTitle:@"Oups !"
+                                    message:message
+                                   delegate:nil
+                          cancelButtonTitle:@"Annuler"
+                          otherButtonTitles:nil] show];
+    };
+}
+
 - (void)addCompletionHandler:(NBAPINetworkResponseSuccessHandler)successHandler
                 errorHandler:(NBAPINetworkResponseErrorHandler)errorHandler
 {
-    NBAPINetworkResponseExceptionHandler exceptionHandler;
-#ifdef DEBUG
-    exceptionHandler = ^(NSException *exception)
+    NBAPINetworkResponseExceptionHandler exceptionHandler = ^(NSException *exception)
     {
+#ifdef DEBUG
         NSLog(@"[EXCEPTION] while parsing the API return : %@", exception);
-    };
 #endif
-
-    NBAPINetworkResponseSuccessHandler successExceptionWrapper = [self successExceptionWrapper:successHandler exceptionHandler:exceptionHandler];
-    NBAPINetworkResponseErrorHandler errorExceptionWrapper = [self errorExceptionWrapper:errorHandler exceptionHandler:exceptionHandler];
+    };
     
-    [super addCompletionHandler:(MKNKResponseBlock)successExceptionWrapper
-                   errorHandler:(MKNKResponseErrorBlock)errorExceptionWrapper];
+    [super addCompletionHandler:^(MKNetworkOperation *completedOperation) {
+        NBAPINetworkOperation *nbOperation = (NBAPINetworkOperation *)completedOperation;
+        NBAPIResponse *response = nbOperation.APIResponse;
+        
+        @try {
+            if (response.hasError)
+                errorHandler(nbOperation, nil);
+            else
+                successHandler(nbOperation);
+        } @catch (NSException *exception) {
+            exceptionHandler(exception);
+        }
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
+        @try {
+            errorHandler((NBAPINetworkOperation *)completedOperation, error);
+        } @catch (NSException *exception) {
+            exceptionHandler(exception);
+        }
+    }];
 }
 
 - (void)enqueue
@@ -54,42 +80,6 @@ typedef void (^NBAPINetworkResponseExceptionHandler)(NSException *exception);
 - (NBAPIResponse *)APIResponse
 {
     return [[self.APIResponseClass alloc] initWithResponseData:self.responseJSON];
-}
-
-#pragma mark - Private methods - Exception wrappers
-
-- (NBAPINetworkResponseSuccessHandler)successExceptionWrapper:(NBAPINetworkResponseSuccessHandler)successHandler
-                                          exceptionHandler:(NBAPINetworkResponseExceptionHandler)exceptionHandler
-{
-    NBAPINetworkResponseSuccessHandler exceptionWrapper = ^(NBAPINetworkOperation *operation)
-    {
-        @try {
-            if (successHandler)
-                successHandler(operation);
-        } @catch (NSException *exception) {
-            if (exceptionHandler)
-                exceptionHandler(exception);
-        }
-    };
-    
-    return exceptionWrapper;
-}
-
-- (NBAPINetworkResponseErrorHandler)errorExceptionWrapper:(NBAPINetworkResponseErrorHandler)errorHandler
-                                      exceptionHandler:(NBAPINetworkResponseExceptionHandler)exceptionHandler
-{
-    NBAPINetworkResponseErrorHandler exceptionWrapper = ^(NBAPINetworkOperation *operation, NSError *error)
-    {
-        @try {
-            if (errorHandler)
-                errorHandler(operation, error);
-        } @catch (NSException *exception) {
-            if (exceptionHandler)
-                exceptionHandler(exception);
-        }
-    };
-    
-    return exceptionWrapper;
 }
 
 @end

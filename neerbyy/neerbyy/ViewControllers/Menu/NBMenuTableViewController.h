@@ -8,11 +8,13 @@
 
 @class NBMenuTableViewController;
 
+
 @protocol NBMenuTableViewControllerDelegate <NSObject>
 
 - (void)menuTableViewController:(NBMenuTableViewController *)menuTableViewController didSelectViewControllerWithIdentifier:(NSString *)identifier;
 
 @end
+
 
 @interface NBMenuTableViewController : UITableViewController
 

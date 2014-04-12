@@ -8,6 +8,7 @@
 
 #import "NBTableViewCell.h"
 
+
 @interface NBMessageTableViewCell : NBTableViewCell
 
 - (void)configureWithMessage:(id)message;

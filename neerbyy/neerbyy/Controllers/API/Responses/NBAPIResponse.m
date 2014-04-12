@@ -1,25 +1,26 @@
 //
-//  TLAPIResponse.m
-//  OrangeTV
+//  NBAPIResponse.m
+//  neerbyy
 //
 //  Created by Maxime de Chalendar on 31/01/2014.
 //  Copyright (c) 2014 Maxime de Chalendar. All rights reserved.
 //
 
 #import "NBAPIResponse.h"
+#import "NBDictionaryDecoder.h"
 #import "NBPlace.h"
 #import "NBUser.h"
 
 
 #pragma mark - Constants
 
-static NSString * const kNBAPIResponseCodeKey = @"responseCode";
-static NSString * const kNBAPIResponseMessageKey = @"responseMessage";
-static NSString * const kNBAPIResponseResultKey = @"result";
-static NSInteger  const kNBAPIResponseCodeSuccess = 0;
+static NSString * const kNBAPIResponseKeyCode = @"responseCode";
+static NSString * const kNBAPIResponseKeyMessage = @"responseMessage";
+static NSString * const kNBAPIResponseKeyResult = @"result";
 
-static NSString * const kNBAPIResponseUserKey = @"user";
-static NSString * const kNBAPIReponsePlaceListKey = @"places";
+static NSString * const kNBAPIResponseKeyUser = @"user";
+static NSString * const kNBAPIResponseKeyPlaceList = @"places";
+static NSString * const kNBAPIResponseKeyPublicationList = @"publications";
 
 #pragma mark -
 
@@ -43,15 +44,15 @@ static NSString * const kNBAPIReponsePlaceListKey = @"places";
     {
         if ([data isKindOfClass:[NSDictionary class]])
         {
-            id responseCode = data[kNBAPIResponseCodeKey];
+            id responseCode = data[kNBAPIResponseKeyCode];
             if ([responseCode isKindOfClass:[NSNumber class]])
                 self.responseCode = [responseCode integerValue];
             
-            id responseMessage = data[kNBAPIResponseMessageKey];
+            id responseMessage = data[kNBAPIResponseKeyMessage];
             if ([responseMessage isKindOfClass:[NSString class]])
                 self.responseMessage = responseMessage;
             
-            id responseResult = data[kNBAPIResponseResultKey];
+            id responseResult = data[kNBAPIResponseKeyResult];
             if ([responseResult isKindOfClass:[NSDictionary class]])
                 self.data = responseResult;
             else
@@ -81,6 +82,8 @@ static NSString * const kNBAPIReponsePlaceListKey = @"places";
 
 - (BOOL)hasError
 {
+    static NSInteger const kNBAPIResponseCodeSuccess = 0;
+
     BOOL hasError = self.responseCode != kNBAPIResponseCodeSuccess;
     return hasError;
 }
@@ -88,52 +91,72 @@ static NSString * const kNBAPIReponsePlaceListKey = @"places";
 @end
 
 
-#pragma mark - Login
+#pragma mark - Single user
 
-@implementation NBAPIResponseLogin
+@implementation NBAPIResponseUser
 
 - (NBUser *)user
 {
-    NSDictionary *rawUser = [self dataWithKey:kNBAPIResponseUserKey ofType:[NSDictionary class]];
-    if (rawUser == nil)
-        return nil;
-    
-    NBUser *user = [NBUser modelWithDictionary:rawUser];
+    NSDictionary *rawUser = [self dataWithKey:kNBAPIResponseKeyUser ofType:[NSDictionary class]];
+    NBDictionaryDecoder *userDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawUser];
+    NBUser *user = [[NBUser alloc] initWithCoder:userDecoder];
     return user;
 }
 
 @end
 
 
-#pragma mark - Register
+#pragma mark - Single publication
 
-@implementation NBAPIResponseRegister
+@implementation NBAPIResponsePublication
 
-- (NBUser *)user
+- (id)publication
 {
-    NBUser *user = [NBUser modelWithDictionary:self.data];
-    return user;
+    return nil;
 }
 
 @end
 
 
-#pragma mark - Places
+#pragma mark - Place lsit
 
 @implementation NBAPIResponsePlaceList
 
 - (NSArray *)places
 {
-    NSArray *rawPlaces = [self dataWithKey:kNBAPIReponsePlaceListKey ofType:[NSArray class]];
+    NSArray *rawPlaces = [self dataWithKey:kNBAPIResponseKeyPlaceList ofType:[NSArray class]];
 
     NSMutableArray *places = [NSMutableArray array];
     for (NSDictionary *rawPlace in rawPlaces)
     {
-        NBPlace *place = [NBPlace modelWithDictionary:rawPlace];
+        NBDictionaryDecoder *placeDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawPlace];
+        NBPlace *place = [[NBPlace alloc] initWithCoder:placeDecoder];
         [places addObject:place];
     }
 
     return [places copy];
+}
+
+@end
+
+
+#pragma mark - Publication list
+
+@implementation NBAPIResponsePublicationList
+
+- (NSArray *)publications
+{
+//    NSArray *rawPublications = [self dataWithKey:kNBAPIResponseKeyPublicationList ofType:[NSArray class]];
+    
+    NSMutableArray *publications = [NSMutableArray array];
+//    for (NSDictionary *rawPublication in rawPublications)
+//    {
+//        NBDictionaryDecoder *publicationDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawPublication];
+//        NBPublication *publication = [[NBPublication alloc] initWithCoder:publicationDecoder];
+//        [publications addObject:publication];
+//    }
+    
+    return [publications copy];
 }
 
 @end

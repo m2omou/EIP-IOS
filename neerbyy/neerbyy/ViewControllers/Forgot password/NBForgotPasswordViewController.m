@@ -25,6 +25,13 @@
 {
     [super viewDidLoad];
     
+    [self themeEmailTextField];
+}
+
+#pragma mark - Theming
+
+- (void)themeEmailTextField
+{
     self.emailTextField.textFieldType = kNBTextFieldTypeEmail;
 }
 
@@ -44,38 +51,6 @@
     [self sendForgotPasswordEmail];
 }
 
-#pragma mark - Response handlers
-
-- (NBAPINetworkResponseSuccessHandler)forgotPasswordHandler
-{
-    NBAPINetworkResponseSuccessHandler forgotPasswordHandler = ^(NBAPINetworkOperation *completedOperation)
-    {
-        NBAPIResponse *APIResponse = completedOperation.APIResponse;
-        if (APIResponse.hasError)
-        {
-            [self enableValidationButtonIfNeeded];
-            [self displayAlertErrorWithDescription:APIResponse.responseMessage];
-            return ;
-        }
-        
-        [self displayAlertWithTitle:@"Email envoyé !"
-                        description:@"Vous devriez recevoir un email de confirmation dans quelques instants afin de réinitialiser votre mot de passe"];
-        [self.navigationController popViewControllerAnimated:YES];
-    };
-    
-    return forgotPasswordHandler;
-}
-
-- (NBAPINetworkResponseErrorHandler)forgotPasswordErrorHandler
-{
-    NBAPINetworkResponseErrorHandler forgortPasswordErrorHandler = ^(NBAPINetworkOperation *completedOperation, NSError *error)
-    {
-        [self enableValidationButtonIfNeeded];
-        super.defaultErrorHandler(completedOperation, error);
-    };
-    return forgortPasswordErrorHandler;
-}
-
 #pragma mark - Private methods
 
 - (void)sendForgotPasswordEmail
@@ -83,8 +58,17 @@
     NSString *email = self.emailTextField.text;
     
     NBAPINetworkOperation *forgotPasswordOperation = [NBAPIRequest sendForgetPasswordWithEmail:email];
-    [forgotPasswordOperation addCompletionHandler:[self forgotPasswordHandler]
-                                     errorHandler:[self forgotPasswordErrorHandler]];
+
+    [forgotPasswordOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        [self displayAlertWithTitle:@"Email envoyé !"
+                        description:@"Vous devriez recevoir un email de confirmation dans quelques instants afin de réinitialiser votre mot de passe"];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](operation, error);
+        [self enableValidationButtonIfNeeded];
+    }];
+    
     [forgotPasswordOperation enqueue];
 
 }

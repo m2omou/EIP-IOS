@@ -8,6 +8,7 @@
 
 #import "NBGenericFormViewController.h"
 
+
 @interface NBRegisterViewController : NBGenericFormViewController
 
 @end

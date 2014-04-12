@@ -10,6 +10,7 @@
 #import "NBCircleImageView.h"
 #import "NBTheme.h"
 
+
 @interface NBPublicationTableViewCell ()
 
 @property (strong, nonatomic) IBOutlet NBCircleImageView *thumnailImageView;

@@ -1,6 +1,6 @@
 //
-//  TLAPIResponse.h
-//  OrangeTV
+//  NBAPIResponse.h
+//  neerbyy
 //
 //  Created by Maxime de Chalendar on 31/01/2014.
 //  Copyright (c) 2014 Maxime de Chalendar. All rights reserved.
@@ -11,7 +11,7 @@
 
 @interface NBAPIResponse : NSObject
 
-- (instancetype)initWithResponseData:(id)data;
+- (instancetype)initWithResponseData:(NSDictionary *)data;
 
 @property (assign, nonatomic) NSInteger responseCode;
 @property (strong, nonatomic) NSString *responseMessage;
@@ -20,16 +20,16 @@
 @end
 
 
-@interface NBAPIResponseLogin : NBAPIResponse
+@interface NBAPIResponseUser : NBAPIResponse
 
 @property (readonly, nonatomic) NBUser *user;
 
 @end
 
 
-@interface NBAPIResponseRegister : NBAPIResponse
+@interface NBAPIResponsePublication : NBAPIResponse
 
-@property (readonly, nonatomic) NBUser *user;
+@property (readonly, nonatomic) id publication;
 
 @end
 
@@ -37,5 +37,12 @@
 @interface NBAPIResponsePlaceList : NBAPIResponse
 
 @property (readonly, nonatomic) NSArray *places;
+
+@end
+
+
+@interface NBAPIResponsePublicationList : NBAPIResponse
+
+@property (readonly, nonatomic) NSArray *publications;
 
 @end

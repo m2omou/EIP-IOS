@@ -7,30 +7,24 @@
 //
 
 #import "NBPersistanceManager.h"
+#import "NSUserDefaults+NBAdditions.h"
 #import "NBUser.h"
 
-#pragma mark - Constants
 
-static NSString * const kNBPersistanceHasSeenConnectionKey = @"hasSeenConnection";
-static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
+#pragma mark - Constants
 
 NSString * const kNBNotificationUserLoggedIn = @"userLoggedIn";
 NSString * const kNBNotificationUserLoggedOut = @"userLoggedOut";
 
+static NSString * const kNBPersistanceHasSeenConnectionKey = @"hasSeenConnection";
+static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
+
 #pragma mark -
-
-
-@interface NBPersistanceManager ()
-
-@property (readonly, nonatomic) NSUserDefaults *database;
-- (void)saveDatabase;
-
-@end
 
 
 @implementation NBPersistanceManager
 
-#pragma mark - Public methods
+#pragma mark - Singleton
 
 + (instancetype)sharedManager
 {
@@ -49,35 +43,20 @@ NSString * const kNBNotificationUserLoggedOut = @"userLoggedOut";
 - (NBUser *)currentUser
 {
     if (_currentUser == nil)
-    {
-        NSDictionary *currentUserDic = [[self database] dictionaryForKey:kNBPersistanceCurrentUserKey];
-        if (currentUserDic == nil)
-            return nil;
-
-        NBUser *currentUser = [NBUser modelWithDictionary:currentUserDic];
-        _currentUser = currentUser;
-    }
+        _currentUser = [NSUserDefaults archivedObjectForKey:kNBPersistanceCurrentUserKey];
+    
     return _currentUser;
 }
 
 - (void)setCurrentUser:(NBUser *)currentUser
 {
-    _currentUser = currentUser;
-
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    NSUserDefaults *database = [self database];
-    if (currentUser)
-    {
-        NSDictionary *currentUserDic = [currentUser dictionaryWithModel];
-        [database setObject:currentUserDic forKey:kNBPersistanceCurrentUserKey];
-        [notificationCenter postNotificationName:kNBNotificationUserLoggedIn object:self];
-    }
+    if (!currentUser)
+        [self logout];
     else
     {
-        [database removeObjectForKey:kNBPersistanceCurrentUserKey];
-        [notificationCenter postNotificationName:kNBNotificationUserLoggedOut object:self];
+        [NSUserDefaults archiveObject:currentUser forKey:kNBPersistanceCurrentUserKey];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNBNotificationUserLoggedIn object:self];
     }
-    [self saveDatabase];
 }
 
 - (BOOL)isConnected
@@ -87,17 +66,13 @@ NSString * const kNBNotificationUserLoggedOut = @"userLoggedOut";
     return isConnected;
 }
 
-#pragma mark - Private methods
+#pragma mark - Public methods
 
-- (NSUserDefaults *)database
+- (void)logout
 {
-    NSUserDefaults *database = [NSUserDefaults standardUserDefaults];
-    return database;
-}
-
-- (void)saveDatabase
-{
-    [[self database] synchronize];
+    _currentUser = nil;
+    [NSUserDefaults removeObjectForKey:kNBPersistanceCurrentUserKey];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNBNotificationUserLoggedOut object:self];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "NBCommentTableViewCell.h"
 
+
 @implementation NBCommentTableViewCell
 
 #pragma mark - Public methods

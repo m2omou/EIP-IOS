@@ -24,4 +24,6 @@ extern NSString * const kNBNotificationUserLoggedOut;
 @property (strong, nonatomic) NBUser *currentUser;
 @property (readonly, nonatomic) BOOL isConnected;
 
+- (void)logout;
+
 @end

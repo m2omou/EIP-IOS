@@ -8,6 +8,7 @@
 
 #import "NBGenericViewController.h"
 
+
 @interface NBFeedViewController : NBGenericViewController
 
 @end
