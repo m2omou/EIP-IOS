@@ -46,7 +46,7 @@
 		9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460E918DD40E700A0DD44 /* NBGenericFormViewController.m */; };
 		9CA4616B18DD40E700A0DD44 /* NBGenericViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460EB18DD40E700A0DD44 /* NBGenericViewController.m */; };
 		9CA4616C18DD40E700A0DD44 /* NBLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460EE18DD40E700A0DD44 /* NBLoginViewController.m */; };
-		9CA4616D18DD40E700A0DD44 /* NBAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460F118DD40E700A0DD44 /* NBAnnotationView.m */; };
+		9CA4616D18DD40E700A0DD44 /* NBPlaceAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460F118DD40E700A0DD44 /* NBPlaceAnnotationView.m */; };
 		9CA4616E18DD40E700A0DD44 /* NBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460F318DD40E700A0DD44 /* NBMapViewController.m */; };
 		9CA4616F18DD40E700A0DD44 /* NBMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460F618DD40E700A0DD44 /* NBMenuTableViewCell.m */; };
 		9CA4617018DD40E700A0DD44 /* NBMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA460F818DD40E700A0DD44 /* NBMenuTableViewController.m */; };
@@ -162,8 +162,8 @@
 		9CA460EB18DD40E700A0DD44 /* NBGenericViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBGenericViewController.m; sourceTree = "<group>"; };
 		9CA460ED18DD40E700A0DD44 /* NBLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBLoginViewController.h; sourceTree = "<group>"; };
 		9CA460EE18DD40E700A0DD44 /* NBLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBLoginViewController.m; sourceTree = "<group>"; };
-		9CA460F018DD40E700A0DD44 /* NBAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBAnnotationView.h; sourceTree = "<group>"; };
-		9CA460F118DD40E700A0DD44 /* NBAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBAnnotationView.m; sourceTree = "<group>"; };
+		9CA460F018DD40E700A0DD44 /* NBPlaceAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBPlaceAnnotationView.h; sourceTree = "<group>"; };
+		9CA460F118DD40E700A0DD44 /* NBPlaceAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBPlaceAnnotationView.m; sourceTree = "<group>"; };
 		9CA460F218DD40E700A0DD44 /* NBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMapViewController.h; sourceTree = "<group>"; };
 		9CA460F318DD40E700A0DD44 /* NBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBMapViewController.m; sourceTree = "<group>"; };
 		9CA460F518DD40E700A0DD44 /* NBMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBMenuTableViewCell.h; sourceTree = "<group>"; };
@@ -584,8 +584,8 @@
 			children = (
 				9CA460F218DD40E700A0DD44 /* NBMapViewController.h */,
 				9CA460F318DD40E700A0DD44 /* NBMapViewController.m */,
-				9CA460F018DD40E700A0DD44 /* NBAnnotationView.h */,
-				9CA460F118DD40E700A0DD44 /* NBAnnotationView.m */,
+				9CA460F018DD40E700A0DD44 /* NBPlaceAnnotationView.h */,
+				9CA460F118DD40E700A0DD44 /* NBPlaceAnnotationView.m */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1026,7 +1026,7 @@
 				9CDC8E8D18DE8607006BC096 /* NBFavoritesViewController.m in Sources */,
 				9CA4617418DD40E700A0DD44 /* NBLabel.m in Sources */,
 				9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */,
-				9CA4616D18DD40E700A0DD44 /* NBAnnotationView.m in Sources */,
+				9CA4616D18DD40E700A0DD44 /* NBPlaceAnnotationView.m in Sources */,
 				9CA4617118DD40E700A0DD44 /* NBMenuViewController.m in Sources */,
 				9CBBC15118DDB3CC005C5D66 /* NBBlurredZoomedImageView.m in Sources */,
 				9CA4610B18DD40E700A0DD44 /* NBAPINetworkEngine.m in Sources */,

@@ -8,9 +8,13 @@
 
 #import "NBMapViewController.h"
 #import <MapKit/MapKit.h>
+#import <CCHMapClusterController.h>
+#import <CCHMapClusterAnnotation.h>
+#import <CCHMapClusterControllerDelegate.h>
 #import "UIStoryboard+NBAdditions.h"
+#import "NBPlaceListViewController.h"
 #import "NBPlaceViewController.h"
-#import "NBAnnotationView.h"
+#import "NBPlaceAnnotationView.h"
 #import "NBPlaceAnnotation.h"
 #import "NBPlace.h"
 
@@ -19,16 +23,27 @@
 
 static CGFloat const kNBFilterViewAnimationDuration = .3f;
 
+/*
+ * These are arbitrary values to balance
+ * clustering precision against performances.
+ * Read CCHMapClusterController's documentation
+ * for more informations
+ */
+static CGFloat const kMBMapClusterCellSize = 80.f;
+static CGFloat const kMBMapMarginFactor = 1.f;
+
 #pragma mark -
 
 
-@interface NBMapViewController ()
+@interface NBMapViewController () <CCHMapClusterControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIView *filterView;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *filterViewTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeightConstraint;
+
+@property (strong, nonatomic) CCHMapClusterController *mapClusterController;
 
 @end
 
@@ -42,8 +57,19 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
     [super viewDidLoad];
     
     self.hidesNavigationBar = YES;
-    
+
+    [self initMapClusterController];
     [self themeFilterView];
+}
+
+- (void)initMapClusterController
+{
+    CCHMapClusterController *mapClusterController = [[CCHMapClusterController alloc] initWithMapView:self.mapView];
+    mapClusterController.delegate = self;
+    mapClusterController.cellSize = kMBMapClusterCellSize;
+    mapClusterController.marginFactor = kMBMapMarginFactor;
+    
+    self.mapClusterController = mapClusterController;
 }
 
 #pragma mark - Theming
@@ -65,9 +91,7 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self showFilterView];
-    
-    if ([self isZoomedEnoughToLoadPlaces])
-        [self loadPlacesInMap];
+    [self loadPlacesInMap];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -75,43 +99,53 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
     [self centerMapOnUserOnFirstDetection];
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
-    if ([annotation isKindOfClass:[NBPlaceAnnotation class]])
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView;
+    
+    if ([annotation isKindOfClass:[CCHMapClusterAnnotation class]])
     {
-        static NSString * const reuseIdentifier = @"placeAnnotation";
-
-        MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseIdentifier];
-        if (annotationView == nil)
-            annotationView = [[NBAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
-        else
-            annotationView.annotation = annotation;
-        return annotationView;
+        static NSString * const kNBPlaceAnnotationViewReuseIdentifier = @"placeAnnotationView";
+        NBPlaceAnnotationView *vehiculeAnnotationView = [[NBPlaceAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:kNBPlaceAnnotationViewReuseIdentifier];
+        annotationView = vehiculeAnnotationView;
     }
-
-    return nil;
+    
+    return annotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    if ([view isKindOfClass:[NBAnnotationView class]])
+    if ([view isKindOfClass:[NBPlaceAnnotationView class]])
     {
-        NBAnnotationView *annotationView = (NBAnnotationView *)view;
-        [annotationView showCalloutWithAction:^(MKAnnotationView *annotationView)
-         {
-             NBPlaceAnnotation *placeAnnotation = (NBPlaceAnnotation *)annotationView.annotation;
-             NBPlaceViewController *placeViewController = [UIStoryboard placeViewController];
-             placeViewController.place = placeAnnotation.place;
-             [self.navigationController pushViewController:placeViewController animated:YES];
+        NBPlaceAnnotationView *annotationView = (NBPlaceAnnotationView *)view;
+        [annotationView showCalloutWithAction:^(MKAnnotationView *annotationView) {
+             [self pressedAnnotationCallout:annotationView.annotation];
          }];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
-    if ([view isKindOfClass:[NBAnnotationView class]])
+    if ([view isKindOfClass:[NBPlaceAnnotationView class]])
     {
-        NBAnnotationView *annotationView = (NBAnnotationView *)view;
+        NBPlaceAnnotationView *annotationView = (NBPlaceAnnotationView *)view;
         [annotationView hideCallout];
+    }
+}
+
+#pragma mark - CCHMapClusterControllerDelegate
+
+- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
+{
+    if ([mapClusterAnnotation isCluster])
+    {
+        NSUInteger numberOfAnnotations = mapClusterAnnotation.annotations.count;
+        return [NSString stringWithFormat:@"%@ lieux...", @(numberOfAnnotations)];
+    }
+    else
+    {
+        NBPlaceAnnotation *placeAnnotation = mapClusterAnnotation.annotations.anyObject;
+        return placeAnnotation.title;
     }
 }
 
@@ -181,53 +215,83 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
     [self.mapView setRegion:userRegion animated:YES];
 }
 
+#pragma mark - Private methods - Network related
+
 - (void)loadPlacesInMap
 {
     CLLocationCoordinate2D centerCoordinate = self.mapView.centerCoordinate;
     
     NBAPINetworkOperation *fetchPlacesOperation = [NBAPIRequest fetchPlacesAroundCoordinate:centerCoordinate];
     [fetchPlacesOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
-         NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
-         
-         NSArray *places = response.places;
-         for (NBPlace *place in places)
-         {
-             if ([self isPlaceOnMap:place] == NO)
-             {
-                 NBPlaceAnnotation *placeAnnotation = [[NBPlaceAnnotation alloc] initWithPlace:place];
-                 [self.mapView addAnnotation:placeAnnotation];
-             }
-         }
+        NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
         
-    } errorHandler:^(NBAPINetworkOperation *completedOperation, NSError *error) {
-        [NBAPINetworkOperation defaultErrorHandler](completedOperation, error);
-    }];
+        [self addPlacesToMap:response.places];
+        
+    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     
     [fetchPlacesOperation enqueue];
 }
 
-- (BOOL)isZoomedEnoughToLoadPlaces
+- (void)addPlacesToMap:(NSArray *)places
 {
-    CGFloat const minZoomLevelToLoadPlaces = .08f;
-
-    MKCoordinateSpan spanCoordinates = self.mapView.region.span;
-    if (spanCoordinates.longitudeDelta <= minZoomLevelToLoadPlaces ||
-        spanCoordinates.latitudeDelta <= minZoomLevelToLoadPlaces)
-        return YES;
+    NSMutableArray *annotations = [NSMutableArray array];
     
-    return NO;
+    for (NBPlace *place in places)
+    {
+        if ([self isPlaceOnMap:place] == NO)
+        {
+            NBPlaceAnnotation *annotation = [[NBPlaceAnnotation alloc] initWithPlace:place];
+            [annotations addObject:annotation];
+        }
+    }
+
+    [self.mapClusterController addAnnotations:annotations withCompletionHandler:NULL];
 }
 
 - (BOOL)isPlaceOnMap:(NBPlace *)place
 {
-    NSArray *currentAnnotations = self.mapView.annotations;
+    NSSet *currentAnnotations = self.mapClusterController.annotations;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", place.name];
-    NSArray *filteredArray = [currentAnnotations filteredArrayUsingPredicate:predicate];
+    NSSet *filteredArray = [currentAnnotations filteredSetUsingPredicate:predicate];
 
     if ([filteredArray count] == 0)
         return NO;
     else
         return YES;
+}
+
+#pragma mark - Private methods - User interactions related
+
+- (void)pressedAnnotationCallout:(CCHMapClusterAnnotation *)annotation
+{
+    UIViewController *viewController;
+    
+    if ([annotation isCluster])
+        viewController = [self viewControllerForMultipleAnnotations:annotation.annotations];
+    else
+        viewController = [self viewControllerForSingleAnnotation:annotation.annotations.anyObject];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (UIViewController *)viewControllerForMultipleAnnotations:(NSSet *)annotations
+{
+    NSMutableArray *places = [NSMutableArray array];
+    for (NBPlaceAnnotation *placeAnnotation in annotations)
+        [places addObject:placeAnnotation.place];
+
+    NBPlaceListViewController *placeListViewController = [UIStoryboard placeListViewController];
+    placeListViewController.places = [places copy];
+
+    return placeListViewController;
+}
+
+- (UIViewController *)viewControllerForSingleAnnotation:(NBPlaceAnnotation *)annotation
+{
+    NBPlaceViewController *placeViewController = [UIStoryboard placeViewController];
+    placeViewController.place = annotation.place;
+
+    return placeViewController;
 }
 
 @end

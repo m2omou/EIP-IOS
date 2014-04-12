@@ -32,4 +32,11 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:kNBPlaceViewControllerIdentifier];
 }
 
++ (NBPlaceListViewController *)placeListViewController
+{
+    static NSString * const kNBPlaceListViewControllerIdentifier = @"NBPlaceListViewController";
+    
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:kNBPlaceListViewControllerIdentifier];
+}
+
 @end

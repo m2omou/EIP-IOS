@@ -8,7 +8,7 @@
 
 #import <MapKit/MapKit.h>
 
-@interface NBAnnotationView : MKAnnotationView
+@interface NBPlaceAnnotationView : MKAnnotationView
 
 - (void)showCalloutWithAction:(void (^)(MKAnnotationView *))onCalloutTap;
 - (void)hideCallout;

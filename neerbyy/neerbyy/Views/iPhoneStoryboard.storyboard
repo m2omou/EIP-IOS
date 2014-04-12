@@ -1371,7 +1371,7 @@
         <!--Place List View Controller-->
         <scene sceneID="4xD-Bp-Mgb">
             <objects>
-                <tableViewController id="AnX-BQ-EC0" customClass="NBPlaceListViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NBPlaceListViewController" id="AnX-BQ-EC0" customClass="NBPlaceListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="zsH-yj-iPs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

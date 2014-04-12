@@ -6,11 +6,12 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
-#import "NBAnnotationView.h"
+#import "NBPlaceAnnotationView.h"
+#import <CCHMapClusterAnnotation.h>
 #import "NBTheme.h"
 
 
-@interface NBAnnotationView ()
+@interface NBPlaceAnnotationView ()
 
 @property (strong, nonatomic) UIButton *calloutView;
 @property (strong, nonatomic) void (^onCalloutTap)(MKAnnotationView *);
@@ -18,7 +19,7 @@
 @end
 
 
-@implementation NBAnnotationView
+@implementation NBPlaceAnnotationView
 
 #pragma mark - Initialisation
 
@@ -73,13 +74,6 @@
 }
 
 #pragma mark - Properties
-
-- (void)setAnnotation:(id<MKAnnotation>)annotation
-{
-    [super setAnnotation:annotation];
-    
-    [self.calloutView setTitle:annotation.title.uppercaseString forState:UIControlStateNormal];
-}
 
 - (void)setHighlighted:(BOOL)highlighted
 {

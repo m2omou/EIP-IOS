@@ -3,6 +3,7 @@ inhibit_all_warnings!
 
 pod 'MKNetworkKit'
 pod 'ECSlidingViewController'
+pod 'CCHMapClusterController'
 
 target :neerbyyTests, :exclusive => true do
     pod 'Kiwi/XCTest'
