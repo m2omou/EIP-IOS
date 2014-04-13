@@ -31,6 +31,10 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
     dispatch_once(&once_token, ^{
         engine = [[NBAPINetworkEngine alloc] initWithHostName:kNBAPIHostname];
         [engine registerOperationSubclass:[NBAPINetworkOperation class]];
+
+        MKNetworkEngine *imageEngine = [MKNetworkEngine new];
+        [imageEngine useCache];
+        [UIImageView setDefaultEngine:imageEngine];
     });
     
     return engine;
