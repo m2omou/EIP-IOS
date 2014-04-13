@@ -18,7 +18,7 @@
     
     NBTheme *theme = [NBTheme sharedTheme];
 
-    self.backgroundColor = theme.lightGrayColor;
+    self.backgroundColor = [UIColor clearColor];
     self.textLabel.font = [theme.font fontWithSize:self.textLabel.font.pointSize];
 }
 
