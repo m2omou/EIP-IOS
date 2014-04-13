@@ -60,6 +60,7 @@ static CGFloat const kMBMapMarginFactor = 1.f;
 
     [self initMapClusterController];
     [self themeFilterView];
+    [self themeMapView];
 }
 
 - (void)initMapClusterController
@@ -76,9 +77,12 @@ static CGFloat const kMBMapMarginFactor = 1.f;
 
 - (void)themeFilterView
 {
-    NBTheme *theme = [NBTheme sharedTheme];
+    self.filterView.backgroundColor = [self.theme.lightGreenColor colorWithAlphaComponent:.90f];
+}
 
-    self.filterView.backgroundColor = [theme.lightGreenColor colorWithAlphaComponent:.90f];
+- (void)themeMapView
+{
+    self.mapView.tintColor = self.theme.lightGreenColor;
 }
 
 #pragma mark - MKMapViewDelegate
