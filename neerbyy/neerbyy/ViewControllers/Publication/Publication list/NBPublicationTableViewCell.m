@@ -7,7 +7,9 @@
 //
 
 #import "NBPublicationTableViewCell.h"
+#import <UIImageView+MKNetworkKitAdditions.h>
 #import "NBCircleImageView.h"
+#import "NBPublication.h"
 #import "NBTheme.h"
 
 
@@ -31,14 +33,11 @@
 
 #pragma mark - Public methods
 
-- (void)configureWithPublication:(id)publication
+- (void)configureWithPublication:(NBPublication *)publication
 {
-    NSString *imageName = publication[@"img"];
-    UIImage *image = [UIImage imageNamed:imageName];
-    self.thumnailImageView.image = image;
-
-    self.descriptionLabel.text = publication[@"description"];
-    self.userAndLocationLabel.text = publication[@"smallText"];
+    [self.thumnailImageView setImageFromURL:publication.thumbnailURL];
+    self.descriptionLabel.text = publication.description;
+    self.userAndLocationLabel.text = [NSString stringWithFormat:@"%@ @ %@", publication.userId, publication.placeId];
 }
 
 #pragma mark - NBTableViewCell

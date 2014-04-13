@@ -7,10 +7,11 @@
 //
 
 #import "NBTableViewCell.h"
+@class NBPublication;
 
 
 @interface NBPublicationTableViewCell : NBTableViewCell
 
-- (void)configureWithPublication:(id)publication;
+- (void)configureWithPublication:(NBPublication *)publication;
 
 @end
