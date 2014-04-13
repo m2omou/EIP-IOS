@@ -1,12 +1,12 @@
 PODS:
   - CCHMapClusterController (1.5.0)
   - ECSlidingViewController (2.0.1)
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/XCTest (2.2.3):
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/XCTest (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - MKNetworkKit (0.87):
+  - MKNetworkKit (HEAD based on 0.87):
     - Reachability (~> 3.1.0)
   - Reachability (3.1.1)
 
@@ -14,13 +14,13 @@ DEPENDENCIES:
   - CCHMapClusterController
   - ECSlidingViewController
   - Kiwi/XCTest
-  - MKNetworkKit
+  - MKNetworkKit (HEAD)
 
 SPEC CHECKSUMS:
   CCHMapClusterController: 5290080f8852023fc0b416f04b9bf54aae724e82
   ECSlidingViewController: d7bb96ee5bbe261ed80ee16a513f94b9fd3c9767
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
   MKNetworkKit: f174100f92473012138b6b1c3040266af8d43a14
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.31.1
