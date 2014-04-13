@@ -11,12 +11,12 @@
 #import "NBUser.h"
 
 
-@interface NBRegisterViewController () <UITextFieldDelegate>
+@interface NBRegisterViewController ()
 
 @property (strong, nonatomic) IBOutlet NBTextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet NBTextField *emailTextField;
 @property (strong, nonatomic) IBOutlet NBTextField *passwordTextField;
-@property (strong, nonatomic) IBOutlet UIButton *pickImageButton;
+@property (strong, nonatomic) IBOutlet NBPrimaryButton *pickImageButton;
 
 @property (strong, nonatomic) UIImage *avatar;
 
@@ -31,14 +31,19 @@
 {
     [super viewDidLoad];
 
+    [self themePickImageButton];
     [self themeTextFields];
 }
 
 #pragma mark - Theming
 
-- (void)themeTextFields
+- (void)themePickImageButton
 {
     self.pickImageButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+}
+
+- (void)themeTextFields
+{
     self.usernameTextField.textFieldType = kNBTextFieldTypeUsername;
     self.emailTextField.textFieldType = kNBTextFieldTypeEmail;
     self.passwordTextField.textFieldType = kNBTextFieldTypePassword;
