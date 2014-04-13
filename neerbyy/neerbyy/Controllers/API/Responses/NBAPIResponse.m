@@ -8,6 +8,7 @@
 
 #import "NBAPIResponse.h"
 #import "NBDictionaryDecoder.h"
+#import "NBPublication.h"
 #import "NBPlace.h"
 #import "NBUser.h"
 
@@ -19,6 +20,7 @@ static NSString * const kNBAPIResponseKeyMessage = @"responseMessage";
 static NSString * const kNBAPIResponseKeyResult = @"result";
 
 static NSString * const kNBAPIResponseKeyUser = @"user";
+static NSString * const kNBAPIResponseKeyPublication = @"publication";
 static NSString * const kNBAPIResponseKeyPlaceList = @"places";
 static NSString * const kNBAPIResponseKeyPublicationList = @"publications";
 
@@ -112,7 +114,10 @@ static NSString * const kNBAPIResponseKeyPublicationList = @"publications";
 
 - (id)publication
 {
-    return nil;
+    NSDictionary *rawPublication = [self dataWithKey:kNBAPIResponseKeyPublication ofType:[NSDictionary class]];
+    NBDictionaryDecoder *publicationDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawPublication];
+    NBPublication *publication = [[NBPublication alloc] initWithCoder:publicationDecoder];
+    return publication;
 }
 
 @end
@@ -146,15 +151,15 @@ static NSString * const kNBAPIResponseKeyPublicationList = @"publications";
 
 - (NSArray *)publications
 {
-//    NSArray *rawPublications = [self dataWithKey:kNBAPIResponseKeyPublicationList ofType:[NSArray class]];
+    NSArray *rawPublications = [self dataWithKey:kNBAPIResponseKeyPublicationList ofType:[NSArray class]];
     
     NSMutableArray *publications = [NSMutableArray array];
-//    for (NSDictionary *rawPublication in rawPublications)
-//    {
-//        NBDictionaryDecoder *publicationDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawPublication];
-//        NBPublication *publication = [[NBPublication alloc] initWithCoder:publicationDecoder];
-//        [publications addObject:publication];
-//    }
+    for (NSDictionary *rawPublication in rawPublications)
+    {
+        NBDictionaryDecoder *publicationDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawPublication];
+        NBPublication *publication = [[NBPublication alloc] initWithCoder:publicationDecoder];
+        [publications addObject:publication];
+    }
     
     return [publications copy];
 }

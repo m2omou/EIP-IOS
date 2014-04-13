@@ -7,7 +7,7 @@
 //
 
 @class NBUser;
-
+@class NBPublication;
 
 @interface NBAPIResponse : NSObject
 
@@ -29,7 +29,7 @@
 
 @interface NBAPIResponsePublication : NBAPIResponse
 
-@property (readonly, nonatomic) id publication;
+@property (readonly, nonatomic) NBPublication *publication;
 
 @end
 
