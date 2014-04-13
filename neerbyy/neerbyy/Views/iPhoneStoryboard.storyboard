@@ -702,7 +702,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80p-D2-Fjf">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="80p-D2-Fjf">
                                 <rect key="frame" x="0.0" y="21" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
@@ -719,10 +719,17 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="8nS-L9-eqX" id="6OD-rN-7aF"/>
+                                </connections>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMG-i6-4Ab" customClass="NBPrimaryButton">
-                                <rect key="frame" x="85" y="85" width="150" height="150"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMG-i6-4Ab" customClass="NBPrimaryButton">
+                                <rect key="frame" x="110" y="85" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="MVX-Bc-23g"/>
+                                    <constraint firstAttribute="width" constant="100" id="gFB-hU-cMJ"/>
+                                </constraints>
                                 <state key="normal" image="img-add-avatar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -731,20 +738,32 @@
                                     <action selector="pressedImageButton:" destination="8nS-L9-eqX" eventType="touchUpInside" id="yDE-bA-c87"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-mV-u7x">
-                                <rect key="frame" x="20" y="298" width="280" height="250"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-mV-u7x">
+                                <rect key="frame" x="20" y="193" width="280" height="355"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="yahoo"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KVE-mV-u7x" firstAttribute="leading" secondItem="5Er-GW-3Xf" secondAttribute="leading" constant="20" id="EDJ-H6-v04"/>
+                            <constraint firstItem="KVE-mV-u7x" firstAttribute="top" secondItem="ZMG-i6-4Ab" secondAttribute="bottom" constant="8" id="F27-Mw-I8k"/>
+                            <constraint firstItem="ZMG-i6-4Ab" firstAttribute="top" secondItem="80p-D2-Fjf" secondAttribute="bottom" constant="20" id="GjU-OV-CY1"/>
+                            <constraint firstItem="Fxe-zt-ca1" firstAttribute="top" secondItem="KVE-mV-u7x" secondAttribute="bottom" constant="20" id="Tw4-57-QGV"/>
+                            <constraint firstAttribute="trailing" secondItem="KVE-mV-u7x" secondAttribute="trailing" constant="20" id="ZtH-eE-kTQ"/>
+                            <constraint firstAttribute="centerX" secondItem="ZMG-i6-4Ab" secondAttribute="centerX" id="c2E-uS-gkv"/>
+                            <constraint firstItem="80p-D2-Fjf" firstAttribute="top" secondItem="RQW-Ha-Ivt" secondAttribute="bottom" constant="1" id="c3i-a7-oXB"/>
+                            <constraint firstItem="80p-D2-Fjf" firstAttribute="leading" secondItem="5Er-GW-3Xf" secondAttribute="leading" id="m7W-1v-dp6"/>
+                            <constraint firstAttribute="trailing" secondItem="80p-D2-Fjf" secondAttribute="trailing" id="prY-bR-GLt"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="descriptionTextView" destination="KVE-mV-u7x" id="o7Q-Ar-f8i"/>
-                        <outlet property="imageButton" destination="ZMG-i6-4Ab" id="dAH-8b-HXU"/>
+                        <outlet property="pickImageButton" destination="ZMG-i6-4Ab" id="jw2-L6-bAj"/>
+                        <outlet property="textViewBottomConstraint" destination="Tw4-57-QGV" id="GqY-gx-E0O"/>
                         <outlet property="validationButton" destination="5Iv-7i-5yj" id="ZVl-f3-L28"/>
                     </connections>
                 </viewController>

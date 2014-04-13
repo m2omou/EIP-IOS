@@ -12,8 +12,9 @@
 
 @interface NBNewPublicationViewController ()
 
-@property (strong, nonatomic) IBOutlet NBPrimaryButton *imageButton;
+@property (strong, nonatomic) IBOutlet NBPrimaryButton *pickImageButton;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomConstraint;
 
 @property (strong, nonatomic) UIImage *image;
 
@@ -21,6 +22,26 @@
 
 
 @implementation NBNewPublicationViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    [self themePickImageButton];
+    [self themeDescriptionTextView];
+}
+
+#pragma mark - Theming
+
+- (void)themePickImageButton
+{
+    self.pickImageButton.imageView.contentMode = UIViewContentModeScaleAspectFill;
+}
+
+- (void)themeDescriptionTextView
+{
+    self.descriptionTextView.tintColor = self.theme.lightGreenColor;
+}
 
 #pragma mark - User interactions
 
@@ -51,6 +72,13 @@
     [super validateForm];
     [self disableValidationButton];
     [self createPublication];
+}
+
+#pragma mark - UIBarPositioningDelegate
+
+-(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar
+{
+    return UIBarPositionTopAttached;
 }
 
 #pragma mark - Convinience methods
@@ -86,7 +114,7 @@
 - (void)updateProfilePicture:(UIImage *)image
 {
     self.image = image;
-    [self.imageButton setImage:image forState:UIControlStateNormal];
+    [self.pickImageButton setImage:image forState:UIControlStateNormal];
 }
 
 - (void)warnIfNotConnected
@@ -100,7 +128,7 @@
 
 - (void)dismiss
 {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
