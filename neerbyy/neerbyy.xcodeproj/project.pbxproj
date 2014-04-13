@@ -30,6 +30,7 @@
 		9C8085A818DD474200D62D4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A718DD474200D62D4B /* Images.xcassets */; };
 		9C8E2AEE18A2B2BC003FDA98 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */; };
 		9C98E75C18FA404700141412 /* NBUserAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C98E75B18FA404700141412 /* NBUserAvatar.m */; };
+		9C98E76018FA44EF00141412 /* NBPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C98E75F18FA44EF00141412 /* NBPublication.m */; };
 		9CA4610818DD40E700A0DD44 /* NSDictionary+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */; };
 		9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606518DD40E700A0DD44 /* UITextField+Required.m */; };
 		9CA4610B18DD40E700A0DD44 /* NBAPINetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606D18DD40E700A0DD44 /* NBAPINetworkEngine.m */; };
@@ -130,6 +131,8 @@
 		9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9C98E75A18FA404700141412 /* NBUserAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserAvatar.h; sourceTree = "<group>"; };
 		9C98E75B18FA404700141412 /* NBUserAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserAvatar.m; sourceTree = "<group>"; };
+		9C98E75E18FA44EF00141412 /* NBPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBPublication.h; path = Publication/NBPublication.h; sourceTree = "<group>"; };
+		9C98E75F18FA44EF00141412 /* NBPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPublication.m; path = Publication/NBPublication.m; sourceTree = "<group>"; };
 		9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URLEncoding.h"; sourceTree = "<group>"; };
 		9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+URLEncoding.m"; sourceTree = "<group>"; };
 		9CA4606418DD40E700A0DD44 /* UITextField+Required.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Required.h"; sourceTree = "<group>"; };
@@ -388,6 +391,15 @@
 			path = "neerbyyTests/Supporting files/en.lproj";
 			sourceTree = "<group>";
 		};
+		9C98E75D18FA44CD00141412 /* Publication */ = {
+			isa = PBXGroup;
+			children = (
+				9C98E75E18FA44EF00141412 /* NBPublication.h */,
+				9C98E75F18FA44EF00141412 /* NBPublication.m */,
+			);
+			name = Publication;
+			sourceTree = "<group>";
+		};
 		9CA4606118DD40E700A0DD44 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +493,7 @@
 		9CA460D118DD40E700A0DD44 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9C98E75D18FA44CD00141412 /* Publication */,
 				9CA460D518DD40E700A0DD44 /* Place */,
 				9CA460DA18DD40E700A0DD44 /* User */,
 			);
@@ -1017,6 +1030,7 @@
 				9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */,
 				9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */,
 				9CBBC15C18DDC0DA005C5D66 /* NBCommentTableViewCell.m in Sources */,
+				9C98E76018FA44EF00141412 /* NBPublication.m in Sources */,
 				9CBBC14518DDA2F8005C5D66 /* MBGenericTableViewController.m in Sources */,
 				9CA4616718DD40E700A0DD44 /* main.m in Sources */,
 				9CDC8E9218DE8660006BC096 /* NBMessagingViewController.m in Sources */,
