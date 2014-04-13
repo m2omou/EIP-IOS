@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
+@class NBUserAvatar;
+
 @interface NBUser : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSNumber *identifier;
@@ -13,6 +15,6 @@
 @property (strong, nonatomic) NSString *firstname;
 @property (strong, nonatomic) NSString *lastname;
 @property (strong, nonatomic) NSString *email;
-@property (strong, nonatomic) NSString *avatarURL;
+@property (readonly, nonatomic) NBUserAvatar *avatar;
 
 @end

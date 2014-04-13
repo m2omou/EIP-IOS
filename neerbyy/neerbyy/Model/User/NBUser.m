@@ -7,6 +7,8 @@
 //
 
 #import "NBUser.h"
+#import "NBUserAvatar.h"
+#import "NBDictionaryDecoder.h"
 
 
 #pragma mark - Constants
@@ -16,9 +18,16 @@ static NSString * const kNBUserUsernameKey = @"username";
 static NSString * const kNBUserFirstnameKey = @"firstname";
 static NSString * const kNBUserLastnameKey = @"lastname";
 static NSString * const kNBUserEmailKey = @"email";
-static NSString * const kNBUserAvatarURLKey = @"avatar";
+static NSString * const kNBUserAvatarKey = @"avatar";
 
 #pragma mark -
+
+
+@interface NBUser ()
+
+@property (strong, nonatomic) NSDictionary *avatarDictionary;
+
+@end
 
 
 @implementation NBUser
@@ -36,7 +45,7 @@ static NSString * const kNBUserAvatarURLKey = @"avatar";
         self.firstname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserFirstnameKey];
         self.lastname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserLastnameKey];
         self.email = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserEmailKey];
-        self.avatarURL = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserAvatarURLKey];
+        self.avatarDictionary = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserAvatarKey];
     }
     
     return self;
@@ -49,7 +58,19 @@ static NSString * const kNBUserAvatarURLKey = @"avatar";
     [aCoder encodeObject:self.firstname forKey:kNBUserFirstnameKey];
     [aCoder encodeObject:self.lastname forKey:kNBUserLastnameKey];
     [aCoder encodeObject:self.email forKey:kNBUserEmailKey];
-    [aCoder encodeObject:self.avatarURL forKey:kNBUserAvatarURLKey];
+    [aCoder encodeObject:self.avatarDictionary forKey:kNBUserAvatarKey];
+}
+
+#pragma mark - Properties
+
+- (NBUserAvatar *)avatar
+{
+    if (!self.avatarDictionary)
+        return nil;
+    
+    NBDictionaryDecoder *avatarDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.avatarDictionary];
+    NBUserAvatar *avatar = [[NBUserAvatar alloc] initWithCoder:avatarDecoder];
+    return avatar;
 }
 
 @end

@@ -29,6 +29,7 @@
 		9C8085A618DD46D800D62D4B /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */; };
 		9C8085A818DD474200D62D4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A718DD474200D62D4B /* Images.xcassets */; };
 		9C8E2AEE18A2B2BC003FDA98 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */; };
+		9C98E75C18FA404700141412 /* NBUserAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C98E75B18FA404700141412 /* NBUserAvatar.m */; };
 		9CA4610818DD40E700A0DD44 /* NSDictionary+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */; };
 		9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606518DD40E700A0DD44 /* UITextField+Required.m */; };
 		9CA4610B18DD40E700A0DD44 /* NBAPINetworkEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606D18DD40E700A0DD44 /* NBAPINetworkEngine.m */; };
@@ -127,6 +128,8 @@
 		9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
 		9C8085A718DD474200D62D4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9C98E75A18FA404700141412 /* NBUserAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserAvatar.h; sourceTree = "<group>"; };
+		9C98E75B18FA404700141412 /* NBUserAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserAvatar.m; sourceTree = "<group>"; };
 		9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URLEncoding.h"; sourceTree = "<group>"; };
 		9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+URLEncoding.m"; sourceTree = "<group>"; };
 		9CA4606418DD40E700A0DD44 /* UITextField+Required.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Required.h"; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 			children = (
 				9CA460DB18DD40E700A0DD44 /* NBUser.h */,
 				9CA460DC18DD40E700A0DD44 /* NBUser.m */,
+				9C98E75A18FA404700141412 /* NBUserAvatar.h */,
+				9C98E75B18FA404700141412 /* NBUserAvatar.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1006,6 +1011,7 @@
 				9CBBC16918DDC52D005C5D66 /* NBUserViewController.m in Sources */,
 				9CA4617018DD40E700A0DD44 /* NBMenuTableViewController.m in Sources */,
 				9CA4616218DD40E700A0DD44 /* NBTheme.m in Sources */,
+				9C98E75C18FA404700141412 /* NBUserAvatar.m in Sources */,
 				9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */,
 				9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */,
 				9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */,
