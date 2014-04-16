@@ -31,16 +31,21 @@
 
 - (id)decodeObjectForKey:(NSString *)key
 {
-    id data = self.data[key];
+    return self.data[key];
+}
+
+- (id)decodeObjectOfClass:(Class)aClass forKey:(NSString *)key
+{
+    id data = [self decodeObjectForKey:key];
     
-    if ([data isEqual:[NSNull null]])
+    if ([data isEqual:[NSNull null]] || [data isKindOfClass:aClass] == NO)
         return nil;
     return data;
 }
 
 - (float)decodeFloatForKey:(NSString *)key
 {
-    return [[self decodeObjectForKey:key] floatValue];
+    return [[self decodeObjectOfClass:[NSNumber class] forKey:key] floatValue];
 }
 
 - (BOOL)allowsKeyedCoding
