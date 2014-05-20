@@ -3,7 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "sarko.png"
+      "filename" : "ic-dislike.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "ic-dislike@2x.png"
     }
   ],
   "info" : {

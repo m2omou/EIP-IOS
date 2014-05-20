@@ -8,10 +8,9 @@
 
 #import "NBTableViewCell.h"
 
-
 typedef void (^NBGenericTableViewControllerBlock)(id cell, id associatedData, NSUInteger dataIdx);
 typedef NSString *(^NBGenericTableViewControllerFilterBlock)(id data);
-
+typedef void (^NBGenericTableViewControllerReloadBlock)(id firstData);
 
 @interface NBGenericTableViewController : UITableViewController
 
@@ -25,5 +24,8 @@ typedef NSString *(^NBGenericTableViewControllerFilterBlock)(id data);
 
 @property (strong, nonatomic) NSString *filterText;
 @property (strong, nonatomic) NBGenericTableViewControllerFilterBlock objectToStringBlock;
+
+@property (strong, nonatomic) NBGenericTableViewControllerReloadBlock onReload;
+@property (strong, nonatomic) NBGenericTableViewControllerReloadBlock onMoreData;
 
 @end

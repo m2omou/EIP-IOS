@@ -14,6 +14,7 @@
 
 #pragma mark - Constants
 
+static NSString * const kNBAPIFormat = @".json";
 static NSString * const kNBAPIHostname = @"neerbyy.com";
 
 #pragma mark -
@@ -49,6 +50,7 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
 
 + (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey image:(UIImage *)image imageKey:(NSString *)imageKey httpMethod:(NSString *)method
 {
+    path = [path stringByAppendingString:kNBAPIFormat];
     params = [params encodeNestedDictionaryWithPrefix:mainKey];
 
     NBAPINetworkOperation *operation = (NBAPINetworkOperation *)[[NBAPINetworkEngine engine] operationWithPath:path

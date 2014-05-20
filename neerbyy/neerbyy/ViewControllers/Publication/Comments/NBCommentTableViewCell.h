@@ -7,10 +7,10 @@
 //
 
 #import "NBTableViewCell.h"
-
+#import "NBComment.h"
 
 @interface NBCommentTableViewCell : NBTableViewCell
 
-- (void)configureWithComment:(id)comment;
+- (void)configureWithComment:(NBComment *)comment;
 
 @end

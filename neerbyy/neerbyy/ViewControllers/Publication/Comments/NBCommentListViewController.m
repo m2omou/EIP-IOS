@@ -8,7 +8,7 @@
 
 #import "NBCommentListViewController.h"
 #import "NBCommentTableViewCell.h"
-
+#import "NBComment.h"
 
 #pragma mark - Constants
 
@@ -28,10 +28,8 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
 {
     [super viewDidLoad];
     
-    self.comments = @[@1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1];
-    
     self.reuseIdentifier = kNBCommentCellIdentifier;
-    self.onConfigureCell = ^(NBCommentTableViewCell *cell, id associatedComment, NSUInteger dataIdx)
+    self.onConfigureCell = ^(NBCommentTableViewCell *cell, NBComment *associatedComment, NSUInteger dataIdx)
     {
         [cell configureWithComment:associatedComment];
     };

@@ -6,24 +6,28 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, NBPublicationType) {
     kNBPublicationTypeUnknown,
     kNBPublicationTypeImage,
     kNBPublicationTypeLink,
-} NBPublicationType;
+};
 
+@class NBVote;
+@class NBUser;
 
 @interface NBPublication : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSNumber *identifier;
 @property (strong, nonatomic) NSNumber *userId;
 @property (strong, nonatomic) NSNumber *placeId;
-@property (strong, nonatomic) NSString *description;
 @property (readonly, nonatomic) NBPublicationType type;
+@property (strong, nonatomic) NSString *contentDescription;
 @property (readonly, nonatomic) NSURL *contentURL;
 @property (readonly, nonatomic) NSURL *thumbnailURL;
 @property (strong, nonatomic) NSNumber *numberOfComments;
 @property (strong, nonatomic) NSNumber *numberOfLikes;
 @property (strong, nonatomic) NSNumber *numberOfDislikes;
+@property (strong, nonatomic) NBVote *voteOfCurrentUser;
+@property (readonly, nonatomic) NBUser *author;
 
 @end

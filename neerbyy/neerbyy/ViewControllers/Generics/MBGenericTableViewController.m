@@ -27,8 +27,9 @@
     [super viewDidLoad];
 
     self.shouldReloadOnNewData = YES;
+    [self initRefreshControl];
 
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [NBTheme sharedTheme].whiteColor;
 }
 
 #pragma mark - UITableViewDataSource
@@ -82,7 +83,7 @@
             NSUInteger locationOfFilterString = rangeOfFilterString.location;
             return (locationOfFilterString != NSNotFound);
         }];
-
+                
         self.filteredData = [self.originalData filteredArrayUsingPredicate:filterPredicate];
         self.data = self.filteredData;
     }
@@ -108,6 +109,23 @@
 - (id)dataAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.data[indexPath.row];
+}
+
+#pragma mark - Convenience methods - Refresh control
+
+- (void)initRefreshControl
+{
+    UIRefreshControl *refreshControl = [UIRefreshControl new];
+    [refreshControl addTarget:self action:@selector(triggeredRefreshControl) forControlEvents:UIControlEventValueChanged];
+    
+    self.refreshControl = refreshControl;
+}
+
+- (void)triggeredRefreshControl
+{
+    if (self.onReload)
+        self.onReload(self.data.firstObject);
+    [self.refreshControl endRefreshing];
 }
 
 @end

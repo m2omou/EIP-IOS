@@ -14,5 +14,10 @@
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *name;
 @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
+@property (strong, nonatomic) NSString *address;
+@property (strong, nonatomic) NSString *postCode;
+@property (strong, nonatomic) NSString *city;
+@property (strong, nonatomic) NSString *iconURL;
+@property (strong, nonatomic) NSNumber *isFollowedByCurrentUser;
 
 @end

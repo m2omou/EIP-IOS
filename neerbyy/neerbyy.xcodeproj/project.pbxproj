@@ -9,9 +9,17 @@
 /* Begin PBXBuildFile section */
 		7D457A843AB44E648D84945C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09EDAD57733945B587154639 /* libPods.a */; };
 		8AAA866DDCAF43598FF12833 /* libPods-neerbyyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3798AB256C4580A0AF9F4F /* libPods-neerbyyTests.a */; };
+		9C098ADF192727FC008631D8 /* NBReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098ADE192727FC008631D8 /* NBReport.m */; };
+		9C098AE319272B0A008631D8 /* NBReportPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098AE219272B0A008631D8 /* NBReportPublication.m */; };
+		9C098AE619272BF0008631D8 /* NBReportComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098AE519272BF0008631D8 /* NBReportComment.m */; };
+		9C0E6D56191F0B2300EE90CA /* NBVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E6D55191F0B2300EE90CA /* NBVote.m */; };
+		9C0E6D59191F0C9600EE90CA /* NBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E6D58191F0C9600EE90CA /* NBComment.m */; };
 		9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */; };
 		9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */; };
 		9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */; };
+		9C2C526C18FEA17900603A0A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2C526B18FEA17900603A0A /* SenTestingKit.framework */; };
+		9C2C526D18FEA1B000603A0A /* NBDictionaryDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC08618FE615F006FAE76 /* NBDictionaryDecoderTests.m */; };
+		9C2C527018FEA40200603A0A /* NBPersistanceManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */; };
 		9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4475D018F96B63006A9FD7 /* NBKeychain.m */; };
 		9C5BE940183219CB00CFA647 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE93F183219CB00CFA647 /* Foundation.framework */; };
 		9C5BE942183219CB00CFA647 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE941183219CB00CFA647 /* CoreGraphics.framework */; };
@@ -26,10 +34,10 @@
 		9C5BE9A0183231E600CFA647 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5BE99F183231E600CFA647 /* Images.xcassets */; };
 		9C5BE9A51832322D00CFA647 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C5BE9A21832322D00CFA647 /* InfoPlist.strings */; };
 		9C5BE9A8183234A200CFA647 /* neerbyyTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5BE9A41832322D00CFA647 /* neerbyyTests-Info.plist */; };
+		9C6A8D5A192B13A40026A80A /* NBNewCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A8D59192B13A40026A80A /* NBNewCommentViewController.m */; };
 		9C8085A618DD46D800D62D4B /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */; };
 		9C8085A818DD474200D62D4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A718DD474200D62D4B /* Images.xcassets */; };
 		9C8E2AEE18A2B2BC003FDA98 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */; };
-		9C98E75C18FA404700141412 /* NBUserAvatar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C98E75B18FA404700141412 /* NBUserAvatar.m */; };
 		9C98E76018FA44EF00141412 /* NBPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C98E75F18FA44EF00141412 /* NBPublication.m */; };
 		9CA4610818DD40E700A0DD44 /* NSDictionary+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */; };
 		9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4606518DD40E700A0DD44 /* UITextField+Required.m */; };
@@ -105,12 +113,24 @@
 /* Begin PBXFileReference section */
 		09EDAD57733945B587154639 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8911DB5BA5024EDE953B8C5A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9C098ADD192727FC008631D8 /* NBReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReport.h; path = Report/NBReport.h; sourceTree = "<group>"; };
+		9C098ADE192727FC008631D8 /* NBReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReport.m; path = Report/NBReport.m; sourceTree = "<group>"; };
+		9C098AE119272B0A008631D8 /* NBReportPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReportPublication.h; path = Report/NBReportPublication.h; sourceTree = "<group>"; };
+		9C098AE219272B0A008631D8 /* NBReportPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReportPublication.m; path = Report/NBReportPublication.m; sourceTree = "<group>"; };
+		9C098AE419272BF0008631D8 /* NBReportComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReportComment.h; path = Report/NBReportComment.h; sourceTree = "<group>"; };
+		9C098AE519272BF0008631D8 /* NBReportComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReportComment.m; path = Report/NBReportComment.m; sourceTree = "<group>"; };
+		9C0E6D54191F0B2300EE90CA /* NBVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBVote.h; path = Vote/NBVote.h; sourceTree = "<group>"; };
+		9C0E6D55191F0B2300EE90CA /* NBVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBVote.m; path = Vote/NBVote.m; sourceTree = "<group>"; };
+		9C0E6D57191F0C9600EE90CA /* NBComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBComment.h; path = Comment/NBComment.h; sourceTree = "<group>"; };
+		9C0E6D58191F0C9600EE90CA /* NBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBComment.m; path = Comment/NBComment.m; sourceTree = "<group>"; };
 		9C284E2D18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NBAPINetworkOperation+UIImage.h"; sourceTree = "<group>"; };
 		9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NBAPINetworkOperation+UIImage.m"; sourceTree = "<group>"; };
 		9C284E3118F92F36000AFC06 /* NBDictionaryDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDictionaryDecoder.h; sourceTree = "<group>"; };
 		9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDictionaryDecoder.m; sourceTree = "<group>"; };
 		9C284E3418F9321C000AFC06 /* NSUserDefaults+NBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NBAdditions.h"; sourceTree = "<group>"; };
 		9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NBAdditions.m"; sourceTree = "<group>"; };
+		9C2C526B18FEA17900603A0A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPersistanceManagerTests.m; path = neerbyyTests/NBPersistanceManagerTests.m; sourceTree = "<group>"; };
 		9C4475CF18F96B63006A9FD7 /* NBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBKeychain.h; sourceTree = "<group>"; };
 		9C4475D018F96B63006A9FD7 /* NBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBKeychain.m; sourceTree = "<group>"; };
 		9C5BE93C183219CB00CFA647 /* neerbyy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neerbyy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,13 +146,14 @@
 		9C5BE99F183231E600CFA647 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Supporting files/Assets/Images.xcassets"; sourceTree = "<group>"; };
 		9C5BE9A31832322D00CFA647 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		9C5BE9A41832322D00CFA647 /* neerbyyTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "neerbyyTests-Info.plist"; path = "neerbyyTests/Supporting files/neerbyyTests-Info.plist"; sourceTree = "<group>"; };
+		9C6A8D58192B13A40026A80A /* NBNewCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBNewCommentViewController.h; path = Publication/Comments/NBNewCommentViewController.h; sourceTree = "<group>"; };
+		9C6A8D59192B13A40026A80A /* NBNewCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBNewCommentViewController.m; path = Publication/Comments/NBNewCommentViewController.m; sourceTree = "<group>"; };
 		9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
 		9C8085A718DD474200D62D4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		9C98E75A18FA404700141412 /* NBUserAvatar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBUserAvatar.h; sourceTree = "<group>"; };
-		9C98E75B18FA404700141412 /* NBUserAvatar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBUserAvatar.m; sourceTree = "<group>"; };
 		9C98E75E18FA44EF00141412 /* NBPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBPublication.h; path = Publication/NBPublication.h; sourceTree = "<group>"; };
 		9C98E75F18FA44EF00141412 /* NBPublication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPublication.m; path = Publication/NBPublication.m; sourceTree = "<group>"; };
+		9C9EC08618FE615F006FAE76 /* NBDictionaryDecoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBDictionaryDecoderTests.m; path = neerbyyTests/NBDictionaryDecoderTests.m; sourceTree = "<group>"; };
 		9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URLEncoding.h"; sourceTree = "<group>"; };
 		9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+URLEncoding.m"; sourceTree = "<group>"; };
 		9CA4606418DD40E700A0DD44 /* UITextField+Required.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Required.h"; sourceTree = "<group>"; };
@@ -265,6 +286,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2C526C18FEA17900603A0A /* SenTestingKit.framework in Frameworks */,
 				9C5BE95E183219CB00CFA647 /* XCTest.framework in Frameworks */,
 				9C5BE961183219CB00CFA647 /* CoreData.framework in Frameworks */,
 				9C5BE960183219CB00CFA647 /* UIKit.framework in Frameworks */,
@@ -276,6 +298,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C098AE019272AE1008631D8 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				9C098ADD192727FC008631D8 /* NBReport.h */,
+				9C098ADE192727FC008631D8 /* NBReport.m */,
+				9C098AE119272B0A008631D8 /* NBReportPublication.h */,
+				9C098AE219272B0A008631D8 /* NBReportPublication.m */,
+				9C098AE419272BF0008631D8 /* NBReportComment.h */,
+				9C098AE519272BF0008631D8 /* NBReportComment.m */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
+		9C0E6D53191F0B0700EE90CA /* Vote */ = {
+			isa = PBXGroup;
+			children = (
+				9C0E6D54191F0B2300EE90CA /* NBVote.h */,
+				9C0E6D55191F0B2300EE90CA /* NBVote.m */,
+			);
+			name = Vote;
+			sourceTree = "<group>";
+		};
+		9C0E6D5A191F0D2200EE90CA /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				9C0E6D57191F0C9600EE90CA /* NBComment.h */,
+				9C0E6D58191F0C9600EE90CA /* NBComment.m */,
+			);
+			name = Comment;
+			sourceTree = "<group>";
+		};
 		9C284E3018F92F36000AFC06 /* Coder */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +363,7 @@
 		9C5BE93E183219CB00CFA647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C2C526B18FEA17900603A0A /* SenTestingKit.framework */,
 				9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */,
 				9C5BE93F183219CB00CFA647 /* Foundation.framework */,
 				9C5BE941183219CB00CFA647 /* CoreGraphics.framework */,
@@ -358,6 +412,8 @@
 		9C5BE97D1832239600CFA647 /* neerbyyTests */ = {
 			isa = PBXGroup;
 			children = (
+				9C9EC08618FE615F006FAE76 /* NBDictionaryDecoderTests.m */,
+				9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */,
 				9CE84AC91833882800691739 /* NBUserTest.m */,
 				9C5BE9801832246300CFA647 /* Supporting files */,
 			);
@@ -493,9 +549,12 @@
 		9CA460D118DD40E700A0DD44 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9C98E75D18FA44CD00141412 /* Publication */,
-				9CA460D518DD40E700A0DD44 /* Place */,
 				9CA460DA18DD40E700A0DD44 /* User */,
+				9CA460D518DD40E700A0DD44 /* Place */,
+				9C98E75D18FA44CD00141412 /* Publication */,
+				9C0E6D53191F0B0700EE90CA /* Vote */,
+				9C0E6D5A191F0D2200EE90CA /* Comment */,
+				9C098AE019272AE1008631D8 /* Report */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -516,8 +575,6 @@
 			children = (
 				9CA460DB18DD40E700A0DD44 /* NBUser.h */,
 				9CA460DC18DD40E700A0DD44 /* NBUser.m */,
-				9C98E75A18FA404700141412 /* NBUserAvatar.h */,
-				9C98E75B18FA404700141412 /* NBUserAvatar.m */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -730,6 +787,8 @@
 				9CBBC15818DDBF6E005C5D66 /* NBCommentListViewController.m */,
 				9CBBC15A18DDC0DA005C5D66 /* NBCommentTableViewCell.h */,
 				9CBBC15B18DDC0DA005C5D66 /* NBCommentTableViewCell.m */,
+				9C6A8D58192B13A40026A80A /* NBNewCommentViewController.h */,
+				9C6A8D59192B13A40026A80A /* NBNewCommentViewController.m */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -1020,11 +1079,11 @@
 				9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */,
 				9CDC8E9718DE896D006BC096 /* NBConversationListViewController.m in Sources */,
 				9CA4615F18DD40E700A0DD44 /* NBAPIRequest.m in Sources */,
+				9C098AE319272B0A008631D8 /* NBReportPublication.m in Sources */,
 				9CA4616C18DD40E700A0DD44 /* NBLoginViewController.m in Sources */,
 				9CBBC16918DDC52D005C5D66 /* NBUserViewController.m in Sources */,
 				9CA4617018DD40E700A0DD44 /* NBMenuTableViewController.m in Sources */,
 				9CA4616218DD40E700A0DD44 /* NBTheme.m in Sources */,
-				9C98E75C18FA404700141412 /* NBUserAvatar.m in Sources */,
 				9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */,
 				9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */,
 				9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */,
@@ -1033,6 +1092,7 @@
 				9C98E76018FA44EF00141412 /* NBPublication.m in Sources */,
 				9CBBC14518DDA2F8005C5D66 /* MBGenericTableViewController.m in Sources */,
 				9CA4616718DD40E700A0DD44 /* main.m in Sources */,
+				9C098AE619272BF0008631D8 /* NBReportComment.m in Sources */,
 				9CDC8E9218DE8660006BC096 /* NBMessagingViewController.m in Sources */,
 				9CBBC13D18DD9271005C5D66 /* NBTableViewCell.m in Sources */,
 				9CBBC12E18DD67BD005C5D66 /* UIStoryboard+NBAdditions.m in Sources */,
@@ -1046,12 +1106,15 @@
 				9CDC8E8D18DE8607006BC096 /* NBFavoritesViewController.m in Sources */,
 				9CA4617418DD40E700A0DD44 /* NBLabel.m in Sources */,
 				9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */,
+				9C6A8D5A192B13A40026A80A /* NBNewCommentViewController.m in Sources */,
 				9CA4616D18DD40E700A0DD44 /* NBPlaceAnnotationView.m in Sources */,
 				9CA4617118DD40E700A0DD44 /* NBMenuViewController.m in Sources */,
 				9CBBC15118DDB3CC005C5D66 /* NBBlurredZoomedImageView.m in Sources */,
 				9CA4610B18DD40E700A0DD44 /* NBAPINetworkEngine.m in Sources */,
+				9C0E6D59191F0C9600EE90CA /* NBComment.m in Sources */,
 				9CA4616B18DD40E700A0DD44 /* NBGenericViewController.m in Sources */,
 				9CDC8E9C18DE965C006BC096 /* NBConversationViewController.m in Sources */,
+				9C0E6D56191F0B2300EE90CA /* NBVote.m in Sources */,
 				9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */,
 				9CBBC15F18DDC4CE005C5D66 /* NBPublicationViewController.m in Sources */,
 				9CA4616518DD40E700A0DD44 /* NBPlaceAnnotation.m in Sources */,
@@ -1060,6 +1123,7 @@
 				9CA4616118DD40E700A0DD44 /* NBPersistanceManager.m in Sources */,
 				9CBBC17118DDC635005C5D66 /* NBPlaceTableViewCell.m in Sources */,
 				9CBBC15218DDB3CC005C5D66 /* NBCircleImageView.m in Sources */,
+				9C098ADF192727FC008631D8 /* NBReport.m in Sources */,
 				9CA4616918DD40E700A0DD44 /* NBForgotPasswordViewController.m in Sources */,
 				9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */,
 				9CA4616E18DD40E700A0DD44 /* NBMapViewController.m in Sources */,
@@ -1073,6 +1137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2C526D18FEA1B000603A0A /* NBDictionaryDecoderTests.m in Sources */,
+				9C2C527018FEA40200603A0A /* NBPersistanceManagerTests.m in Sources */,
 				9CE84ACA1833882800691739 /* NBUserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1227,6 +1293,15 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/CCHMapClusterController\"",
+					"\"${PODS_ROOT}/Headers/ECSlidingViewController\"",
+					"\"${PODS_ROOT}/Headers/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/MKNetworkKit\"",
+					"\"${PODS_ROOT}/Headers/MKNetworkKit/Categories\"",
+					"\"${PODS_ROOT}/Headers/Reachability\"",
+				);
 				INFOPLIST_FILE = "neerbyyTests/Supporting files/neerbyyTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1246,6 +1321,15 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "neerbyy/Other sources/neerbyy-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/CCHMapClusterController\"",
+					"\"${PODS_ROOT}/Headers/ECSlidingViewController\"",
+					"\"${PODS_ROOT}/Headers/Kiwi\"",
+					"\"${PODS_ROOT}/Headers/MKNetworkKit\"",
+					"\"${PODS_ROOT}/Headers/MKNetworkKit/Categories\"",
+					"\"${PODS_ROOT}/Headers/Reachability\"",
+				);
 				INFOPLIST_FILE = "neerbyyTests/Supporting files/neerbyyTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

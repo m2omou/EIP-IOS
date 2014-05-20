@@ -9,6 +9,7 @@
 #import "NBPlaceAnnotationView.h"
 #import <CCHMapClusterAnnotation.h>
 #import "NBTheme.h"
+#import "NBPlaceAnnotation.h"
 
 
 @interface NBPlaceAnnotationView ()
@@ -65,6 +66,21 @@
 - (void)showCalloutWithAction:(void (^)(MKAnnotationView *))onCalloutTap
 {
     self.onCalloutTap = onCalloutTap;
+    
+    CCHMapClusterAnnotation *mapClusterAnnotation = self.annotation;
+    NSString *title;
+    if ([mapClusterAnnotation isCluster])
+    {
+        NSUInteger numberOfAnnotations = mapClusterAnnotation.annotations.count;
+        title = [NSString stringWithFormat:@"%@ lieux...", @(numberOfAnnotations)];
+    }
+    else
+    {
+        NBPlaceAnnotation *placeAnnotation = mapClusterAnnotation.annotations.anyObject;
+        title = placeAnnotation.title;
+    }
+    [self.calloutView setTitle:title.uppercaseString forState:UIControlStateNormal];
+
     [self addSubview:self.calloutView];
 }
 

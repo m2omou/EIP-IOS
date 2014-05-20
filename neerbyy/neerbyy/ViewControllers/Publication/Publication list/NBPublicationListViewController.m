@@ -8,6 +8,7 @@
 
 #import "NBPublicationListViewController.h"
 #import "NBPublicationTableViewCell.h"
+#import "NBPublicationViewController.h"
 
 
 #pragma mark - Constants
@@ -37,6 +38,19 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
     };
 }
 
+#pragma mark - UIViewController
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    static NSString * const kNBPublicationViewSegueIdentifier = @"publicationViewSegue";
+    
+    if ([segue.identifier isEqualToString:kNBPublicationViewSegueIdentifier])
+    {
+        NBPublicationViewController *publicationViewController = (NBPublicationViewController *)segue.destinationViewController;
+        publicationViewController.publication = [self selectedPublication];
+    }
+}
+
 #pragma mark - Properties
 
 - (void)setPublications:(NSArray *)publications
@@ -47,6 +61,12 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
 - (NSArray *)publications
 {
     return self.data;
+}
+
+- (NBPublication *)selectedPublication
+{
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    return self.publications[selectedIndexPath.row];
 }
 
 @end

@@ -3,7 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "edf.png"
+      "filename" : "ic-report.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "ic-report@2x.png"
     }
   ],
   "info" : {

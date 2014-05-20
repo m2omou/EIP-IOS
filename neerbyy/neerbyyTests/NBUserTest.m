@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 neerbyy. All rights reserved.
 //
 
-#import <Kiwi/Kiwi.h>
+//#import <Kiwi/Kiwi.h>
 
 #import "NBUser.h"
 
-SPEC_BEGIN(NBUserTest)
+//SPEC_BEGIN(NBUserTest)
 
-SPEC_END
+//SPEC_END

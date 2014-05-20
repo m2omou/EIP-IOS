@@ -99,7 +99,7 @@
 
 - (void)createPublicationWithPlaceIdentifier:(NSString *)placeIdentifier image:(UIImage *)image description:(NSString *)description
 {
-    NBAPINetworkOperation *publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withImage:image description:description];
+    NBAPINetworkOperation *publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier atPosition:self.place.coordinate withImage:image description:description];
     
     [publishOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         [self dismiss];

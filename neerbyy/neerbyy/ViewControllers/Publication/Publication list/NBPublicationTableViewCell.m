@@ -35,9 +35,25 @@
 
 - (void)configureWithPublication:(NBPublication *)publication
 {
-    [self.thumnailImageView setImageFromURL:publication.thumbnailURL];
-    self.descriptionLabel.text = publication.description;
-    self.userAndLocationLabel.text = [NSString stringWithFormat:@"%@ @ %@", publication.userId, publication.placeId];
+    [self configureImageViewWithPublication:publication];
+
+    self.descriptionLabel.text = publication.contentDescription;
+    self.userAndLocationLabel.text = @"";
+}
+
+- (void)configureImageViewWithPublication:(NBPublication *)publication
+{
+    switch (publication.type) {
+        case kNBPublicationTypeUnknown:
+            self.thumnailImageView.image = [UIImage imageNamed:@"img-txt"];
+            break;
+        case kNBPublicationTypeImage:
+            [self.thumnailImageView setImageFromURL:publication.thumbnailURL placeHolderImage:[UIImage imageNamed:@"img-img"]];
+            break;
+        case kNBPublicationTypeLink:
+            self.thumnailImageView.image = [UIImage imageNamed:@"img-web"];
+            break;
+    }
 }
 
 #pragma mark - NBTableViewCell

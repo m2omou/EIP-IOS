@@ -7,28 +7,27 @@
 //
 
 #import "NBUser.h"
-#import "NBUserAvatar.h"
 #import "NBDictionaryDecoder.h"
 
 
 #pragma mark - Constants
 
-static NSString * const kNBUserIdentifierKey = @"id";
-static NSString * const kNBUserUsernameKey = @"username";
-static NSString * const kNBUserFirstnameKey = @"firstname";
-static NSString * const kNBUserLastnameKey = @"lastname";
-static NSString * const kNBUserEmailKey = @"email";
-static NSString * const kNBUserAvatarKey = @"avatar";
+static NSString * const kNBUserKeyIdentifier = @"id";
+static NSString * const kNBUserKeyUsername = @"username";
+static NSString * const kNBUserKeyFirstname = @"firstname";
+static NSString * const kNBUserKeyLastname = @"lastname";
+static NSString * const kNBUserKeyEmail = @"email";
+static NSString * const kNBUserKeyAvatar = @"avatar";
+static NSString * const kNBUserKeyAvatarThumbnail = @"avatar_thumb";
 
 #pragma mark -
 
-
 @interface NBUser ()
 
-@property (strong, nonatomic) NSDictionary *avatarDictionary;
+@property (strong, nonatomic) NSString *avatarURLString;
+@property (strong, nonatomic) NSString *avatarThumbnailURLString;
 
 @end
-
 
 @implementation NBUser
 
@@ -40,12 +39,13 @@ static NSString * const kNBUserAvatarKey = @"avatar";
     
     if (self)
     {
-        self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBUserIdentifierKey];
-        self.username = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserUsernameKey];
-        self.firstname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserFirstnameKey];
-        self.lastname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserLastnameKey];
-        self.email = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserEmailKey];
-        self.avatarDictionary = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserAvatarKey];
+        self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBUserKeyIdentifier];
+        self.username = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyUsername];
+        self.firstname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyFirstname];
+        self.lastname = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyLastname];
+        self.email = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyEmail];
+        self.avatarURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyAvatar];
+        self.avatarThumbnailURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyAvatarThumbnail];
     }
     
     return self;
@@ -53,24 +53,27 @@ static NSString * const kNBUserAvatarKey = @"avatar";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.identifier forKey:kNBUserIdentifierKey];
-    [aCoder encodeObject:self.username forKey:kNBUserUsernameKey];
-    [aCoder encodeObject:self.firstname forKey:kNBUserFirstnameKey];
-    [aCoder encodeObject:self.lastname forKey:kNBUserLastnameKey];
-    [aCoder encodeObject:self.email forKey:kNBUserEmailKey];
-    [aCoder encodeObject:self.avatarDictionary forKey:kNBUserAvatarKey];
+    [aCoder encodeObject:self.identifier forKey:kNBUserKeyIdentifier];
+    [aCoder encodeObject:self.username forKey:kNBUserKeyUsername];
+    [aCoder encodeObject:self.firstname forKey:kNBUserKeyFirstname];
+    [aCoder encodeObject:self.lastname forKey:kNBUserKeyLastname];
+    [aCoder encodeObject:self.email forKey:kNBUserKeyEmail];
+    [aCoder encodeObject:self.avatarURLString forKey:kNBUserKeyAvatar];
+    [aCoder encodeObject:self.avatarThumbnailURLString forKey:kNBUserKeyAvatarThumbnail];
 }
 
 #pragma mark - Properties
 
-- (NBUserAvatar *)avatar
+- (NSURL *)avatarURL
 {
-    if (!self.avatarDictionary)
-        return nil;
-    
-    NBDictionaryDecoder *avatarDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.avatarDictionary];
-    NBUserAvatar *avatar = [[NBUserAvatar alloc] initWithCoder:avatarDecoder];
-    return avatar;
+    return [NSURL URLWithString:self.avatarURLString];
+}
+
+- (NSURL *)avatarThumbnailURL
+{
+    if (!self.avatarThumbnailURLString.length)
+        return self.avatarURL;
+    return [NSURL URLWithString:self.avatarThumbnailURLString];
 }
 
 @end

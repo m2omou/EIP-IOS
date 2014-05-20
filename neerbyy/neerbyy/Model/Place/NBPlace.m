@@ -11,10 +11,15 @@
 
 #pragma mark - Constant values
 
-static NSString * const kNBPlaceIDKey = @"id";
-static NSString * const kNBPlaceNameKey = @"name";
-static NSString * const kNBPlaceLogintudeKey = @"longitude";
-static NSString * const kNBPlaceLatitudeKey = @"latitude";
+static NSString * const kNBPlaceKeyID = @"id";
+static NSString * const kNBPlaceKeyName = @"name";
+static NSString * const kNBPlaceKeyLogintude = @"longitude";
+static NSString * const kNBPlaceKeyLatitude = @"latitude";
+static NSString * const kNBPlaceKeyAddress = @"address";
+static NSString * const kNBPlaceKeyPostCode = @"postcode";
+static NSString * const kNBPlaceKeyCity = @"city";
+static NSString * const kNBPlaceKeyIconURL = @"icon";
+static NSString * const kNBPlaceKeyIsFollowedByCurrentUser = @"following";
 
 #pragma mark -
 
@@ -37,10 +42,15 @@ static NSString * const kNBPlaceLatitudeKey = @"latitude";
     
     if (self)
     {
-        self.identifier = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceIDKey];
-        self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceNameKey];
-        self.longitude = [aDecoder decodeFloatForKey:kNBPlaceLogintudeKey];
-        self.latitude = [aDecoder decodeFloatForKey:kNBPlaceLatitudeKey];
+        self.identifier = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyID];
+        self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyName];
+        self.longitude = [aDecoder decodeFloatForKey:kNBPlaceKeyLogintude];
+        self.latitude = [aDecoder decodeFloatForKey:kNBPlaceKeyLatitude];
+        self.address = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyAddress];
+        self.postCode = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyPostCode];
+        self.city = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyCity];
+        self.iconURL = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyIconURL];
+        self.isFollowedByCurrentUser = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPlaceKeyIsFollowedByCurrentUser];
     }
     
     return self;
@@ -48,10 +58,15 @@ static NSString * const kNBPlaceLatitudeKey = @"latitude";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.identifier forKey:kNBPlaceIDKey];
-    [aCoder encodeObject:self.name forKey:kNBPlaceNameKey];
-    [aCoder encodeFloat:self.longitude forKey:kNBPlaceLogintudeKey];
-    [aCoder encodeFloat:self.latitude forKey:kNBPlaceLatitudeKey];
+    [aCoder encodeObject:self.identifier forKey:kNBPlaceKeyID];
+    [aCoder encodeObject:self.name forKey:kNBPlaceKeyName];
+    [aCoder encodeFloat:self.longitude forKey:kNBPlaceKeyLogintude];
+    [aCoder encodeFloat:self.latitude forKey:kNBPlaceKeyLatitude];
+    [aCoder encodeObject:self.address forKey:kNBPlaceKeyAddress];
+    [aCoder encodeObject:self.postCode forKey:kNBPlaceKeyPostCode];
+    [aCoder encodeObject:self.city forKey:kNBPlaceKeyCity];
+    [aCoder encodeObject:self.iconURL forKey:kNBPlaceKeyIconURL];
+    [aCoder encodeObject:self.isFollowedByCurrentUser forKey:kNBPlaceKeyIsFollowedByCurrentUser];
 }
 
 #pragma mark - Properties

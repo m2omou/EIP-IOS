@@ -3,7 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "tdf.png"
+      "filename" : "ic-comment.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "ic-comment@2x.png"
     }
   ],
   "info" : {

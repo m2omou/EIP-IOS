@@ -117,6 +117,17 @@ static CGFloat const kMBMapMarginFactor = 1.f;
     return annotationView;
 }
 
+- (void)mapClusterController:(CCHMapClusterController *)mapClusterController willReuseMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
+{
+    UIView *annotationView = [self.mapView viewForAnnotation:mapClusterAnnotation];
+    
+    if ([annotationView isKindOfClass:[NBPlaceAnnotationView class]])
+    {
+        NBPlaceAnnotationView *placeAnnotationView = (NBPlaceAnnotationView *)annotationView;
+        [placeAnnotationView hideCallout];
+    }
+}
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     if ([view isKindOfClass:[NBPlaceAnnotationView class]])
@@ -134,22 +145,6 @@ static CGFloat const kMBMapMarginFactor = 1.f;
     {
         NBPlaceAnnotationView *annotationView = (NBPlaceAnnotationView *)view;
         [annotationView hideCallout];
-    }
-}
-
-#pragma mark - CCHMapClusterControllerDelegate
-
-- (NSString *)mapClusterController:(CCHMapClusterController *)mapClusterController titleForMapClusterAnnotation:(CCHMapClusterAnnotation *)mapClusterAnnotation
-{
-    if ([mapClusterAnnotation isCluster])
-    {
-        NSUInteger numberOfAnnotations = mapClusterAnnotation.annotations.count;
-        return [NSString stringWithFormat:@"%@ lieux...", @(numberOfAnnotations)];
-    }
-    else
-    {
-        NBPlaceAnnotation *placeAnnotation = mapClusterAnnotation.annotations.anyObject;
-        return placeAnnotation.title;
     }
 }
 

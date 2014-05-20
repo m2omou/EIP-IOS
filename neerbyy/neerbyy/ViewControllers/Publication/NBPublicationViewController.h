@@ -11,4 +11,6 @@
 
 @interface NBPublicationViewController : NBGenericViewController
 
+@property (strong, nonatomic) NBPublication *publication;
+
 @end
