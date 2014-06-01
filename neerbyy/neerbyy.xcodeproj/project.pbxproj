@@ -14,6 +14,7 @@
 		9C098AE619272BF0008631D8 /* NBReportComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098AE519272BF0008631D8 /* NBReportComment.m */; };
 		9C0E6D56191F0B2300EE90CA /* NBVote.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E6D55191F0B2300EE90CA /* NBVote.m */; };
 		9C0E6D59191F0C9600EE90CA /* NBComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0E6D58191F0C9600EE90CA /* NBComment.m */; };
+		9C238FD7193B42AB00E37486 /* NSString+DataFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C238FD6193B42AB00E37486 /* NSString+DataFormatting.m */; };
 		9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */; };
 		9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */; };
 		9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */; };
@@ -123,6 +124,8 @@
 		9C0E6D55191F0B2300EE90CA /* NBVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBVote.m; path = Vote/NBVote.m; sourceTree = "<group>"; };
 		9C0E6D57191F0C9600EE90CA /* NBComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBComment.h; path = Comment/NBComment.h; sourceTree = "<group>"; };
 		9C0E6D58191F0C9600EE90CA /* NBComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBComment.m; path = Comment/NBComment.m; sourceTree = "<group>"; };
+		9C238FD5193B42AB00E37486 /* NSString+DataFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DataFormatting.h"; sourceTree = "<group>"; };
+		9C238FD6193B42AB00E37486 /* NSString+DataFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DataFormatting.m"; sourceTree = "<group>"; };
 		9C284E2D18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NBAPINetworkOperation+UIImage.h"; sourceTree = "<group>"; };
 		9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NBAPINetworkOperation+UIImage.m"; sourceTree = "<group>"; };
 		9C284E3118F92F36000AFC06 /* NBDictionaryDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDictionaryDecoder.h; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */,
 				9CA4606218DD40E700A0DD44 /* NSDictionary+URLEncoding.h */,
 				9CA4606318DD40E700A0DD44 /* NSDictionary+URLEncoding.m */,
+				9C238FD5193B42AB00E37486 /* NSString+DataFormatting.h */,
+				9C238FD6193B42AB00E37486 /* NSString+DataFormatting.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1113,6 +1118,7 @@
 				9CA4610B18DD40E700A0DD44 /* NBAPINetworkEngine.m in Sources */,
 				9C0E6D59191F0C9600EE90CA /* NBComment.m in Sources */,
 				9CA4616B18DD40E700A0DD44 /* NBGenericViewController.m in Sources */,
+				9C238FD7193B42AB00E37486 /* NSString+DataFormatting.m in Sources */,
 				9CDC8E9C18DE965C006BC096 /* NBConversationViewController.m in Sources */,
 				9C0E6D56191F0B2300EE90CA /* NBVote.m in Sources */,
 				9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */,

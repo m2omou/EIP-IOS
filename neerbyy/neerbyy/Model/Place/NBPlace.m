@@ -85,4 +85,18 @@ static NSString * const kNBPlaceKeyFollowingId = @"followed_place_id";
     return self.followingId != nil;
 }
 
+#pragma mark - Public methods
+
+- (CLLocationDistance)distanceFrom:(CLLocationCoordinate2D)coordinate
+{
+    if (CLLocationCoordinate2DIsValid(coordinate) == NO)
+        return CLLocationDistanceMax;
+
+    CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
+    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+    
+    CLLocationDistance meters = [otherLocation distanceFromLocation:placeLocation];
+    return meters;
+}
+
 @end

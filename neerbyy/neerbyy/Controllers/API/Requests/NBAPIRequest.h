@@ -24,8 +24,8 @@
 + (NBAPINetworkOperation *)fetchFollowedPlaces;
 + (NBAPINetworkOperation *)fetchFollowedPlacesSinceId:(NSNumber *)sinceId;
 + (NBAPINetworkOperation *)fetchFollowedPlacesAfterId:(NSNumber *)afterId;
-+ (NBAPINetworkOperation *)followPlace:(NSNumber *)placeId;
-+ (NBAPINetworkOperation *)unfollowPlace:(NSNumber *)placeId;
++ (NBAPINetworkOperation *)followPlace:(NSString *)placeId;
++ (NBAPINetworkOperation *)unfollowPlace:(NSNumber *)followingId;
 
 
 + (NBAPINetworkOperation *)fetchPublicationsForPlace:(NSString *)placeIdentifier;

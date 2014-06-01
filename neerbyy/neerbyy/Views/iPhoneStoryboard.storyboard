@@ -633,14 +633,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h20-cO-FDc" customClass="NBPrimaryButton">
-                                <rect key="frame" x="16" y="74" width="128" height="30"/>
+                                <rect key="frame" x="234" y="74" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="4t1-Kp-toB"/>
+                                    <constraint firstAttribute="width" constant="30" id="4t1-Kp-toB"/>
                                     <constraint firstAttribute="height" constant="30" id="uZS-AP-N9K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Ajouter aux favoris">
+                                <state key="normal" image="ic-fav-add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -648,10 +648,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gU1-NM-gnt" customClass="NBPrimaryButton">
-                                <rect key="frame" x="176" y="74" width="128" height="30"/>
+                                <rect key="frame" x="274" y="74" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Nouveau souvenir">
+                                <state key="normal" image="ic-publication-add">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -666,25 +666,40 @@
                                     <segue destination="Cok-fq-kam" kind="embed" identifier="EmbedPublicationListSegue" id="Dbd-GK-TSZ"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9zU-A5-c8e" customClass="NBLabel">
+                                <rect key="frame" x="16" y="74" width="210" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gU1-NM-gnt" secondAttribute="trailing" constant="16" id="8Lc-hl-Dhe"/>
                             <constraint firstItem="QDG-Q0-ps3" firstAttribute="leading" secondItem="NOy-Ih-49r" secondAttribute="leading" id="FjX-Ot-lHu"/>
+                            <constraint firstItem="gU1-NM-gnt" firstAttribute="leading" secondItem="h20-cO-FDc" secondAttribute="trailing" constant="10" id="HfQ-bU-htq"/>
                             <constraint firstItem="h20-cO-FDc" firstAttribute="height" secondItem="gU1-NM-gnt" secondAttribute="height" id="Llp-Nn-dfy"/>
                             <constraint firstItem="QDG-Q0-ps3" firstAttribute="top" secondItem="h20-cO-FDc" secondAttribute="bottom" constant="10" id="MwN-Mt-3Id"/>
                             <constraint firstItem="h20-cO-FDc" firstAttribute="top" secondItem="bcG-jz-Rb9" secondAttribute="bottom" constant="10" id="Nmw-Gl-9fi"/>
+                            <constraint firstItem="h20-cO-FDc" firstAttribute="bottom" secondItem="9zU-A5-c8e" secondAttribute="bottom" id="UHa-XH-I6s"/>
                             <constraint firstItem="h20-cO-FDc" firstAttribute="centerY" secondItem="gU1-NM-gnt" secondAttribute="centerY" id="dLA-Rk-QyS"/>
                             <constraint firstItem="r2W-Z2-LU6" firstAttribute="top" secondItem="QDG-Q0-ps3" secondAttribute="bottom" id="gJn-BP-UKa"/>
                             <constraint firstItem="h20-cO-FDc" firstAttribute="width" secondItem="gU1-NM-gnt" secondAttribute="width" id="iBL-EF-zWa"/>
                             <constraint firstAttribute="trailing" secondItem="QDG-Q0-ps3" secondAttribute="trailing" id="rag-Jh-UAF"/>
-                            <constraint firstItem="h20-cO-FDc" firstAttribute="leading" secondItem="NOy-Ih-49r" secondAttribute="leading" constant="16" id="zJo-aa-86f"/>
+                            <constraint firstItem="h20-cO-FDc" firstAttribute="leading" secondItem="9zU-A5-c8e" secondAttribute="trailing" constant="8" id="s4N-F9-y52"/>
+                            <constraint firstItem="9zU-A5-c8e" firstAttribute="leading" secondItem="NOy-Ih-49r" secondAttribute="leading" constant="16" id="vcE-v9-u1F"/>
+                            <constraint firstItem="h20-cO-FDc" firstAttribute="top" secondItem="9zU-A5-c8e" secondAttribute="top" id="wGY-sA-WwQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Lieu" id="bGZ-Mj-PLc"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="distanceLabel" destination="9zU-A5-c8e" id="bGD-cg-CdQ"/>
+                        <outlet property="followButton" destination="h20-cO-FDc" id="jND-We-CAu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1YS-U9-hT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -771,7 +786,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Décivrez votre souvenir..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qL-p6-0h5" customClass="NBLabel">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Décrivez votre souvenir..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qL-p6-0h5" customClass="NBLabel">
                                 <rect key="frame" x="30" y="245" width="270" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2116,6 +2131,7 @@
     <resources>
         <image name="ic-comment" width="19" height="19"/>
         <image name="ic-dislike" width="19" height="19"/>
+        <image name="ic-fav-add" width="19" height="19"/>
         <image name="ic-like" width="19" height="19"/>
         <image name="ic-menu-fav" width="30" height="30"/>
         <image name="ic-menu-fav-selected" width="30" height="30"/>
@@ -2127,6 +2143,7 @@
         <image name="ic-menu-messages-selected" width="30" height="30"/>
         <image name="ic-menu-settings" width="30" height="30"/>
         <image name="ic-menu-settings-selected" width="30" height="30"/>
+        <image name="ic-publication-add" width="19" height="19"/>
         <image name="ic-report" width="19" height="19"/>
         <image name="img-add-avatar" width="150" height="150"/>
         <image name="img-add-avatar-pressed" width="150" height="150"/>

@@ -25,7 +25,7 @@ static NSString * const kNBAPIHTTPMethodDELETE = @"DELETE";
 static NSString * const kNBAPIMainKeyUser = @"user";
 static NSString * const kNBAPIMainKeyLogin = @"connection";
 static NSString * const kNBAPIMainKeyPublication = @"publication";
-static NSString * const kNBAPIMainKeyFollowedPlaces = @"relationships";
+static NSString * const kNBAPIMainKeyFollowedPlaces = @"followed_place";
 static NSString * const kNBAPIMainKeyReport = @"report";
 static NSString * const kNBAPIMainKeyVote = @"vote";
 static NSString * const kNBAPIMainKeyComment = @"comment";
@@ -45,7 +45,7 @@ static NSString * const kNBAPIParamKeyFile = @"file";
 static NSString * const kNBAPIParamKeyLimit = @"limit";
 static NSString * const kNBAPIParamKeyURL = @"link";
 static NSString * const kNBAPIParamKeySince = @"since_id";
-static NSString * const kNBAPIParamKeyAfter = @"after_id";
+static NSString * const kNBAPIParamKeyAfter = @"max_id";
 static NSString * const kNBAPIParamKeyReportReason = @"reason";
 static NSString * const kNBAPIParamKeyValue = @"value";
 
@@ -54,7 +54,7 @@ static NSString * const kNBAPIEndpointRegister = @"users";
 static NSString * const kNBAPIEndpointForgotPassword = @"password_resets";
 static NSString * const kNBAPIEndpointUsers = @"users";
 static NSString * const kNBAPIEndpointPlaces = @"places";
-static NSString * const kNBAPIEndpointFollowedPlaces = @"relationships";
+static NSString * const kNBAPIEndpointFollowedPlaces = @"followed_places";
 static NSString * const kNBAPIEndpointPublications = @"publications";
 static NSString * const kNBAPIEndpointReportPublications = @"report_publications";
 static NSString * const kNBAPIEndpointFlow = @"flow";
@@ -188,7 +188,7 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)followPlace:(NSNumber *)placeId
++ (NBAPINetworkOperation *)followPlace:(NSString *)placeId
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPlaceIdentifier: placeId};
 
@@ -200,10 +200,10 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)unfollowPlace:(NSNumber *)placeId
++ (NBAPINetworkOperation *)unfollowPlace:(NSNumber *)followingId
 {
     NSDictionary *parameters = @{};
-    NSNumber *endPointParam = placeId;
+    NSNumber *endPointParam = followingId;
     NSString *endPoint = [NSString stringWithFormat:@"%@/%@", kNBAPIEndpointFollowedPlaces, endPointParam];
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:endPoint

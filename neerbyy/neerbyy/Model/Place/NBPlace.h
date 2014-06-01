@@ -23,4 +23,6 @@
 @property (readonly, nonatomic) BOOL isFollowedByCurrentUser;
 @property (strong, nonatomic) NSNumber *followingId;
 
+- (CLLocationDistance)distanceFrom:(CLLocationCoordinate2D)coordinate;
+
 @end

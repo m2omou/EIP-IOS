@@ -26,6 +26,9 @@ typedef void (^NBGenericTableViewControllerReloadBlock)(id firstData);
 @property (strong, nonatomic) NBGenericTableViewControllerFilterBlock objectToStringBlock;
 
 @property (strong, nonatomic) NBGenericTableViewControllerReloadBlock onReload;
+- (void)endReload;
+
 @property (strong, nonatomic) NBGenericTableViewControllerReloadBlock onMoreData;
+- (void)endMoreData;
 
 @end

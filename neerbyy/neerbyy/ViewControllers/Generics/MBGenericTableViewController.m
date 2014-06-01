@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) NSArray *originalData;
 @property (strong, nonatomic) NSArray *filteredData;
+@property (assign, nonatomic) BOOL canReload;
+@property (assign, nonatomic) BOOL canFetchMoreData;
 
 @end
 
@@ -26,6 +28,8 @@
 {
     [super viewDidLoad];
 
+    self.canReload = YES;
+    self.canFetchMoreData = YES;
     self.shouldReloadOnNewData = YES;
     [self initRefreshControl];
 
@@ -64,6 +68,19 @@
     }
 }
 
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat actualPosition = scrollView.contentOffset.y;
+    CGFloat contentHeight = scrollView.contentSize.height;
+
+    if (self.onMoreData && self.canFetchMoreData && actualPosition >= contentHeight) {
+        self.canFetchMoreData = NO;
+        self.onMoreData(self.data.lastObject);
+    }
+}
+
 #pragma mark - Public methods
 
 - (void)setFilterText:(NSString *)filterText
@@ -89,6 +106,17 @@
     }
     
     [self.tableView reloadData];
+}
+
+- (void)endReload
+{
+    self.canReload = YES;
+    [self.refreshControl endRefreshing];
+}
+
+- (void)endMoreData
+{
+    self.canFetchMoreData = YES;
 }
 
 #pragma mark - Properties
@@ -123,9 +151,11 @@
 
 - (void)triggeredRefreshControl
 {
-    if (self.onReload)
+    if (self.onReload && self.canReload)
+    {
+        self.canReload = NO;
         self.onReload(self.data.firstObject);
-    [self.refreshControl endRefreshing];
+    }
 }
 
 @end
