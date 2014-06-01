@@ -11,6 +11,7 @@
 
 @interface NBPublicationListViewController : NBGenericTableViewController
 
+@property (assign, nonatomic) BOOL displayPlace;
 @property (strong, nonatomic) NSArray *publications;
 
 @end

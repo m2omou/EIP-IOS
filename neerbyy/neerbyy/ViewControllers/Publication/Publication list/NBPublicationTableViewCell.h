@@ -12,6 +12,6 @@
 
 @interface NBPublicationTableViewCell : NBTableViewCell
 
-- (void)configureWithPublication:(NBPublication *)publication;
+- (void)configureWithPublication:(NBPublication *)publication displayPlace:(BOOL)displayPlace;
 
 @end

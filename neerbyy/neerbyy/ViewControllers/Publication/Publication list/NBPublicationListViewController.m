@@ -31,10 +31,11 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
 {
     [super viewDidLoad];
     
+    BOOL displayPlace = self.displayPlace;
     self.reuseIdentifier = kNBPublicationCellIdentifier;
     self.onConfigureCell = ^(NBPublicationTableViewCell *cell, NBPublication *associatedPublication, NSUInteger dataIdx)
     {
-        [cell configureWithPublication:associatedPublication];
+        [cell configureWithPublication:associatedPublication displayPlace:displayPlace];
     };
 }
 

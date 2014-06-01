@@ -153,7 +153,7 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
     if (!self.authorDictionary.allKeys.count)
         return nil;
     
-    NBDictionaryDecoder *userDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.voteOfCurrentUserDictionary];
+    NBDictionaryDecoder *userDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.authorDictionary];
     return [[NBUser alloc] initWithCoder:userDecoder];
 }
 

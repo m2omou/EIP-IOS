@@ -11,7 +11,7 @@
 #import "NBCircleImageView.h"
 #import "NBPublication.h"
 #import "NBTheme.h"
-
+#import "NBUser.h"
 
 @interface NBPublicationTableViewCell ()
 
@@ -33,12 +33,16 @@
 
 #pragma mark - Public methods
 
-- (void)configureWithPublication:(NBPublication *)publication
+- (void)configureWithPublication:(NBPublication *)publication displayPlace:(BOOL)displayPlace
 {
     [self configureImageViewWithPublication:publication];
 
     self.descriptionLabel.text = publication.contentDescription;
-    self.userAndLocationLabel.text = @"";
+    
+    if (displayPlace == NO)
+        self.userAndLocationLabel.text = publication.author.username;
+    else /* TODO : Get the place name from the API */
+        self.userAndLocationLabel.text = [NSString stringWithFormat:@"%@ @ %@", publication.author.username, publication.placeId];
 }
 
 - (void)configureImageViewWithPublication:(NBPublication *)publication

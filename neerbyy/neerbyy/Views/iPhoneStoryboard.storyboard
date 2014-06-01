@@ -739,7 +739,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-mV-u7x">
-                                <rect key="frame" x="20" y="235" width="280" height="313"/>
+                                <rect key="frame" x="20" y="235" width="280" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="yahoo"/>
@@ -787,7 +787,7 @@
                             <constraint firstItem="49N-EU-veW" firstAttribute="top" secondItem="80p-D2-Fjf" secondAttribute="bottom" constant="14" id="CU6-Xg-swo"/>
                             <constraint firstItem="2qL-p6-0h5" firstAttribute="leading" secondItem="KVE-mV-u7x" secondAttribute="leading" constant="10" id="H3A-eq-7lf"/>
                             <constraint firstItem="KVE-mV-u7x" firstAttribute="leading" secondItem="5Er-GW-3Xf" secondAttribute="leading" constant="20" id="Krh-X1-DN6"/>
-                            <constraint firstItem="Fxe-zt-ca1" firstAttribute="top" secondItem="KVE-mV-u7x" secondAttribute="bottom" constant="20" id="RC9-Ip-lZA"/>
+                            <constraint firstItem="Fxe-zt-ca1" firstAttribute="top" secondItem="KVE-mV-u7x" secondAttribute="bottom" constant="220" id="RC9-Ip-lZA"/>
                             <constraint firstItem="80p-D2-Fjf" firstAttribute="leading" secondItem="5Er-GW-3Xf" secondAttribute="leading" id="UA1-wu-q1N"/>
                             <constraint firstItem="80p-D2-Fjf" firstAttribute="top" secondItem="RQW-Ha-Ivt" secondAttribute="bottom" id="UD6-uT-1CW"/>
                             <constraint firstAttribute="trailing" secondItem="49N-EU-veW" secondAttribute="trailing" constant="20" id="YPE-sH-7LN"/>
