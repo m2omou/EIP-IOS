@@ -45,16 +45,24 @@
 {
     switch (publication.type) {
         case kNBPublicationTypeText:
-        case kNBPublicationTypeYoutube:
-        case kNBPublicationTypeFile:
         case kNBPublicationTypeUnknown:
             self.thumnailImageView.image = [UIImage imageNamed:@"img-txt"];
             break;
+
         case kNBPublicationTypeImage:
             [self.thumnailImageView setImageFromURL:publication.thumbnailURL placeHolderImage:[UIImage imageNamed:@"img-img"]];
             break;
+        
         case kNBPublicationTypeLink:
             self.thumnailImageView.image = [UIImage imageNamed:@"img-web"];
+            break;
+        
+        case kNBPublicationTypeYoutube:
+            self.thumnailImageView.image = [UIImage imageNamed:@"img-youtube"];
+            break;
+
+        case kNBPublicationTypeFile:
+            self.thumnailImageView.image = [UIImage imageNamed:@"img-file"];
             break;
     }
 }
