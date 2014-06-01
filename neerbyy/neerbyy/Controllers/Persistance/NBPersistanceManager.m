@@ -11,7 +11,6 @@
 #import "NBUser.h"
 #import "NBKeychain.h"
 
-
 #pragma mark - Constants
 
 NSString * const kNBNotificationUserLoggedIn = @"userLoggedIn";
@@ -34,9 +33,20 @@ static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedManager = [[self class] new];
-        
     });
     return sharedManager;
+}
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.lastKnownLocation = kCLLocationCoordinate2DInvalid;
+    }
+    
+    return self;
 }
 
 #pragma mark - Properties

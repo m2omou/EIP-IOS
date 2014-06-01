@@ -8,6 +8,7 @@
 
 @class NBUser;
 
+#import <MapKit/MapKit.h>
 
 #pragma mark - Constants
 
@@ -24,6 +25,7 @@ extern NSString * const kNBNotificationUserLoggedOut;
 @property (strong, nonatomic) NBUser *currentUser;
 @property (strong, nonatomic) NSString *currentUserPassword;
 @property (readonly, nonatomic) BOOL isConnected;
+@property (assign, nonatomic) CLLocationCoordinate2D lastKnownLocation;
 
 - (void)logout;
 
