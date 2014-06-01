@@ -18,8 +18,9 @@ static NSString * const kNBPlaceKeyLatitude = @"latitude";
 static NSString * const kNBPlaceKeyAddress = @"address";
 static NSString * const kNBPlaceKeyPostCode = @"postcode";
 static NSString * const kNBPlaceKeyCity = @"city";
+static NSString * const kNBPlaceKeyCountry = @"country";
 static NSString * const kNBPlaceKeyIconURL = @"icon";
-static NSString * const kNBPlaceKeyIsFollowedByCurrentUser = @"following";
+static NSString * const kNBPlaceKeyFollowingId = @"followed_place_id";
 
 #pragma mark -
 
@@ -49,8 +50,9 @@ static NSString * const kNBPlaceKeyIsFollowedByCurrentUser = @"following";
         self.address = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyAddress];
         self.postCode = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyPostCode];
         self.city = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyCity];
+        self.country = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyCountry];
         self.iconURL = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyIconURL];
-        self.isFollowedByCurrentUser = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPlaceKeyIsFollowedByCurrentUser];
+        self.followingId = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPlaceKeyFollowingId];
     }
     
     return self;
@@ -66,7 +68,7 @@ static NSString * const kNBPlaceKeyIsFollowedByCurrentUser = @"following";
     [aCoder encodeObject:self.postCode forKey:kNBPlaceKeyPostCode];
     [aCoder encodeObject:self.city forKey:kNBPlaceKeyCity];
     [aCoder encodeObject:self.iconURL forKey:kNBPlaceKeyIconURL];
-    [aCoder encodeObject:self.isFollowedByCurrentUser forKey:kNBPlaceKeyIsFollowedByCurrentUser];
+    [aCoder encodeObject:self.followingId forKey:kNBPlaceKeyFollowingId];
 }
 
 #pragma mark - Properties
@@ -76,6 +78,11 @@ static NSString * const kNBPlaceKeyIsFollowedByCurrentUser = @"following";
     CLLocationCoordinate2D coordinate;
     coordinate = CLLocationCoordinate2DMake(self.latitude, self.longitude);
     return coordinate;
+}
+
+- (BOOL)isFollowedByCurrentUser
+{
+    return self.followingId != nil;
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "NBAPINetworkOperation.h"
 #import "NSDictionary+URLEncoding.h"
 #import "NBAPINetworkOperation+UIImage.h"
+#import "NBUser.h"
+#import "NBPersistanceManager.h"
 
 
 #pragma mark - Constants
@@ -56,7 +58,6 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
     NBAPINetworkOperation *operation = (NBAPINetworkOperation *)[[NBAPINetworkEngine engine] operationWithPath:path
                                                                                                         params:params
                                                                                                     httpMethod:method];
-    
     if (image)
         [operation addImage:image withKey:imageKey mainKey:mainKey];
     
@@ -71,6 +72,19 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
 #endif
     
     return (NBAPINetworkOperation *)operation;
+}
+
++ (void)addAuthHeaderIfNeeded:(NBAPINetworkOperation *)operation
+{
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    
+    if (persistanceManager.isConnected)
+    {
+        NBUser *user = persistanceManager.currentUser;
+        NSString *token = user.token;
+        NSString *formattedToken = [NSString stringWithFormat:@"Token token=\"%@\"", token];
+        [operation setHeader:@"Authorization" withValue:formattedToken];
+    }
 }
 
 @end

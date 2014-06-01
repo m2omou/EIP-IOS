@@ -19,6 +19,7 @@ static NSString * const kNBUserKeyLastname = @"lastname";
 static NSString * const kNBUserKeyEmail = @"email";
 static NSString * const kNBUserKeyAvatar = @"avatar";
 static NSString * const kNBUserKeyAvatarThumbnail = @"avatar_thumb";
+static NSString * const kNBUserKeyToken = @"auth_token";
 
 #pragma mark -
 
@@ -46,6 +47,7 @@ static NSString * const kNBUserKeyAvatarThumbnail = @"avatar_thumb";
         self.email = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyEmail];
         self.avatarURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyAvatar];
         self.avatarThumbnailURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyAvatarThumbnail];
+        self.token = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyToken];
     }
     
     return self;
@@ -60,6 +62,7 @@ static NSString * const kNBUserKeyAvatarThumbnail = @"avatar_thumb";
     [aCoder encodeObject:self.email forKey:kNBUserKeyEmail];
     [aCoder encodeObject:self.avatarURLString forKey:kNBUserKeyAvatar];
     [aCoder encodeObject:self.avatarThumbnailURLString forKey:kNBUserKeyAvatarThumbnail];
+    [aCoder encodeObject:self.token forKey:kNBUserKeyToken];
 }
 
 #pragma mark - Properties

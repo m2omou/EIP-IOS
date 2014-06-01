@@ -7,8 +7,8 @@
 //
 
 typedef NS_ENUM(NSUInteger, NBVoteValue) {
-    kNBVoteValueDislike = 0,
-    kNBVoteValueLike    = 1
+    kNBVoteValueDownvote = 0,
+    kNBVoteValueUpvote   = 1
 };
 
 @interface NBVote : NSObject <NSCoding>

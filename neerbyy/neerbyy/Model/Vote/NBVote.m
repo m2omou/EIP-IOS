@@ -55,9 +55,9 @@ static NSString * const kNBVoteKeyValueString = @"value";
 - (NBVoteValue)value
 {
     if (self.valueNumber.boolValue == YES)
-        return kNBVoteValueLike;
+        return kNBVoteValueUpvote;
     else
-        return kNBVoteValueDislike;
+        return kNBVoteValueDownvote;
 }
 
 @end

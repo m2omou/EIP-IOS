@@ -13,7 +13,7 @@
 #import "NBPlace.h"
 
 
-@interface NBPlaceViewController ()
+@interface NBPlaceViewController () <NBNewPublicationViewControllerDelegate>
 
 @property (strong, nonatomic) NBPublicationListViewController *publicationListViewController;
 
@@ -51,7 +51,17 @@
     {
         NBNewPublicationViewController *newPublicationViewController = segue.destinationViewController;
         newPublicationViewController.place = self.place;
+        newPublicationViewController.delegate = self;
     }
+}
+
+#pragma mark - NBNewPublicationViewControllerDelegate
+
+- (void)newPublicationViewController:(NBNewPublicationViewController *)newPublicationViewController didPublishPublication:(NBPublication *)publication
+{
+    NSMutableArray *publications = [self.publicationListViewController.publications mutableCopy];
+    [publications insertObject:publication atIndex:0];
+    self.publicationListViewController.publications = [publications copy];
 }
 
 #pragma mark - User interactions
@@ -96,12 +106,12 @@
     [reloadPublicationOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePublicationList *response = (NBAPIResponsePublicationList *)completedOperation.APIResponse;
         
-        /* TODO : Uncomment this when API works */
-//        NSArray *oldPublications = self.publicationListViewController.publications;
-//        NSArray *newPublications = response.publications;
-//        NSArray *allPublications = [newPublications arrayByAddingObjectsFromArray:oldPublications];
-//        self.publicationListViewController.publications = allPublications;
-        self.publicationListViewController.publications = response.publications;
+        NSArray *oldPublications = self.publicationListViewController.publications;
+        NSArray *newPublications = response.publications;
+        if (!newPublications.count)
+            return ;
+        NSArray *allPublications = [newPublications arrayByAddingObjectsFromArray:oldPublications];
+        self.publicationListViewController.publications = allPublications;
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     
     [reloadPublicationOperation enqueue];

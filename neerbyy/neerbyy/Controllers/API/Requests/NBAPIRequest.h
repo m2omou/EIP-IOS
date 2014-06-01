@@ -34,7 +34,9 @@
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
                                           withImage:(UIImage *)image description:(NSString *)description;
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                          withURL:(NSString *)url description:(NSString *)description;
+                                            withURL:(NSString *)url description:(NSString *)description;
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
+                                    withDescription:(NSString *)description;
 + (NBAPINetworkOperation *)deletePublication:(NSNumber *)publicationId;
 + (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId;
 

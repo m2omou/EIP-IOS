@@ -14,9 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self themeAppearance];
-    [self loadRootViewController];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -46,7 +44,8 @@
     [barButtonItem setTitleTextAttributes:@{NSFontAttributeName: [theme.font fontWithSize:16.f]}
                                  forState:UIControlStateNormal];
     
-    
+    UISegmentedControl *segmentedControl = [UISegmentedControl appearance];
+    segmentedControl.tintColor = theme.lightGreenColor;
 }
 
 @end

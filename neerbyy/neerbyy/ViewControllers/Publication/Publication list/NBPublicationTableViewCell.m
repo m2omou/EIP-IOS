@@ -44,6 +44,9 @@
 - (void)configureImageViewWithPublication:(NBPublication *)publication
 {
     switch (publication.type) {
+        case kNBPublicationTypeText:
+        case kNBPublicationTypeYoutube:
+        case kNBPublicationTypeFile:
         case kNBPublicationTypeUnknown:
             self.thumnailImageView.image = [UIImage imageNamed:@"img-txt"];
             break;

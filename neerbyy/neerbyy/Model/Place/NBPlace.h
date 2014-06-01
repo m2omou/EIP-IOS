@@ -17,7 +17,10 @@
 @property (strong, nonatomic) NSString *address;
 @property (strong, nonatomic) NSString *postCode;
 @property (strong, nonatomic) NSString *city;
+@property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *iconURL;
-@property (strong, nonatomic) NSNumber *isFollowedByCurrentUser;
+
+@property (readonly, nonatomic) BOOL isFollowedByCurrentUser;
+@property (strong, nonatomic) NSNumber *followingId;
 
 @end

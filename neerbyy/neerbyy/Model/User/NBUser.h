@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSString *email;
 @property (readonly, nonatomic) NSURL *avatarURL;
 @property (readonly, nonatomic) NSURL *avatarThumbnailURL;
+@property (strong, nonatomic) NSString *token;
 
 @end

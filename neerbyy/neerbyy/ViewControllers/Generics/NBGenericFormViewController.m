@@ -29,6 +29,7 @@ typedef enum { kImagePickerIndexCamera, kImagePickerIndexLibrary } kImagePickerI
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.validateFormOnLastTextFieldValidation = YES;
     [self initTapGestureRecognizer];
     [self initTextFields];
 }
@@ -99,7 +100,8 @@ typedef enum { kImagePickerIndexCamera, kImagePickerIndexLibrary } kImagePickerI
         }
         else
         {
-            if ([self enableValidationButtonIfNeeded])
+            if ([self enableValidationButtonIfNeeded] &&
+                self.validateFormOnLastTextFieldValidation)
                 [self validateForm];
             else
                 [self hideKeyboard];
@@ -150,6 +152,9 @@ typedef enum { kImagePickerIndexCamera, kImagePickerIndexLibrary } kImagePickerI
             break ;
         }
     }
+    
+    if (canValidateForm && self.customValidation)
+        canValidateForm = self.customValidation();
 
     ((UIButton *)self.validationButton).enabled = canValidateForm;
 

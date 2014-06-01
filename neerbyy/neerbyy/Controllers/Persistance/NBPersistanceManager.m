@@ -58,6 +58,7 @@ static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";
     {
         [NSUserDefaults archiveObject:currentUser forKey:kNBPersistanceCurrentUserKey];
         [[NSNotificationCenter defaultCenter] postNotificationName:kNBNotificationUserLoggedIn object:self];
+        _currentUser = currentUser;
     }
 }
 

@@ -14,7 +14,7 @@
 
 static NSString * const kNBCommentKeyID = @"id";
 static NSString * const kNBCommentKeyContent = @"content";
-static NSString * const kNBCommentKeyAuthor = @"author";
+static NSString * const kNBCommentKeyAuthor = @"user";
 
 #pragma mark -
 

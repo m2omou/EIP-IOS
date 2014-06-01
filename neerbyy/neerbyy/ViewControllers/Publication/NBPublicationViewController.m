@@ -68,9 +68,9 @@
     NBVoteValue value;
 
     if (sender == self.upvoteButton)
-        value = kNBVoteValueLike;
+        value = kNBVoteValueUpvote;
     else
-        value = kNBVoteValueDislike;
+        value = kNBVoteValueDownvote;
     
     if ([self userIsCancellingVote:value])
         [self cancelVote];
@@ -100,8 +100,8 @@
     [cancelVoteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponseVote *response = (NBAPIResponseVote *)operation.APIResponse;
 
-        self.publication.numberOfLikes = response.publication.numberOfLikes;
-        self.publication.numberOfDislikes = response.publication.numberOfDislikes;
+        self.publication.numberOfUpvotes = response.publication.numberOfUpvotes;
+        self.publication.numberOfDownvotes = response.publication.numberOfDownvotes;
         self.publication.voteOfCurrentUser = nil;
         [self configureLikesAndDislikesWithVote:nil publication:response.publication];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
@@ -117,8 +117,8 @@
     [voteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponseVote *response = (NBAPIResponseVote *)operation.APIResponse;
     
-        self.publication.numberOfLikes = response.publication.numberOfLikes;
-        self.publication.numberOfDislikes = response.publication.numberOfDislikes;
+        self.publication.numberOfUpvotes = response.publication.numberOfUpvotes;
+        self.publication.numberOfDownvotes = response.publication.numberOfDownvotes;
         self.publication.voteOfCurrentUser = response.vote;
         [self configureLikesAndDislikesWithVote:response.vote publication:response.publication];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
@@ -134,7 +134,7 @@
     if (vote != nil)
         [self configureVoteButtonsForVote:vote];
     if (publication != nil)
-        [self configureLikesAndDislikesWithLikes:publication.numberOfLikes dislikes:publication.numberOfDislikes];
+        [self configureLikesAndDislikesWithLikes:publication.numberOfUpvotes dislikes:publication.numberOfDownvotes];
 }
 
 - (void)restoreVoteButtons
@@ -147,7 +147,7 @@
 {
     NBPrimaryButton *votedButton;
     
-    if (vote.value == kNBVoteValueLike)
+    if (vote.value == kNBVoteValueUpvote)
         votedButton = self.upvoteButton;
     else
         votedButton = self.downvoteButton;
@@ -167,8 +167,7 @@
     NBPublication *publication = self.publication;
     
     switch (publication.type) {
-        case kNBPublicationTypeUnknown:
-            [self addTextPublicationContent];
+        case kNBPublicationTypeText:
             break;
             
         case kNBPublicationTypeImage:
@@ -178,7 +177,16 @@
         case kNBPublicationTypeLink:
             [self addLinkPublicationContent];
             break;
-            
+
+        case kNBPublicationTypeYoutube:
+            break;
+
+        case kNBPublicationTypeFile:
+            break;
+
+        case kNBPublicationTypeUnknown:
+            [self addTextPublicationContent];
+            break;
     }
 }
 
@@ -255,12 +263,10 @@
     [reloadCommentsOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponseCommentList *response = (NBAPIResponseCommentList *)operation.APIResponse;
         
-        /* TODO : Uncomment this when API works */
-//        NSArray *oldComments = self.commentListViewController.comments;
-//        NSArray *newComments = response.comments;
-//        NSArray *allComments = [newComments arrayByAddingObjectsFromArray:oldComments];
-//        self.commmentListViewController.comments = allComments;
-        self.commentsListViewController.comments = response.comments;
+        NSArray *oldComments = self.commentsListViewController.comments;
+        NSArray *newComments = response.comments;
+        NSArray *allComments = [newComments arrayByAddingObjectsFromArray:oldComments];
+        self.commentsListViewController.comments = allComments;
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     
     [reloadCommentsOperation enqueue];

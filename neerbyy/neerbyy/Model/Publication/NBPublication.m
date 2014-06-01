@@ -11,43 +11,30 @@
 #import "NBVote.h"
 #import "NBUser.h"
 
-//@property (strong, nonatomic) NSNumber *identifier;
-//@property (strong, nonatomic) NSNumber *userId;
-//@property (strong, nonatomic) NSNumber *placeId;
-//@property (readonly, nonatomic) NBPublicationType type;
-//@property (strong, nonatomic) NSString *contentDescription;
-//@property (readonly, nonatomic) NSURL *contentURL;
-//@property (readonly, nonatomic) NSURL *thumbnailURL;
-//@property (strong, nonatomic) NSNumber *numberOfComments;
-//@property (strong, nonatomic) NSNumber *numberOfLikes;
-//@property (strong, nonatomic) NSNumber *numberOfDislikes;
-//@property (strong, nonatomic) NBVote *voteOfCurrentUser;
-//@property (strong, nonatomic) NBUser *author;
-
 #pragma mark - Constants
 
 static NSString * const kNBPublicationKeyIdentifier = @"id";
-static NSString * const kNBPublicationKeyUserIdentifier = @"user_id";
 static NSString * const kNBPublicationKeyPlaceIdentifier = @"place_id";
 static NSString * const kNBPublicationKeyContentDescription = @"content";
+static NSString * const kNBPublicationKeyLongitude = @"longitude";
+static NSString * const kNBPublicationKeyLatitude = @"latitude";
 static NSString * const kNBPublicationKeyTypeString = @"type";
 static NSString * const kNBPublicationKeyContentURL = @"url";
 static NSString * const kNBPublicationKeyThumbnailURL = @"thumb_url";
 static NSString * const kNBPublicationKeyNumberOfComments = @"comments";
-static NSString * const kNBPublicationKeyNumberOfLikes = @"like";
-static NSString * const kNBPublicationKeyNumberOfDislikes = @"dislike";
+static NSString * const kNBPublicationKeyNumberOfUpvotes = @"upvotes";
+static NSString * const kNBPublicationKeyNumberOfDownvotes = @"downvotes";
 static NSString * const kNBPublicationKeyVoteOfCurrentUser = @"vote";
 static NSString * const kNBPublicationKeyAuthor = @"user";
-
-static NSString * const kNBPublicationTypeValueImage = @"image";
-static NSString * const kNBPublicationTypeValueLink = @"link";
 
 #pragma mark -
 
 
 @interface NBPublication ()
 
-@property (strong, nonatomic) NSString *typeString;
+@property (assign, nonatomic) CGFloat longitude;
+@property (assign, nonatomic) CGFloat latitude;
+@property (strong, nonatomic) NSNumber *typeNumber;
 @property (strong, nonatomic) NSString *contentURLString;
 @property (strong, nonatomic) NSString *thumbnailURLString;
 @property (strong, nonatomic) NSDictionary *voteOfCurrentUserDictionary;
@@ -67,15 +54,16 @@ static NSString * const kNBPublicationTypeValueLink = @"link";
     if (self)
     {
         self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyIdentifier];
-        self.userId = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyUserIdentifier];
         self.placeId = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPublicationKeyPlaceIdentifier];
+        self.longitude = [aDecoder decodeFloatForKey:kNBPublicationKeyLongitude];
+        self.latitude = [aDecoder decodeFloatForKey:kNBPublicationKeyLatitude];
+        self.typeNumber = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyTypeString];
         self.contentDescription = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPublicationKeyContentDescription];
-        self.typeString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPublicationKeyTypeString];
         self.contentURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPublicationKeyContentURL];
         self.thumbnailURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPublicationKeyThumbnailURL];
         self.numberOfComments = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyNumberOfComments];
-        self.numberOfLikes = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyNumberOfLikes];
-        self.numberOfDislikes = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyNumberOfDislikes];
+        self.numberOfUpvotes = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyNumberOfUpvotes];
+        self.numberOfDownvotes = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyNumberOfDownvotes];
         self.voteOfCurrentUserDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBPublicationKeyVoteOfCurrentUser];
         self.authorDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBPublicationKeyAuthor];
     }
@@ -86,29 +74,36 @@ static NSString * const kNBPublicationTypeValueLink = @"link";
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.identifier forKey:kNBPublicationKeyIdentifier];
-    [aCoder encodeObject:self.userId forKey:kNBPublicationKeyUserIdentifier];
     [aCoder encodeObject:self.placeId forKey:kNBPublicationKeyPlaceIdentifier];
+    [aCoder encodeFloat:self.longitude forKey:kNBPublicationKeyLongitude];
+    [aCoder encodeFloat:self.latitude forKey:kNBPublicationKeyLatitude];
+    [aCoder encodeObject:self.typeNumber forKey:kNBPublicationKeyTypeString];
     [aCoder encodeObject:self.contentDescription forKey:kNBPublicationKeyContentDescription];
-    [aCoder encodeObject:self.typeString forKey:kNBPublicationKeyTypeString];
     [aCoder encodeObject:self.contentURLString forKey:kNBPublicationKeyContentURL];
     [aCoder encodeObject:self.thumbnailURLString forKey:kNBPublicationKeyThumbnailURL];
     [aCoder encodeObject:self.numberOfComments forKey:kNBPublicationKeyNumberOfComments];
-    [aCoder encodeObject:self.numberOfLikes forKey:kNBPublicationKeyNumberOfLikes];
-    [aCoder encodeObject:self.numberOfDislikes forKey:kNBPublicationKeyNumberOfDislikes];
+    [aCoder encodeObject:self.numberOfUpvotes forKey:kNBPublicationKeyNumberOfUpvotes];
+    [aCoder encodeObject:self.numberOfDownvotes forKey:kNBPublicationKeyNumberOfDownvotes];
     [aCoder encodeObject:self.voteOfCurrentUserDictionary forKey:kNBPublicationKeyVoteOfCurrentUser];
     [aCoder encodeObject:self.authorDictionary forKey:kNBPublicationKeyAuthor];
 }
 
 #pragma mark - Properties
 
+- (CLLocationCoordinate2D)coordinate
+{
+    CLLocationCoordinate2D coordinate;
+    coordinate = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+    return coordinate;
+}
+
 - (NBPublicationType)type
 {
-    if ([self.typeString isEqualToString:kNBPublicationTypeValueImage])
-        return kNBPublicationTypeImage;
-    else if ([self.typeString isEqualToString:kNBPublicationTypeValueLink])
-        return kNBPublicationTypeLink;
-    else
+    NSUInteger typeValue = self.typeNumber.integerValue;
+    
+    if (typeValue > kNBPublicationTypeUnknown)
         return kNBPublicationTypeUnknown;
+    return (NBPublicationType)typeValue;
 }
 
 - (NSURL *)contentURL

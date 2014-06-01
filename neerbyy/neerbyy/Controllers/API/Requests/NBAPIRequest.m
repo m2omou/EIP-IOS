@@ -271,12 +271,29 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
 }
 
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                          withURL:(NSString *)url description:(NSString *)description
+                                            withURL:(NSString *)url description:(NSString *)description
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPlaceIdentifier : placeIdentifier,
                                  kNBAPIParamKeyLongitude : @(position.longitude),
                                  kNBAPIParamKeyLatitude : @(position.latitude),
                                  kNBAPIParamKeyURL : url,
+                                 kNBAPIParamKeyContent : description};
+    
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPublications
+                                                                      params:parameters
+                                                                     mainKey:kNBAPIMainKeyPublication
+                                                                  httpMethod:kNBAPIHTTPMethodPOST];
+    
+    operation.APIResponseClass = [NBAPIResponsePublication class];
+    return operation;
+}
+
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
+                                            withDescription:(NSString *)description
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyPlaceIdentifier : placeIdentifier,
+                                 kNBAPIParamKeyLongitude : @(position.longitude),
+                                 kNBAPIParamKeyLatitude : @(position.latitude),
                                  kNBAPIParamKeyContent : description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPublications
