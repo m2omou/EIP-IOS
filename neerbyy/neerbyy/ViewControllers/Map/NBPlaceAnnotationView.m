@@ -31,6 +31,7 @@
     if (self)
     {
         self.highlighted = NO;
+        self.image = [UIImage imageNamed:@"map-pin"];
         [self initCalloutView];
     }
     
@@ -87,26 +88,21 @@
 - (void)hideCallout
 {
     [self.calloutView removeFromSuperview];
+    self.selected = NO;
 }
 
 #pragma mark - Properties
 
-- (void)setHighlighted:(BOOL)highlighted
+- (void)setSelected:(BOOL)selected
 {
-    [super setHighlighted:highlighted];
+    [super setSelected:selected];
 
     UIImage *pinImage;
-    if (highlighted)
+    if (selected)
         pinImage = [UIImage imageNamed:@"map-pin-selected"];
     else
         pinImage = [UIImage imageNamed:@"map-pin"];
     self.image = pinImage;
-}
-
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
-    [self setHighlighted:selected];
 }
 
 #pragma mark - Clickable subviews (custom callout)

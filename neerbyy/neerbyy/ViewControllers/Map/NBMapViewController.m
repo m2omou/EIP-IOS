@@ -101,6 +101,7 @@ static CGFloat const kMBMapMarginFactor = 1.f;
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     [self centerMapOnUserOnFirstDetection];
+    self.persistanceManager.lastKnownLocation = userLocation.coordinate;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -157,7 +158,19 @@ static CGFloat const kMBMapMarginFactor = 1.f;
 
 - (IBAction)pressedLocationButton:(id)sender
 {
-    [self centerMapOnUser];
+    CLLocationCoordinate2D userCoordinate = self.persistanceManager.lastKnownLocation;
+    
+    if (CLLocationCoordinate2DIsValid(userCoordinate) == NO)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Oups"
+                                    message:@"La géolocalisation semble désactivée. Afin de profiter de toutes les fonctionnalités de Neerbyy, activez-la dans l'application Réglages de votre iDevice"
+                                   delegate:nil
+                          cancelButtonTitle:@"Annuler"
+                          otherButtonTitles:nil]
+         show];
+    }
+    else
+        [self centerMapOnUser];
 }
 
 #pragma mark - Private methods - Filter view
