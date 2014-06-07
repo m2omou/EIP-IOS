@@ -35,6 +35,15 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
     };
 }
 
+#pragma mark - UITableViewController
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NBComment *comment = [self commentAtIndexPath:indexPath];
+    CGFloat height = [NBCommentTableViewCell heightForComment:comment width:CGRectGetWidth(self.tableView.bounds)];
+    return height;
+}
+
 #pragma mark - Properties
 
 - (void)setComments:(NSArray *)comments
@@ -45,6 +54,11 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
 - (NSArray *)comments
 {
     return self.data;
+}
+
+- (NBComment *)commentAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.comments[indexPath.row];
 }
 
 @end

@@ -923,9 +923,6 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="320" id="93x-dI-EA0"/>
-                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="WZm-7R-XLD" appends="YES" id="HWU-kO-s6D"/>
                                         </connections>
@@ -1038,6 +1035,7 @@
                             <constraint firstItem="v6h-La-5qc" firstAttribute="top" secondItem="vF8-DP-DRw" secondAttribute="bottom" priority="750" id="1Iq-dz-0hH"/>
                             <constraint firstAttribute="trailing" secondItem="Vj6-m0-GBn" secondAttribute="trailing" id="26m-ca-iex"/>
                             <constraint firstItem="Vj6-m0-GBn" firstAttribute="leading" secondItem="bga-tl-oDy" secondAttribute="leading" id="Bi5-97-uNO"/>
+                            <constraint firstItem="v6h-La-5qc" firstAttribute="width" secondItem="bga-tl-oDy" secondAttribute="width" id="lwP-Hc-eQp"/>
                             <constraint firstItem="Vj6-m0-GBn" firstAttribute="top" secondItem="vF8-DP-DRw" secondAttribute="bottom" id="qud-kr-weP"/>
                             <constraint firstItem="rxV-Wo-q0K" firstAttribute="top" secondItem="Vj6-m0-GBn" secondAttribute="bottom" id="tbl-jB-reI"/>
                         </constraints>
@@ -1155,14 +1153,17 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Commentaire d'un utilisateur. Lorem ipsum dolor sit amet, consectetur adipiscing elit." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="222" translatesAutoresizingMaskIntoConstraints="NO" id="9bz-Vi-BS4" customClass="NBLabel">
-                                            <rect key="frame" x="78" y="10" width="222" height="43"/>
+                                            <rect key="frame" x="78" y="10" width="222" height="42"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Utilisateur" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVE-SP-kYd" customClass="NBLabel">
-                                            <rect key="frame" x="78" y="67" width="222" height="15"/>
+                                            <rect key="frame" x="78" y="62" width="222" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="cxC-cH-Gxx"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1174,7 +1175,7 @@
                                         <constraint firstItem="9bz-Vi-BS4" firstAttribute="leading" secondItem="N4J-Bl-j01" secondAttribute="trailing" constant="8" id="X1S-Nq-rFY"/>
                                         <constraint firstItem="CVE-SP-kYd" firstAttribute="trailing" secondItem="9bz-Vi-BS4" secondAttribute="trailing" id="cZS-fY-zDk"/>
                                         <constraint firstAttribute="bottom" secondItem="CVE-SP-kYd" secondAttribute="bottom" constant="8" id="jKm-rj-9tm"/>
-                                        <constraint firstItem="CVE-SP-kYd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="9bz-Vi-BS4" secondAttribute="bottom" constant="2" id="oVe-Dj-FO3"/>
+                                        <constraint firstItem="CVE-SP-kYd" firstAttribute="top" secondItem="9bz-Vi-BS4" secondAttribute="bottom" constant="10" id="oVe-Dj-FO3"/>
                                         <constraint firstItem="N4J-Bl-j01" firstAttribute="top" secondItem="9bz-Vi-BS4" secondAttribute="top" id="xGE-SQ-adn"/>
                                         <constraint firstItem="N4J-Bl-j01" firstAttribute="top" secondItem="44E-L2-jpn" secondAttribute="top" constant="10" id="z5A-79-QMr"/>
                                     </constraints>

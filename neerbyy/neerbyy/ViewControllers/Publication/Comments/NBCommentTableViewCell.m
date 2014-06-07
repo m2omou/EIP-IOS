@@ -9,6 +9,7 @@
 #import "NBCommentTableViewCell.h"
 #import <UIImageView+MKNetworkKitAdditions.h>
 #import "NBCircleImageView.h"
+#import "NBTheme.h"
 #import "NBUser.h"
 
 @interface NBCommentTableViewCell ()
@@ -23,6 +24,20 @@
 @implementation NBCommentTableViewCell
 
 #pragma mark - Public methods
+
++ (CGFloat)heightForComment:(NBComment *)comment width:(CGFloat)width
+{
+    static CGFloat const minimumHeight = 81.f;
+    static CGFloat const totalPadding = 50.f;
+
+    CGFloat labelHeight = CGRectGetHeight([comment.content boundingRectWithSize:CGSizeMake(width, 0)
+                                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                                     attributes:@{NSFontAttributeName: [[NBTheme sharedTheme].font fontWithSize:15.f]}
+                                                                        context:nil]);
+    CGFloat height = labelHeight + totalPadding;
+    
+    return MAX(minimumHeight, height);
+}
 
 - (void)configureWithComment:(NBComment *)comment
 {

@@ -11,6 +11,8 @@
 
 @interface NBCommentTableViewCell : NBTableViewCell
 
++ (CGFloat)heightForComment:(NBComment *)comment width:(CGFloat)width;
+
 - (void)configureWithComment:(NBComment *)comment;
 
 @end
