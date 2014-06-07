@@ -309,7 +309,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="Cok-fq-kam" kind="embed" id="dEq-Xo-ota"/>
+                                    <segue destination="Cok-fq-kam" kind="embed" identifier="publicationList" id="dEq-Xo-ota"/>
                                 </connections>
                             </containerView>
                         </subviews>

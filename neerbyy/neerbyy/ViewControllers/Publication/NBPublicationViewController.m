@@ -44,14 +44,6 @@
     [self configureLikesAndDislikesWithVote:vote publication:publication];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    [self.publicationContainerView layoutIfNeeded];
-    [self.publicationContainerView.superview layoutIfNeeded];
-}
-
 #pragma mark - UIViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -288,7 +280,9 @@
 - (void)addTextPublicatioonContentWithIcon:(UIImage *)icon
 {
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectZero];
-    textView.font = [self.theme.font fontWithSize:12.f];
+    textView.font = [self.theme.font fontWithSize:13.f];
+    textView.backgroundColor = self.theme.lightGreenColor;
+    textView.textColor = self.theme.whiteColor;
     textView.editable = NO;
     textView.showsHorizontalScrollIndicator = textView.alwaysBounceHorizontal = NO;
     textView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -315,6 +309,7 @@
 {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.backgroundColor = self.theme.lightGreenColor;
     [imageView setImageFromURL:self.publication.contentURL];
 
     [self addPublicationContentViewToContainerView:imageView];
