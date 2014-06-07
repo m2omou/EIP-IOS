@@ -7,10 +7,10 @@
 //
 
 #import "NBTableViewCell.h"
-
+#import "NBPlace.h"
 
 @interface NBPlaceTableViewCell : NBTableViewCell
 
-- (void)configureWithPlace:(id)place;
+- (void)configureWithPlace:(NBPlace *)place;
 
 @end

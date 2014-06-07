@@ -1589,7 +1589,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="AnX-BQ-EC0" kind="embed" id="vYV-Hw-8fD"/>
+                                    <segue destination="AnX-BQ-EC0" kind="embed" identifier="EmbedPlacesListSegue" id="vYV-Hw-8fD"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -1679,7 +1679,11 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="YuE-Gr-vX7" kind="push" id="Tz8-5Y-A8U"/>
+                                    <outlet property="nameLabel" destination="WQw-OA-vOc" id="Jsw-Lb-iPD"/>
+                                    <outlet property="positionLabel" destination="2UZ-SZ-dky" id="brd-lB-GXb"/>
+                                    <outlet property="previewImageView" destination="Jmr-0Q-e5c" id="mNt-Fs-IJZ"/>
+                                    <outlet property="publicationsCountLabel" destination="n8Z-9R-EH1" id="ZLG-6b-ONQ"/>
+                                    <segue destination="YuE-Gr-vX7" kind="push" identifier="placeSegue" id="Tz8-5Y-A8U"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2220,7 +2224,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="dEq-Xo-ota"/>
-        <segue reference="z11-xh-bEq"/>
+        <segue reference="vYV-Hw-8fD"/>
         <segue reference="upH-as-YoE"/>
     </inferredMetricsTieBreakers>
 </document>

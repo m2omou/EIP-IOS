@@ -8,7 +8,7 @@
 
 #import "NBPlaceListViewController.h"
 #import "NBPlaceTableViewCell.h"
-
+#import "NBPlaceViewController.h"
 
 #pragma mark - Constants
 
@@ -30,13 +30,24 @@ static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifie
 {
     [super viewDidLoad];
     
-    self.places = @[@1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1];
-    
     self.reuseIdentifier = kNBPlaceCellIdentifier;
     self.onConfigureCell = ^(NBPlaceTableViewCell *cell, id associatedPlace, NSUInteger dataIdx)
     {
         [cell configureWithPlace:associatedPlace];
     };
+}
+
+#pragma mark - UIViewController
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    static NSString * const kNBPlaceSegue = @"placeSegue";
+    
+    if ([segue.identifier isEqualToString:kNBPlaceSegue])
+    {
+        NBPlaceViewController *placeViewController = segue.destinationViewController;
+        placeViewController.place = [self selectedPlace];
+    }
 }
 
 #pragma mark - Properties
@@ -49,6 +60,17 @@ static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifie
 - (NSArray *)places
 {
     return self.data;
+}
+
+- (NBPlace *)placeAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.places[indexPath.row];
+}
+
+- (NBPlace *)selectedPlace
+{
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    return [self placeAtIndexPath:selectedIndexPath];
 }
 
 @end
