@@ -191,7 +191,6 @@
 #pragma mark - Convenience methods - Publication details
 
 - (void)pushPublicationContentViewController {
-    UIViewController *publicationContentViewController;
     NBPublication *publication = self.publication;
     
     switch (publication.type) {
@@ -212,11 +211,6 @@
         case kNBPublicationTypeFile:
         case kNBPublicationTypeText:
             break;
-    }
-    
-    if (publicationContentViewController) {
-        ((TOWebViewController *)publicationContentViewController).buttonTintColor = [UIColor redColor];
-        ((TOWebViewController *)publicationContentViewController).loadingBarTintColor = [UIColor cyanColor];
     }
 }
 
@@ -260,10 +254,19 @@
     switch (publication.type) {
         case kNBPublicationTypeFile:
         case kNBPublicationTypeText:
+            [self addTextPublicationContent];
+            break;
+
         case kNBPublicationTypeYoutube:
         case kNBPublicationTypeLink:
+            [self addWebPublicationContent];
+            break;
+            
         case kNBPublicationTypeUnknown:
-            [self addTextPublicationContent];
+            if (publication.contentURL)
+                [self addWebPublicationContent];
+            else
+                [self addTextPublicationContent];
             break;
             
         case kNBPublicationTypeImage:
@@ -272,7 +275,17 @@
     }
 }
 
+- (void)addWebPublicationContent
+{
+    [self addTextPublicatioonContentWithIcon:[UIImage imageNamed:@"img-web"]];
+}
+
 - (void)addTextPublicationContent
+{
+    [self addTextPublicatioonContentWithIcon:nil];
+}
+
+- (void)addTextPublicatioonContentWithIcon:(UIImage *)icon
 {
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectZero];
     textView.font = [self.theme.font fontWithSize:12.f];
@@ -283,6 +296,19 @@
     
     [self addPublicationContentViewToContainerView:textView];
     [self setPublicationHeight:40];
+
+    if (icon) {
+        UIImageView *iconView = [[UIImageView alloc] initWithImage:icon];
+        iconView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.publicationContainerView addSubview:iconView];
+        NSDictionary *views = NSDictionaryOfVariableBindings(iconView);
+        NSArray *hConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[iconView(20)]-5-|" options:0 metrics:0 views:views];
+        NSArray *vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[iconView(20)]" options:0 metrics:0 views:views];
+        NSArray *constraints = [hConstraint arrayByAddingObjectsFromArray:vConstraint];
+        [self.publicationContainerView addConstraints:constraints];
+        [self.publicationContainerView layoutIfNeeded];
+    }
+    
 }
 
 - (void)addImagePublicationContent
