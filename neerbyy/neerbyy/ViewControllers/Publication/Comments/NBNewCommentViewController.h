@@ -9,8 +9,19 @@
 #import "NBGenericFormViewController.h"
 #import "NBPublication.h"
 
+@class NBNewCommentViewController;
+
+@protocol NBNewCommentViewControllerDelegate <NSObject>
+
+@optional
+- (void)newCommentViewController:(NBNewCommentViewController *)newCommentViewController didPublishComment:(NBComment *)comment;
+- (void)newCommentViewControllerDidDismiss:(NBNewCommentViewController *)newCommentViewController;
+
+@end
+
 @interface NBNewCommentViewController : NBGenericFormViewController
 
 @property (strong, nonatomic) NBPublication *publication;
+@property (weak, nonatomic) id<NBNewCommentViewControllerDelegate> delegate;
 
 @end

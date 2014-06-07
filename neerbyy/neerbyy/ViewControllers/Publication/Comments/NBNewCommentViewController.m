@@ -7,10 +7,12 @@
 //
 
 #import "NBNewCommentViewController.h"
+#import "NBLabel.h"
 
 @interface NBNewCommentViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (strong, nonatomic) IBOutlet NBLabel *placeHolderLabel;
 
 @end
 
@@ -21,13 +23,22 @@
     [super viewDidLoad];
     
     [self themeDescriptionTextView];
+    __weak NBNewCommentViewController *weakSelf = self;
+    self.customValidation = ^BOOL{
+        if (weakSelf.descriptionTextView.text.length == 0)
+            return NO;
+        return YES;
+    };
 }
 
 #pragma mark - Theming
 
 - (void)themeDescriptionTextView
 {
-    self.descriptionTextView.tintColor = self.theme.lightGreenColor;
+    UIColor *textColor = self.theme.lightGreenColor;
+
+    self.placeHolderLabel.textColor = textColor;
+    self.descriptionTextView.tintColor = textColor;
 }
 
 #pragma mark - User interactions
@@ -39,6 +50,8 @@
 
 - (IBAction)tappedCancelButton:(id)sender
 {
+    if ([self.delegate respondsToSelector:@selector(newCommentViewControllerDidDismiss:)])
+        [self.delegate newCommentViewControllerDidDismiss:self];
     [self dismiss];
 }
 
@@ -58,6 +71,16 @@
     return UIBarPositionTopAttached;
 }
 
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView;
+{
+    BOOL hidePlaceHolder = (self.descriptionTextView.text.length > 0);
+    self.placeHolderLabel.hidden = hidePlaceHolder;
+    
+    [self enableValidationButtonIfNeeded];
+}
+
 #pragma mark - Convinience methods
 
 - (void)createComment
@@ -74,6 +97,9 @@
     NBAPINetworkOperation *publishOperation = [NBAPIRequest commentOnPublication:publicationIdentifier withMessage:description];
     
     [publishOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NBAPIResponseComment *response = (NBAPIResponseComment *)operation.APIResponse;
+        if ([self.delegate respondsToSelector:@selector(newCommentViewController:didPublishComment:)])
+            [self.delegate newCommentViewController:self didPublishComment:response.comment];
         [self dismiss];
     } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](operation, error);

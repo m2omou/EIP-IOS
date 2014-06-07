@@ -1100,27 +1100,39 @@
                                 </connections>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55G-Li-odg">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="20" y="74" width="280" height="274"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="taE-ZG-n09" id="iwj-Qh-l3y"/>
+                                </connections>
                             </textView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saisissez votre commentaire..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hD-4C-q1f" customClass="NBLabel">
+                                <rect key="frame" x="30" y="84" width="197" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6hD-4C-q1f" firstAttribute="leading" secondItem="55G-Li-odg" secondAttribute="leading" constant="10" id="C6L-aK-pOD"/>
                             <constraint firstItem="KBy-jd-NfZ" firstAttribute="top" secondItem="JSe-ne-6EB" secondAttribute="bottom" id="EzQ-Rt-VoE"/>
-                            <constraint firstItem="55G-Li-odg" firstAttribute="leading" secondItem="L9A-Rj-mS8" secondAttribute="leading" id="IQY-Mj-IsY"/>
-                            <constraint firstAttribute="trailing" secondItem="55G-Li-odg" secondAttribute="trailing" id="JPF-ce-e0n"/>
+                            <constraint firstItem="55G-Li-odg" firstAttribute="leading" secondItem="L9A-Rj-mS8" secondAttribute="leading" constant="20" id="IQY-Mj-IsY"/>
+                            <constraint firstAttribute="trailing" secondItem="55G-Li-odg" secondAttribute="trailing" constant="20" id="JPF-ce-e0n"/>
+                            <constraint firstItem="6hD-4C-q1f" firstAttribute="top" secondItem="55G-Li-odg" secondAttribute="top" constant="10" id="K2s-lg-Rkp"/>
                             <constraint firstItem="KBy-jd-NfZ" firstAttribute="leading" secondItem="L9A-Rj-mS8" secondAttribute="leading" id="Qhy-zS-KaH"/>
                             <constraint firstAttribute="trailing" secondItem="KBy-jd-NfZ" secondAttribute="trailing" id="Tkj-Lj-RmG"/>
-                            <constraint firstItem="55G-Li-odg" firstAttribute="top" secondItem="KBy-jd-NfZ" secondAttribute="bottom" id="pEs-HF-t5c"/>
-                            <constraint firstItem="0E1-zj-nqc" firstAttribute="top" secondItem="55G-Li-odg" secondAttribute="bottom" id="q0J-7U-4X0"/>
+                            <constraint firstItem="55G-Li-odg" firstAttribute="top" secondItem="KBy-jd-NfZ" secondAttribute="bottom" constant="10" id="pEs-HF-t5c"/>
+                            <constraint firstItem="0E1-zj-nqc" firstAttribute="top" secondItem="55G-Li-odg" secondAttribute="bottom" constant="220" id="q0J-7U-4X0"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="descriptionTextView" destination="55G-Li-odg" id="NGk-oN-ZqJ"/>
+                        <outlet property="placeHolderLabel" destination="6hD-4C-q1f" id="uI8-kc-Yzi"/>
                         <outlet property="validationButton" destination="NxL-lD-apz" id="16W-Te-E7J"/>
                     </connections>
                 </viewController>

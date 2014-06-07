@@ -15,7 +15,7 @@
 #import <JTSImageInfo.h>
 #import <TOWebViewController.h>
 
-@interface NBPublicationViewController ()
+@interface NBPublicationViewController () <NBNewCommentViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NBCommentListViewController *commentsListViewController;
@@ -68,9 +68,19 @@
     {
         NBNewCommentViewController *newCommentViewController = segue.destinationViewController;
         newCommentViewController.publication = self.publication;
+        newCommentViewController.delegate = self;
     }
 }
 
+#pragma mark - NBNewCommentViewControllerDelegate
+
+- (void)newCommentViewController:(NBNewCommentViewController *)newCommentViewController didPublishComment:(NBComment *)comment
+{
+    NSMutableArray *comments = [self.commentsListViewController.comments mutableCopy];
+    [comments insertObject:comment atIndex:0];
+    self.commentsListViewController.comments = [comments copy];
+    [self updateCommentsHeight];
+}
 
 #pragma mark - User interactions
 
