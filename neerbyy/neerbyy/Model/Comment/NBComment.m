@@ -58,4 +58,11 @@ static NSString * const kNBCommentKeyAuthor = @"user";
     return [[NBUser alloc] initWithCoder:userDecoder];
 }
 
+#pragma mark - Public methods
+
+- (BOOL)isFromUser:(NBUser *)user
+{
+    return [self.author isEqualToUser:user];
+}
+
 @end

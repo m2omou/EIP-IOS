@@ -14,4 +14,6 @@
 @property (strong, nonatomic) NSString *content;
 @property (readonly, nonatomic) NBUser *author;
 
+- (BOOL)isFromUser:(NBUser *)user;
+
 @end

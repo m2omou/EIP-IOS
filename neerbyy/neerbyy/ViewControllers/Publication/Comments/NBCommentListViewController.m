@@ -8,7 +8,9 @@
 
 #import "NBCommentListViewController.h"
 #import "NBCommentTableViewCell.h"
+#import "NBPersistanceManager.h"
 #import "NBComment.h"
+#import "NBAPI.h"
 
 #pragma mark - Constants
 
@@ -35,7 +37,7 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
     };
 }
 
-#pragma mark - UITableViewController
+#pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -44,6 +46,23 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
     return height;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    if (persistanceManager.isConnected == NO)
+        return NO;
+    
+    NBComment *comment = [self commentAtIndexPath:indexPath];
+    NBUser *currentUser = persistanceManager.currentUser;
+    BOOL isFromCurrentUser = [comment isFromUser:currentUser];
+    return isFromCurrentUser;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+        [self removeCommentAtIndexPath:indexPath];
+}
 #pragma mark - Properties
 
 - (void)setComments:(NSArray *)comments
@@ -59,6 +78,26 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
 - (NBComment *)commentAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.comments[indexPath.row];
+}
+
+- (void)removeCommentFromDataSource:(NBComment *)comment
+{
+    NSMutableArray *comments = [self.comments mutableCopy];
+    [comments removeObject:comment];
+    self.comments = [comments copy];
+}
+
+#pragma mark - Convenience methods
+
+- (void)removeCommentAtIndexPath:(NSIndexPath *)indexPath
+{
+    NBComment *comment = [self commentAtIndexPath:indexPath];
+    NBAPINetworkOperation *deleteOperation = [NBAPIRequest removeComment:comment.identifier];
+    
+    [deleteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        [self removeCommentFromDataSource:comment];
+    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+    [deleteOperation enqueue];
 }
 
 @end
