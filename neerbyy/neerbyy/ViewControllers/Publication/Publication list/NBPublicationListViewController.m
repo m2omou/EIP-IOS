@@ -9,7 +9,7 @@
 #import "NBPublicationListViewController.h"
 #import "NBPublicationTableViewCell.h"
 #import "NBPublicationViewController.h"
-
+#import "NBPublication.h"
 
 #pragma mark - Constants
 
@@ -52,6 +52,26 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
     }
 }
 
+#pragma mark - UITableViewDelegate
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    if (persistanceManager.isConnected == NO)
+        return NO;
+    
+    NBPublication *publication = [self publicationAtIndexPath:indexPath];
+    NBUser *currentUser = persistanceManager.currentUser;
+    BOOL isFromCurrentUser = [publication isFromUser:currentUser];
+    return isFromCurrentUser;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+        [self removePublicationAtIndexPath:indexPath];
+}
+
 #pragma mark - Properties
 
 - (void)setPublications:(NSArray *)publications
@@ -67,7 +87,32 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
 - (NBPublication *)selectedPublication
 {
     NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
-    return self.publications[selectedIndexPath.row];
+    return [self publicationAtIndexPath:selectedIndexPath];
+}
+
+- (NBPublication *)publicationAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.publications[indexPath.row];
+}
+
+- (void)removePublicationFromDataSource:(NBPublication *)publication
+{
+    NSMutableArray *publications = [self.publications mutableCopy];
+    [publications removeObject:publication];
+    self.publications = [publications copy];
+}
+
+#pragma mark - Convenience methods
+
+- (void)removePublicationAtIndexPath:(NSIndexPath *)indexPath
+{
+    NBPublication *publication = [self publicationAtIndexPath:indexPath];
+    NBAPINetworkOperation *deleteOperation = [NBAPIRequest deletePublication:publication.identifier];
+    
+    [deleteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        [self removePublicationFromDataSource:publication];
+    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+    [deleteOperation enqueue];
 }
 
 @end

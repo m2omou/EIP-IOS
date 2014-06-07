@@ -4,6 +4,8 @@ inhibit_all_warnings!
 pod 'MKNetworkKit', :head
 pod 'ECSlidingViewController'
 pod 'CCHMapClusterController'
+pod 'JTSImageViewController'
+pod 'TOWebViewController'
 
 target :neerbyyTests, :exclusive => true do
     pod 'Kiwi/XCTest'

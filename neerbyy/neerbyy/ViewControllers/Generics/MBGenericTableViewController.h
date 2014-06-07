@@ -10,7 +10,7 @@
 
 typedef void (^NBGenericTableViewControllerBlock)(id cell, id associatedData, NSUInteger dataIdx);
 typedef NSString *(^NBGenericTableViewControllerFilterBlock)(id data);
-typedef void (^NBGenericTableViewControllerReloadBlock)(id firstData);
+typedef void (^NBGenericTableViewControllerFetchDataBlock)(id firstOrLastData);
 
 @interface NBGenericTableViewController : UITableViewController
 
@@ -25,10 +25,11 @@ typedef void (^NBGenericTableViewControllerReloadBlock)(id firstData);
 @property (strong, nonatomic) NSString *filterText;
 @property (strong, nonatomic) NBGenericTableViewControllerFilterBlock objectToStringBlock;
 
-@property (strong, nonatomic) NBGenericTableViewControllerReloadBlock onReload;
+@property (strong, nonatomic) NBGenericTableViewControllerFetchDataBlock onReload;
 - (void)endReload;
 
-@property (strong, nonatomic) NBGenericTableViewControllerReloadBlock onMoreData;
+@property (weak, nonatomic) UIScrollView *scrollViewForMoreData;
+@property (strong, nonatomic) NBGenericTableViewControllerFetchDataBlock onMoreData;
 - (void)endMoreData;
 
 @end

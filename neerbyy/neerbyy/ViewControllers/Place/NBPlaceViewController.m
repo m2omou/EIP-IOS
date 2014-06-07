@@ -109,8 +109,11 @@
         NBAPIResponsePublicationList *response = (NBAPIResponsePublicationList *)completedOperation.APIResponse;
 
         self.publicationListViewController.publications = response.publications;
-
-    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+        [self.publicationListViewController endReload];
+    } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
+        [self.publicationListViewController endReload];
+    }];
     
     [loadPublicationOperation enqueue];
 }
@@ -130,12 +133,16 @@
         
         NSArray *oldPublications = self.publicationListViewController.publications;
         NSArray *newPublications = response.publications;
-        if (!newPublications.count)
-            return ;
-        NSArray *allPublications = [newPublications arrayByAddingObjectsFromArray:oldPublications];
-        self.publicationListViewController.publications = allPublications;
+        if (newPublications.count > 0)
+        {
+            NSArray *allPublications = [newPublications arrayByAddingObjectsFromArray:oldPublications];
+            self.publicationListViewController.publications = allPublications;
+        }
         [self.publicationListViewController endReload];
-    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+    } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
+        [self.publicationListViewController endReload];
+    }];
     
     [reloadPublicationOperation enqueue];
 }
@@ -143,7 +150,10 @@
 - (void)loadPublicationsAfterPublication:(NBPublication *)publication
 {
     if (publication == nil)
+    {
+        [self.publicationListViewController endMoreData];
         return ;
+    }
     
     NBAPINetworkOperation *loadMorePublicationsOperation = [NBAPIRequest fetchPublicationsForPlace:self.place.identifier afterId:publication.identifier];
     
@@ -157,7 +167,10 @@
         NSArray *allPublications = [oldPublications arrayByAddingObjectsFromArray:newPublications];
         self.publicationListViewController.publications = allPublications;
         [self.publicationListViewController endMoreData];
-    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+    } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
+        [self.publicationListViewController endMoreData];
+    }];
     
     [loadMorePublicationsOperation enqueue];
 }

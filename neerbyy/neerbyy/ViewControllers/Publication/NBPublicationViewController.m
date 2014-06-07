@@ -11,13 +11,20 @@
 #import "NBNewCommentViewController.h"
 #import "NBComment.h"
 #import "NBPublication.h"
+#import <JTSImageViewController.h>
+#import <JTSImageInfo.h>
+#import <TOWebViewController.h>
 
 @interface NBPublicationViewController ()
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NBCommentListViewController *commentsListViewController;
 @property (strong, nonatomic) IBOutlet UIView *publicationContainerView;
 @property (strong, nonatomic) IBOutlet NBPrimaryButton *upvoteButton;
 @property (strong, nonatomic) IBOutlet NBPrimaryButton *downvoteButton;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *commentsHeightConstraint;
+@property (strong, nonatomic) IBOutlet UIView *voteView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *viewsTopSpaceConstraint;
 
 @end
 
@@ -37,6 +44,14 @@
     [self configureLikesAndDislikesWithVote:vote publication:publication];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.publicationContainerView layoutIfNeeded];
+    [self.publicationContainerView.superview layoutIfNeeded];
+}
+
 #pragma mark - UIViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -47,11 +62,7 @@
     if ([segue.identifier isEqualToString:kNBCommentsTableViewSegue])
     {
         self.commentsListViewController = segue.destinationViewController;
-        __weak NBPublicationViewController *weakSelf = self;
-        self.commentsListViewController.onReload = ^(NBComment *firstComment) {
-            [weakSelf reloadCommentsWithSinceComment:firstComment];
-        };
-        [self loadComments];
+        [self configureCommentsViewController];
     }
     else if ([segue.identifier isEqualToString:kNBNewCommentsSegue])
     {
@@ -79,6 +90,13 @@
     
 }
 
+- (IBAction)pressedPublicationContainerView:(id)sender
+{
+    [self pushPublicationContentViewController];
+}
+
+#pragma mark - Convenience methods - Votes
+
 - (BOOL)userIsCancellingVote:(NBVoteValue)value
 {
     NBVote *vote = self.publication.voteOfCurrentUser;
@@ -96,10 +114,10 @@
 {
     NSNumber *voteIdentifier = self.publication.voteOfCurrentUser.identifier;
     NBAPINetworkOperation *cancelVoteOperation = [NBAPIRequest cancelVote:voteIdentifier];
-
+    
     [cancelVoteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponseVote *response = (NBAPIResponseVote *)operation.APIResponse;
-
+        
         self.publication.numberOfUpvotes = response.publication.numberOfUpvotes;
         self.publication.numberOfDownvotes = response.publication.numberOfDownvotes;
         self.publication.voteOfCurrentUser = nil;
@@ -113,20 +131,18 @@
 {
     NSNumber *publicationId = self.publication.identifier;
     NBAPINetworkOperation *voteOperation = [NBAPIRequest voteOnPublication:publicationId withValue:value];
-
+    
     [voteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponseVote *response = (NBAPIResponseVote *)operation.APIResponse;
-    
+        
         self.publication.numberOfUpvotes = response.publication.numberOfUpvotes;
         self.publication.numberOfDownvotes = response.publication.numberOfDownvotes;
         self.publication.voteOfCurrentUser = response.vote;
         [self configureLikesAndDislikesWithVote:response.vote publication:response.publication];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
-
+    
     [voteOperation enqueue];
 }
-
-#pragma mark - Other methods
 
 - (void)configureLikesAndDislikesWithVote:(NBVote *)vote publication:(NBPublication *)publication
 {
@@ -162,30 +178,86 @@
     [self.downvoteButton setTitle:numberOfDislikes.stringValue forState:UIControlStateNormal];
 }
 
+#pragma mark - Convenience methods - Publication details
+
+- (void)pushPublicationContentViewController {
+    UIViewController *publicationContentViewController;
+    NBPublication *publication = self.publication;
+    
+    switch (publication.type) {
+        case kNBPublicationTypeImage:
+            [self showImageViewController];
+            break;
+        
+        case kNBPublicationTypeLink:
+        case kNBPublicationTypeYoutube:
+            [self pushWebViewController];
+            break;
+            
+        case kNBPublicationTypeUnknown:
+            if (publication.contentURL)
+                [self pushWebViewController];
+            break;
+
+        case kNBPublicationTypeFile:
+        case kNBPublicationTypeText:
+            break;
+    }
+    
+    if (publicationContentViewController) {
+        ((TOWebViewController *)publicationContentViewController).buttonTintColor = [UIColor redColor];
+        ((TOWebViewController *)publicationContentViewController).loadingBarTintColor = [UIColor cyanColor];
+    }
+}
+
+- (void)showImageViewController
+{
+    UIImageView *imageView = self.publicationContainerView.subviews.firstObject;
+    if ([imageView isKindOfClass:[UIImageView class]] == NO)
+        return ;
+
+    JTSImageInfo *imageInfo = [[JTSImageInfo alloc] init];
+    imageInfo.image = imageView.image;
+    imageInfo.referenceRect = imageView.frame;
+    imageInfo.referenceView = self.view;
+    
+    JTSImageViewController *imageViewer = [[JTSImageViewController alloc]
+                                           initWithImageInfo:imageInfo
+                                           mode:JTSImageViewControllerMode_Image
+                                           backgroundStyle:JTSImageViewControllerBackgroundStyle_ScaledDimmedBlurred];
+    
+    [imageViewer showFromViewController:self transition:JTSImageViewControllerTransition_FromOffscreen];
+    
+}
+
+- (void)pushWebViewController
+{
+    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURL:self.publication.contentURL];
+
+    [self.navigationController pushViewController:webViewController animated:YES];
+    
+    if ([webViewController respondsToSelector:@selector(toolbar)]) {
+        UIToolbar *toolbar = [webViewController performSelector:@selector(toolbar) withObject:nil];
+        if ([toolbar respondsToSelector:@selector(tintColor)])
+            toolbar.tintColor = self.theme.lightGreenColor;
+    }
+}
+
 - (void)addPublicationContentToContainerView
 {
     NBPublication *publication = self.publication;
     
     switch (publication.type) {
+        case kNBPublicationTypeFile:
         case kNBPublicationTypeText:
+        case kNBPublicationTypeYoutube:
+        case kNBPublicationTypeLink:
+        case kNBPublicationTypeUnknown:
+            [self addTextPublicationContent];
             break;
             
         case kNBPublicationTypeImage:
             [self addImagePublicationContent];
-            break;
-
-        case kNBPublicationTypeLink:
-            [self addLinkPublicationContent];
-            break;
-
-        case kNBPublicationTypeYoutube:
-            break;
-
-        case kNBPublicationTypeFile:
-            break;
-
-        case kNBPublicationTypeUnknown:
-            [self addTextPublicationContent];
             break;
     }
 }
@@ -193,10 +265,14 @@
 - (void)addTextPublicationContent
 {
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectZero];
+    textView.font = [self.theme.font fontWithSize:12.f];
     textView.editable = NO;
+    textView.showsHorizontalScrollIndicator = textView.alwaysBounceHorizontal = NO;
+    textView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     textView.text = textView.text = self.publication.contentDescription;
     
     [self addPublicationContentViewToContainerView:textView];
+    [self setPublicationHeight:40];
 }
 
 - (void)addImagePublicationContent
@@ -206,14 +282,7 @@
     [imageView setImageFromURL:self.publication.contentURL];
 
     [self addPublicationContentViewToContainerView:imageView];
-}
-
-- (void)addLinkPublicationContent
-{
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    [webView loadRequest:[NSURLRequest requestWithURL:self.publication.contentURL]];
-    
-    [self addPublicationContentViewToContainerView:webView];
+    [self setPublicationHeight:100];
 }
 
 - (void)addPublicationContentViewToContainerView:(UIView *)contentView
@@ -234,6 +303,14 @@
     [superView addConstraints:constraints];
 }
 
+- (void)setPublicationHeight:(CGFloat)height
+{
+    self.viewsTopSpaceConstraint.constant = height;
+    [self.view layoutIfNeeded];
+}
+
+#pragma mark - Convenience methods - Comments
+
 - (void)loadComments
 {
     NSNumber *publicationId = self.publication.identifier;
@@ -243,33 +320,64 @@
         NBAPIResponseCommentList *response = (NBAPIResponseCommentList *)operation.APIResponse;
 
         self.commentsListViewController.comments = response.comments;
+        [self updateCommentsHeight];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
 
     [commentsOperation enqueue];
 }
 
-- (void)reloadCommentsWithSinceComment:(NBComment *)comment
+- (void)loadCommentsAfterComment:(NBComment *)comment
 {
     if (comment == nil)
     {
-        [self loadComments];
+        [self.commentsListViewController endMoreData];
         return ;
     }
-
-    NSNumber *publicationId = self.publication.identifier;
-    NSNumber *commentId = comment.identifier;
-    NBAPINetworkOperation *reloadCommentsOperation = [NBAPIRequest fetchCommentsForPublication:publicationId sinceId:commentId];
     
-    [reloadCommentsOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
-        NBAPIResponseCommentList *response = (NBAPIResponseCommentList *)operation.APIResponse;
+    NBAPINetworkOperation *loadMoreCommentsOperation = [NBAPIRequest fetchCommentsForPublication:self.publication.identifier afterId:comment.identifier];
+    
+    [loadMoreCommentsOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
+        NBAPIResponseCommentList *response = (NBAPIResponseCommentList *)completedOperation.APIResponse;
         
         NSArray *oldComments = self.commentsListViewController.comments;
         NSArray *newComments = response.comments;
-        NSArray *allComments = [newComments arrayByAddingObjectsFromArray:oldComments];
+        if (!newComments.count)
+            return ;
+        NSArray *allComments = [oldComments arrayByAddingObjectsFromArray:newComments];
         self.commentsListViewController.comments = allComments;
-    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+        [self updateCommentsHeight];
+        [self.commentsListViewController endMoreData];
+    } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
+        [self.commentsListViewController endMoreData];
+    }];
     
-    [reloadCommentsOperation enqueue];
+    [loadMoreCommentsOperation enqueue];
+}
+
+- (void)updateCommentsHeight
+{
+    CGFloat commentsHeight = self.commentsListViewController.tableView.contentSize.height;
+    CGFloat minimalCommentHeight = [self minimalHeightForComments];
+    commentsHeight = MAX(minimalCommentHeight, commentsHeight);
+    
+    self.commentsHeightConstraint.constant = commentsHeight;
+    [self.view layoutIfNeeded];
+}
+
+- (CGFloat)minimalHeightForComments
+{
+    return CGRectGetHeight(self.scrollView.bounds) - (self.voteView.frame.origin.y + CGRectGetHeight(self.voteView.bounds) + self.topLayoutGuide.length);
+}
+
+- (void)configureCommentsViewController
+{
+    self.commentsListViewController.scrollViewForMoreData = self.scrollView;
+    __weak NBPublicationViewController *weakSelf = self;
+    self.commentsListViewController.onMoreData = ^(NBComment *lastComment) {
+        [weakSelf loadCommentsAfterComment:lastComment];
+    };
+    [self loadComments];
 }
 
 @end

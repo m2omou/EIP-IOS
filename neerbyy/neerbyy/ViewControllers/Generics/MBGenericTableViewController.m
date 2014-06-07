@@ -31,6 +31,9 @@
     self.canReload = YES;
     self.canFetchMoreData = YES;
     self.shouldReloadOnNewData = YES;
+    if (!self.scrollViewForMoreData)
+        self.scrollViewForMoreData = self.tableView;
+    self.scrollViewForMoreData.delegate = self;
     [self initRefreshControl];
 
     self.tableView.backgroundColor = [NBTheme sharedTheme].whiteColor;
@@ -72,13 +75,25 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGFloat actualPosition = scrollView.contentOffset.y;
+    static CGFloat lastOffset = 0.f;
+    
+    if (scrollView != self.scrollViewForMoreData ||
+        self.onMoreData == nil ||
+        self.canFetchMoreData == NO)
+        return ;
+    
+    CGFloat actualPosition = scrollView.contentOffset.y + CGRectGetHeight(scrollView.bounds);
     CGFloat contentHeight = scrollView.contentSize.height;
+    
+    if (actualPosition - lastOffset < 0)
+        return ;
 
-    if (self.onMoreData && self.canFetchMoreData && actualPosition >= contentHeight) {
+    if (actualPosition >= contentHeight) {
         self.canFetchMoreData = NO;
         self.onMoreData(self.data.lastObject);
     }
+    
+    lastOffset = actualPosition;
 }
 
 #pragma mark - Public methods

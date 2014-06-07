@@ -35,4 +35,6 @@ typedef NS_ENUM(NSUInteger, NBPublicationType) {
 @property (strong, nonatomic) NBVote *voteOfCurrentUser;
 @property (readonly, nonatomic) NBUser *author;
 
+- (BOOL)isFromUser:(NBUser *)user;
+
 @end

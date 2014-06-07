@@ -79,4 +79,11 @@ static NSString * const kNBUserKeyToken = @"auth_token";
     return [NSURL URLWithString:self.avatarThumbnailURLString];
 }
 
+#pragma mark - Public methods
+
+- (BOOL)isEqualToUser:(NBUser *)user
+{
+    return [user.identifier isEqualToNumber:self.identifier];
+}
+
 @end
