@@ -9,6 +9,9 @@
 #import "NBAppDelegate.h"
 #import "NBTheme.h"
 #import "NBPersistanceManager.h"
+#import "NBLoginViewController.h"
+#import "UIStoryboard+NBAdditions.h"
+#import "NBTutorialViewController.h"
 
 @implementation NBAppDelegate
 
@@ -16,17 +19,11 @@
 {
     [self themeAppearance];
     [self.window makeKeyAndVisible];
+    [self presentTutorialIfNeeded];
     return YES;
 }
 
-#pragma mark - Public methods
-
-- (void)loadRootViewController
-{
-    UIStoryboard *iPhoneStoryboard = [UIStoryboard storyboardWithName:@"iPhoneStoryboard" bundle:nil];
-    UIViewController *rootViewController = [iPhoneStoryboard instantiateInitialViewController];
-    self.window.rootViewController = rootViewController;
-}
+#pragma mark - Convenience methods
 
 - (void)themeAppearance
 {
@@ -46,6 +43,22 @@
     
     UISegmentedControl *segmentedControl = [UISegmentedControl appearance];
     segmentedControl.tintColor = theme.lightGreenColor;
+}
+
+- (void)presentTutorialIfNeeded
+{
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    BOOL hasSeenTutorial = persistanceManager.hasSeenTutorial;
+    
+    if (hasSeenTutorial)
+        return ;
+
+    UINavigationController *loginViewController = [UIStoryboard loginViewController];
+    NBTutorialViewController *tutorialViewController = [UIStoryboard tutorialViewController];
+    [self.window.rootViewController presentViewController:loginViewController animated:NO completion:^{
+        [loginViewController presentViewController:tutorialViewController animated:NO completion:nil];
+    }];
+    
 }
 
 @end

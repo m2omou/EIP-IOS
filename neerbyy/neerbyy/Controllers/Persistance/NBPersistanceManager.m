@@ -16,11 +16,17 @@
 NSString * const kNBNotificationUserLoggedIn = @"userLoggedIn";
 NSString * const kNBNotificationUserLoggedOut = @"userLoggedOut";
 
-static NSString * const kNBPersistanceHasSeenConnectionKey = @"hasSeenConnection";
 static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
 static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";
+static NSString * const kNBPersistanceTutorialKey = @"seenTutorial";
 
 #pragma mark -
+
+@interface NBPersistanceManager ()
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+@end
 
 
 @implementation NBPersistanceManager
@@ -43,7 +49,8 @@ static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";
     
     if (self)
     {
-        self.lastKnownLocation = kCLLocationCoordinate2DInvalid;
+        self.locationManager = [CLLocationManager new];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     }
     
     return self;
@@ -88,6 +95,24 @@ static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";
     NBUser *user = self.currentUser;
     BOOL isConnected = (user != nil);
     return isConnected;
+}
+
+- (CLLocationCoordinate2D)lastKnownLocation
+{
+    if (self.locationManager.location == nil)
+        return kCLLocationCoordinate2DInvalid;
+    
+    return self.locationManager.location.coordinate;
+}
+
+- (void)setHasSeenTutorial:(BOOL)hasSeenTutorial
+{
+    [NSUserDefaults setBool:hasSeenTutorial forKey:kNBPersistanceTutorialKey];
+}
+
+- (BOOL)hasSeenTutorial
+{
+    return [NSUserDefaults boolForKey:kNBPersistanceTutorialKey];
 }
 
 #pragma mark - Public methods

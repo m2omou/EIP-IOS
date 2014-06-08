@@ -98,6 +98,10 @@
 		9CDC8E9C18DE965C006BC096 /* NBConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC8E9B18DE965C006BC096 /* NBConversationViewController.m */; };
 		9CDC8EA018DE9687006BC096 /* NBMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC8E9F18DE9687006BC096 /* NBMessageListViewController.m */; };
 		9CDC8EA318DE96C7006BC096 /* NBMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDC8EA218DE96C7006BC096 /* NBMessageTableViewCell.m */; };
+		9CE4518A1944093800854117 /* NBTutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE451891944093800854117 /* NBTutorialViewController.m */; };
+		9CE4518D1944096900854117 /* NBTutorialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4518C1944096900854117 /* NBTutorialCell.m */; };
+		9CE45190194409FE00854117 /* NBTutorialDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4518F194409FE00854117 /* NBTutorialDataSource.m */; };
+		9CE4519219442FDF00854117 /* Tuto.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4519119442FDF00854117 /* Tuto.xcassets */; };
 		9CE84ACA1833882800691739 /* NBUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE84AC91833882800691739 /* NBUserTest.m */; };
 /* End PBXBuildFile section */
 
@@ -266,6 +270,13 @@
 		9CDC8E9F18DE9687006BC096 /* NBMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBMessageListViewController.m; path = "ViewControllers/Messaging/Conversation/Message list/NBMessageListViewController.m"; sourceTree = "<group>"; };
 		9CDC8EA118DE96C7006BC096 /* NBMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBMessageTableViewCell.h; path = "ViewControllers/Messaging/Conversation/Message list/NBMessageTableViewCell.h"; sourceTree = "<group>"; };
 		9CDC8EA218DE96C7006BC096 /* NBMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBMessageTableViewCell.m; path = "ViewControllers/Messaging/Conversation/Message list/NBMessageTableViewCell.m"; sourceTree = "<group>"; };
+		9CE451881944093800854117 /* NBTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBTutorialViewController.h; path = Tutorial/NBTutorialViewController.h; sourceTree = "<group>"; };
+		9CE451891944093800854117 /* NBTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBTutorialViewController.m; path = Tutorial/NBTutorialViewController.m; sourceTree = "<group>"; };
+		9CE4518B1944096900854117 /* NBTutorialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBTutorialCell.h; path = Tutorial/NBTutorialCell.h; sourceTree = "<group>"; };
+		9CE4518C1944096900854117 /* NBTutorialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBTutorialCell.m; path = Tutorial/NBTutorialCell.m; sourceTree = "<group>"; };
+		9CE4518E194409FE00854117 /* NBTutorialDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBTutorialDataSource.h; path = Tutorial/NBTutorialDataSource.h; sourceTree = "<group>"; };
+		9CE4518F194409FE00854117 /* NBTutorialDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBTutorialDataSource.m; path = Tutorial/NBTutorialDataSource.m; sourceTree = "<group>"; };
+		9CE4519119442FDF00854117 /* Tuto.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tuto.xcassets; sourceTree = "<group>"; };
 		9CE84AC91833882800691739 /* NBUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBUserTest.m; path = neerbyyTests/NBUserTest.m; sourceTree = "<group>"; };
 		BD3798AB256C4580A0AF9F4F /* libPods-neerbyyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neerbyyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0672FB447D845D9B0D2E0DB /* Pods-neerbyyTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neerbyyTests.xcconfig"; path = "Pods/Pods-neerbyyTests.xcconfig"; sourceTree = "<group>"; };
@@ -605,6 +616,7 @@
 				9CA4618318DD44BF00A0DD44 /* Navigation bar icons.xcassets */,
 				9C8085A718DD474200D62D4B /* Images.xcassets */,
 				9CBBC13218DD8F3A005C5D66 /* Menu.xcassets */,
+				9CE4519119442FDF00854117 /* Tuto.xcassets */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
@@ -613,6 +625,7 @@
 			isa = PBXGroup;
 			children = (
 				9CA460E718DD40E700A0DD44 /* Generics */,
+				9CE45187194408FC00854117 /* Tutorial */,
 				9CDC8E8718DE85C6006BC096 /* Feed */,
 				9CDC8E8E18DE862B006BC096 /* Favorites */,
 				9CA460E418DD40E700A0DD44 /* Forgot password */,
@@ -891,6 +904,19 @@
 			name = "Message list";
 			sourceTree = "<group>";
 		};
+		9CE45187194408FC00854117 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				9CE451881944093800854117 /* NBTutorialViewController.h */,
+				9CE451891944093800854117 /* NBTutorialViewController.m */,
+				9CE4518B1944096900854117 /* NBTutorialCell.h */,
+				9CE4518C1944096900854117 /* NBTutorialCell.m */,
+				9CE4518E194409FE00854117 /* NBTutorialDataSource.h */,
+				9CE4518F194409FE00854117 /* NBTutorialDataSource.m */,
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -984,6 +1010,7 @@
 				9CA4618018DD445300A0DD44 /* Icons.xcassets in Resources */,
 				9CBBC13318DD8F3A005C5D66 /* Menu.xcassets in Resources */,
 				9C5BE97C18321F1C00CFA647 /* Podfile in Resources */,
+				9CE4519219442FDF00854117 /* Tuto.xcassets in Resources */,
 				9CA4618418DD44BF00A0DD44 /* Navigation bar icons.xcassets in Resources */,
 				9C5BE9A0183231E600CFA647 /* Images.xcassets in Resources */,
 				9C8085A818DD474200D62D4B /* Images.xcassets in Resources */,
@@ -1089,12 +1116,14 @@
 				9CBBC16918DDC52D005C5D66 /* NBUserViewController.m in Sources */,
 				9CA4617018DD40E700A0DD44 /* NBMenuTableViewController.m in Sources */,
 				9CA4616218DD40E700A0DD44 /* NBTheme.m in Sources */,
+				9CE4518D1944096900854117 /* NBTutorialCell.m in Sources */,
 				9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */,
 				9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */,
 				9CCF976918F12DE600FE1697 /* NBNewPublicationViewController.m in Sources */,
 				9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */,
 				9CBBC15C18DDC0DA005C5D66 /* NBCommentTableViewCell.m in Sources */,
 				9C98E76018FA44EF00141412 /* NBPublication.m in Sources */,
+				9CE4518A1944093800854117 /* NBTutorialViewController.m in Sources */,
 				9CBBC14518DDA2F8005C5D66 /* MBGenericTableViewController.m in Sources */,
 				9CA4616718DD40E700A0DD44 /* main.m in Sources */,
 				9C098AE619272BF0008631D8 /* NBReportComment.m in Sources */,
@@ -1121,6 +1150,7 @@
 				9C238FD7193B42AB00E37486 /* NSString+DataFormatting.m in Sources */,
 				9CDC8E9C18DE965C006BC096 /* NBConversationViewController.m in Sources */,
 				9C0E6D56191F0B2300EE90CA /* NBVote.m in Sources */,
+				9CE45190194409FE00854117 /* NBTutorialDataSource.m in Sources */,
 				9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */,
 				9CBBC15F18DDC4CE005C5D66 /* NBPublicationViewController.m in Sources */,
 				9CA4616518DD40E700A0DD44 /* NBPlaceAnnotation.m in Sources */,

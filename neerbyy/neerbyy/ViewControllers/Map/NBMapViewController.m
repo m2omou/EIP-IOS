@@ -101,7 +101,6 @@ static CGFloat const kMBMapMarginFactor = 1.f;
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     [self centerMapOnUserOnFirstDetection];
-    self.persistanceManager.lastKnownLocation = userLocation.coordinate;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

@@ -22,10 +22,13 @@ extern NSString * const kNBNotificationUserLoggedOut;
 
 + (instancetype)sharedManager;
 
+@property (readonly, nonatomic) BOOL isConnected;
 @property (strong, nonatomic) NBUser *currentUser;
 @property (strong, nonatomic) NSString *currentUserPassword;
-@property (readonly, nonatomic) BOOL isConnected;
-@property (assign, nonatomic) CLLocationCoordinate2D lastKnownLocation;
+
+@property (readonly, nonatomic) CLLocationCoordinate2D lastKnownLocation;
+
+@property (assign, nonatomic) BOOL hasSeenTutorial;
 
 - (void)logout;
 

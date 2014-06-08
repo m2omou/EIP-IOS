@@ -39,4 +39,11 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:kNBPlaceListViewControllerIdentifier];
 }
 
++ (NBTutorialViewController *)tutorialViewController
+{
+    static NSString * const kNBTutorialViewControllerIdentifier = @"NBTutorialViewController";
+    
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:kNBTutorialViewControllerIdentifier];
+}
+
 @end

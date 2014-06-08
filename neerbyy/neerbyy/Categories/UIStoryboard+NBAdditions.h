@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
+@class NBTutorialViewController;
 @class NBPlaceListViewController;
 @class NBPlaceViewController;
 
@@ -13,6 +14,7 @@
 
 + (UIStoryboard *)mainStoryboard;
 + (UINavigationController *)loginViewController;
++ (NBTutorialViewController *)tutorialViewController;
 + (NBPlaceViewController *)placeViewController;
 + (NBPlaceListViewController *)placeListViewController;
 
