@@ -345,9 +345,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-login" translatesAutoresizingMaskIntoConstraints="NO" id="15g-vC-9Wg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuto_background" translatesAutoresizingMaskIntoConstraints="NO" id="15g-vC-9Wg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qR2-qf-huf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="mSg-6U-7gI">
                                 <rect key="frame" x="10" y="35" width="300" height="88"/>
                                 <constraints>
@@ -450,6 +455,7 @@
                             <constraint firstItem="Blj-1o-aNN" firstAttribute="height" secondItem="ouZ-Ud-Vyv" secondAttribute="height" id="2Cr-G3-XOm"/>
                             <constraint firstItem="Blj-1o-aNN" firstAttribute="leading" secondItem="Nb4-yy-S5G" secondAttribute="leading" id="8mM-X8-nBg"/>
                             <constraint firstAttribute="centerX" secondItem="mSg-6U-7gI" secondAttribute="centerX" id="AZD-YE-1Vl"/>
+                            <constraint firstItem="qR2-qf-huf" firstAttribute="leading" secondItem="15g-vC-9Wg" secondAttribute="leading" id="BKA-Je-q0K"/>
                             <constraint firstItem="Blj-1o-aNN" firstAttribute="width" secondItem="ouZ-Ud-Vyv" secondAttribute="width" id="DNv-fU-jur"/>
                             <constraint firstItem="15g-vC-9Wg" firstAttribute="leading" secondItem="Lem-YV-Gav" secondAttribute="leading" id="DcA-U3-M18"/>
                             <constraint firstAttribute="centerX" secondItem="zPL-Wk-1iO" secondAttribute="centerX" id="FNw-VD-dt2"/>
@@ -461,11 +467,14 @@
                             <constraint firstItem="Blj-1o-aNN" firstAttribute="centerY" secondItem="ouZ-Ud-Vyv" secondAttribute="centerY" id="YAA-DZ-Zuh"/>
                             <constraint firstAttribute="centerY" secondItem="Nb4-yy-S5G" secondAttribute="centerY" constant="30" id="YzW-hi-CE9"/>
                             <constraint firstAttribute="trailing" secondItem="15g-vC-9Wg" secondAttribute="trailing" id="Zfg-MZ-3Zu"/>
+                            <constraint firstItem="qR2-qf-huf" firstAttribute="bottom" secondItem="15g-vC-9Wg" secondAttribute="bottom" id="e0K-xw-hOC"/>
                             <constraint firstItem="15g-vC-9Wg" firstAttribute="top" secondItem="GqZ-iq-edx" secondAttribute="bottom" constant="-20" id="eCW-iD-a7j"/>
+                            <constraint firstItem="qR2-qf-huf" firstAttribute="trailing" secondItem="15g-vC-9Wg" secondAttribute="trailing" id="fOE-6V-H0r"/>
                             <constraint firstItem="Pwv-e8-48y" firstAttribute="leading" secondItem="Nb4-yy-S5G" secondAttribute="leading" id="jDn-In-bw4"/>
                             <constraint firstItem="Pwv-e8-48y" firstAttribute="centerY" secondItem="v2T-hh-Nhy" secondAttribute="centerY" constant="-0.5" id="l0T-26-TLh"/>
                             <constraint firstItem="zPL-Wk-1iO" firstAttribute="top" secondItem="Pwv-e8-48y" secondAttribute="bottom" constant="15" id="l6n-dg-TD4"/>
                             <constraint firstItem="ouZ-Ud-Vyv" firstAttribute="leading" secondItem="Blj-1o-aNN" secondAttribute="trailing" constant="40" id="tQU-sg-Jcg"/>
+                            <constraint firstItem="qR2-qf-huf" firstAttribute="top" secondItem="15g-vC-9Wg" secondAttribute="top" id="wyH-2V-rbs"/>
                             <constraint firstItem="Pwv-e8-48y" firstAttribute="centerX" secondItem="v2T-hh-Nhy" secondAttribute="centerX" constant="-0.5" id="x5b-0p-2B4"/>
                             <constraint firstItem="Pwv-e8-48y" firstAttribute="trailing" secondItem="Nb4-yy-S5G" secondAttribute="trailing" id="yT0-cx-zex"/>
                             <constraint firstAttribute="centerX" secondItem="Nb4-yy-S5G" secondAttribute="centerX" id="zD6-Bk-QgK"/>
@@ -992,7 +1001,7 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="v6h-La-5qc" firstAttribute="top" secondItem="vF8-DP-DRw" secondAttribute="bottom" priority="750" id="1Iq-dz-0hH"/>
+                            <constraint firstItem="v6h-La-5qc" firstAttribute="top" secondItem="vF8-DP-DRw" secondAttribute="bottom" id="1Iq-dz-0hH"/>
                             <constraint firstAttribute="trailing" secondItem="Vj6-m0-GBn" secondAttribute="trailing" id="26m-ca-iex"/>
                             <constraint firstItem="Vj6-m0-GBn" firstAttribute="leading" secondItem="bga-tl-oDy" secondAttribute="leading" id="Bi5-97-uNO"/>
                             <constraint firstItem="v6h-La-5qc" firstAttribute="width" secondItem="bga-tl-oDy" secondAttribute="width" id="lwP-Hc-eQp"/>
@@ -2279,6 +2288,7 @@
         <image name="navbar-login" width="30" height="30"/>
         <image name="navbar-logout" width="30" height="30"/>
         <image name="navbar-menu" width="24" height="24"/>
+        <image name="tuto_background" width="648" height="294"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
