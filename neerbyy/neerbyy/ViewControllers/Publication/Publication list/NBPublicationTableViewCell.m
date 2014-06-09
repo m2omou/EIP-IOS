@@ -12,6 +12,7 @@
 #import "NBPublication.h"
 #import "NBTheme.h"
 #import "NBUser.h"
+#import "NBPlace.h"
 
 @interface NBPublicationTableViewCell ()
 
@@ -41,8 +42,8 @@
     
     if (displayPlace == NO)
         self.userAndLocationLabel.text = publication.author.username;
-    else /* TODO : Get the place name from the API */
-        self.userAndLocationLabel.text = [NSString stringWithFormat:@"%@ @ %@", publication.author.username, publication.placeId];
+    else
+        self.userAndLocationLabel.text = [NSString stringWithFormat:@"%@ @%@", publication.author.username, publication.place.name];
 }
 
 - (void)configureImageViewWithPublication:(NBPublication *)publication

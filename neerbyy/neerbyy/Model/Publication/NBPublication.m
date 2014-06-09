@@ -10,11 +10,11 @@
 #import "NBDictionaryDecoder.h"
 #import "NBVote.h"
 #import "NBUser.h"
+#import "NBPlace.h"
 
 #pragma mark - Constants
 
 static NSString * const kNBPublicationKeyIdentifier = @"id";
-static NSString * const kNBPublicationKeyPlaceIdentifier = @"place_id";
 static NSString * const kNBPublicationKeyContentDescription = @"content";
 static NSString * const kNBPublicationKeyLongitude = @"longitude";
 static NSString * const kNBPublicationKeyLatitude = @"latitude";
@@ -26,6 +26,7 @@ static NSString * const kNBPublicationKeyNumberOfUpvotes = @"upvotes";
 static NSString * const kNBPublicationKeyNumberOfDownvotes = @"downvotes";
 static NSString * const kNBPublicationKeyVoteOfCurrentUser = @"vote";
 static NSString * const kNBPublicationKeyAuthor = @"user";
+static NSString * const kNBPublicationKeyPlace = @"place";
 
 #pragma mark -
 
@@ -39,6 +40,7 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
 @property (strong, nonatomic) NSString *thumbnailURLString;
 @property (strong, nonatomic) NSDictionary *voteOfCurrentUserDictionary;
 @property (strong, nonatomic) NSDictionary *authorDictionary;
+@property (strong, nonatomic) NSDictionary *placeDictionary;
 
 @end
 
@@ -54,7 +56,6 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
     if (self)
     {
         self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyIdentifier];
-        self.placeId = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPublicationKeyPlaceIdentifier];
         self.longitude = [aDecoder decodeFloatForKey:kNBPublicationKeyLongitude];
         self.latitude = [aDecoder decodeFloatForKey:kNBPublicationKeyLatitude];
         self.typeNumber = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyTypeString];
@@ -66,6 +67,7 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
         self.numberOfDownvotes = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPublicationKeyNumberOfDownvotes];
         self.voteOfCurrentUserDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBPublicationKeyVoteOfCurrentUser];
         self.authorDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBPublicationKeyAuthor];
+        self.placeDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBPublicationKeyPlace];
     }
     
     return self;
@@ -74,7 +76,6 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.identifier forKey:kNBPublicationKeyIdentifier];
-    [aCoder encodeObject:self.placeId forKey:kNBPublicationKeyPlaceIdentifier];
     [aCoder encodeFloat:self.longitude forKey:kNBPublicationKeyLongitude];
     [aCoder encodeFloat:self.latitude forKey:kNBPublicationKeyLatitude];
     [aCoder encodeObject:self.typeNumber forKey:kNBPublicationKeyTypeString];
@@ -86,6 +87,7 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
     [aCoder encodeObject:self.numberOfDownvotes forKey:kNBPublicationKeyNumberOfDownvotes];
     [aCoder encodeObject:self.voteOfCurrentUserDictionary forKey:kNBPublicationKeyVoteOfCurrentUser];
     [aCoder encodeObject:self.authorDictionary forKey:kNBPublicationKeyAuthor];
+    [aCoder encodeObject:self.placeDictionary forKey:kNBPublicationKeyPlace];
 }
 
 #pragma mark - Properties
@@ -155,6 +157,15 @@ static NSString * const kNBPublicationKeyAuthor = @"user";
     
     NBDictionaryDecoder *userDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.authorDictionary];
     return [[NBUser alloc] initWithCoder:userDecoder];
+}
+
+- (NBPlace *)place
+{
+    if (!self.placeDictionary.allKeys.count)
+        return nil;
+    
+    NBDictionaryDecoder *placeDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.placeDictionary];
+    return [[NBPlace alloc] initWithCoder:placeDecoder];
 }
 
 #pragma mark - Public methods

@@ -32,4 +32,10 @@ typedef void (^NBGenericTableViewControllerFetchDataBlock)(id firstOrLastData);
 @property (strong, nonatomic) NBGenericTableViewControllerFetchDataBlock onMoreData;
 - (void)endMoreData;
 
+- (void)addDataAtTop:(id)data;
+- (void)addDatasAtTop:(NSArray *)datas;
+- (void)addDataAtBottom:(id)data;
+- (void)addDatasAtBottom:(NSArray *)datas;
+- (void)removeData:(id)data;
+
 @end

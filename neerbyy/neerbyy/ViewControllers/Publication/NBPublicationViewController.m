@@ -68,9 +68,7 @@
 
 - (void)newCommentViewController:(NBNewCommentViewController *)newCommentViewController didPublishComment:(NBComment *)comment
 {
-    NSMutableArray *comments = [self.commentsListViewController.comments mutableCopy];
-    [comments insertObject:comment atIndex:0];
-    self.commentsListViewController.comments = [comments copy];
+    [self.commentsListViewController addDataAtTop:comment];
     [self updateCommentsHeight];
 }
 
@@ -370,12 +368,10 @@
     [loadMoreCommentsOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponseCommentList *response = (NBAPIResponseCommentList *)completedOperation.APIResponse;
         
-        NSArray *oldComments = self.commentsListViewController.comments;
         NSArray *newComments = response.comments;
         if (!newComments.count)
             return ;
-        NSArray *allComments = [oldComments arrayByAddingObjectsFromArray:newComments];
-        self.commentsListViewController.comments = allComments;
+        [self.commentsListViewController addDatasAtBottom:newComments];
         [self updateCommentsHeight];
         [self.commentsListViewController endMoreData];
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {

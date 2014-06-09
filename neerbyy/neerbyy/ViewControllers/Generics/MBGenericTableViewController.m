@@ -134,6 +134,66 @@
     self.canFetchMoreData = YES;
 }
 
+- (void)addDataAtTop:(id)data
+{
+    [self addDatasAtTop:@[data]];
+}
+
+- (void)addDatasAtTop:(NSArray *)datas
+{
+    if (!datas.count)
+        return ;
+
+    BOOL reloadBackup = self.shouldReloadOnNewData;
+    self.shouldReloadOnNewData = NO;
+    self.data = [datas arrayByAddingObjectsFromArray:self.data];
+    self.shouldReloadOnNewData = reloadBackup;
+    
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    for (NSUInteger i = 0; i < datas.count; ++i)
+        [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)addDataAtBottom:(id)data
+{
+    [self addDatasAtBottom:@[data]];
+}
+
+- (void)addDatasAtBottom:(NSArray *)datas
+{
+    if (!datas.count)
+        return ;
+    
+    NSMutableArray *indexPaths = [NSMutableArray array];
+    for (NSUInteger i = 0; i < datas.count; ++i)
+        [indexPaths addObject:[NSIndexPath indexPathForRow:(i + self.data.count) inSection:0]];
+
+    BOOL reloadBackup = self.shouldReloadOnNewData;
+    self.shouldReloadOnNewData = NO;
+    self.data = [self.data arrayByAddingObjectsFromArray:datas];
+    self.shouldReloadOnNewData = reloadBackup;
+    
+    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)removeData:(id)data
+{
+    NSInteger dataIdx = [self.data indexOfObject:data];
+    if (dataIdx == NSNotFound)
+        return ;
+    
+    BOOL reloadBackup = self.shouldReloadOnNewData;
+    self.shouldReloadOnNewData = NO;
+    NSMutableArray *copy = [self.data mutableCopy];
+    [copy removeObjectAtIndex:dataIdx];
+    self.data = [copy copy];
+    self.shouldReloadOnNewData = reloadBackup;
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:dataIdx inSection:0];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark - Properties
 
 - (void)setData:(NSArray *)data

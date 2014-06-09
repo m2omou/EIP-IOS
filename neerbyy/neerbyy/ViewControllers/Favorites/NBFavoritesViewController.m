@@ -70,14 +70,8 @@
     
     [reloadPlacesOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
-        
-        NSArray *oldPlaces = self.placesListViewController.places;
-        NSArray *newPlaces = response.places;
-        if (newPlaces.count > 0)
-        {
-            NSArray *allPlaces = [newPlaces arrayByAddingObjectsFromArray:oldPlaces];
-            self.placesListViewController.places = allPlaces;
-        }
+
+        [self.placesListViewController addDatasAtTop:response.places];
         [self.placesListViewController endReload];
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
@@ -100,12 +94,10 @@
     [loadMorePlacesOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
         
-        NSArray *oldPlaces = self.placesListViewController.places;
         NSArray *newPlaces = response.places;
         if (!newPlaces.count)
             return ;
-        NSArray *allPlaces = [oldPlaces arrayByAddingObjectsFromArray:newPlaces];
-        self.placesListViewController.places = allPlaces;
+        [self.placesListViewController addDatasAtBottom:newPlaces];
         [self.placesListViewController endMoreData];
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](failedOp, error);

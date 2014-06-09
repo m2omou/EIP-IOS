@@ -64,9 +64,7 @@
 
 - (void)newPublicationViewController:(NBNewPublicationViewController *)newPublicationViewController didPublishPublication:(NBPublication *)publication
 {
-    NSMutableArray *publications = [self.publicationListViewController.publications mutableCopy];
-    [publications insertObject:publication atIndex:0];
-    self.publicationListViewController.publications = [publications copy];
+    [self.publicationListViewController addDataAtTop:publication];
 }
 
 #pragma mark - User interactions
@@ -130,14 +128,7 @@
     
     [reloadPublicationOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePublicationList *response = (NBAPIResponsePublicationList *)completedOperation.APIResponse;
-        
-        NSArray *oldPublications = self.publicationListViewController.publications;
-        NSArray *newPublications = response.publications;
-        if (newPublications.count > 0)
-        {
-            NSArray *allPublications = [newPublications arrayByAddingObjectsFromArray:oldPublications];
-            self.publicationListViewController.publications = allPublications;
-        }
+        [self.publicationListViewController addDatasAtTop:response.publications];
         [self.publicationListViewController endReload];
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
@@ -159,13 +150,10 @@
     
     [loadMorePublicationsOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePublicationList *response = (NBAPIResponsePublicationList *)completedOperation.APIResponse;
-        
-        NSArray *oldPublications = self.publicationListViewController.publications;
         NSArray *newPublications = response.publications;
         if (!newPublications.count)
             return ;
-        NSArray *allPublications = [oldPublications arrayByAddingObjectsFromArray:newPublications];
-        self.publicationListViewController.publications = allPublications;
+        [self.publicationListViewController addDatasAtBottom:newPublications];
         [self.publicationListViewController endMoreData];
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](failedOp, error);

@@ -63,6 +63,7 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
     if (editingStyle == UITableViewCellEditingStyleDelete)
         [self removeCommentAtIndexPath:indexPath];
 }
+
 #pragma mark - Properties
 
 - (void)setComments:(NSArray *)comments
@@ -80,13 +81,6 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
     return self.comments[indexPath.row];
 }
 
-- (void)removeCommentFromDataSource:(NBComment *)comment
-{
-    NSMutableArray *comments = [self.comments mutableCopy];
-    [comments removeObject:comment];
-    self.comments = [comments copy];
-}
-
 #pragma mark - Convenience methods
 
 - (void)removeCommentAtIndexPath:(NSIndexPath *)indexPath
@@ -95,7 +89,7 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
     NBAPINetworkOperation *deleteOperation = [NBAPIRequest removeComment:comment.identifier];
     
     [deleteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
-        [self removeCommentFromDataSource:comment];
+        [self removeData:comment];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     [deleteOperation enqueue];
 }

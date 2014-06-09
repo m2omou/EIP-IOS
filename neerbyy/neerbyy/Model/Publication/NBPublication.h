@@ -17,13 +17,13 @@ typedef NS_ENUM(NSUInteger, NBPublicationType) {
     kNBPublicationTypeUnknown
 };
 
+@class NBPlace;
 @class NBVote;
 @class NBUser;
 
 @interface NBPublication : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSNumber *identifier;
-@property (strong, nonatomic) NSNumber *placeId;
 @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
 @property (readonly, nonatomic) NBPublicationType type;
 @property (strong, nonatomic) NSString *contentDescription;
@@ -34,6 +34,7 @@ typedef NS_ENUM(NSUInteger, NBPublicationType) {
 @property (strong, nonatomic) NSNumber *numberOfDownvotes;
 @property (strong, nonatomic) NBVote *voteOfCurrentUser;
 @property (readonly, nonatomic) NBUser *author;
+@property (readonly, nonatomic) NBPlace *place;
 
 - (BOOL)isFromUser:(NBUser *)user;
 

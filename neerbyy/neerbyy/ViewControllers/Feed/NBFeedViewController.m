@@ -41,6 +41,7 @@
         self.publicationListViewController.onMoreData = ^(NBPublication *lastPublication) {
             [weakSelf loadPublicationsAfterPublication:lastPublication];
         };
+        self.publicationListViewController.displayPlace = YES;
         [self loadFeed];
     }
 }
@@ -76,14 +77,7 @@
     
     [reloadPublicationOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePublicationList *response = (NBAPIResponsePublicationList *)completedOperation.APIResponse;
-        
-        NSArray *oldPublications = self.publicationListViewController.publications;
-        NSArray *newPublications = response.publications;
-        if (newPublications.count > 0)
-        {
-            NSArray *allPublications = [newPublications arrayByAddingObjectsFromArray:oldPublications];
-            self.publicationListViewController.publications = allPublications;
-        }
+        [self.publicationListViewController addDatasAtTop:response.publications];
         [self.publicationListViewController endReload];
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
@@ -105,14 +99,8 @@
     
     [loadMorePublicationsOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePublicationList *response = (NBAPIResponsePublicationList *)completedOperation.APIResponse;
+        [self.publicationListViewController addDatasAtBottom:response.publications];
         [self.publicationListViewController endMoreData];
-        
-        NSArray *oldPublications = self.publicationListViewController.publications;
-        NSArray *newPublications = response.publications;
-        if (!newPublications.count)
-            return ;
-        NSArray *allPublications = [oldPublications arrayByAddingObjectsFromArray:newPublications];
-        self.publicationListViewController.publications = allPublications;
     } errorHandler:^(NBAPINetworkOperation *failedOp, NSError *error) {
         [NBAPINetworkOperation defaultErrorHandler](failedOp, error);
         [self.publicationListViewController endMoreData];

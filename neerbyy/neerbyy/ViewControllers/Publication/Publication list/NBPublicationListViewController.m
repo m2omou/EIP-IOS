@@ -95,13 +95,6 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
     return self.publications[indexPath.row];
 }
 
-- (void)removePublicationFromDataSource:(NBPublication *)publication
-{
-    NSMutableArray *publications = [self.publications mutableCopy];
-    [publications removeObject:publication];
-    self.publications = [publications copy];
-}
-
 #pragma mark - Convenience methods
 
 - (void)removePublicationAtIndexPath:(NSIndexPath *)indexPath
@@ -110,7 +103,7 @@ static NSString * const kNBPublicationCellIdentifier = @"NBPublicationTableViewC
     NBAPINetworkOperation *deleteOperation = [NBAPIRequest deletePublication:publication.identifier];
     
     [deleteOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
-        [self removePublicationFromDataSource:publication];
+        [self removeData:publication];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     [deleteOperation enqueue];
 }

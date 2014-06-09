@@ -50,7 +50,7 @@
     NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
     BOOL hasSeenTutorial = persistanceManager.hasSeenTutorial;
     
-    if (hasSeenTutorial)
+//    if (hasSeenTutorial)
         return ;
 
     UINavigationController *loginViewController = [UIStoryboard loginViewController];
