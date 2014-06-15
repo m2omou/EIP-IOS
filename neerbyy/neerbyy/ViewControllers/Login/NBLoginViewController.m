@@ -164,7 +164,7 @@
 
 - (void)dismiss
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:self.onDismiss];
 }
 
 @end

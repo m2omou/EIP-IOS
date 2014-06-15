@@ -13,6 +13,13 @@
 #import "UIStoryboard+NBAdditions.h"
 #import "NBTutorialViewController.h"
 
+@interface NBAppDelegate () <UIAlertViewDelegate>
+
+@property (weak, nonatomic) UIViewController *viewControllerForLoginPresentation;
+@property (strong, nonatomic) void (^onLoginPresentationCompletion)();
+
+@end
+
 @implementation NBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -55,10 +62,47 @@
 
     UINavigationController *loginViewController = [UIStoryboard loginViewController];
     NBTutorialViewController *tutorialViewController = [UIStoryboard tutorialViewController];
-    [self.window.rootViewController presentViewController:loginViewController animated:NO completion:^{
+    [self presentLoginViewControllerOnViewController:self.window.rootViewController animated:NO completion:^{
         [loginViewController presentViewController:tutorialViewController animated:NO completion:nil];
     }];
-    
 }
+
+- (void)presentLoginViewControllerOnViewController:(UIViewController *)viewController animated:(BOOL)animated completion:(void (^)())completion
+{
+    UINavigationController *loginNavigationViewController = [UIStoryboard loginViewController];
+    NBLoginViewController *loginViewController = loginNavigationViewController.viewControllers.firstObject;
+    loginViewController.onDismiss = self.onLoginPresentationCompletion;
+    [viewController presentViewController:loginNavigationViewController animated:animated completion:completion];
+}
+
+- (void)showLoginAlertViewWithViewController:(UIViewController *)viewController completion:(void (^)())completion
+{
+    self.viewControllerForLoginPresentation = viewController;
+    self.onLoginPresentationCompletion = completion;
+    [[[UIAlertView alloc] initWithTitle:@"Connectez-vous !"
+                                message:@"Cette fonctionnalité nécessite d'avoir un compte Neerbyy"
+                               delegate:self
+                      cancelButtonTitle:@"Annuler"
+                      otherButtonTitles:@"Connexion", nil] show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        [self presentLoginViewControllerOnViewController:self.viewControllerForLoginPresentation animated:YES completion:^{
+            self.viewControllerForLoginPresentation = nil;
+        }];
+    }
+    else
+    {
+        self.onLoginPresentationCompletion();
+        self.viewControllerForLoginPresentation = nil;
+    }
+}
+
+
+
+
 
 @end

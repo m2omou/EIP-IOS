@@ -15,6 +15,7 @@
 
 @interface NBMenuViewController () <NBMenuTableViewControllerDelegate>
 
+@property (strong, nonatomic) NBMenuTableViewController *menuTableViewController;
 @property (strong, nonatomic) NSMutableDictionary *viewControllers;
 
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -94,6 +95,7 @@
     {
         NBMenuTableViewController *menuTableViewController = (NBMenuTableViewController *)segue.destinationViewController;
         menuTableViewController.delegate = self;
+        self.menuTableViewController = menuTableViewController;
     }
 }
 
@@ -170,6 +172,8 @@
 
     self.slidingViewController.topViewController = viewController;
     [self.slidingViewController resetTopViewAnimated:NO];
+    
+    [self.menuTableViewController resetSelection];
 }
 
 - (void)registerForLoginNotifications

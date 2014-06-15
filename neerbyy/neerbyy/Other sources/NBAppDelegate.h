@@ -10,4 +10,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)showLoginAlertViewWithViewController:(UIViewController *)viewController completion:(void(^)())completion;
+
 @end

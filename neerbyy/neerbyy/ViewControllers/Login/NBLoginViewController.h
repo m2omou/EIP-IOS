@@ -11,4 +11,6 @@
 
 @interface NBLoginViewController : NBGenericFormViewController
 
+@property (strong, nonatomic) void (^onDismiss)();
+
 @end

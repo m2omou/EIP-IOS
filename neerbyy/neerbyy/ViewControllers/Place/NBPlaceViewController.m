@@ -12,6 +12,9 @@
 #import "NBPublication.h"
 #import "NBPlace.h"
 #import "NSString+DataFormatting.h"
+#import "NBAppDelegate.h"
+
+static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
 
 @interface NBPlaceViewController () <NBNewPublicationViewControllerDelegate>
 
@@ -38,7 +41,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString * const kNBPublicationListSegue = @"EmbedPublicationListSegue";
-    static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
     
     if ([segue.identifier isEqualToString:kNBPublicationListSegue])
     {
@@ -60,6 +62,26 @@
     }
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:kNBNewPublicationSegue])
+    {
+        if (self.persistanceManager.isConnected)
+            return YES;
+        else
+        {
+            NBAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            [appDelegate showLoginAlertViewWithViewController:self completion:^{
+                if (self.persistanceManager.isConnected)
+                    [self performSegueWithIdentifier:identifier sender:sender];
+            }];
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
 #pragma mark - NBNewPublicationViewControllerDelegate
 
 - (void)newPublicationViewController:(NBNewPublicationViewController *)newPublicationViewController didPublishPublication:(NBPublication *)publication
@@ -70,6 +92,20 @@
 #pragma mark - User interactions
 
 - (IBAction)pressedAddToFavoritesButton:(id)sender
+{
+    if (self.persistanceManager.isConnected)
+        [self toogledFollowButton];
+    else
+    {
+        NBAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate showLoginAlertViewWithViewController:self completion:^{
+            if (self.persistanceManager.isConnected)
+                [self toogledFollowButton];
+        }];
+    }
+}
+
+- (void)toogledFollowButton
 {
     if (self.place.isFollowedByCurrentUser)
         [self unfollowCurrentPlace];

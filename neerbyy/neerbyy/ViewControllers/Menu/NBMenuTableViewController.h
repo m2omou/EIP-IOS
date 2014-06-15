@@ -19,5 +19,6 @@
 @interface NBMenuTableViewController : UITableViewController
 
 @property (weak, nonatomic) id<NBMenuTableViewControllerDelegate> delegate;
+- (void)resetSelection;
 
 @end

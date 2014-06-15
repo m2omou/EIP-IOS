@@ -14,6 +14,9 @@
 #import <JTSImageViewController.h>
 #import <JTSImageInfo.h>
 #import <TOWebViewController.h>
+#import "NBAppDelegate.h"
+
+static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
 
 @interface NBPublicationViewController () <NBNewCommentViewControllerDelegate>
 
@@ -49,7 +52,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString * const kNBCommentsTableViewSegue = @"commentsTableViewSegue";
-    static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
     
     if ([segue.identifier isEqualToString:kNBCommentsTableViewSegue])
     {
@@ -62,6 +64,26 @@
         newCommentViewController.publication = self.publication;
         newCommentViewController.delegate = self;
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:kNBNewCommentsSegue])
+    {
+        if (self.persistanceManager.isConnected)
+            return YES;
+        else
+        {
+            NBAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            [appDelegate showLoginAlertViewWithViewController:self completion:^{
+                if (self.persistanceManager.isConnected)
+                    [self performSegueWithIdentifier:identifier sender:sender];
+            }];
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 #pragma mark - NBNewCommentViewControllerDelegate
@@ -83,11 +105,16 @@
     else
         value = kNBVoteValueDownvote;
     
-    if ([self userIsCancellingVote:value])
-        [self cancelVote];
+    if (self.persistanceManager.isConnected)
+        [self performVoteWithValue:value];
     else
-        [self voteWithValue:value];
-    
+    {
+        NBAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        [appDelegate showLoginAlertViewWithViewController:self completion:^{
+            if (self.persistanceManager.isConnected)
+                [self performVoteWithValue:value];
+        }];
+    }
 }
 
 - (IBAction)pressedPublicationContainerView:(id)sender
@@ -96,6 +123,14 @@
 }
 
 #pragma mark - Convenience methods - Votes
+
+- (void)performVoteWithValue:(NBVoteValue)value
+{
+    if ([self userIsCancellingVote:value])
+        [self cancelVote];
+    else
+        [self voteWithValue:value];
+}
 
 - (BOOL)userIsCancellingVote:(NBVoteValue)value
 {
