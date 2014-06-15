@@ -36,7 +36,7 @@
     {
         self.tutorialPages = @[
                                [NBTutorialContent tutorialContentWithImage:[UIImage imageNamed:@"tuto-lieux"] text:@"Bienvenue dans Neerbyy\n\nRetrouvez les lieux qui vous sont chers..."],
-                               [NBTutorialContent tutorialContentWithImage:[UIImage imageNamed:@"tuto-souvenirs"] text:@"Souvenirs\n\nVisionnez les souvenirs qu'y ont publié autres utilisateurs..."],
+                               [NBTutorialContent tutorialContentWithImage:[UIImage imageNamed:@"tuto-souvenirs"] text:@"Souvenirs\n\nVisionnez les souvenirs qu'y ont publié les autres utilisateurs..."],
                                [NBTutorialContent tutorialContentWithImage:[UIImage imageNamed:@"tuto-nouveau-souvenir"] text:@"Partage\n\n... et ajoutez les votres !"],
                                [NBTutorialContent tutorialContentWithImage:[UIImage imageNamed:@"tuto-commentaire"] text:@"Commentez, aimez, partagez !\n\nA vous de jouer."],
                                ];

@@ -1719,7 +1719,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-login" translatesAutoresizingMaskIntoConstraints="NO" id="Jmr-0Q-e5c" customClass="NBCircleImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jmr-0Q-e5c" customClass="NBCircleImageView">
                                             <rect key="frame" x="10" y="10" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="QRI-FF-hcl"/>
@@ -2273,7 +2273,6 @@
         <image name="img-add-avatar" width="150" height="150"/>
         <image name="img-add-avatar-pressed" width="150" height="150"/>
         <image name="img-avatar" width="150" height="150"/>
-        <image name="img-login" width="660" height="1136"/>
         <image name="img-txt" width="64" height="64"/>
         <image name="logo" width="562" height="223"/>
         <image name="map-geoloc" width="36" height="36"/>

@@ -9,6 +9,7 @@
 #import "NBFeedViewController.h"
 #import "NBPublicationListViewController.h"
 #import "NBPublication.h"
+#import "NBPlace.h"
 
 @interface NBFeedViewController ()
 
@@ -20,9 +21,21 @@
 
 #pragma mark - View life cycle
 
-- (void)viewDidLoad
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    [super viewDidLoad];
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self registerForNotifications];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [self unregisterForNotifications];
 }
 
 #pragma mark - UIViewController
@@ -107,6 +120,33 @@
     }];
     
     [loadMorePublicationsOperation enqueue];
+}
+
+#pragma mark - Notifications
+
+- (void)registerForNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(userDidUnfollowPlaceWithNotification:) name:kNBNotificationPlaceUnfollowed object:nil];
+}
+
+- (void)unregisterForNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self];
+}
+
+- (void)userDidUnfollowPlaceWithNotification:(NSNotification *)notification
+{
+    NBPlace *place = notification.object;
+    NSArray *publications = [self.publicationListViewController.publications copy];
+    for (NBPublication *publication in publications)
+    {
+        if ([publication.place.identifier isEqualToString:place.identifier])
+        {
+            [self.publicationListViewController removeData:publication];
+        }
+    }
 }
 
 @end

@@ -170,6 +170,7 @@
     [followOp addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponsePlace *response = (NBAPIResponsePlace *)operation.APIResponse;
         self.place.followingId = response.place.followingId;
+        [self sendNotificationForPlace:response.place followedStatusChangedTo:YES];
         [self updateUI];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     
@@ -183,9 +184,18 @@
     [unfollowOp addCompletionHandler:^(NBAPINetworkOperation *operation) {
         self.place.followingId = nil;
         [self updateUI];
+        [self sendNotificationForPlace:self.place followedStatusChangedTo:NO];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     
     [unfollowOp enqueue];
+}
+
+- (void)sendNotificationForPlace:(NBPlace *)place followedStatusChangedTo:(BOOL)followed
+{
+    NSString * const name = followed ? kNBNotificationPlaceFollowed : kNBNotificationPlaceUnfollowed;
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter postNotificationName:name object:place];
 }
 
 @end

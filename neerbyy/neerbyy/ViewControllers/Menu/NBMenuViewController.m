@@ -137,6 +137,8 @@
 - (void)logoutUser
 {
     [self.persistanceManager logout];
+    self.viewControllers = [NSMutableDictionary dictionary];
+    [self resetRootViewController];
 }
 
 - (void)presentLoginViewController

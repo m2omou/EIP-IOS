@@ -15,6 +15,8 @@
 
 NSString * const kNBNotificationUserLoggedIn = @"userLoggedIn";
 NSString * const kNBNotificationUserLoggedOut = @"userLoggedOut";
+NSString * const kNBNotificationPlaceFollowed = @"placeFollowed";
+NSString * const kNBNotificationPlaceUnfollowed = @"placeUnfollowed";
 
 static NSString * const kNBPersistanceCurrentUserKey = @"currentUser";
 static NSString * const kNBPersistanceCurrentPasswordKey = @"currentPassword";

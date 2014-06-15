@@ -19,6 +19,23 @@
 
 @implementation NBFavoritesViewController
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self registerForNotifications];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [self unregisterForNotifications];
+}
+
 #pragma mark - UIViewController
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -105,6 +122,26 @@
     }];
     
     [loadMorePlacesOperation enqueue];
+}
+
+#pragma mark - Notifications
+
+- (void)registerForNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(userDidUnfollowPlaceWithNotification:) name:kNBNotificationPlaceUnfollowed object:nil];
+}
+
+- (void)unregisterForNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self];
+}
+
+- (void)userDidUnfollowPlaceWithNotification:(NSNotification *)notification
+{
+    NBPlace *place = notification.object;
+    [self.placesListViewController removeData:place];
 }
 
 @end

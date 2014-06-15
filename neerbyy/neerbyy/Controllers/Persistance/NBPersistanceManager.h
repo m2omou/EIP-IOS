@@ -14,6 +14,8 @@
 
 extern NSString * const kNBNotificationUserLoggedIn;
 extern NSString * const kNBNotificationUserLoggedOut;
+extern NSString * const kNBNotificationPlaceFollowed;
+extern NSString * const kNBNotificationPlaceUnfollowed;
 
 #pragma mark -
 
