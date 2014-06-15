@@ -62,13 +62,14 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
         [operation addImage:image withKey:imageKey mainKey:mainKey];
     
 #ifdef DEBUG
-//    [operation addCompletionHandler:^(NBAPINetworkOperation *operation) {
-//        NSLog(@"Operation with curl command :\n%@", operation.curlCommandLineString);
-//        NSLog(@"[SUCCESS] with response string :\n%@", operation.responseString);
-//    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
-//        NSLog(@"Operation with curl command :\n%@", operation.curlCommandLineString);
-//        NSLog(@"[FAILED] with response string :\n%@", operation.responseString);
-//    }];
+    [operation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NSLog(@"Operation with curl command :\n%@", operation.curlCommandLineString);
+        NSLog(@"[SUCCESS] with response string :\n%@", operation.responseString);
+        NSLog(@"Headers : %@", [[NSString alloc] initWithData:operation.readonlyRequest.HTTPBody encoding:4]) ;
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        NSLog(@"Operation with curl command :\n%@", operation.curlCommandLineString);
+        NSLog(@"[FAILED] with response string :\n%@", operation.responseString);
+    }];
 #endif
     
     return (NBAPINetworkOperation *)operation;

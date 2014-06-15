@@ -32,6 +32,8 @@ static CGFloat const kNBFilterViewAnimationDuration = .3f;
 static CGFloat const kMBMapClusterCellSize = 80.f;
 static CGFloat const kMBMapMarginFactor = 1.f;
 
+static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
+
 #pragma mark -
 
 
@@ -44,6 +46,7 @@ static CGFloat const kMBMapMarginFactor = 1.f;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeightConstraint;
 
 @property (strong, nonatomic) CCHMapClusterController *mapClusterController;
+@property (strong, nonatomic) NSArray *savedAnnotations;
 
 @end
 
@@ -71,6 +74,7 @@ static CGFloat const kMBMapMarginFactor = 1.f;
     mapClusterController.marginFactor = kMBMapMarginFactor;
     
     self.mapClusterController = mapClusterController;
+    self.savedAnnotations = [NSArray array];
 }
 
 #pragma mark - Theming
@@ -255,15 +259,31 @@ static CGFloat const kMBMapMarginFactor = 1.f;
             [annotations addObject:annotation];
         }
     }
-
-    [self.mapClusterController addAnnotations:annotations withCompletionHandler:NULL];
+    
+    NSArray *annotationsToDisplay = [self.savedAnnotations arrayByAddingObjectsFromArray:annotations];
+    NSArray *annotationsToRemove = nil;
+    if (annotationsToDisplay.count > kNBMapMaxAnnotationsToDisplay)
+    {
+        NSRange rangeToKeep = NSMakeRange(annotationsToDisplay.count - kNBMapMaxAnnotationsToDisplay, kNBMapMaxAnnotationsToDisplay);
+        NSRange rangeToRemove = NSMakeRange(0, rangeToKeep.location);
+        annotationsToRemove = [annotationsToDisplay subarrayWithRange:rangeToRemove];
+        annotationsToDisplay = [annotationsToDisplay subarrayWithRange:rangeToKeep];
+    }
+    
+    self.savedAnnotations = annotationsToDisplay;
+    
+    __weak CCHMapClusterController *clusterController = self.mapClusterController;
+    [clusterController addAnnotations:annotations withCompletionHandler:^{
+        if (annotationsToRemove.count)
+            [clusterController removeAnnotations:annotationsToRemove withCompletionHandler:NULL];
+    }];
 }
 
 - (BOOL)isPlaceOnMap:(NBPlace *)place
 {
-    NSSet *currentAnnotations = self.mapClusterController.annotations;
+    NSArray *currentAnnotations = self.savedAnnotations;
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@", place.name];
-    NSSet *filteredArray = [currentAnnotations filteredSetUsingPredicate:predicate];
+    NSArray *filteredArray = [currentAnnotations filteredArrayUsingPredicate:predicate];
 
     if ([filteredArray count] == 0)
         return NO;
