@@ -13,6 +13,7 @@
 @interface NBAPINetworkEngine : MKNetworkEngine
 
 + (instancetype)engine;
++ (void)resetEngine;
 
 + (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey httpMethod:(NSString *)method;
 + (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey image:(UIImage *)image imageKey:(NSString *)imageKey httpMethod:(NSString *)method;

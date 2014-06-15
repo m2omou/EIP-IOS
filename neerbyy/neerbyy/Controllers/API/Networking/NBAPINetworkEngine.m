@@ -21,6 +21,7 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
 
 #pragma mark -
 
+static NBAPINetworkEngine *engine;
 
 @implementation NBAPINetworkEngine
 
@@ -29,18 +30,25 @@ static NSString * const kNBAPIHostname = @"neerbyy.com";
 + (instancetype)engine
 {
     static dispatch_once_t once_token;
-    static NBAPINetworkEngine *engine;
     
     dispatch_once(&once_token, ^{
-        engine = [[NBAPINetworkEngine alloc] initWithHostName:kNBAPIHostname];
-        [engine registerOperationSubclass:[NBAPINetworkOperation class]];
-
+        [self resetEngine];
+        
         MKNetworkEngine *imageEngine = [MKNetworkEngine new];
         [imageEngine useCache];
         [UIImageView setDefaultEngine:imageEngine];
     });
     
     return engine;
+}
+
++ (void)resetEngine
+{
+    engine = [[NBAPINetworkEngine alloc] initWithHostName:kNBAPIHostname];
+    [engine useCache];
+    [engine emptyCache];
+    [engine useCache];
+    [engine registerOperationSubclass:[NBAPINetworkOperation class]];
 }
 
 #pragma mark - Public methods

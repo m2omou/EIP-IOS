@@ -50,6 +50,7 @@ static NSString * const kNBAPIParamKeyReportReason = @"reason";
 static NSString * const kNBAPIParamKeyValue = @"value";
 
 static NSString * const kNBAPIEndpointLogin = @"sessions";
+static NSString * const kNBAPIEndpointLogout = @"log_out";
 static NSString * const kNBAPIEndpointRegister = @"users";
 static NSString * const kNBAPIEndpointForgotPassword = @"password_resets";
 static NSString * const kNBAPIEndpointUsers = @"users";
@@ -110,13 +111,11 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
 + (NBAPINetworkOperation *)logout
 {
     NSDictionary *parameters = @{};
-    NSNumber *endPointParam = [NBPersistanceManager sharedManager].currentUser.identifier;
-    NSString *endPoint = [NSString stringWithFormat:@"%@/%@", kNBAPIEndpointLogin, endPointParam];
 
-    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:endPoint
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointLogout
                                                                       params:parameters
                                                                      mainKey:nil
-                                                                  httpMethod:kNBAPIHTTPMethodDELETE];
+                                                                  httpMethod:kNBAPIHTTPMethodGET];
     operation.APIResponseClass = [NBAPIResponse class];
     return operation;
 }

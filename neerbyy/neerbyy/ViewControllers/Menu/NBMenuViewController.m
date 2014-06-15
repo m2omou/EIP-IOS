@@ -111,7 +111,7 @@
     BOOL isConnected = self.persistanceManager.isConnected;
     
     if (isConnected)
-        [self logoutUser];
+        [self logoutOperation];
     else
         [self presentLoginViewController];
 }
@@ -136,9 +136,21 @@
 
 - (void)logoutUser
 {
+    [NBAPINetworkEngine resetEngine];
     [self.persistanceManager logout];
     self.viewControllers = [NSMutableDictionary dictionary];
     [self resetRootViewController];
+}
+
+- (void)logoutOperation
+{
+    NBAPINetworkOperation *logoutOperation = [NBAPIRequest logout];
+    [logoutOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        [self logoutUser];
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        [self logoutUser];
+    }];
+    [logoutOperation enqueue];
 }
 
 - (void)presentLoginViewController
