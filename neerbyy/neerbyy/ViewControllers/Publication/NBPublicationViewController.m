@@ -15,6 +15,7 @@
 #import <JTSImageInfo.h>
 #import <TOWebViewController.h>
 #import "NBAppDelegate.h"
+#import "NBReportViewController.h"
 
 static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
 
@@ -52,6 +53,7 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     static NSString * const kNBCommentsTableViewSegue = @"commentsTableViewSegue";
+    static NSString * const kNBReportPublicationSegue = @"reportPublicationSegue";
     
     if ([segue.identifier isEqualToString:kNBCommentsTableViewSegue])
     {
@@ -63,6 +65,12 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
         NBNewCommentViewController *newCommentViewController = segue.destinationViewController;
         newCommentViewController.publication = self.publication;
         newCommentViewController.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:kNBReportPublicationSegue])
+    {
+        NBReportViewController *reportViewController = segue.destinationViewController;
+        reportViewController.identifierToReport = self.publication.identifier;
+        reportViewController.operationCreator = @selector(reportPublication:withDescription:);
     }
 }
 

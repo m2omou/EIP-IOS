@@ -17,11 +17,26 @@
 @property (strong, nonatomic) IBOutlet NBCircleImageView *userImageView;
 @property (strong, nonatomic) IBOutlet NBLabel *commentLabel;
 @property (strong, nonatomic) IBOutlet NBLabel *usernameLabel;
-
+@property (strong, nonatomic) void (^onLongPress)(NBCommentTableViewCell *);
 @end
 
 
 @implementation NBCommentTableViewCell
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    UILongPressGestureRecognizer *longPressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressedContentView:)];
+    [self.contentView addGestureRecognizer:longPressRecognizer];
+}
+
+- (void)longPressedContentView:(UILongPressGestureRecognizer *)gestreRecognizer
+{
+    if (self.onLongPress)
+        self.onLongPress(self);
+    NSLog(@"Long press");
+}
 
 #pragma mark - Public methods
 
@@ -39,11 +54,12 @@
     return MAX(minimumHeight, height);
 }
 
-- (void)configureWithComment:(NBComment *)comment
+- (void)configureWithComment:(NBComment *)comment onLongPress:(void(^)(NBCommentTableViewCell *))onLongPress
 {
     [self.userImageView setImageFromURL:comment.author.avatarThumbnailURL placeHolderImage:[UIImage imageNamed:@"img-avatar"]];
     self.commentLabel.text = comment.content;
     self.usernameLabel.text = comment.author.username;
+    self.onLongPress = onLongPress;
 }
 
 #pragma mark - NBTableViewCell

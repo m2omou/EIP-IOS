@@ -11,6 +11,8 @@
 #import "NBPersistanceManager.h"
 #import "NBComment.h"
 #import "NBAPI.h"
+#import "NBReportViewController.h"
+#import "UIStoryboard+NBAdditions.h"
 
 #pragma mark - Constants
 
@@ -29,11 +31,19 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    __weak NBCommentListViewController *weakSelf = self;
     self.reuseIdentifier = kNBCommentCellIdentifier;
     self.onConfigureCell = ^(NBCommentTableViewCell *cell, NBComment *associatedComment, NSUInteger dataIdx)
     {
-        [cell configureWithComment:associatedComment];
+        [cell configureWithComment:associatedComment onLongPress:^(NBCommentTableViewCell *cell) {
+            NSIndexPath *indexPath = [weakSelf.tableView indexPathForCell:cell];
+            NBComment *comment = [weakSelf commentAtIndexPath:indexPath];
+            NBReportViewController *reportViewController = [UIStoryboard reportViewController];
+            reportViewController.identifierToReport = comment.identifier;
+            reportViewController.operationCreator = @selector(reportComment:withDescription:);
+            [weakSelf presentViewController:reportViewController animated:YES completion:nil];
+        }];
     };
 }
 

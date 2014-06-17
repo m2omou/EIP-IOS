@@ -13,6 +13,6 @@
 
 + (CGFloat)heightForComment:(NBComment *)comment width:(CGFloat)width;
 
-- (void)configureWithComment:(NBComment *)comment;
+- (void)configureWithComment:(NBComment *)comment onLongPress:(void(^)(NBCommentTableViewCell *))onLongPress;
 
 @end

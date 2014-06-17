@@ -46,4 +46,11 @@
     return [[self mainStoryboard] instantiateViewControllerWithIdentifier:kNBTutorialViewControllerIdentifier];
 }
 
++ (NBReportViewController *)reportViewController
+{
+    static NSString * const kNBReportViewControllerIdentifier = @"NBReportViewController";
+    
+    return [[self mainStoryboard] instantiateViewControllerWithIdentifier:kNBReportViewControllerIdentifier];
+}
+
 @end

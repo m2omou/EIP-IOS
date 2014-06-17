@@ -9,6 +9,7 @@
 @class NBTutorialViewController;
 @class NBPlaceListViewController;
 @class NBPlaceViewController;
+@class NBReportViewController;
 
 @interface UIStoryboard (NBAdditions)
 
@@ -17,5 +18,6 @@
 + (NBTutorialViewController *)tutorialViewController;
 + (NBPlaceViewController *)placeViewController;
 + (NBPlaceListViewController *)placeListViewController;
++ (NBReportViewController *)reportViewController;
 
 @end

@@ -21,6 +21,7 @@
 		9C2C526C18FEA17900603A0A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2C526B18FEA17900603A0A /* SenTestingKit.framework */; };
 		9C2C526D18FEA1B000603A0A /* NBDictionaryDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC08618FE615F006FAE76 /* NBDictionaryDecoderTests.m */; };
 		9C2C527018FEA40200603A0A /* NBPersistanceManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */; };
+		9C3EE6F4194FD94400F5566F /* NBReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3EE6F3194FD94400F5566F /* NBReportViewController.m */; };
 		9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4475D018F96B63006A9FD7 /* NBKeychain.m */; };
 		9C5BE940183219CB00CFA647 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE93F183219CB00CFA647 /* Foundation.framework */; };
 		9C5BE942183219CB00CFA647 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE941183219CB00CFA647 /* CoreGraphics.framework */; };
@@ -138,6 +139,8 @@
 		9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NBAdditions.m"; sourceTree = "<group>"; };
 		9C2C526B18FEA17900603A0A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPersistanceManagerTests.m; path = neerbyyTests/NBPersistanceManagerTests.m; sourceTree = "<group>"; };
+		9C3EE6F2194FD94400F5566F /* NBReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReportViewController.h; path = Report/NBReportViewController.h; sourceTree = "<group>"; };
+		9C3EE6F3194FD94400F5566F /* NBReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReportViewController.m; path = Report/NBReportViewController.m; sourceTree = "<group>"; };
 		9C4475CF18F96B63006A9FD7 /* NBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBKeychain.h; sourceTree = "<group>"; };
 		9C4475D018F96B63006A9FD7 /* NBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBKeychain.m; sourceTree = "<group>"; };
 		9C5BE93C183219CB00CFA647 /* neerbyy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neerbyy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,6 +353,15 @@
 				9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */,
 			);
 			path = Coder;
+			sourceTree = "<group>";
+		};
+		9C3EE6F1194FD91700F5566F /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				9C3EE6F2194FD94400F5566F /* NBReportViewController.h */,
+				9C3EE6F3194FD94400F5566F /* NBReportViewController.m */,
+			);
+			name = Report;
 			sourceTree = "<group>";
 		};
 		9C5BE933183219CB00CFA647 = {
@@ -634,6 +646,7 @@
 				9CA460F418DD40E700A0DD44 /* Menu */,
 				9CBBC17218DDCBC1005C5D66 /* Messaging */,
 				9CA460FB18DD40E700A0DD44 /* Register */,
+				9C3EE6F1194FD91700F5566F /* Report */,
 				9CBBC13E18DD9B97005C5D66 /* Place */,
 				9CBBC14218DDA245005C5D66 /* Publications */,
 				9CBBC16A18DDC530005C5D66 /* User */,
@@ -1153,6 +1166,7 @@
 				9CE45190194409FE00854117 /* NBTutorialDataSource.m in Sources */,
 				9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */,
 				9CBBC15F18DDC4CE005C5D66 /* NBPublicationViewController.m in Sources */,
+				9C3EE6F4194FD94400F5566F /* NBReportViewController.m in Sources */,
 				9CA4616518DD40E700A0DD44 /* NBPlaceAnnotation.m in Sources */,
 				9CA4610818DD40E700A0DD44 /* NSDictionary+URLEncoding.m in Sources */,
 				9CDC8EA018DE9687006BC096 /* NBMessageListViewController.m in Sources */,

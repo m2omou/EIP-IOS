@@ -38,7 +38,7 @@
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
                                     withDescription:(NSString *)description;
 + (NBAPINetworkOperation *)deletePublication:(NSNumber *)publicationId;
-+ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId;
++ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description;
 
 + (NBAPINetworkOperation *)fetchFlow;
 + (NBAPINetworkOperation *)fetchFlowSinceId:(NSNumber *)sinceId;
@@ -52,6 +52,6 @@
 + (NBAPINetworkOperation *)fetchCommentsForPublication:(NSNumber *)publicationId afterId:(NSNumber *)afterId;
 + (NBAPINetworkOperation *)commentOnPublication:(NSNumber *)publicationId withMessage:(NSString *)message;
 + (NBAPINetworkOperation *)removeComment:(NSNumber *)commentId;
-+ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId;
++ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description;
 
 @end

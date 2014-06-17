@@ -26,7 +26,8 @@ static NSString * const kNBAPIMainKeyUser = @"user";
 static NSString * const kNBAPIMainKeyLogin = @"connection";
 static NSString * const kNBAPIMainKeyPublication = @"publication";
 static NSString * const kNBAPIMainKeyFollowedPlaces = @"followed_place";
-static NSString * const kNBAPIMainKeyReport = @"report";
+static NSString * const kNBAPIMainKeyReportPublication = @"report_publication";
+static NSString * const kNBAPIMainKeyReportComment = @"report_comment";
 static NSString * const kNBAPIMainKeyVote = @"vote";
 static NSString * const kNBAPIMainKeyComment = @"comment";
 
@@ -318,15 +319,15 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId
++ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPublicationIdentifier: publicationId,
-                                 kNBAPIParamKeyReportReason: @4,
-                                 kNBAPIParamKeyContent: @"Lolilol"}; /* TODO : This is wrong */
+                                 kNBAPIParamKeyReportReason: @1,
+                                 kNBAPIParamKeyContent: description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointReportPublications
                                                                       params:parameters
-                                                                     mainKey:kNBAPIMainKeyReport
+                                                                     mainKey:kNBAPIMainKeyReportPublication
                                                                   httpMethod:kNBAPIHTTPMethodPOST];
     
     operation.APIResponseClass = [NBAPIResponseReportPublication class];
@@ -463,15 +464,15 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId
++ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description
 {
     NSDictionary *parameters = @{kNBAPIParamKeyCommentIdentifier: commentId,
-                                 kNBAPIParamKeyReportReason: @4,
-                                 kNBAPIParamKeyContent: @"Lolilol"}; /* TODO : This is wrong */
+                                 kNBAPIParamKeyReportReason: @1,
+                                 kNBAPIParamKeyContent: description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointReportComments
                                                                       params:parameters
-                                                                     mainKey:kNBAPIMainKeyReport
+                                                                     mainKey:kNBAPIMainKeyReportComment
                                                                   httpMethod:kNBAPIHTTPMethodPOST];
     
     operation.APIResponseClass = [NBAPIResponseReportComment class];
