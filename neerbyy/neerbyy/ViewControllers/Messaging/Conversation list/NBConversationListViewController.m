@@ -30,8 +30,6 @@ static NSString * const kNBConversationCellIdentifier = @"NBConversationTableVie
 {
     [super viewDidLoad];
     
-    self.conversations = @[@1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1];
-    
     self.reuseIdentifier = kNBConversationCellIdentifier;
     self.onConfigureCell = ^(NBConversationTableViewCell *cell, id associatedConversation, NSUInteger dataIdx)
     {

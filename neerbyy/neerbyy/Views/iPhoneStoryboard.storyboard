@@ -1891,7 +1891,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="dvc-QO-EBu" kind="embed" id="Zcu-3r-NzQ"/>
+                                    <segue destination="dvc-QO-EBu" kind="embed" identifier="conversationList" id="Zcu-3r-NzQ"/>
                                 </connections>
                             </containerView>
                         </subviews>
