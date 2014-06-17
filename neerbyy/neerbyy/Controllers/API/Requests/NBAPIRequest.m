@@ -30,6 +30,7 @@ static NSString * const kNBAPIMainKeyReportPublication = @"report_publication";
 static NSString * const kNBAPIMainKeyReportComment = @"report_comment";
 static NSString * const kNBAPIMainKeyVote = @"vote";
 static NSString * const kNBAPIMainKeyComment = @"comment";
+static NSString * const kNBAPIMainKeyMessage = @"message";
 
 static NSString * const kNBAPIParamKeyIdentifier = @"id";
 static NSString * const kNBAPIParamKeyPlaceIdentifier = @"place_id";
@@ -49,6 +50,8 @@ static NSString * const kNBAPIParamKeySince = @"since_id";
 static NSString * const kNBAPIParamKeyAfter = @"max_id";
 static NSString * const kNBAPIParamKeyReportReason = @"reason";
 static NSString * const kNBAPIParamKeyValue = @"value";
+static NSString * const kNBAPIParamKeyConversationIdentifier = @"conversation_id";
+static NSString * const kNBAPIParamKeyRecipentIdentifier = @"recipient_id";
 
 static NSString * const kNBAPIEndpointLogin = @"sessions";
 static NSString * const kNBAPIEndpointLogout = @"log_out";
@@ -63,6 +66,8 @@ static NSString * const kNBAPIEndpointFlow = @"flows";
 static NSString * const kNBAPIEndpointVotes = @"votes";
 static NSString * const kNBAPIEndpointComments = @"comments";
 static NSString * const kNBAPIEndpointReportComments = @"report_comments";
+static NSString * const kNBAPIEndpointConversations = @"conversations";
+static NSString * const kNBAPIEndpointMessages = @"messages";
 
 #pragma mark -
 
@@ -476,6 +481,83 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
                                                                   httpMethod:kNBAPIHTTPMethodPOST];
     
     operation.APIResponseClass = [NBAPIResponseReportComment class];
+    return operation;
+}
+
+
+
+
++ (NBAPINetworkOperation *)fetchConversations
+{
+    NSDictionary *parameters = @{};
+    return [self fetchConversationsWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchConversationsSinceId:(NSNumber *)sinceId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeySince: sinceId};
+    return [self fetchConversationsWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchConversationsAfterId:(NSNumber *)afterId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyAfter: afterId};
+    return [self fetchConversationsWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchConversationsWithParams:(NSDictionary *)parameters
+{
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointConversations
+                                                                      params:parameters
+                                                                     mainKey:nil
+                                                                  httpMethod:kNBAPIHTTPMethodGET];
+    operation.APIResponseClass = [NBAPIResponseConversationList class];
+    return  operation;
+}
+
+
+
+
+
++ (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyConversationIdentifier: conversationId};
+    return [self fetchMessagesWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId sinceId:(NSNumber *)sinceId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyConversationIdentifier: conversationId,
+                                 kNBAPIParamKeySince: sinceId};
+    return [self fetchMessagesWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId afterId:(NSNumber *)afterId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyConversationIdentifier: conversationId,
+                                 kNBAPIParamKeyAfter: afterId};
+    return [self fetchMessagesWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchMessagesWithParams:(NSDictionary *)parameters
+{
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointMessages
+                                                                      params:parameters
+                                                                     mainKey:nil
+                                                                  httpMethod:kNBAPIHTTPMethodGET];
+    operation.APIResponseClass = [NBAPIREsponseMessageList class];
+    return operation;
+}
+
++ (NBAPINetworkOperation *)sendMessageToUser:(NSNumber *)userIdentifier withContent:(NSString *)content
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyRecipentIdentifier: userIdentifier,
+                                 kNBAPIParamKeyContent: content};
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointMessages
+                                                                      params:parameters
+                                                                     mainKey:kNBAPIMainKeyMessage
+                                                                  httpMethod:kNBAPIHTTPMethodPOST];
+    operation.APIResponseClass = [NBAPIREsponseMessageList class];
     return operation;
 }
 

@@ -54,4 +54,14 @@
 + (NBAPINetworkOperation *)removeComment:(NSNumber *)commentId;
 + (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description;
 
++ (NBAPINetworkOperation *)fetchConversations;
++ (NBAPINetworkOperation *)fetchConversationsSinceId:(NSNumber *)sinceId;
++ (NBAPINetworkOperation *)fetchConversationsAfterId:(NSNumber *)afterId;
+
++ (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId;
++ (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId sinceId:(NSNumber *)sinceId;
++ (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId afterId:(NSNumber *)afterId;
+
++ (NBAPINetworkOperation *)sendMessageToUser:(NSNumber *)userIdentifier withContent:(NSString *)content;
+
 @end

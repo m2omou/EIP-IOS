@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7D457A843AB44E648D84945C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09EDAD57733945B587154639 /* libPods.a */; };
 		8AAA866DDCAF43598FF12833 /* libPods-neerbyyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3798AB256C4580A0AF9F4F /* libPods-neerbyyTests.a */; };
+		9C02C7AC19501E5B00F4F7A6 /* NBConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C02C7AB19501E5B00F4F7A6 /* NBConversation.m */; };
+		9C02C7AF1950216300F4F7A6 /* NBMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C02C7AE1950216300F4F7A6 /* NBMessage.m */; };
 		9C098ADF192727FC008631D8 /* NBReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098ADE192727FC008631D8 /* NBReport.m */; };
 		9C098AE319272B0A008631D8 /* NBReportPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098AE219272B0A008631D8 /* NBReportPublication.m */; };
 		9C098AE619272BF0008631D8 /* NBReportComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C098AE519272BF0008631D8 /* NBReportComment.m */; };
@@ -119,6 +121,10 @@
 /* Begin PBXFileReference section */
 		09EDAD57733945B587154639 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8911DB5BA5024EDE953B8C5A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		9C02C7AA19501E5B00F4F7A6 /* NBConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBConversation.h; path = Conversation/NBConversation.h; sourceTree = "<group>"; };
+		9C02C7AB19501E5B00F4F7A6 /* NBConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBConversation.m; path = Conversation/NBConversation.m; sourceTree = "<group>"; };
+		9C02C7AD1950216300F4F7A6 /* NBMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBMessage.h; path = Conversation/NBMessage.h; sourceTree = "<group>"; };
+		9C02C7AE1950216300F4F7A6 /* NBMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBMessage.m; path = Conversation/NBMessage.m; sourceTree = "<group>"; };
 		9C098ADD192727FC008631D8 /* NBReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReport.h; path = Report/NBReport.h; sourceTree = "<group>"; };
 		9C098ADE192727FC008631D8 /* NBReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReport.m; path = Report/NBReport.m; sourceTree = "<group>"; };
 		9C098AE119272B0A008631D8 /* NBReportPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReportPublication.h; path = Report/NBReportPublication.h; sourceTree = "<group>"; };
@@ -315,6 +321,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C02C7A919501E4100F4F7A6 /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				9C02C7AA19501E5B00F4F7A6 /* NBConversation.h */,
+				9C02C7AB19501E5B00F4F7A6 /* NBConversation.m */,
+				9C02C7AD1950216300F4F7A6 /* NBMessage.h */,
+				9C02C7AE1950216300F4F7A6 /* NBMessage.m */,
+			);
+			name = Conversations;
+			sourceTree = "<group>";
+		};
 		9C098AE019272AE1008631D8 /* Report */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +599,7 @@
 				9C98E75D18FA44CD00141412 /* Publication */,
 				9C0E6D53191F0B0700EE90CA /* Vote */,
 				9C0E6D5A191F0D2200EE90CA /* Comment */,
+				9C02C7A919501E4100F4F7A6 /* Conversations */,
 				9C098AE019272AE1008631D8 /* Report */,
 			);
 			path = Model;
@@ -1169,6 +1187,7 @@
 				9C3EE6F4194FD94400F5566F /* NBReportViewController.m in Sources */,
 				9CA4616518DD40E700A0DD44 /* NBPlaceAnnotation.m in Sources */,
 				9CA4610818DD40E700A0DD44 /* NSDictionary+URLEncoding.m in Sources */,
+				9C02C7AC19501E5B00F4F7A6 /* NBConversation.m in Sources */,
 				9CDC8EA018DE9687006BC096 /* NBMessageListViewController.m in Sources */,
 				9CA4616118DD40E700A0DD44 /* NBPersistanceManager.m in Sources */,
 				9CBBC17118DDC635005C5D66 /* NBPlaceTableViewCell.m in Sources */,
@@ -1176,6 +1195,7 @@
 				9C098ADF192727FC008631D8 /* NBReport.m in Sources */,
 				9CA4616918DD40E700A0DD44 /* NBForgotPasswordViewController.m in Sources */,
 				9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */,
+				9C02C7AF1950216300F4F7A6 /* NBMessage.m in Sources */,
 				9CA4616E18DD40E700A0DD44 /* NBMapViewController.m in Sources */,
 				9CBBC16E18DDC5C3005C5D66 /* NBPlaceListViewController.m in Sources */,
 				9CBBC16618DDC4FF005C5D66 /* NBPublicationTableViewCell.m in Sources */,

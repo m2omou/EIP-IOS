@@ -93,3 +93,15 @@
 @property (readonly, nonatomic) NSArray *comments;
 
 @end
+
+@interface NBAPIResponseConversationList : NBAPIResponse
+
+@property (readonly, nonatomic) NSArray *conversations;
+
+@end
+
+@interface NBAPIREsponseMessageList : NBAPIResponse
+
+@property (readonly, nonatomic) NSArray *messages;
+
+@end

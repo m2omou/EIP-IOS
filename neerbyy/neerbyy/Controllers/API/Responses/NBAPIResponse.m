@@ -15,6 +15,8 @@
 #import "NBVote.h"
 #import "NBComment.h"
 #import "NBReportComment.h"
+#import "NBConversation.h"
+#import "NBMessage.h"
 
 #pragma mark - Constants
 
@@ -31,6 +33,8 @@ static NSString * const kNBAPIResponseKeyReport = @"report";
 static NSString * const kNBAPIResponseKeyVote = @"vote";
 static NSString * const kNBAPIResponseKeyComment = @"comment";
 static NSString * const kNBAPIResponseKeyCommentList = @"comments";
+static NSString * const kNBAPIResponseKeyConversationList = @"conversations";
+static NSString * const kNBAPIResponseKeyMessageList = @"messages";
 
 #pragma mark -
 
@@ -269,6 +273,48 @@ static NSString * const kNBAPIResponseKeyCommentList = @"comments";
     }
     
     return [comments copy];
+}
+
+@end
+
+#pragma mark - Conversation list
+
+@implementation NBAPIResponseConversationList
+
+- (NSArray *)conversations
+{
+    NSArray *rawConversations = [self dataWithKey:kNBAPIResponseKeyConversationList ofType:[NSArray class]];
+    
+    NSMutableArray *conversations = [NSMutableArray array];
+    for (NSDictionary *rawConversation in rawConversations)
+    {
+        NBDictionaryDecoder *conversationDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawConversation];
+        NBConversation *conversation = [[NBConversation alloc] initWithCoder:conversationDecoder];
+        [conversations addObject:conversation];
+    }
+    
+    return [conversations copy];
+}
+
+@end
+
+#pragma mark - Message list
+
+@implementation NBAPIREsponseMessageList
+
+- (NSArray *)messages
+{
+    NSArray *rawMessages = [self dataWithKey:kNBAPIResponseKeyMessageList ofType:[NSArray class]];
+    
+    NSMutableArray *messages = [NSMutableArray array];
+    for (NSDictionary *rawMessage in rawMessages)
+    {
+        NBDictionaryDecoder *messageDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawMessage];
+        NBMessage *message = [[NBMessage alloc] initWithCoder:messageDecoder];
+        [messages addObject:message];
+    }
+    
+    return [messages copy];
 }
 
 @end
