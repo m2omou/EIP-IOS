@@ -351,8 +351,18 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
     imageView.backgroundColor = self.theme.lightGreenColor;
+    imageView.userInteractionEnabled = YES;
     [imageView setImageFromURL:self.publication.contentURL];
 
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectZero];
+    textView.font = [self.theme.font fontWithSize:9.f];
+    textView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.7f];
+    textView.textColor = self.theme.whiteColor;
+    textView.editable = NO;
+    textView.showsHorizontalScrollIndicator = textView.alwaysBounceHorizontal = NO;
+    textView.text = textView.text = self.publication.contentDescription;
+
+    [self addView:textView asCaptionOfView:imageView withHeight:30];
     [self addPublicationContentViewToContainerView:imageView];
     [self setPublicationHeight:100];
 }
@@ -370,6 +380,23 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
                                                                       views:views];
     NSArray *vConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|"
                                                                     options:0 metrics:0
+                                                                      views:views];
+    NSArray *constraints = [hConstraints arrayByAddingObjectsFromArray:vConstraints];
+    [superView addConstraints:constraints];
+}
+
+- (void)addView:(UITextView *)contentView asCaptionOfView:(UIView *)superView withHeight:(CGFloat)height
+{
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [superView addSubview:contentView];
+
+    NSDictionary *metrics = @{@"height":@(height)};
+    NSDictionary *views = NSDictionaryOfVariableBindings(contentView);
+    NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|"
+                                                                    options:0 metrics:0
+                                                                      views:views];
+    NSArray *vConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[contentView(height)]|"
+                                                                    options:0 metrics:metrics
                                                                       views:views];
     NSArray *constraints = [hConstraints arrayByAddingObjectsFromArray:vConstraints];
     [superView addConstraints:constraints];
