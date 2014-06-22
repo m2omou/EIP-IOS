@@ -16,6 +16,7 @@
 @property (readonly, nonatomic) NSURL *avatarURL;
 @property (readonly, nonatomic) NSURL *avatarThumbnailURL;
 @property (strong, nonatomic) NSString *token;
+@property (strong, nonatomic) NSNumber *settingsID;
 
 - (BOOL)isEqualToUser:(NBUser *)user;
 
