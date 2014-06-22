@@ -1178,7 +1178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEg-0d-Cve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1310" y="3254"/>
+            <point key="canvasLocation" x="908" y="3782"/>
         </scene>
         <!--Report View Controller-->
         <scene sceneID="ked-hl-edF">
@@ -1327,7 +1327,7 @@
         <!--User View Controller - Utilisateur-->
         <scene sceneID="XOu-6H-da2">
             <objects>
-                <viewController title="Utilisateur" id="irS-DC-RTS" customClass="NBUserViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NBUserViewController" title="Utilisateur" id="irS-DC-RTS" customClass="NBUserViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3so-3e-6FN"/>
                         <viewControllerLayoutGuide type="bottom" id="sJ2-o0-kBh"/>
@@ -2424,6 +2424,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="dEq-Xo-ota"/>
-        <segue reference="vYV-Hw-8fD"/>
+        <segue reference="z11-xh-bEq"/>
     </inferredMetricsTieBreakers>
 </document>

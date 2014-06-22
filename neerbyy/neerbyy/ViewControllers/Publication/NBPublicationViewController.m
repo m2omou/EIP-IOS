@@ -15,7 +15,11 @@
 #import <JTSImageInfo.h>
 #import <TOWebViewController.h>
 #import "NBAppDelegate.h"
+#import "NBCircleImageView.h"
 #import "NBReportViewController.h"
+#import "NBUser.h"
+#import "NBUserViewController.h"
+#import "UIStoryboard+NBAdditions.h"
 
 static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
 
@@ -45,6 +49,7 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
     NBVote *vote = publication.voteOfCurrentUser;
     
     [self addPublicationContentToContainerView];
+    [self configureUserButtonItem];
     [self configureLikesAndDislikesWithVote:vote publication:publication];
 }
 
@@ -128,6 +133,11 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
 - (IBAction)pressedPublicationContainerView:(id)sender
 {
     [self pushPublicationContentViewController];
+}
+
+- (void)pressedUserButton:(UIBarButtonItem *)button
+{
+    [self pushUserViewController];
 }
 
 #pragma mark - Convenience methods - Votes
@@ -278,6 +288,24 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
         if ([toolbar respondsToSelector:@selector(tintColor)])
             toolbar.tintColor = self.theme.lightGreenColor;
     }
+}
+
+- (void)configureUserButtonItem
+{
+    UIImageView *imageView = [[NBCircleImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+    imageView.layer.borderColor = self.theme.whiteColor.CGColor;
+    imageView.layer.borderWidth = 1.f;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.userInteractionEnabled = YES;
+    imageView.image = [UIImage imageNamed:@"img-avatar"];
+    [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressedUserButton:)]];
+
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    self.navigationItem.rightBarButtonItem = barButtonItem;
+    
+    [[NBAPINetworkEngine engine] imageAtURL:self.publication.author.avatarThumbnailURL completionHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
+        imageView.image = fetchedImage;
+    } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error){}];
 }
 
 - (void)addPublicationContentToContainerView
@@ -475,6 +503,13 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
         [weakSelf loadCommentsAfterComment:lastComment];
     };
     [self loadComments];
+}
+
+- (void)pushUserViewController
+{
+    NBUserViewController *userViewController = [UIStoryboard userViewController];
+    userViewController.user = self.publication.author;
+    [self.navigationController pushViewController:userViewController animated:YES];
 }
 
 @end

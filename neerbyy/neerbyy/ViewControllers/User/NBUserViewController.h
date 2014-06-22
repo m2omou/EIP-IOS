@@ -7,8 +7,10 @@
 //
 
 #import "NBGenericViewController.h"
-
+#import "NBUser.h"
 
 @interface NBUserViewController : NBGenericViewController
+
+@property (strong, nonatomic) NBUser *user;
 
 @end

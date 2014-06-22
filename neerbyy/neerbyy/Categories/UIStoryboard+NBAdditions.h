@@ -10,6 +10,7 @@
 @class NBPlaceListViewController;
 @class NBPlaceViewController;
 @class NBReportViewController;
+@class NBUserViewController;
 
 @interface UIStoryboard (NBAdditions)
 
@@ -19,5 +20,6 @@
 + (NBPlaceViewController *)placeViewController;
 + (NBPlaceListViewController *)placeListViewController;
 + (NBReportViewController *)reportViewController;
++ (NBUserViewController *)userViewController;
 
 @end
