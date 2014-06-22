@@ -320,10 +320,10 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description
++ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description forReason:(NSNumber *)reason
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPublicationIdentifier: publicationId,
-                                 kNBAPIParamKeyReportReason: @1,
+                                 kNBAPIParamKeyReportReason: reason,
                                  kNBAPIParamKeyContent: description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointReportPublications
@@ -465,10 +465,10 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description
++ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description forReason:(NSNumber *)reason
 {
     NSDictionary *parameters = @{kNBAPIParamKeyCommentIdentifier: commentId,
-                                 kNBAPIParamKeyReportReason: @1,
+                                 kNBAPIParamKeyReportReason: reason,
                                  kNBAPIParamKeyContent: description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointReportComments

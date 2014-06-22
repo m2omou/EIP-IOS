@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) NSNumber *identifierToReport;
 @property (assign, nonatomic) SEL operationCreator;
+@property (strong, nonatomic) NSArray *reportReasons;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "NBReport.h"
 #import "NBVote.h"
 @class NBAPINetworkOperation;
 
@@ -35,7 +36,7 @@
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withURL:(NSString *)url description:(NSString *)description;
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withDescription:(NSString *)description;
 + (NBAPINetworkOperation *)deletePublication:(NSNumber *)publicationId;
-+ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description;
++ (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description forReason:(NSNumber *)reason;
 
 + (NBAPINetworkOperation *)fetchFlow;
 + (NBAPINetworkOperation *)fetchFlowSinceId:(NSNumber *)sinceId;
@@ -49,7 +50,7 @@
 + (NBAPINetworkOperation *)fetchCommentsForPublication:(NSNumber *)publicationId afterId:(NSNumber *)afterId;
 + (NBAPINetworkOperation *)commentOnPublication:(NSNumber *)publicationId withMessage:(NSString *)message;
 + (NBAPINetworkOperation *)removeComment:(NSNumber *)commentId;
-+ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description;
++ (NBAPINetworkOperation *)reportComment:(NSNumber *)commentId withDescription:(NSString *)description forReason:(NSNumber *)reason;
 
 + (NBAPINetworkOperation *)fetchConversations;
 + (NBAPINetworkOperation *)fetchConversationsSinceId:(NSNumber *)sinceId;

@@ -18,6 +18,11 @@ static NSString * const kNBReportKeyContent = @"content";
 
 @implementation NBReport
 
++ (NSArray *)reportReasons
+{
+    return @[@"Autre", @"Copyrights", @"Droit à l'image", @"Contenu inapproprié", @"Contenu discriminatoire"];
+}
+
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)aDecoder

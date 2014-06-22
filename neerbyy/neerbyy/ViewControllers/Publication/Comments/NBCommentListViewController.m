@@ -13,6 +13,7 @@
 #import "NBAPI.h"
 #import "NBReportViewController.h"
 #import "UIStoryboard+NBAdditions.h"
+#import "NBReport.h"
 
 #pragma mark - Constants
 
@@ -41,7 +42,8 @@ static NSString * const kNBCommentCellIdentifier = @"NBCommentTableViewCellIdent
             NBComment *comment = [weakSelf commentAtIndexPath:indexPath];
             NBReportViewController *reportViewController = [UIStoryboard reportViewController];
             reportViewController.identifierToReport = comment.identifier;
-            reportViewController.operationCreator = @selector(reportComment:withDescription:);
+            reportViewController.operationCreator = @selector(reportComment:withDescription:forReason:);
+            reportViewController.reportReasons = [NBReport reportReasons];
             [weakSelf presentViewController:reportViewController animated:YES completion:nil];
         }];
     };

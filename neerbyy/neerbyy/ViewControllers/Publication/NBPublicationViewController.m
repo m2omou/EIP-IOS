@@ -75,7 +75,8 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
     {
         NBReportViewController *reportViewController = segue.destinationViewController;
         reportViewController.identifierToReport = self.publication.identifier;
-        reportViewController.operationCreator = @selector(reportPublication:withDescription:);
+        reportViewController.reportReasons = [NBReport reportReasons];
+        reportViewController.operationCreator = @selector(reportPublication:withDescription:forReason:);
     }
 }
 
