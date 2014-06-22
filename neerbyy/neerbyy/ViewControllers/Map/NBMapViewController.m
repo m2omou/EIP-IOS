@@ -93,13 +93,13 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
+    [NSTimer cancelPreviousPerformRequestsWithTarget:self selector:@selector(mapDidMove) object:nil];
     [self hideFilterView];
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    [self showFilterView];
-    [self loadPlacesInMap];
+    [self performSelector:@selector(mapDidMove) withObject:nil afterDelay:1.f];
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -228,6 +228,12 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     
     MKCoordinateRegion userRegion = MKCoordinateRegionMake(userCoordinate, regionSpan);
     [self.mapView setRegion:userRegion animated:YES];
+}
+
+- (void)mapDidMove
+{
+    [self showFilterView];
+    [self loadPlacesInMap];
 }
 
 #pragma mark - Private methods - Network related
