@@ -12,5 +12,6 @@
 @interface NSString (DataFormatting)
 
 + (NSString *)stringForDistance:(CLLocationDistance)distance prefix:(NSString *)string;
++ (NSString *)stringForDate:(NSDate *)date;
 
 @end

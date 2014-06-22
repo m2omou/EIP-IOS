@@ -20,6 +20,7 @@
 		9C284E2F18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E2E18F923E0000AFC06 /* NBAPINetworkOperation+UIImage.m */; };
 		9C284E3318F92F36000AFC06 /* NBDictionaryDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */; };
 		9C284E3618F9321C000AFC06 /* NSUserDefaults+NBAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */; };
+		9C29A66319567B000039BBE8 /* NBNewMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C29A66219567B000039BBE8 /* NBNewMessageViewController.m */; };
 		9C2C526C18FEA17900603A0A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2C526B18FEA17900603A0A /* SenTestingKit.framework */; };
 		9C2C526D18FEA1B000603A0A /* NBDictionaryDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC08618FE615F006FAE76 /* NBDictionaryDecoderTests.m */; };
 		9C2C527018FEA40200603A0A /* NBPersistanceManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */; };
@@ -143,6 +144,8 @@
 		9C284E3218F92F36000AFC06 /* NBDictionaryDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDictionaryDecoder.m; sourceTree = "<group>"; };
 		9C284E3418F9321C000AFC06 /* NSUserDefaults+NBAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+NBAdditions.h"; sourceTree = "<group>"; };
 		9C284E3518F9321C000AFC06 /* NSUserDefaults+NBAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+NBAdditions.m"; sourceTree = "<group>"; };
+		9C29A66119567B000039BBE8 /* NBNewMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBNewMessageViewController.h; path = ViewControllers/Messaging/NBNewMessageViewController.h; sourceTree = "<group>"; };
+		9C29A66219567B000039BBE8 /* NBNewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBNewMessageViewController.m; path = ViewControllers/Messaging/NBNewMessageViewController.m; sourceTree = "<group>"; };
 		9C2C526B18FEA17900603A0A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPersistanceManagerTests.m; path = neerbyyTests/NBPersistanceManagerTests.m; sourceTree = "<group>"; };
 		9C3EE6F2194FD94400F5566F /* NBReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReportViewController.h; path = Report/NBReportViewController.h; sourceTree = "<group>"; };
@@ -880,6 +883,8 @@
 				9CDC8E8F18DE863F006BC096 /* Conversation list */,
 				9CDC8E9018DE8660006BC096 /* NBMessagingViewController.h */,
 				9CDC8E9118DE8660006BC096 /* NBMessagingViewController.m */,
+				9C29A66119567B000039BBE8 /* NBNewMessageViewController.h */,
+				9C29A66219567B000039BBE8 /* NBNewMessageViewController.m */,
 			);
 			name = Messaging;
 			path = ..;
@@ -1147,6 +1152,7 @@
 				9CBBC16918DDC52D005C5D66 /* NBUserViewController.m in Sources */,
 				9CA4617018DD40E700A0DD44 /* NBMenuTableViewController.m in Sources */,
 				9CA4616218DD40E700A0DD44 /* NBTheme.m in Sources */,
+				9C29A66319567B000039BBE8 /* NBNewMessageViewController.m in Sources */,
 				9CE4518D1944096900854117 /* NBTutorialCell.m in Sources */,
 				9CDC8E8A18DE85E1006BC096 /* NBFeedViewController.m in Sources */,
 				9CA4616A18DD40E700A0DD44 /* NBGenericFormViewController.m in Sources */,

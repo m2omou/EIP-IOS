@@ -14,7 +14,7 @@
 
 static NSString * const kNBConversationKeyIdentifier = @"id";
 static NSString * const kNBConversationKeyLastestMessages = @"messages";
-static NSString * const kNBCovnersationKeyRecipient = @"receipient";
+static NSString * const kNBCovnersationKeyRecipient = @"recipient";
 
 #pragma mark -
 
@@ -22,6 +22,7 @@ static NSString * const kNBCovnersationKeyRecipient = @"receipient";
 
 @property (strong, nonatomic) NSArray *lastestMessagesArray;
 @property (strong, nonatomic) NSDictionary *recipientDictionary;
+@property (strong, nonatomic) NSMutableArray *convertedLatestsMessages;
 
 @end
 
@@ -54,6 +55,9 @@ static NSString * const kNBCovnersationKeyRecipient = @"receipient";
 
 - (NSArray *)latestMessages
 {
+    if (self.convertedLatestsMessages)
+        return [self.convertedLatestsMessages copy];
+    
     if (self.lastestMessagesArray.count == 0)
         return nil;
     
@@ -64,7 +68,9 @@ static NSString * const kNBCovnersationKeyRecipient = @"receipient";
         NBMessage *message = [[NBMessage alloc] initWithCoder:messageDecoder];
         [messages addObject:message];
     }
-    return [messages copy];
+    
+    self.convertedLatestsMessages = messages;
+    return self.latestMessages;
 }
 
 - (NBUser *)recipient
@@ -75,6 +81,13 @@ static NSString * const kNBCovnersationKeyRecipient = @"receipient";
     NBDictionaryDecoder *userDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.recipientDictionary];
     NBUser *user = [[NBUser alloc] initWithCoder:userDecoder];
     return user;
+}
+
+#pragma mark - Public methods
+
+- (void)addMessage:(NBMessage *)message
+{
+    [self.convertedLatestsMessages addObject:message];
 }
 
 @end

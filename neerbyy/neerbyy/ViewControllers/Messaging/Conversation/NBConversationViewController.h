@@ -7,8 +7,21 @@
 //
 
 #import "NBGenericViewController.h"
+#import "NBConversation.h"
+
+@class NBConversationViewController;
+
+@protocol NBConversationViewControllerDelegate <NSObject>
+
+@optional
+- (void)conversationViewController:(NBConversationViewController *)conversationViewController latestMessageDidChange:(NBMessage *)message;
+
+@end
 
 
 @interface NBConversationViewController : NBGenericViewController
+
+@property (strong, nonatomic) NBConversation *conversation;
+@property (weak, nonatomic) id<NBConversationViewControllerDelegate> delegate;
 
 @end

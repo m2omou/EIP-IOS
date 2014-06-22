@@ -7,10 +7,12 @@
 //
 
 #import "NBTableViewCell.h"
-
+#import "NBMessage.h"
 
 @interface NBMessageTableViewCell : NBTableViewCell
 
-- (void)configureWithMessage:(id)message;
++ (CGFloat)heightForMessage:(NBMessage *)message width:(CGFloat)width;
+
+- (void)configureWithMessage:(NBMessage *)message;
 
 @end

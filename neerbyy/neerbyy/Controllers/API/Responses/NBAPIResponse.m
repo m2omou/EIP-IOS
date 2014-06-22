@@ -17,6 +17,7 @@
 #import "NBReportComment.h"
 #import "NBConversation.h"
 #import "NBMessage.h"
+#import "NBConversation.h"
 
 #pragma mark - Constants
 
@@ -34,7 +35,9 @@ static NSString * const kNBAPIResponseKeyVote = @"vote";
 static NSString * const kNBAPIResponseKeyComment = @"comment";
 static NSString * const kNBAPIResponseKeyCommentList = @"comments";
 static NSString * const kNBAPIResponseKeyConversationList = @"conversations";
+static NSString * const kNBAPIResponseKeyConversation = @"conversation";
 static NSString * const kNBAPIResponseKeyMessageList = @"messages";
+static NSString * const kNBAPIResponseKeyUserMessage = @"message";
 
 #pragma mark -
 
@@ -300,7 +303,7 @@ static NSString * const kNBAPIResponseKeyMessageList = @"messages";
 
 #pragma mark - Message list
 
-@implementation NBAPIREsponseMessageList
+@implementation NBAPIResponseMessageList
 
 - (NSArray *)messages
 {
@@ -315,6 +318,28 @@ static NSString * const kNBAPIResponseKeyMessageList = @"messages";
     }
     
     return [messages copy];
+}
+
+@end
+
+#pragma mark - Single message
+
+@implementation NBAPIResponseMessage
+
+- (NBConversation *)conversation
+{
+    NSDictionary *rawConversation = [self dataWithKey:kNBAPIResponseKeyConversation ofType:[NSDictionary class]];
+    NBDictionaryDecoder *conversationDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawConversation];
+    NBConversation *conversation = [[NBConversation alloc] initWithCoder:conversationDecoder];
+    return conversation;
+}
+
+- (NBMessage *)message
+{
+    NSDictionary *rawMessage = [self dataWithKey:kNBAPIResponseKeyUserMessage ofType:[NSDictionary class]];
+    NBDictionaryDecoder *messageDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawMessage];
+    NBMessage *message = [[NBMessage alloc] initWithCoder:messageDecoder];
+    return message;
 }
 
 @end

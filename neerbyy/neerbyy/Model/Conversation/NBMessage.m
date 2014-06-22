@@ -8,6 +8,7 @@
 
 #import "NBMessage.h"
 #import "NBDictionaryDecoder.h"
+#import "NBPersistanceManager.h"
 
 #pragma mark - Constants
 
@@ -38,7 +39,7 @@ static NSString * const kNBMessageKeyDate = @"created_at";
         self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBMessageKeyIdentifier];
         self.content = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBMessageKeyContent];
         self.authorDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBMessageKeyAuthor];
-        self.dateTimeString = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBMessageKeyDate];
+        self.dateTimeString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBMessageKeyDate];
     }
     
     return self;
@@ -67,6 +68,17 @@ static NSString * const kNBMessageKeyDate = @"created_at";
     dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     dateFormat.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     return [dateFormat dateFromString:self.dateTimeString];
+}
+
+- (BOOL)isFromCurrentUser
+{
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    if (persistanceManager.isConnected == NO)
+        return NO;
+    
+    NBUser *currentUser = persistanceManager.currentUser;
+    BOOL isSameUser = [self.author isEqualToUser:currentUser];
+    return isSameUser;
 }
 
 @end

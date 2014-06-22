@@ -23,31 +23,76 @@
 
 #pragma mark - Public methods
 
-- (void)configureWithMessage:(id)message
++ (CGFloat)heightForMessage:(NBMessage *)message width:(CGFloat)width
+{
+    static CGFloat const totalHeightPadding = 35.f;
+    static CGFloat const totalWidthPadding = 90.f;
+
+    CGFloat labelHeight = CGRectGetHeight([message.content boundingRectWithSize:CGSizeMake(width - totalWidthPadding, 0)
+                                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                                     attributes:@{NSFontAttributeName: [[NBTheme sharedTheme].font fontWithSize:12.f]}
+                                                                        context:nil]);
+    CGFloat height = labelHeight + totalHeightPadding;
+    
+    return height;
+}
+
+- (void)configureWithMessage:(NBMessage *)message
+{
+    BOOL isFromCurrentUser = [message isFromCurrentUser];
+
+    [self themeCellWithSender:isFromCurrentUser];
+    [self configureMessageLabelWithContent:message.content];
+}
+
+- (void)themeCellWithSender:(BOOL)isSenderCurrentUser
 {
     NBTheme *theme = [NBTheme sharedTheme];
-
-    if (arc4random() % 2)
+    NSTextAlignment alignment;
+    UIColor *backgroundColor;
+    UIColor *foregourndColor;
+    CGFloat leadingSpace;
+    CGFloat trailingSpace;
+    
+    if (isSenderCurrentUser)
     {
-        self.messageLabel.textAlignment = NSTextAlignmentRight;
-        self.backgroundImageView.backgroundColor = theme.lightGreenColor;
-        self.messageLabel.textColor = theme.whiteColor;
-        self.imageViewLeadingConstraint.constant = 30.f;
-        self.imageViewTrailingConstraint.constant = 10.f;
+        alignment = NSTextAlignmentRight;
+        backgroundColor = theme.lightGreenColor;
+        foregourndColor = theme.whiteColor;
+        leadingSpace = 80.f;
+        trailingSpace = 10.f;
     }
     else
     {
-        self.messageLabel.textAlignment = NSTextAlignmentLeft;
-        self.backgroundImageView.backgroundColor = theme.beigeColor;
-        self.messageLabel.textColor = theme.darkGrayColor;
-        self.imageViewLeadingConstraint.constant = 10.f;
-        self.imageViewTrailingConstraint.constant = 30.f;
+        alignment = NSTextAlignmentLeft;
+        backgroundColor = theme.beigeColor;
+        foregourndColor = theme.darkGrayColor;
+        leadingSpace = 10.f;
+        trailingSpace = 80.f;
     }
     
-    [self layoutSubviews];
+    self.messageLabel.textAlignment = alignment;
+    self.backgroundImageView.backgroundColor = backgroundColor;
+    self.messageLabel.textColor = foregourndColor;
+    self.imageViewLeadingConstraint.constant = leadingSpace;
+    self.imageViewTrailingConstraint.constant = trailingSpace;
+    
+    [self layoutIfNeeded];
+}
+
+- (void)configureMessageLabelWithContent:(NSString *)content
+{
+    self.messageLabel.text = content;
 }
 
 #pragma mark - NBTableViewCell
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    self.backgroundImageView.layer.cornerRadius = 5.f;
+}
 
 - (void)setHighlighted:(BOOL)highlighted
 { }

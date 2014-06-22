@@ -7,11 +7,14 @@
 //
 
 #import "NBUser.h"
+#import "NBMessage.h"
 
 @interface NBConversation : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSNumber *identifier;
 @property (readonly, nonatomic) NSArray *latestMessages;
 @property (readonly, nonatomic) NBUser *recipient;
+
+- (void)addMessage:(NBMessage *)message;
 
 @end

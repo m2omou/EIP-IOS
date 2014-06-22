@@ -31,4 +31,17 @@
     return [NSString stringWithFormat:@"%@%@ %@", prefix, distanceString, distanceUnit];
 }
 
++ (NSString *)stringForDate:(NSDate *)date
+{
+    if (date == nil)
+        return @"Date indéterminée";
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.doesRelativeDateFormatting = YES;
+    dateFormatter.dateStyle = NSDateFormatterShortStyle;
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    
+    return [dateFormatter stringFromDate:date];
+}
+
 @end

@@ -545,7 +545,7 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
                                                                       params:parameters
                                                                      mainKey:nil
                                                                   httpMethod:kNBAPIHTTPMethodGET];
-    operation.APIResponseClass = [NBAPIREsponseMessageList class];
+    operation.APIResponseClass = [NBAPIResponseMessageList class];
     return operation;
 }
 
@@ -557,7 +557,7 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
                                                                       params:parameters
                                                                      mainKey:kNBAPIMainKeyMessage
                                                                   httpMethod:kNBAPIHTTPMethodPOST];
-    operation.APIResponseClass = [NBAPIREsponseMessageList class];
+    operation.APIResponseClass = [NBAPIResponseMessage class];
     return operation;
 }
 

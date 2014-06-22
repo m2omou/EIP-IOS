@@ -35,7 +35,6 @@
 {
     if (self.onLongPress)
         self.onLongPress(self);
-    NSLog(@"Long press");
 }
 
 #pragma mark - Public methods

@@ -8,6 +8,7 @@
 
 #import "NBConversationListViewController.h"
 #import "NBConversationTableViewCell.h"
+#import "NBConversationViewController.h"
 
 
 #pragma mark - Constants
@@ -17,7 +18,7 @@ static NSString * const kNBConversationCellIdentifier = @"NBConversationTableVie
 #pragma mark -
 
 
-@interface NBConversationListViewController ()
+@interface NBConversationListViewController () <NBConversationViewControllerDelegate>
 
 @end
 
@@ -37,6 +38,27 @@ static NSString * const kNBConversationCellIdentifier = @"NBConversationTableVie
     };
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    static NSString * const kNBMessagesListSegue = @"messagesViewController";
+
+    if ([segue.identifier isEqualToString:kNBMessagesListSegue])
+    {
+        NBConversationViewController *conversationViewController = segue.destinationViewController;
+        conversationViewController.conversation = [self selectedConversation];
+        conversationViewController.delegate = self;
+    }
+}
+
+#pragma mark - NBConversationViewControllerDelegate
+
+- (void)conversationViewController:(NBConversationViewController *)conversationViewController latestMessageDidChange:(NBMessage *)message
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+
 #pragma mark - Properties
 
 - (void)setConversations:(NSArray *)conversations
@@ -47,6 +69,19 @@ static NSString * const kNBConversationCellIdentifier = @"NBConversationTableVie
 - (NSArray *)conversations
 {
     return self.data;
+}
+
+#pragma mark - Other methods
+
+- (NBConversation *)selectedConversation
+{
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    return [self conversationAtIndexPath:selectedIndexPath];
+}
+
+- (NBConversation *)conversationAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.conversations[indexPath.row];
 }
 
 @end

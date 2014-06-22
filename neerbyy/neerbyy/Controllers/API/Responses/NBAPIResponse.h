@@ -13,6 +13,8 @@
 @class NBPublication;
 @class NBVote;
 @class NBComment;
+@class NBMessage;
+@class NBConversation;
 
 @interface NBAPIResponse : NSObject
 
@@ -100,8 +102,15 @@
 
 @end
 
-@interface NBAPIREsponseMessageList : NBAPIResponse
+@interface NBAPIResponseMessageList : NBAPIResponse
 
 @property (readonly, nonatomic) NSArray *messages;
+
+@end
+
+@interface NBAPIResponseMessage : NBAPIResponse
+
+@property (readonly, nonatomic) NBConversation *conversation;
+@property (readonly, nonatomic) NBMessage *message;
 
 @end

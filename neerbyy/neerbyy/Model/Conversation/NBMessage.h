@@ -15,4 +15,6 @@
 @property (readonly, nonatomic) NBUser *author;
 @property (readonly, nonatomic) NSDate *dateTime;
 
+- (BOOL)isFromCurrentUser;
+
 @end

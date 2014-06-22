@@ -8,7 +8,7 @@
 
 #import "NBMessageListViewController.h"
 #import "NBMessageTableViewCell.h"
-
+#import "NBMessage.h"
 
 #pragma mark - Constants
 
@@ -30,13 +30,20 @@ static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdent
 {
     [super viewDidLoad];
     
-    self.messages = @[@1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1, @1];
-    
     self.reuseIdentifier = kNBMessageCellIdentifier;
-    self.onConfigureCell = ^(NBMessageTableViewCell *cell, id associatedMessage, NSUInteger dataIdx)
+    self.onConfigureCell = ^(NBMessageTableViewCell *cell, NBMessage *associatedMessage, NSUInteger dataIdx)
     {
         [cell configureWithMessage:associatedMessage];
     };
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NBMessage *message = [self messageAtIndexPath:indexPath];
+    CGFloat height = [NBMessageTableViewCell heightForMessage:message width:CGRectGetWidth(self.tableView.bounds)];
+    return height;
 }
 
 #pragma mark - Properties
@@ -46,9 +53,14 @@ static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdent
     self.data = messages;
 }
 
-- (NSArray *)messagess
+- (NSArray *)messages
 {
     return self.data;
+}
+
+- (NBMessage *)messageAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.messages[indexPath.row];
 }
 
 @end

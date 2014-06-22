@@ -7,10 +7,11 @@
 //
 
 #import "NBTableViewCell.h"
-
+#import "NBConversation.h"
+#import "NBMessage.h"
 
 @interface NBConversationTableViewCell : NBTableViewCell
 
-- (void)configureWithConversation:(id)conversation;
+- (void)configureWithConversation:(NBConversation *)conversation;
 
 @end
