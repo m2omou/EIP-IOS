@@ -89,4 +89,16 @@ static NSString * const kNBUserKeySettingsID = @"settings_id";
     return [user.identifier isEqualToNumber:self.identifier];
 }
 
+- (NSString *)completeName
+{
+    if (self.firstname.length && self.lastname.length)
+        return [NSString stringWithFormat:@"%@ %@", self.firstname, self.lastname];
+    else if (self.firstname.length)
+        return self.firstname;
+    else if (self.lastname.length)
+        return self.lastname;
+    else
+        return @"";
+}
+
 @end

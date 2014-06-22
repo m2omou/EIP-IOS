@@ -19,5 +19,6 @@
 @property (strong, nonatomic) NSNumber *settingsID;
 
 - (BOOL)isEqualToUser:(NBUser *)user;
+- (NSString *)completeName;
 
 @end
