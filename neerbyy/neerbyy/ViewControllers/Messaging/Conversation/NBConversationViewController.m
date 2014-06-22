@@ -27,8 +27,15 @@
     
     if ([segue.identifier isEqualToString:kNBMessageListSegue])
     {
+        __weak NBConversationViewController *weakSelf = self;
         self.messageListViewController = segue.destinationViewController;
         self.messageListViewController.messages = self.conversation.latestMessages;
+        self.messageListViewController.onMoreData = ^(NBMessage *lastMessage) {
+            [weakSelf fetchMessagesSince:lastMessage];
+        };
+        self.messageListViewController.onReload = ^(NBMessage *firstMessage) {
+            [weakSelf fetchMessagesBefore:firstMessage];
+        };
     }
     else if ([segue.identifier isEqualToString:kNBNewMessageSegue])
     {
@@ -46,6 +53,42 @@
     [self.conversation addMessage:message];
     if ([self.delegate respondsToSelector:@selector(conversationViewController:latestMessageDidChange:)])
         [self.delegate conversationViewController:self latestMessageDidChange:message];
+}
+
+#pragma mark - Loading messages
+
+- (void)fetchMessagesSince:(NBMessage *)message
+{
+    NSNumber *conversationIdentifier = self.conversation.identifier;
+    NSNumber *messageIdentifier = message.identifier;
+    
+    NBAPINetworkOperation *messagesOperation = [NBAPIRequest fetchMessagesForConversation:conversationIdentifier sinceId:messageIdentifier];
+    [messagesOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NBAPIResponseMessageList *response = (NBAPIResponseMessageList *)operation.APIResponse;
+        [self.messageListViewController addDatasAtBottom:response.messages];
+        [self.messageListViewController endMoreData];
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](operation, error);
+        [self.messageListViewController endMoreData];
+    }];
+    [messagesOperation enqueue];
+}
+
+- (void)fetchMessagesBefore:(NBMessage *)message
+{
+    NSNumber *conversationIdentifier = self.conversation.identifier;
+    NSNumber *messageIdentifier = message.identifier;
+    
+    NBAPINetworkOperation *messagesOperation = [NBAPIRequest fetchMessagesForConversation:conversationIdentifier afterId:messageIdentifier];
+    [messagesOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NBAPIResponseMessageList *response = (NBAPIResponseMessageList *)operation.APIResponse;
+        [self.messageListViewController addDatasAtTop:response.messages];
+        [self.messageListViewController endReload];
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](operation, error);
+        [self.messageListViewController endReload];
+    }];
+    [messagesOperation enqueue];
 }
 
 @end

@@ -37,6 +37,12 @@ static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdent
     };
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self scrollToBottomAnimated:YES];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -44,6 +50,18 @@ static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdent
     NBMessage *message = [self messageAtIndexPath:indexPath];
     CGFloat height = [NBMessageTableViewCell heightForMessage:message width:CGRectGetWidth(self.tableView.bounds)];
     return height;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 20.f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 #pragma mark - Properties
@@ -61,6 +79,19 @@ static NSString * const kNBMessageCellIdentifier = @"NBMessageTableViewCellIdent
 - (NBMessage *)messageAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.messages[indexPath.row];
+}
+
+#pragma mark - Convenience methods
+
+- (void)scrollToBottomAnimated:(BOOL)animated
+{
+    UITableView *tableView = self.tableView;
+    CGRect bounds = tableView.bounds;
+    CGSize contentSize = tableView.contentSize;
+    
+    [tableView scrollRectToVisible:CGRectMake(0, contentSize.height - CGRectGetHeight(bounds),
+                                              CGRectGetWidth(bounds), CGRectGetHeight(bounds))
+                          animated:animated];
 }
 
 @end
