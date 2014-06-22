@@ -19,10 +19,11 @@
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSString *country;
 @property (strong, nonatomic) NSString *iconURL;
+@property (strong, nonatomic) NSNumber *distance;
+@property (strong, nonatomic) NSNumber *distanceBoundary;
+@property (assign, nonatomic) BOOL currentUserCanPublish;
 
 @property (readonly, nonatomic) BOOL isFollowedByCurrentUser;
 @property (strong, nonatomic) NSNumber *followingId;
-
-- (CLLocationDistance)distanceFrom:(CLLocationCoordinate2D)coordinate;
 
 @end

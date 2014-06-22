@@ -66,8 +66,18 @@ static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
 {
     if ([identifier isEqualToString:kNBNewPublicationSegue])
     {
-        if (self.persistanceManager.isConnected)
+        if (self.persistanceManager.isConnected && self.place.currentUserCanPublish)
             return YES;
+        else if (self.persistanceManager.isConnected)
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Oups !"
+                                        message:@"Il semble que vous soyez trop loin de ce lieu pour pouvoir poster... Rapprochez vous !"
+                                       delegate:nil
+                              cancelButtonTitle:@"Annuler"
+                              otherButtonTitles:nil]
+             show];
+            return NO;
+        }
         else
         {
             NBAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
@@ -117,8 +127,7 @@ static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
 
 - (void)updateUI
 {
-    CLLocationCoordinate2D userLocation = self.persistanceManager.lastKnownLocation;
-    CLLocationDistance distance = [self.place distanceFrom:userLocation];
+    CLLocationDistance distance = self.place.distance.doubleValue;
     NSString *distanceString = [NSString stringForDistance:distance prefix:@"À "];
 
     self.title = self.place.name;

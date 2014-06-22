@@ -228,15 +228,15 @@ typedef enum : NSUInteger {
     if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentImage)
     {
         UIImage *image = [self.image normalizedImage];
-        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier atPosition:self.place.coordinate withImage:image description:description];
+        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withImage:image description:description];
     }
     else if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentLink)
     {
         NSString *url = self.urlTextField.text;
-        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier atPosition:self.place.coordinate withURL:url description:description];
+        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withURL:url description:description];
     }
     else
-        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier atPosition:self.place.coordinate withDescription:description];
+        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withDescription:description];
 
     [publishOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponsePublication *response = (NBAPIResponsePublication *)operation.APIResponse;

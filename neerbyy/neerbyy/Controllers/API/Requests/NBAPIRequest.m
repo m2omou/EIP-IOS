@@ -87,7 +87,8 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
                                                                      mainKey:kNBAPIMainKeyUser
                                                                        image:avatar
                                                                     imageKey:kNBAPIParamKeyAvatar
-                                                                  httpMethod:kNBAPIHTTPMethodPOST];
+                                                                  httpMethod:kNBAPIHTTPMethodPOST
+                                                                 addLocation:NO];
     
     operation.APIResponseClass = [NBAPIResponseUser class];
     return operation;
@@ -188,7 +189,8 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointFollowedPlaces
                                                                       params:parameters
                                                                      mainKey:nil
-                                                                  httpMethod:kNBAPIHTTPMethodGET];
+                                                                  httpMethod:kNBAPIHTTPMethodGET
+                                                                 addLocation:YES];
     operation.APIResponseClass = [NBAPIResponsePlaceList class];
     return operation;
 }
@@ -256,12 +258,9 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                          withImage:(UIImage *)image description:(NSString *)description
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withImage:(UIImage *)image description:(NSString *)description
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPlaceIdentifier : placeIdentifier,
-                                 kNBAPIParamKeyLongitude : @(position.longitude),
-                                 kNBAPIParamKeyLatitude : @(position.latitude),
                                  kNBAPIParamKeyContent : description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPublications
@@ -269,42 +268,39 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
                                                                      mainKey:kNBAPIMainKeyPublication
                                                                        image:image
                                                                     imageKey:kNBAPIParamKeyFile
-                                                                  httpMethod:kNBAPIHTTPMethodPOST];
+                                                                  httpMethod:kNBAPIHTTPMethodPOST
+                                                                 addLocation:YES];
     
     operation.APIResponseClass = [NBAPIResponsePublication class];
     return operation;
 }
 
-+ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                            withURL:(NSString *)url description:(NSString *)description
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withURL:(NSString *)url description:(NSString *)description
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPlaceIdentifier : placeIdentifier,
-                                 kNBAPIParamKeyLongitude : @(position.longitude),
-                                 kNBAPIParamKeyLatitude : @(position.latitude),
                                  kNBAPIParamKeyURL : url,
                                  kNBAPIParamKeyContent : description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPublications
                                                                       params:parameters
                                                                      mainKey:kNBAPIMainKeyPublication
-                                                                  httpMethod:kNBAPIHTTPMethodPOST];
+                                                                  httpMethod:kNBAPIHTTPMethodPOST
+                                                                 addLocation:YES];
     
     operation.APIResponseClass = [NBAPIResponsePublication class];
     return operation;
 }
 
-+ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                            withDescription:(NSString *)description
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withDescription:(NSString *)description
 {
     NSDictionary *parameters = @{kNBAPIParamKeyPlaceIdentifier : placeIdentifier,
-                                 kNBAPIParamKeyLongitude : @(position.longitude),
-                                 kNBAPIParamKeyLatitude : @(position.latitude),
                                  kNBAPIParamKeyContent : description};
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPublications
                                                                       params:parameters
                                                                      mainKey:kNBAPIMainKeyPublication
-                                                                  httpMethod:kNBAPIHTTPMethodPOST];
+                                                                  httpMethod:kNBAPIHTTPMethodPOST
+                                                                 addLocation:YES];
     
     operation.APIResponseClass = [NBAPIResponsePublication class];
     return operation;

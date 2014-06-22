@@ -21,6 +21,9 @@ static NSString * const kNBPlaceKeyCity = @"city";
 static NSString * const kNBPlaceKeyCountry = @"country";
 static NSString * const kNBPlaceKeyIconURL = @"icon";
 static NSString * const kNBPlaceKeyFollowingId = @"followed_place_id";
+static NSString * const kNBPlaceKeyDistance = @"distance";
+static NSString * const kNBPlaceKeyDistanceBoundary = @"distance_boundary";
+static NSString * const kNBPlaceKeyCurrentUserCanPublish = @"can_publish";
 
 #pragma mark -
 
@@ -53,6 +56,9 @@ static NSString * const kNBPlaceKeyFollowingId = @"followed_place_id";
         self.country = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyCountry];
         self.iconURL = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBPlaceKeyIconURL];
         self.followingId = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPlaceKeyFollowingId];
+        self.distance = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPlaceKeyDistance];
+        self.distanceBoundary = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBPlaceKeyDistanceBoundary];
+        self.currentUserCanPublish = [aDecoder decodeBoolForKey:kNBPlaceKeyCurrentUserCanPublish];
     }
     
     return self;
@@ -69,6 +75,9 @@ static NSString * const kNBPlaceKeyFollowingId = @"followed_place_id";
     [aCoder encodeObject:self.city forKey:kNBPlaceKeyCity];
     [aCoder encodeObject:self.iconURL forKey:kNBPlaceKeyIconURL];
     [aCoder encodeObject:self.followingId forKey:kNBPlaceKeyFollowingId];
+    [aCoder encodeObject:self.distance forKey:kNBPlaceKeyDistance];
+    [aCoder encodeObject:self.distanceBoundary forKey:kNBPlaceKeyDistanceBoundary];
+    [aCoder encodeBool:self.currentUserCanPublish forKey:kNBPlaceKeyCurrentUserCanPublish];
 }
 
 #pragma mark - Properties
@@ -83,20 +92,6 @@ static NSString * const kNBPlaceKeyFollowingId = @"followed_place_id";
 - (BOOL)isFollowedByCurrentUser
 {
     return self.followingId != nil;
-}
-
-#pragma mark - Public methods
-
-- (CLLocationDistance)distanceFrom:(CLLocationCoordinate2D)coordinate
-{
-    if (CLLocationCoordinate2DIsValid(coordinate) == NO)
-        return CLLocationDistanceMax;
-
-    CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:self.latitude longitude:self.longitude];
-    CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
-    
-    CLLocationDistance meters = [otherLocation distanceFromLocation:placeLocation];
-    return meters;
 }
 
 @end

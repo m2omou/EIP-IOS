@@ -55,12 +55,19 @@ static NBAPINetworkEngine *engine;
 
 + (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey httpMethod:(NSString *)method
 {
-    return [self operationWithPath:path params:params mainKey:mainKey image:nil imageKey:nil httpMethod:method];
+    return [self operationWithPath:path params:params mainKey:mainKey image:nil imageKey:nil httpMethod:method addLocation:NO];
 }
 
-+ (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey image:(UIImage *)image imageKey:(NSString *)imageKey httpMethod:(NSString *)method
++ (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey httpMethod:(NSString *)method addLocation:(BOOL)shouldAddLocation
+{
+    return [self operationWithPath:path params:params mainKey:mainKey image:nil imageKey:nil httpMethod:method addLocation:shouldAddLocation];
+}
+
++ (NBAPINetworkOperation *)operationWithPath:(NSString *)path params:(NSDictionary *)params mainKey:(NSString *)mainKey image:(UIImage *)image imageKey:(NSString *)imageKey httpMethod:(NSString *)method addLocation:(BOOL)shouldAddLocation
 {
     path = [path stringByAppendingString:kNBAPIFormat];
+    if (shouldAddLocation)
+        params = [self paramsByAddingLocationOnParams:params];
     params = [params encodeNestedDictionaryWithPrefix:mainKey];
 
     NBAPINetworkOperation *operation = (NBAPINetworkOperation *)[[NBAPINetworkEngine engine] operationWithPath:path
@@ -83,17 +90,22 @@ static NBAPINetworkEngine *engine;
     return (NBAPINetworkOperation *)operation;
 }
 
-+ (void)addAuthHeaderIfNeeded:(NBAPINetworkOperation *)operation
++ (NSDictionary *)paramsByAddingLocationOnParams:(NSDictionary *)params
 {
-    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    static NSString * const kNBAPIParamKeyLongitude = @"user_longitude";
+    static NSString * const kNBAPIParamKeyLatitude = @"user_latitude";
+
+    NSMutableDictionary *parameters = [params mutableCopy];
     
-    if (persistanceManager.isConnected)
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    CLLocationCoordinate2D position = persistanceManager.lastKnownLocation;
+    if (CLLocationCoordinate2DIsValid(position))
     {
-        NBUser *user = persistanceManager.currentUser;
-        NSString *token = user.token;
-        NSString *formattedToken = [NSString stringWithFormat:@"Token token=\"%@\"", token];
-        [operation setHeader:@"Authorization" withValue:formattedToken];
+        parameters[kNBAPIParamKeyLongitude] = @(position.longitude);
+        parameters[kNBAPIParamKeyLatitude] = @(position.latitude);
     }
+    
+    return [parameters copy];
 }
 
 @end

@@ -48,6 +48,11 @@
     return [[self decodeObjectOfClass:[NSNumber class] forKey:key] floatValue];
 }
 
+- (BOOL)decodeBoolForKey:(NSString *)key
+{
+    return [[self decodeObjectOfClass:[NSNumber class] forKey:key] boolValue];
+}
+
 - (BOOL)allowsKeyedCoding
 {
     return YES;

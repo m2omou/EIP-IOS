@@ -31,12 +31,9 @@
 + (NBAPINetworkOperation *)fetchPublicationsForPlace:(NSString *)placeIdentifier;
 + (NBAPINetworkOperation *)fetchPublicationsForPlace:(NSString *)placeIdentifier sinceId:(NSNumber *)sinceId;
 + (NBAPINetworkOperation *)fetchPublicationsForPlace:(NSString *)placeIdentifier afterId:(NSNumber *)afterId;
-+ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                          withImage:(UIImage *)image description:(NSString *)description;
-+ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                            withURL:(NSString *)url description:(NSString *)description;
-+ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier atPosition:(CLLocationCoordinate2D)position
-                                    withDescription:(NSString *)description;
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withImage:(UIImage *)image description:(NSString *)description;
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withURL:(NSString *)url description:(NSString *)description;
++ (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withDescription:(NSString *)description;
 + (NBAPINetworkOperation *)deletePublication:(NSNumber *)publicationId;
 + (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description;
 

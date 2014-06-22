@@ -13,6 +13,7 @@
 - (id)decodeObjectForKey:(NSString *)key;
 - (id)decodeObjectOfClass:(Class)aClass forKey:(NSString *)key;
 - (float)decodeFloatForKey:(NSString *)key;
+- (BOOL)decodeBoolForKey:(NSString *)key;
 
 @end
 

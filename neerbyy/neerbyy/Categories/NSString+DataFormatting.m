@@ -12,7 +12,7 @@
 
 + (NSString *)stringForDistance:(CLLocationDistance)distance prefix:(NSString *)prefix
 {
-    if (distance == CLLocationDistanceMax)
+    if (distance == CLLocationDistanceMax || distance == 0.0f)
         return @"Distance indéterminée";
     
     NSString *distanceUnit;
