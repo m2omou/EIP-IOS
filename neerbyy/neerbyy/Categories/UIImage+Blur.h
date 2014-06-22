@@ -8,6 +8,7 @@
 
 @interface UIImage (Blur)
 
+- (UIImage *)normalizedImage;
 - (UIImage *)blurredImageWithRadius:(CGFloat)radius;
 
 @end

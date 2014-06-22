@@ -8,6 +8,7 @@
 
 #import "NBNewPublicationViewController.h"
 #import "UITextField+Required.h"
+#import "UIImage+Blur.h"
 #import "NBLabel.h"
 #import "NBUser.h"
 
@@ -226,7 +227,7 @@ typedef enum : NSUInteger {
     NBAPINetworkOperation *publishOperation;
     if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentImage)
     {
-        UIImage *image = self.image;
+        UIImage *image = [self.image normalizedImage];
         publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier atPosition:self.place.coordinate withImage:image description:description];
     }
     else if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentLink)
