@@ -31,6 +31,13 @@
     };
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.descriptionTextView becomeFirstResponder];
+}
+
 #pragma mark - Theming
 
 - (void)themeDescriptionTextView
