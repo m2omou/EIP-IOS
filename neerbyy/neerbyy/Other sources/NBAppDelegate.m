@@ -60,10 +60,8 @@
 //    if (hasSeenTutorial)
         return ;
 
-    UINavigationController *loginViewController = [UIStoryboard loginViewController];
     NBTutorialViewController *tutorialViewController = [UIStoryboard tutorialViewController];
     [self presentLoginViewControllerOnViewController:self.window.rootViewController animated:NO completion:^{
-        [loginViewController presentViewController:tutorialViewController animated:NO completion:nil];
         [self.window.rootViewController.presentedViewController presentViewController:tutorialViewController animated:NO completion:nil];
     }];
 }
