@@ -18,6 +18,7 @@
 #import "NBConversation.h"
 #import "NBMessage.h"
 #import "NBConversation.h"
+#import "NBPlaceCategory.h"
 
 #pragma mark - Constants
 
@@ -38,6 +39,8 @@ static NSString * const kNBAPIResponseKeyConversationList = @"conversations";
 static NSString * const kNBAPIResponseKeyConversation = @"conversation";
 static NSString * const kNBAPIResponseKeyMessageList = @"messages";
 static NSString * const kNBAPIResponseKeyUserMessage = @"message";
+static NSString * const kNBAPIResponseKeyCategoryList = @"categories";
+static NSString * const kNBAPIResponseKeyUserList = @"users";
 
 #pragma mark -
 
@@ -340,6 +343,48 @@ static NSString * const kNBAPIResponseKeyUserMessage = @"message";
     NBDictionaryDecoder *messageDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawMessage];
     NBMessage *message = [[NBMessage alloc] initWithCoder:messageDecoder];
     return message;
+}
+
+@end
+
+#pragma mark - Category list
+
+@implementation NBAPIResponseCategoryList
+
+- (NSArray *)categories
+{
+    NSArray *rawCategories = [self dataWithKey:kNBAPIResponseKeyCategoryList ofType:[NSArray class]];
+    
+    NSMutableArray *categories = [NSMutableArray array];
+    for (NSDictionary *rawCategory in rawCategories)
+    {
+        NBDictionaryDecoder *categoryDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawCategory];
+        NBPlaceCategory *category = [[NBPlaceCategory alloc] initWithCoder:categoryDecoder];
+        [categories addObject:category];
+    }
+    
+    return [categories copy];
+}
+
+@end
+
+#pragma mark - User list
+
+@implementation NBAPIResponseUserList
+
+- (NSArray *)users
+{
+    NSArray *rawUsers = [self dataWithKey:kNBAPIResponseKeyUserList ofType:[NSArray class]];
+    
+    NSMutableArray *users = [NSMutableArray array];
+    for (NSDictionary *rawUser in rawUsers)
+    {
+        NBDictionaryDecoder *userDecoder = [NBDictionaryDecoder dictonaryCoderWithData:rawUser];
+        NBUser *user = [[NBUser alloc] initWithCoder:userDecoder];
+        [users addObject:user];
+    }
+    
+    return [users copy];
 }
 
 @end

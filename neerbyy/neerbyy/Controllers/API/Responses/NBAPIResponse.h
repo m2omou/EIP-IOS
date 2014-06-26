@@ -114,3 +114,15 @@
 @property (readonly, nonatomic) NBMessage *message;
 
 @end
+
+@interface NBAPIResponseCategoryList : NBAPIResponse
+
+@property (readonly, nonatomic) NSArray *categories;
+
+@end
+
+@interface NBAPIResponseUserList : NBAPIResponse
+
+@property (readonly, nonatomic) NSArray *users;
+
+@end

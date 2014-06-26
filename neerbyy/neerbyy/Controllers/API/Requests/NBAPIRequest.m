@@ -52,13 +52,17 @@ static NSString * const kNBAPIParamKeyReportReason = @"reason";
 static NSString * const kNBAPIParamKeyValue = @"value";
 static NSString * const kNBAPIParamKeyConversationIdentifier = @"conversation_id";
 static NSString * const kNBAPIParamKeyRecipentIdentifier = @"recipient_id";
+static NSString * const kNBAPIParamKeyCategory = @"category_id";
+static NSString * const kNBAPIParamKeyQuery = @"query";
 
 static NSString * const kNBAPIEndpointLogin = @"sessions";
 static NSString * const kNBAPIEndpointLogout = @"log_out";
 static NSString * const kNBAPIEndpointRegister = @"users";
 static NSString * const kNBAPIEndpointForgotPassword = @"password_resets";
 static NSString * const kNBAPIEndpointUsers = @"users";
+static NSString * const kNBAPIEndpointSearchUsers = @"search/users";
 static NSString * const kNBAPIEndpointPlaces = @"places";
+static NSString * const kNBAPIEndpointSearchPlaces = @"search/places";
 static NSString * const kNBAPIEndpointFollowedPlaces = @"followed_places";
 static NSString * const kNBAPIEndpointPublications = @"publications";
 static NSString * const kNBAPIEndpointReportPublications = @"report_publications";
@@ -68,6 +72,7 @@ static NSString * const kNBAPIEndpointComments = @"comments";
 static NSString * const kNBAPIEndpointReportComments = @"report_comments";
 static NSString * const kNBAPIEndpointConversations = @"conversations";
 static NSString * const kNBAPIEndpointMessages = @"messages";
+static NSString * const kNBAPIEndpointCategories = @"categories";
 
 #pragma mark -
 
@@ -149,19 +154,49 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
 
 
 
++ (NBAPINetworkOperation *)fetchCategories
+{
+    NSDictionary *parameters = @{};
+    
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointCategories
+                                                                      params:parameters
+                                                                     mainKey:nil
+                                                                  httpMethod:kNBAPIHTTPMethodGET];
+    
+    operation.APIResponseClass = [NBAPIResponseCategoryList class];
+    return operation;
+}
 
-
-+ (NBAPINetworkOperation *)fetchPlacesAroundCoordinate:(CLLocationCoordinate2D)coordinate
++ (NBAPINetworkOperation *)fetchPlacesAroundCoordinate:(CLLocationCoordinate2D)coordinate withCategory:(NSString *)categoryId
 {
     NSDictionary *parameters = @{kNBAPIParamKeyLongitude : @(coordinate.longitude),
                                  kNBAPIParamKeyLatitude : @(coordinate.latitude),
                                  kNBAPIParamKeyLimit: @50};
+    if (categoryId)
+    {
+        NSMutableDictionary *mutableParams = [parameters mutableCopy];
+        mutableParams[kNBAPIParamKeyCategory] = categoryId;
+        parameters = [mutableParams copy];
+    }
     
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPlaces
                                                                       params:parameters
                                                                      mainKey:nil
                                                                   httpMethod:kNBAPIHTTPMethodGET];
 
+    operation.APIResponseClass = [NBAPIResponsePlaceList class];
+    return operation;
+}
+
++ (NBAPINetworkOperation *)fetchPlacesWithName:(NSString *)name
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyQuery: name};
+    
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointSearchPlaces
+                                                                      params:parameters
+                                                                     mainKey:nil
+                                                                  httpMethod:kNBAPIHTTPMethodGET];
+    
     operation.APIResponseClass = [NBAPIResponsePlaceList class];
     return operation;
 }
@@ -555,6 +590,34 @@ static NSString * const kNBAPIEndpointMessages = @"messages";
                                                                   httpMethod:kNBAPIHTTPMethodPOST];
     operation.APIResponseClass = [NBAPIResponseMessage class];
     return operation;
+}
+
+
+
+
++ (NBAPINetworkOperation *)fetchUserWithUsername:(NSString *)username
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyQuery: username};
+    
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointSearchUsers
+                                                                      params:parameters
+                                                                     mainKey:nil
+                                                                  httpMethod:kNBAPIHTTPMethodGET];
+    
+    operation.APIResponseClass = [NBAPIResponseUserList class];
+    return operation;
+}
+
++ (NBAPINetworkOperation *)fetchSettings
+{
+    NSAssert(NO, @"Not implemented yet");
+    return nil;
+}
+
++ (NBAPINetworkOperation *)updateSettings:(NBSettings *)settings
+{
+    NSAssert(NO, @"Not implemented yet");
+    return nil;
 }
 
 @end

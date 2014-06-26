@@ -8,6 +8,7 @@
 
 #import "NBUser.h"
 #import "NBDictionaryDecoder.h"
+#import "NBSettings.h"
 
 
 #pragma mark - Constants
@@ -21,6 +22,7 @@ static NSString * const kNBUserKeyAvatar = @"avatar";
 static NSString * const kNBUserKeyAvatarThumbnail = @"avatar_thumb";
 static NSString * const kNBUserKeyToken = @"auth_token";
 static NSString * const kNBUserKeySettingsID = @"settings_id";
+static NSString * const kNBUSerKeySettings = @"settings";
 
 #pragma mark -
 
@@ -28,6 +30,7 @@ static NSString * const kNBUserKeySettingsID = @"settings_id";
 
 @property (strong, nonatomic) NSString *avatarURLString;
 @property (strong, nonatomic) NSString *avatarThumbnailURLString;
+@property (strong, nonatomic) NSDictionary *settingsDictionary;
 
 @end
 
@@ -50,6 +53,7 @@ static NSString * const kNBUserKeySettingsID = @"settings_id";
         self.avatarThumbnailURLString = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyAvatarThumbnail];
         self.token = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBUserKeyToken];
         self.settingsID = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBUserKeySettingsID];
+        self.settingsDictionary = [aDecoder decodeObjectOfClass:[NSDictionary class] forKey:kNBUSerKeySettings];
     }
     
     return self;
@@ -66,6 +70,7 @@ static NSString * const kNBUserKeySettingsID = @"settings_id";
     [aCoder encodeObject:self.avatarThumbnailURLString forKey:kNBUserKeyAvatarThumbnail];
     [aCoder encodeObject:self.token forKey:kNBUserKeyToken];
     [aCoder encodeObject:self.settingsID forKey:kNBUserKeySettingsID];
+    [aCoder encodeObject:self.settingsDictionary forKey:kNBUSerKeySettings];
 }
 
 #pragma mark - Properties
@@ -80,6 +85,15 @@ static NSString * const kNBUserKeySettingsID = @"settings_id";
     if (!self.avatarThumbnailURLString.length)
         return self.avatarURL;
     return [NSURL URLWithString:self.avatarThumbnailURLString];
+}
+
+- (NBSettings *)settings
+{
+    if (!self.settingsDictionary.allKeys.count)
+        return nil;
+    NBDictionaryDecoder *settingsDecoder = [NBDictionaryDecoder dictonaryCoderWithData:self.settingsDictionary];
+    NBSettings *settings = [[NBSettings alloc] initWithCoder:settingsDecoder];
+    return settings;
 }
 
 #pragma mark - Public methods

@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 neerbyy. All rights reserved.
 //
 
+@class NBSettings;
+
 @interface NBUser : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSNumber *identifier;
@@ -17,6 +19,7 @@
 @property (readonly, nonatomic) NSURL *avatarThumbnailURL;
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSNumber *settingsID;
+@property (readonly, nonatomic) NBSettings *settings;
 
 - (BOOL)isEqualToUser:(NBUser *)user;
 - (NSString *)completeName;

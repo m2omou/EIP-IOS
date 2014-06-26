@@ -17,6 +17,7 @@
 #import "NBPlaceAnnotationView.h"
 #import "NBPlaceAnnotation.h"
 #import "NBPlace.h"
+#import "NBPlaceCategory.h"
 
 
 #pragma mark - Constants
@@ -47,6 +48,8 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 
 @property (strong, nonatomic) CCHMapClusterController *mapClusterController;
 @property (strong, nonatomic) NSArray *savedAnnotations;
+
+@property (strong, nonatomic) NBPlaceCategory *selectedCategory;
 
 @end
 
@@ -241,8 +244,9 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 - (void)loadPlacesInMap
 {
     CLLocationCoordinate2D centerCoordinate = self.mapView.centerCoordinate;
+    NSString *selectedCategory = self.selectedCategory.identifier;
     
-    NBAPINetworkOperation *fetchPlacesOperation = [NBAPIRequest fetchPlacesAroundCoordinate:centerCoordinate];
+    NBAPINetworkOperation *fetchPlacesOperation = [NBAPIRequest fetchPlacesAroundCoordinate:centerCoordinate withCategory:selectedCategory];
     [fetchPlacesOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)completedOperation.APIResponse;
         

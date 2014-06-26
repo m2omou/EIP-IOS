@@ -9,6 +9,7 @@
 #import <MapKit/MapKit.h>
 #import "NBReport.h"
 #import "NBVote.h"
+#import "NBSettings.h"
 @class NBAPINetworkOperation;
 
 
@@ -21,7 +22,9 @@
 
 + (NBAPINetworkOperation *)sendForgetPasswordWithEmail:(NSString *)email;
 
-+ (NBAPINetworkOperation *)fetchPlacesAroundCoordinate:(CLLocationCoordinate2D)coordinate;
++ (NBAPINetworkOperation *)fetchCategories;
++ (NBAPINetworkOperation *)fetchPlacesAroundCoordinate:(CLLocationCoordinate2D)coordinate withCategory:(NSString *)categoryId;
++ (NBAPINetworkOperation *)fetchPlacesWithName:(NSString *)name;
 + (NBAPINetworkOperation *)fetchFollowedPlaces;
 + (NBAPINetworkOperation *)fetchFollowedPlacesSinceId:(NSNumber *)sinceId;
 + (NBAPINetworkOperation *)fetchFollowedPlacesAfterId:(NSNumber *)afterId;
@@ -55,11 +58,14 @@
 + (NBAPINetworkOperation *)fetchConversations;
 + (NBAPINetworkOperation *)fetchConversationsSinceId:(NSNumber *)sinceId;
 + (NBAPINetworkOperation *)fetchConversationsAfterId:(NSNumber *)afterId;
-
 + (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId;
 + (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId sinceId:(NSNumber *)sinceId;
 + (NBAPINetworkOperation *)fetchMessagesForConversation:(NSNumber *)conversationId afterId:(NSNumber *)afterId;
-
 + (NBAPINetworkOperation *)sendMessageToUser:(NSNumber *)userIdentifier withContent:(NSString *)content;
+
++ (NBAPINetworkOperation *)fetchUserWithUsername:(NSString *)username;
+
++ (NBAPINetworkOperation *)fetchSettings;
++ (NBAPINetworkOperation *)updateSettings:(NBSettings *)settings;
 
 @end
