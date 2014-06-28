@@ -100,7 +100,6 @@
 
     [loginOperation addCompletionHandler:^(NBAPINetworkOperation *completedOperation) {
         NBAPIResponseUser *response = (NBAPIResponseUser *)completedOperation.APIResponse;
-
         [self setupAndDismissWithCurrentUser:response.user password:self.passwordTextField.text];
         
     } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
@@ -148,6 +147,7 @@
         [self.validationButton setImage:nil forState:UIControlStateNormal];
         
         self.validationButton.userInteractionEnabled = YES;
+        [self enableValidationButtonIfNeeded];
     }];
 }
 
