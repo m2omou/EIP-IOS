@@ -33,6 +33,9 @@ static NSString * const kNBNewMessageSegue = @"newMessageSegue";
     [self.avatarImageView setImageFromURL:self.user.avatarURL placeHolderImage:[UIImage imageNamed:@"img-avatar"]];
     self.usernameLabel.text = self.user.username;
     self.realNameLabel.text = [self.user completeName];
+    if ([self.user currentUserCanSendMessage] == NO) {
+        self.navigationItem.rightBarButtonItems = @[];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -23,5 +23,6 @@
 
 - (BOOL)isEqualToUser:(NBUser *)user;
 - (NSString *)completeName;
+- (BOOL)currentUserCanSendMessage;
 
 @end

@@ -14,11 +14,21 @@
 @interface NBConversationViewController () <NBNewMessageViewControllerDelegate>
 
 @property (strong, nonatomic) NBMessageListViewController *messageListViewController;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *messageButton;
 
 @end
 
 
 @implementation NBConversationViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    if ([self.conversation.recipient currentUserCanSendMessage] == NO) {
+        self.navigationItem.rightBarButtonItems = @[];
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

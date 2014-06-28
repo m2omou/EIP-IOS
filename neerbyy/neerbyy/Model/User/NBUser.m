@@ -9,6 +9,7 @@
 #import "NBUser.h"
 #import "NBDictionaryDecoder.h"
 #import "NBSettings.h"
+#import "NBPersistanceManager.h"
 
 
 #pragma mark - Constants
@@ -113,6 +114,14 @@ static NSString * const kNBUSerKeySettings = @"settings";
         return self.lastname;
     else
         return @"";
+}
+
+- (BOOL)currentUserCanSendMessage
+{
+    NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
+    return persistanceManager.isConnected &&
+           persistanceManager.currentUser.settings.canBeContactedByOtherUsers &&
+           self.settings.canBeContactedByOtherUsers;
 }
 
 @end

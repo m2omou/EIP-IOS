@@ -1997,7 +1997,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="U7o-Lt-rJK" customClass="NBCircleImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="U7o-Lt-rJK" customClass="NBCircleImageView">
                                             <rect key="frame" x="10" y="10" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="IYq-EL-lb6"/>
@@ -2266,66 +2266,52 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nc-bd-eTG">
-                                                <rect key="frame" x="20" y="198" width="280" height="50"/>
+                                                <rect key="frame" x="20" y="190" width="280" height="50"/>
                                                 <subviews>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mot de passe actuel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4m-Na-1sL" customClass="NBTextField">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="6jg-SU-xC0"/>
-                                                        </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nouveau mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-5D-RVc" customClass="NBTextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="JNi-DA-EAh"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YM7-3Z-nOc" customClass="NBPrimaryButton">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="AYm-To-pzz"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Changer de mot de passe">
-                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="YM7-3Z-nOc" firstAttribute="leading" secondItem="3nc-bd-eTG" secondAttribute="leading" id="0Zt-3O-oQS"/>
                                                     <constraint firstItem="g4m-Na-1sL" firstAttribute="leading" secondItem="3nc-bd-eTG" secondAttribute="leading" id="T9I-89-4f6"/>
                                                     <constraint firstAttribute="trailing" secondItem="g4m-Na-1sL" secondAttribute="trailing" id="U6g-mo-Szn"/>
-                                                    <constraint firstItem="YM7-3Z-nOc" firstAttribute="top" secondItem="3nc-bd-eTG" secondAttribute="top" id="VUa-mf-FQN"/>
-                                                    <constraint firstAttribute="trailing" secondItem="YM7-3Z-nOc" secondAttribute="trailing" id="YF6-VU-sUC"/>
-                                                    <constraint firstAttribute="trailing" secondItem="JRS-5D-RVc" secondAttribute="trailing" id="bKZ-S2-eSc"/>
                                                     <constraint firstAttribute="bottom" secondItem="g4m-Na-1sL" secondAttribute="bottom" id="dR5-NB-fhO"/>
-                                                    <constraint firstItem="JRS-5D-RVc" firstAttribute="top" secondItem="g4m-Na-1sL" secondAttribute="bottom" constant="8" id="h1e-yP-4c4"/>
                                                     <constraint firstItem="g4m-Na-1sL" firstAttribute="top" secondItem="3nc-bd-eTG" secondAttribute="top" id="iJ5-wO-51K"/>
-                                                    <constraint firstItem="JRS-5D-RVc" firstAttribute="leading" secondItem="3nc-bd-eTG" secondAttribute="leading" id="mOA-ot-vxa"/>
                                                 </constraints>
                                             </view>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nouveau mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-5D-RVc" customClass="NBTextField">
+                                                <rect key="frame" x="20" y="248" width="280" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="JNi-DA-EAh"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="trailing" secondItem="37n-FE-EEO" secondAttribute="trailing" id="4qm-lF-7YD"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="height" secondItem="bKy-gX-Zt3" secondAttribute="height" id="5aQ-te-qsY"/>
                                             <constraint firstItem="3nc-bd-eTG" firstAttribute="trailing" secondItem="bKy-gX-Zt3" secondAttribute="trailing" id="8Z8-RO-nML"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="leading" secondItem="JRS-5D-RVc" secondAttribute="leading" id="8nt-zI-2vJ"/>
+                                            <constraint firstItem="bKy-gX-Zt3" firstAttribute="height" secondItem="g4m-Na-1sL" secondAttribute="height" id="CR5-lf-SXd"/>
                                             <constraint firstItem="37n-FE-EEO" firstAttribute="leading" secondItem="8Qg-3b-uH8" secondAttribute="leading" constant="20" id="Imr-1a-eEN"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="height" secondItem="JRS-5D-RVc" secondAttribute="height" id="Pcv-Sf-ZiR"/>
+                                            <constraint firstItem="JRS-5D-RVc" firstAttribute="top" secondItem="g4m-Na-1sL" secondAttribute="bottom" constant="8" id="RyM-VF-icg"/>
                                             <constraint firstAttribute="trailing" secondItem="37n-FE-EEO" secondAttribute="trailing" constant="20" id="TnJ-GR-lyk"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="height" secondItem="37n-FE-EEO" secondAttribute="height" id="UTJ-Fw-7Mt"/>
                                             <constraint firstItem="3nc-bd-eTG" firstAttribute="leading" secondItem="bKy-gX-Zt3" secondAttribute="leading" id="Xbc-Es-MUU"/>
                                             <constraint firstItem="37n-FE-EEO" firstAttribute="top" secondItem="8Qg-3b-uH8" secondAttribute="top" constant="16" id="cuh-Zu-nvu"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="trailing" secondItem="bKy-gX-Zt3" secondAttribute="trailing" id="eO9-ii-SyB"/>
-                                            <constraint firstItem="3nc-bd-eTG" firstAttribute="top" secondItem="bKy-gX-Zt3" secondAttribute="bottom" constant="16" id="exR-f9-wdu"/>
+                                            <constraint firstItem="3nc-bd-eTG" firstAttribute="top" secondItem="bKy-gX-Zt3" secondAttribute="bottom" constant="8" id="exR-f9-wdu"/>
                                             <constraint firstAttribute="height" constant="354" id="kFA-7w-3zh"/>
                                             <constraint firstItem="bKy-gX-Zt3" firstAttribute="top" secondItem="WSQ-ME-nEe" secondAttribute="bottom" constant="8" id="ma6-K2-4bm"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="leading" secondItem="bKy-gX-Zt3" secondAttribute="leading" id="u98-e1-p0T"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="trailing" secondItem="JRS-5D-RVc" secondAttribute="trailing" id="ueN-N4-6vR"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="leading" secondItem="37n-FE-EEO" secondAttribute="leading" id="uhv-79-hgz"/>
-                                            <constraint firstAttribute="width" constant="320" id="x9A-Xj-9HZ"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="top" secondItem="37n-FE-EEO" secondAttribute="bottom" constant="8" id="yCi-ez-2UH"/>
                                         </constraints>
                                     </view>
@@ -2350,6 +2336,7 @@
                             <constraint firstItem="g0M-bl-eqK" firstAttribute="top" secondItem="W31-Yv-0yI" secondAttribute="bottom" id="Opr-ur-w5M"/>
                             <constraint firstItem="cck-n0-tXp" firstAttribute="top" secondItem="W31-Yv-0yI" secondAttribute="bottom" id="aeM-hN-fWi"/>
                             <constraint firstItem="tbd-xE-919" firstAttribute="top" secondItem="cck-n0-tXp" secondAttribute="bottom" id="gHS-vu-pHK"/>
+                            <constraint firstAttribute="width" secondItem="8Qg-3b-uH8" secondAttribute="width" id="zUv-n1-i8t"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -2414,7 +2401,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="dEq-Xo-ota"/>
+        <segue reference="OJ2-Og-ftU"/>
         <segue reference="z11-xh-bEq"/>
-        <segue reference="LyW-2h-ljV"/>
     </inferredMetricsTieBreakers>
 </document>
