@@ -20,6 +20,9 @@
 + (NBAPINetworkOperation *)loginWithUsername:(NSString *)username password:(NSString *)password;
 + (NBAPINetworkOperation *)logout;
 
++ (NBAPINetworkOperation *)updateFirstName:(NSString *)firstName lastName:(NSString *)lastName username:(NSString *)username
+                                     email:(NSString *)email password:(NSString *)password avatar:(UIImage *)avatar;
+
 + (NBAPINetworkOperation *)sendForgetPasswordWithEmail:(NSString *)email;
 
 + (NBAPINetworkOperation *)fetchCategories;
@@ -30,7 +33,6 @@
 + (NBAPINetworkOperation *)fetchFollowedPlacesAfterId:(NSNumber *)afterId;
 + (NBAPINetworkOperation *)followPlace:(NSString *)placeId;
 + (NBAPINetworkOperation *)unfollowPlace:(NSNumber *)followingId;
-
 
 + (NBAPINetworkOperation *)fetchPublicationsForPlace:(NSString *)placeIdentifier;
 + (NBAPINetworkOperation *)fetchPublicationsForPlace:(NSString *)placeIdentifier sinceId:(NSNumber *)sinceId;

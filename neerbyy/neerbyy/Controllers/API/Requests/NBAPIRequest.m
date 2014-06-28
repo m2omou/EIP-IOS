@@ -54,6 +54,8 @@ static NSString * const kNBAPIParamKeyConversationIdentifier = @"conversation_id
 static NSString * const kNBAPIParamKeyRecipentIdentifier = @"recipient_id";
 static NSString * const kNBAPIParamKeyCategory = @"category_id";
 static NSString * const kNBAPIParamKeyQuery = @"query";
+static NSString * const kNBAPIParamKeyFirstname = @"firstname";
+static NSString * const kNBAPIParamKeyLastname = @"lastname";
 
 static NSString * const kNBAPIEndpointLogin = @"sessions";
 static NSString * const kNBAPIEndpointLogout = @"log_out";
@@ -129,6 +131,38 @@ static NSString * const kNBAPIEndpointCategories = @"categories";
                                                                      mainKey:nil
                                                                   httpMethod:kNBAPIHTTPMethodGET];
     operation.APIResponseClass = [NBAPIResponse class];
+    return operation;
+}
+
+
+
+
+
++ (NBAPINetworkOperation *)updateFirstName:(NSString *)firstName lastName:(NSString *)lastName username:(NSString *)username
+                                     email:(NSString *)email password:(NSString *)password avatar:(UIImage *)avatar
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyFirstname : firstName,
+                                 kNBAPIParamKeyLastname : lastName,
+                                 kNBAPIParamKeyUsername : username,
+                                 kNBAPIParamKeyEmail : email};
+    NSNumber *endPointParam = [NBPersistanceManager sharedManager].currentUser.identifier;
+    NSString *endPoint = [NSString stringWithFormat:@"%@/%@", kNBAPIEndpointUsers, endPointParam];
+    if (password.length)
+    {
+        NSMutableDictionary *mutableParameters = [parameters mutableCopy];
+        mutableParameters[kNBAPIParamKeyPassword] = password;
+        parameters = [mutableParameters copy];
+    }
+
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:endPoint
+                                                                      params:parameters
+                                                                     mainKey:kNBAPIMainKeyUser
+                                                                       image:avatar
+                                                                    imageKey:kNBAPIParamKeyAvatar
+                                                                  httpMethod:kNBAPIHTTPMethodPUT
+                                                                 addLocation:NO];
+    
+    operation.APIResponseClass = [NBAPIResponseUser class];
     return operation;
 }
 

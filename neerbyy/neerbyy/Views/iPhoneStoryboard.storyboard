@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ueF-Ja-o0V">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ueF-Ja-o0V">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -91,14 +90,14 @@
         <scene sceneID="g07-ud-GrQ">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="RJ3-CS-YAW" customClass="NBMenuTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" bounces="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="utc-5O-amj">
+                    <tableView key="view" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" bounces="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="utc-5O-amj">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="jaE-8h-hSI">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBRootNavigationController" textLabel="iSC-6j-N5d" imageView="Ty5-ji-zeY" rowHeight="69" style="IBUITableViewCellStyleDefault" id="1Ok-ce-5Lk" customClass="NBMenuTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBRootNavigationController" textLabel="iSC-6j-N5d" imageView="Ty5-ji-zeY" rowHeight="69" style="IBUITableViewCellStyleDefault" id="1Ok-ce-5Lk" customClass="NBMenuTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ok-ce-5Lk" id="A9B-Bc-7lO">
@@ -122,7 +121,7 @@
                                             <segue destination="1Of-RF-2wr" kind="custom" identifier="NBRootNavigationController" customClass="ECSlidingSegue" id="6a7-cD-zpy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="HOW-w4-mVV" imageView="WO4-Gd-0me" rowHeight="69" style="IBUITableViewCellStyleDefault" id="tE9-Lo-mdc" customClass="NBMenuTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="HOW-w4-mVV" imageView="WO4-Gd-0me" rowHeight="69" style="IBUITableViewCellStyleDefault" id="tE9-Lo-mdc" customClass="NBMenuTableViewCell">
                                         <rect key="frame" x="0.0" y="69" width="280" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tE9-Lo-mdc" id="7ay-Fc-mIN">
@@ -146,7 +145,7 @@
                                             <segue destination="77m-hp-xIp" kind="custom" identifier="NBFeedNavigationController" customClass="ECSlidingSegue" id="aws-CJ-Tda"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="I9c-1P-vXT" imageView="W9z-sh-EMh" rowHeight="69" style="IBUITableViewCellStyleDefault" id="bLD-Uy-KaT" customClass="NBMenuTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="I9c-1P-vXT" imageView="W9z-sh-EMh" rowHeight="69" style="IBUITableViewCellStyleDefault" id="bLD-Uy-KaT" customClass="NBMenuTableViewCell">
                                         <rect key="frame" x="0.0" y="138" width="280" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bLD-Uy-KaT" id="tSl-Lq-CQw">
@@ -170,7 +169,7 @@
                                             <segue destination="I8Y-tj-HnF" kind="custom" identifier="NBFavoritePlacesNavigationController" customClass="ECSlidingSegue" id="mr0-2m-xqn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="DaV-YU-UWG" imageView="LhR-BD-WKb" rowHeight="69" style="IBUITableViewCellStyleDefault" id="7E0-8x-DIZ" customClass="NBMenuTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="DaV-YU-UWG" imageView="LhR-BD-WKb" rowHeight="69" style="IBUITableViewCellStyleDefault" id="7E0-8x-DIZ" customClass="NBMenuTableViewCell">
                                         <rect key="frame" x="0.0" y="207" width="280" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7E0-8x-DIZ" id="XQe-c5-Ivd">
@@ -194,7 +193,7 @@
                                             <segue destination="KaM-I4-dWe" kind="custom" identifier="NBMessagingNavigationController" customClass="ECSlidingSegue" id="shC-03-hdH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Gdw-0N-cze" imageView="R1Q-ml-21M" rowHeight="69" style="IBUITableViewCellStyleDefault" id="zi4-Fw-9ep" customClass="NBMenuTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Gdw-0N-cze" imageView="R1Q-ml-21M" rowHeight="69" style="IBUITableViewCellStyleDefault" id="zi4-Fw-9ep" customClass="NBMenuTableViewCell">
                                         <rect key="frame" x="0.0" y="276" width="280" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zi4-Fw-9ep" id="yG5-h6-foV">
@@ -218,7 +217,7 @@
                                             <segue destination="mDR-pZ-34f" kind="custom" identifier="NBProfileNavigationController" customClass="ECSlidingSegue" id="13P-Lf-B2u"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="czV-0p-j1N" imageView="OVe-v3-M09" rowHeight="69" style="IBUITableViewCellStyleDefault" id="ot3-2x-JbH" customClass="NBMenuTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="czV-0p-j1N" imageView="OVe-v3-M09" rowHeight="69" style="IBUITableViewCellStyleDefault" id="ot3-2x-JbH" customClass="NBMenuTableViewCell">
                                         <rect key="frame" x="0.0" y="345" width="280" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ot3-2x-JbH" id="EGn-sO-XPz">
@@ -438,7 +437,7 @@
                                     <action selector="pressedContinueAsGuestButton:" destination="MDg-HE-ON4" eventType="touchUpInside" id="lW7-Rq-qZq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouZ-Ud-Vyv" customClass="NBSecondaryButton">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouZ-Ud-Vyv" customClass="NBSecondaryButton">
                                 <rect key="frame" x="180" y="522" width="131" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <state key="normal" title="CRÉER UN COMPTE">
@@ -737,7 +736,7 @@
                                     <action selector="pressedImageButton:" destination="8nS-L9-eqX" eventType="touchUpInside" id="yDE-bA-c87"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-mV-u7x">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KVE-mV-u7x">
                                 <rect key="frame" x="20" y="235" width="280" height="113"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="yahoo"/>
@@ -814,12 +813,12 @@
         <scene sceneID="xq9-rN-PBy">
             <objects>
                 <tableViewController id="Cok-fq-kam" customClass="NBPublicationListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" id="t8C-Sy-xA8">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="22" sectionFooterHeight="22" id="t8C-Sy-xA8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBPublicationTableViewCellIdentifier" rowHeight="85" id="xl4-6f-kMD" customClass="NBPublicationTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBPublicationTableViewCellIdentifier" rowHeight="85" id="xl4-6f-kMD" customClass="NBPublicationTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xl4-6f-kMD" id="VPe-Q9-HJw">
@@ -1068,7 +1067,7 @@
                                     <outlet property="delegate" destination="taE-ZG-n09" id="Th0-pO-tP9"/>
                                 </connections>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55G-Li-odg">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55G-Li-odg">
                                 <rect key="frame" x="20" y="74" width="280" height="274"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1142,7 +1141,7 @@
                                     <outlet property="delegate" destination="drE-ST-ge1" id="FC1-uB-K1j"/>
                                 </connections>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-M2-1LR">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Jq-M2-1LR">
                                 <rect key="frame" x="20" y="74" width="280" height="274"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1216,7 +1215,7 @@
                                     <outlet property="delegate" destination="7Z8-9K-lNJ" id="cqd-nE-dN2"/>
                                 </connections>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e34-hP-ghO">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e34-hP-ghO">
                                 <rect key="frame" x="20" y="118" width="280" height="230"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1247,7 +1246,6 @@
                             </label>
                             <pickerView appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ubj-6v-yyC">
                                 <rect key="frame" x="0.0" y="406" width="320" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="7Z8-9K-lNJ" id="3PT-b6-nIm"/>
                                     <outlet property="delegate" destination="7Z8-9K-lNJ" id="5RF-3C-h5h"/>
@@ -1291,12 +1289,12 @@
         <scene sceneID="6wK-uc-iVx">
             <objects>
                 <tableViewController id="Fab-YG-9Oa" customClass="NBCommentListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="mtp-zI-gs0">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="mtp-zI-gs0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBCommentTableViewCellIdentifier" rowHeight="91" id="tU4-m2-eLp" customClass="NBCommentTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBCommentTableViewCellIdentifier" rowHeight="91" id="tU4-m2-eLp" customClass="NBCommentTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="91"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tU4-m2-eLp" id="44E-L2-jpn">
@@ -1462,7 +1460,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3m4-De-j8D">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </scrollView>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kh3-g6-H2Q">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kh3-g6-H2Q">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="qsx-Cm-Miz">
@@ -1848,12 +1846,12 @@
         <scene sceneID="4xD-Bp-Mgb">
             <objects>
                 <tableViewController storyboardIdentifier="NBPlaceListViewController" id="AnX-BQ-EC0" customClass="NBPlaceListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="zsH-yj-iPs">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="zsH-yj-iPs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBPlaceTableViewCellIdentifier" rowHeight="60" id="yML-Gd-Zdn" customClass="NBPlaceTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBPlaceTableViewCellIdentifier" rowHeight="60" id="yML-Gd-Zdn" customClass="NBPlaceTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yML-Gd-Zdn" id="9p5-Me-Pgd">
@@ -1985,12 +1983,12 @@
         <scene sceneID="xDi-4c-MtA">
             <objects>
                 <tableViewController id="dvc-QO-EBu" customClass="NBConversationListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="bJD-Ji-LI8">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="bJD-Ji-LI8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBConversationTableViewCellIdentifier" rowHeight="80" id="BF5-uJ-QN3" customClass="NBConversationTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBConversationTableViewCellIdentifier" rowHeight="80" id="BF5-uJ-QN3" customClass="NBConversationTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BF5-uJ-QN3" id="oNE-iA-Qm7">
@@ -2105,12 +2103,12 @@
         <scene sceneID="2fE-vA-Yg0">
             <objects>
                 <tableViewController id="CGE-UJ-R0u" customClass="NBMessageListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="qM9-8g-cg9">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="90" sectionHeaderHeight="22" sectionFooterHeight="22" id="qM9-8g-cg9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBMessageTableViewCellIdentifier" rowHeight="90" id="fQk-A5-HNb" customClass="NBMessageTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NBMessageTableViewCellIdentifier" rowHeight="90" id="fQk-A5-HNb" customClass="NBMessageTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fQk-A5-HNb" id="VM1-a3-cGu">
@@ -2219,33 +2217,44 @@
             </objects>
             <point key="canvasLocation" x="-1259" y="5249"/>
         </scene>
-        <!--Generic Form View Controller - Mon profil-->
+        <!--Profile View Controller - Mon profil-->
         <scene sceneID="dbs-2b-ikY">
             <objects>
-                <viewController id="riK-Ob-aV8" customClass="NBGenericFormViewController" sceneMemberID="viewController">
+                <viewController id="riK-Ob-aV8" customClass="NBProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W31-Yv-0yI"/>
                         <viewControllerLayoutGuide type="bottom" id="tbd-xE-919"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5NB-pI-Ri4">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="636"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cck-n0-tXp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="636"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="g0M-bl-eqK" customClass="NBBlurredZoomedImageView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="g0M-bl-eqK" customClass="NBBlurredZoomedImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-avatar" translatesAutoresizingMaskIntoConstraints="NO" id="4Va-hq-zVF" customClass="NBCircleImageView">
-                                        <rect key="frame" x="108" y="23" width="104" height="104"/>
+                                    <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnn-9t-FeT">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <button appearanceType="aqua" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRp-Xe-4dq" customClass="NBPrimaryButton">
+                                        <rect key="frame" x="106" y="20" width="109" height="109"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="104" id="63H-5k-0cQ"/>
-                                            <constraint firstAttribute="width" constant="104" id="CVi-h7-CKe"/>
+                                            <constraint firstAttribute="width" secondItem="jRp-Xe-4dq" secondAttribute="height" multiplier="1:1" id="FJz-Dw-WFI"/>
+                                            <constraint firstAttribute="height" constant="109" id="wTC-vq-ciU"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" image="img-avatar">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted" image="img-add-avatar"/>
+                                        <connections>
+                                            <action selector="tappedPictureButton:" destination="riK-Ob-aV8" eventType="touchUpInside" id="Pni-Ia-aN5"/>
+                                        </connections>
+                                    </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qg-3b-uH8">
-                                        <rect key="frame" x="0.0" y="150" width="320" height="354"/>
+                                        <rect key="frame" x="0.0" y="150" width="320" height="434"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Prénom" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="37n-FE-EEO" customClass="NBTextField">
                                                 <rect key="frame" x="20" y="16" width="280" height="50"/>
@@ -2253,79 +2262,92 @@
                                                     <constraint firstAttribute="height" constant="50" id="7ay-fc-lFw"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSQ-ME-nEe" customClass="NBTextField">
                                                 <rect key="frame" x="20" y="74" width="280" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Adresse email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKy-gX-Zt3" customClass="NBTextField">
+                                            <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nom d'utilisateur" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zbf-QF-SiI" customClass="NBTextField">
                                                 <rect key="frame" x="20" y="132" width="280" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nc-bd-eTG">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Adresse email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bKy-gX-Zt3" customClass="NBTextField">
                                                 <rect key="frame" x="20" y="190" width="280" height="50"/>
-                                                <subviews>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mot de passe actuel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4m-Na-1sL" customClass="NBTextField">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </textField>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="g4m-Na-1sL" firstAttribute="leading" secondItem="3nc-bd-eTG" secondAttribute="leading" id="T9I-89-4f6"/>
-                                                    <constraint firstAttribute="trailing" secondItem="g4m-Na-1sL" secondAttribute="trailing" id="U6g-mo-Szn"/>
-                                                    <constraint firstAttribute="bottom" secondItem="g4m-Na-1sL" secondAttribute="bottom" id="dR5-NB-fhO"/>
-                                                    <constraint firstItem="g4m-Na-1sL" firstAttribute="top" secondItem="3nc-bd-eTG" secondAttribute="top" id="iJ5-wO-51K"/>
-                                                </constraints>
-                                            </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nouveau mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-5D-RVc" customClass="NBTextField">
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mot de passe actuel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g4m-Na-1sL" customClass="NBTextField">
                                                 <rect key="frame" x="20" y="248" width="280" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nouveau mot de passe" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JRS-5D-RVc" customClass="NBTextField">
+                                                <rect key="frame" x="20" y="306" width="280" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="JNi-DA-EAh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                             </textField>
+                                            <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AWN-m8-b0D" customClass="NBPrimaryButton">
+                                                <rect key="frame" x="20" y="364" width="280" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <state key="normal" title="Supprimer mon compte">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="bKy-gX-Zt3" firstAttribute="height" secondItem="WSQ-ME-nEe" secondAttribute="height" id="1v9-jd-BZs"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="trailing" secondItem="JRS-5D-RVc" secondAttribute="trailing" id="2VO-Cm-8uw"/>
+                                            <constraint firstItem="zbf-QF-SiI" firstAttribute="top" secondItem="WSQ-ME-nEe" secondAttribute="bottom" constant="8" id="2vU-Tz-VC7"/>
+                                            <constraint firstItem="JRS-5D-RVc" firstAttribute="top" secondItem="g4m-Na-1sL" secondAttribute="bottom" constant="8" id="3dG-K9-xIW"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="trailing" secondItem="37n-FE-EEO" secondAttribute="trailing" id="4qm-lF-7YD"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="height" secondItem="bKy-gX-Zt3" secondAttribute="height" id="5aQ-te-qsY"/>
-                                            <constraint firstItem="3nc-bd-eTG" firstAttribute="trailing" secondItem="bKy-gX-Zt3" secondAttribute="trailing" id="8Z8-RO-nML"/>
-                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="leading" secondItem="JRS-5D-RVc" secondAttribute="leading" id="8nt-zI-2vJ"/>
-                                            <constraint firstItem="bKy-gX-Zt3" firstAttribute="height" secondItem="g4m-Na-1sL" secondAttribute="height" id="CR5-lf-SXd"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="trailing" secondItem="bKy-gX-Zt3" secondAttribute="trailing" id="Bal-5g-Mtb"/>
+                                            <constraint firstItem="bKy-gX-Zt3" firstAttribute="top" secondItem="zbf-QF-SiI" secondAttribute="bottom" constant="8" id="Bm6-iK-o4c"/>
+                                            <constraint firstItem="JRS-5D-RVc" firstAttribute="height" secondItem="AWN-m8-b0D" secondAttribute="height" id="DZG-px-K6D"/>
+                                            <constraint firstItem="zbf-QF-SiI" firstAttribute="leading" secondItem="WSQ-ME-nEe" secondAttribute="leading" id="Hh8-a1-dEN"/>
                                             <constraint firstItem="37n-FE-EEO" firstAttribute="leading" secondItem="8Qg-3b-uH8" secondAttribute="leading" constant="20" id="Imr-1a-eEN"/>
-                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="height" secondItem="JRS-5D-RVc" secondAttribute="height" id="Pcv-Sf-ZiR"/>
-                                            <constraint firstItem="JRS-5D-RVc" firstAttribute="top" secondItem="g4m-Na-1sL" secondAttribute="bottom" constant="8" id="RyM-VF-icg"/>
+                                            <constraint firstAttribute="bottom" secondItem="AWN-m8-b0D" secondAttribute="bottom" constant="20" id="LvP-lb-oed"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="leading" secondItem="bKy-gX-Zt3" secondAttribute="leading" id="Qn6-md-MZT"/>
                                             <constraint firstAttribute="trailing" secondItem="37n-FE-EEO" secondAttribute="trailing" constant="20" id="TnJ-GR-lyk"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="height" secondItem="37n-FE-EEO" secondAttribute="height" id="UTJ-Fw-7Mt"/>
-                                            <constraint firstItem="3nc-bd-eTG" firstAttribute="leading" secondItem="bKy-gX-Zt3" secondAttribute="leading" id="Xbc-Es-MUU"/>
+                                            <constraint firstItem="zbf-QF-SiI" firstAttribute="height" secondItem="WSQ-ME-nEe" secondAttribute="height" id="VlY-hb-zem"/>
                                             <constraint firstItem="37n-FE-EEO" firstAttribute="top" secondItem="8Qg-3b-uH8" secondAttribute="top" constant="16" id="cuh-Zu-nvu"/>
+                                            <constraint firstItem="JRS-5D-RVc" firstAttribute="trailing" secondItem="AWN-m8-b0D" secondAttribute="trailing" id="deP-8E-Tz6"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="trailing" secondItem="bKy-gX-Zt3" secondAttribute="trailing" id="eO9-ii-SyB"/>
-                                            <constraint firstItem="3nc-bd-eTG" firstAttribute="top" secondItem="bKy-gX-Zt3" secondAttribute="bottom" constant="8" id="exR-f9-wdu"/>
-                                            <constraint firstAttribute="height" constant="354" id="kFA-7w-3zh"/>
-                                            <constraint firstItem="bKy-gX-Zt3" firstAttribute="top" secondItem="WSQ-ME-nEe" secondAttribute="bottom" constant="8" id="ma6-K2-4bm"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="top" secondItem="bKy-gX-Zt3" secondAttribute="bottom" constant="8" id="ets-VT-N7Q"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="height" secondItem="bKy-gX-Zt3" secondAttribute="height" id="feN-Pz-Kmx"/>
+                                            <constraint firstItem="AWN-m8-b0D" firstAttribute="top" secondItem="JRS-5D-RVc" secondAttribute="bottom" constant="8" id="nAF-W2-AfG"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="height" secondItem="JRS-5D-RVc" secondAttribute="height" id="oId-hy-ada"/>
+                                            <constraint firstItem="JRS-5D-RVc" firstAttribute="leading" secondItem="AWN-m8-b0D" secondAttribute="leading" id="prv-cn-ZYe"/>
+                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="leading" secondItem="JRS-5D-RVc" secondAttribute="leading" id="taV-7E-60X"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="leading" secondItem="bKy-gX-Zt3" secondAttribute="leading" id="u98-e1-p0T"/>
-                                            <constraint firstItem="g4m-Na-1sL" firstAttribute="trailing" secondItem="JRS-5D-RVc" secondAttribute="trailing" id="ueN-N4-6vR"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="leading" secondItem="37n-FE-EEO" secondAttribute="leading" id="uhv-79-hgz"/>
+                                            <constraint firstItem="zbf-QF-SiI" firstAttribute="trailing" secondItem="WSQ-ME-nEe" secondAttribute="trailing" id="xIl-Pw-vsV"/>
                                             <constraint firstItem="WSQ-ME-nEe" firstAttribute="top" secondItem="37n-FE-EEO" secondAttribute="bottom" constant="8" id="yCi-ez-2UH"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8Qg-3b-uH8" firstAttribute="top" secondItem="cck-n0-tXp" secondAttribute="top" constant="150" id="1ny-qO-haM"/>
+                                    <constraint firstItem="dnn-9t-FeT" firstAttribute="leading" secondItem="g0M-bl-eqK" secondAttribute="leading" id="2Ic-mJ-qF6"/>
                                     <constraint firstItem="8Qg-3b-uH8" firstAttribute="leading" secondItem="cck-n0-tXp" secondAttribute="leading" id="3Bi-cc-K5i"/>
+                                    <constraint firstItem="g0M-bl-eqK" firstAttribute="centerY" secondItem="jRp-Xe-4dq" secondAttribute="centerY" id="8QK-e6-8kg"/>
                                     <constraint firstAttribute="bottom" secondItem="8Qg-3b-uH8" secondAttribute="bottom" id="97n-Zq-FYb"/>
                                     <constraint firstItem="g0M-bl-eqK" firstAttribute="leading" secondItem="cck-n0-tXp" secondAttribute="leading" id="9TH-3m-x6t"/>
                                     <constraint firstAttribute="trailing" secondItem="g0M-bl-eqK" secondAttribute="trailing" id="9j6-39-XoK"/>
-                                    <constraint firstItem="4Va-hq-zVF" firstAttribute="centerX" secondItem="g0M-bl-eqK" secondAttribute="centerX" id="GwW-L4-yjA"/>
+                                    <constraint firstItem="dnn-9t-FeT" firstAttribute="bottom" secondItem="g0M-bl-eqK" secondAttribute="bottom" id="Kfi-8L-vJE"/>
                                     <constraint firstItem="8Qg-3b-uH8" firstAttribute="top" secondItem="g0M-bl-eqK" secondAttribute="bottom" priority="750" id="Ki1-Un-K9y"/>
                                     <constraint firstAttribute="trailing" secondItem="8Qg-3b-uH8" secondAttribute="trailing" id="ZNr-Lx-nKb"/>
-                                    <constraint firstItem="4Va-hq-zVF" firstAttribute="centerY" secondItem="g0M-bl-eqK" secondAttribute="centerY" id="edC-tQ-zga"/>
+                                    <constraint firstItem="g0M-bl-eqK" firstAttribute="centerX" secondItem="jRp-Xe-4dq" secondAttribute="centerX" id="btp-r2-a2P"/>
+                                    <constraint firstItem="dnn-9t-FeT" firstAttribute="top" secondItem="g0M-bl-eqK" secondAttribute="top" id="ets-4E-5uu"/>
+                                    <constraint firstItem="dnn-9t-FeT" firstAttribute="trailing" secondItem="g0M-bl-eqK" secondAttribute="trailing" id="zbI-Nk-zpt"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -2346,22 +2368,38 @@
                                 <action selector="showSlidingMenu:" destination="riK-Ob-aV8" id="fwy-7l-Gsc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Valider" id="3cW-Ou-dmQ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Valider" id="3cW-Ou-dmQ">
+                            <connections>
+                                <action selector="tappedValidationButton:" destination="riK-Ob-aV8" id="Cup-Sc-WgD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="700"/>
                     <connections>
+                        <outlet property="backgroundView" destination="g0M-bl-eqK" id="cS1-XH-jSX"/>
+                        <outlet property="currentPasswordTextField" destination="g4m-Na-1sL" id="MmX-Oy-Lr1"/>
+                        <outlet property="deleteAccountButton" destination="AWN-m8-b0D" id="4Ie-e9-Gaw"/>
+                        <outlet property="emailTextField" destination="bKy-gX-Zt3" id="oJO-nr-Qiy"/>
+                        <outlet property="firstNameTextField" destination="37n-FE-EEO" id="9So-ip-kdl"/>
+                        <outlet property="lastNameTextField" destination="WSQ-ME-nEe" id="UWN-Yv-KCP"/>
+                        <outlet property="pickImageButton" destination="jRp-Xe-4dq" id="0MR-OJ-szk"/>
                         <outlet property="textFieldsScrollView" destination="cck-n0-tXp" id="Aoh-PS-W5U"/>
+                        <outlet property="updatedPasswordTextField" destination="JRS-5D-RVc" id="oR9-cv-I77"/>
+                        <outlet property="usernameTextField" destination="zbf-QF-SiI" id="TAK-66-hfn"/>
                         <outlet property="validationButton" destination="3cW-Ou-dmQ" id="wrg-AY-cwp"/>
                         <outlet property="viewForShowMenuPanRecognizer" destination="5NB-pI-Ri4" id="GmD-LM-JNS"/>
-                        <outletCollection property="textFields" destination="37n-FE-EEO" id="Mlm-Ah-geN"/>
-                        <outletCollection property="textFields" destination="WSQ-ME-nEe" id="af6-NT-2ui"/>
-                        <outletCollection property="textFields" destination="bKy-gX-Zt3" id="d0l-6J-a5v"/>
-                        <outletCollection property="textFields" destination="g4m-Na-1sL" id="23V-af-XD7"/>
-                        <outletCollection property="textFields" destination="JRS-5D-RVc" id="8bb-df-ZcS"/>
+                        <outletCollection property="textFields" destination="37n-FE-EEO" id="BP5-Yo-H5k"/>
+                        <outletCollection property="textFields" destination="WSQ-ME-nEe" id="dX6-7V-g6F"/>
+                        <outletCollection property="textFields" destination="zbf-QF-SiI" id="rsJ-It-THS"/>
+                        <outletCollection property="textFields" destination="bKy-gX-Zt3" id="BPj-SD-y6K"/>
+                        <outletCollection property="textFields" destination="g4m-Na-1sL" id="2eM-6A-1bX"/>
+                        <outletCollection property="textFields" destination="JRS-5D-RVc" id="HlN-HY-fK9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Myh-Ai-7Ti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-814" y="4531"/>
+            <point key="canvasLocation" x="-783" y="4453"/>
         </scene>
     </scenes>
     <resources>
