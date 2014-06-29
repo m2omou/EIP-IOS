@@ -10,6 +10,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)logoutUser;
 - (void)showLoginAlertViewWithViewController:(UIViewController *)viewController completion:(void(^)())completion;
 
 @end

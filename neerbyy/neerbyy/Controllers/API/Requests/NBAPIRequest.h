@@ -22,6 +22,7 @@
 
 + (NBAPINetworkOperation *)updateFirstName:(NSString *)firstName lastName:(NSString *)lastName username:(NSString *)username
                                      email:(NSString *)email password:(NSString *)password avatar:(UIImage *)avatar;
++ (NBAPINetworkOperation *)deleteAccount;
 
 + (NBAPINetworkOperation *)sendForgetPasswordWithEmail:(NSString *)email;
 

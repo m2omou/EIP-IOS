@@ -166,7 +166,19 @@ static NSString * const kNBAPIEndpointCategories = @"categories";
     return operation;
 }
 
-
++ (NBAPINetworkOperation *)deleteAccount
+{
+    NSDictionary *parameters = @{};
+    NSNumber *endPointParam = [NBPersistanceManager sharedManager].currentUser.identifier;
+    NSString *endPoint = [NSString stringWithFormat:@"%@/%@", kNBAPIEndpointUsers, endPointParam];
+    
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:endPoint
+                                                                      params:parameters
+                                                                     mainKey:nil
+                                                                  httpMethod:kNBAPIHTTPMethodDELETE];
+    operation.APIResponseClass = [NBAPIResponse class];
+    return operation;
+}
 
 
 

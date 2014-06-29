@@ -11,4 +11,6 @@
 
 @interface NBMenuViewController : NBGenericViewController
 
+- (void)logoutUser;
+
 @end

@@ -10,8 +10,9 @@
 #import "NBCircleImageView.h"
 #import "NBBlurredZoomedImageView.h"
 #import "NBUser.h"
+#import "NBAppDelegate.h"
 
-@interface NBProfileViewController ()
+@interface NBProfileViewController () <UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet NBPrimaryButton *pickImageButton;
 @property (strong, nonatomic) IBOutlet NBBlurredZoomedImageView *backgroundView;
@@ -102,6 +103,16 @@
     [self updateImagesWithImage:image];
 }
 
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != alertView.cancelButtonIndex)
+    {
+        [self deleteAccount];
+    }
+}
+
 #pragma mark - User interactions
 
 - (IBAction)tappedPictureButton:(id)sender
@@ -112,6 +123,11 @@
 - (IBAction)tappedValidationButton:(id)sender
 {
     [self validateForm];
+}
+
+- (IBAction)tappedDeleteAccountButton:(id)sender
+{
+    [self displayConfirmDeleteAccountAlertView];
 }
 
 #pragma mark - Convenience methods
@@ -180,6 +196,27 @@
 
     if (password.length)
         self.persistanceManager.currentUserPassword = password;
+}
+
+- (void)displayConfirmDeleteAccountAlertView
+{
+    [[[UIAlertView alloc] initWithTitle:@"Suppression de compte"
+                                message:@"Cette action ne peut pas être annulée, supprimera tous vos souvenirs, commentaires et préférences"
+                               delegate:self
+                      cancelButtonTitle:@"Annuler"
+                      otherButtonTitles:@"Supprimer", nil]
+     show];
+}
+
+- (void)deleteAccount
+{
+    NBAPINetworkOperation *deleteAccountOperation = [NBAPIRequest deleteAccount];
+    
+    [deleteAccountOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NBAppDelegate *appDelegate = (NBAppDelegate *)[UIApplication sharedApplication].delegate;
+        [appDelegate logoutUser];
+    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+    [deleteAccountOperation enqueue];
 }
 
 @end

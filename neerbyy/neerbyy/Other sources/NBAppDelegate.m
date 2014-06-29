@@ -7,11 +7,13 @@
 //
 
 #import "NBAppDelegate.h"
+#import <UIViewController+ECSlidingViewController.h>
 #import "NBTheme.h"
 #import "NBPersistanceManager.h"
 #import "NBLoginViewController.h"
 #import "UIStoryboard+NBAdditions.h"
 #import "NBTutorialViewController.h"
+#import "NBMenuViewController.h"
 
 @interface NBAppDelegate () <UIAlertViewDelegate>
 
@@ -102,8 +104,18 @@
     }
 }
 
+- (void)logoutUser
+{
+    ECSlidingViewController *slidingViewController = (ECSlidingViewController *)self.window.rootViewController;
+    NSAssert(slidingViewController && [slidingViewController isKindOfClass:[ECSlidingViewController class]], @"Couldn't get sliding view controller");
+    
+    UINavigationController *menuNavigationViewController = (UINavigationController *)slidingViewController.underLeftViewController;
+    NSAssert(menuNavigationViewController && [menuNavigationViewController isKindOfClass:[UINavigationController class]], @"Couldn't get menu view controller");
 
-
-
+    NBMenuViewController *menuViewController = (NBMenuViewController *)menuNavigationViewController.viewControllers.firstObject;
+    NSAssert(menuViewController && [menuViewController isKindOfClass:[NBMenuViewController class]], @"Couldn't get menu view controller");
+    
+    [menuViewController logoutUser];
+}
 
 @end
