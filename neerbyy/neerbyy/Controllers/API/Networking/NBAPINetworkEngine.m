@@ -17,7 +17,7 @@
 #pragma mark - Constants
 
 static NSString * const kNBAPIFormat = @".json";
-static NSString * const kNBAPIHostname = @"neerbyy.com";
+static NSString * const kNBAPIHostname = @"api.neerbyy.com";
 
 #pragma mark -
 
