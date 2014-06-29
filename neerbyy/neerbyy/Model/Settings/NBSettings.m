@@ -10,6 +10,7 @@
 
 #pragma mark - Constants
 
+static NSString * const kNBSettingsKeyIdentifier = @"identifier";
 static NSString * const kNBSettingsKeyAllowMessages = @"allow_messages";
 static NSString * const kNBSettingsKeyNotificationOnComments = @"send_notification_for_comments";
 static NSString * const kNBSettingsKeyNotificationOnMessages = @"send_notification_for_messages";
@@ -26,6 +27,7 @@ static NSString * const kNBSettingsKeyNotificationOnMessages = @"send_notificati
     
     if (self)
     {
+        self.identifier = [aDecoder decodeObjectOfClass:[NSNumber class] forKey:kNBSettingsKeyIdentifier];
         self.canBeContactedByOtherUsers = [aDecoder decodeBoolForKey:kNBSettingsKeyAllowMessages];
         self.receivesNotificationOnComments = [aDecoder decodeBoolForKey:kNBSettingsKeyNotificationOnComments];
         self.receivesNotificationOnMessages = [aDecoder decodeBoolForKey:kNBSettingsKeyNotificationOnMessages];
@@ -36,9 +38,18 @@ static NSString * const kNBSettingsKeyNotificationOnMessages = @"send_notificati
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
+    [aCoder encodeObject:self.identifier forKey:kNBSettingsKeyIdentifier];
     [aCoder encodeBool:self.canBeContactedByOtherUsers forKey:kNBSettingsKeyAllowMessages];
     [aCoder encodeBool:self.receivesNotificationOnComments forKey:kNBSettingsKeyNotificationOnComments];
     [aCoder encodeBool:self.receivesNotificationOnComments forKey:kNBSettingsKeyNotificationOnMessages];
+}
+
+- (NSDictionary *)toDictionary
+{
+    return @{kNBSettingsKeyIdentifier: self.identifier,
+             kNBSettingsKeyAllowMessages:@(self.canBeContactedByOtherUsers),
+             kNBSettingsKeyNotificationOnComments:@(self.receivesNotificationOnComments),
+             kNBSettingsKeyNotificationOnMessages:@(self.receivesNotificationOnMessages)};
 }
 
 @end

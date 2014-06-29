@@ -10,8 +10,11 @@
 
 @interface NBSettings : NSObject <NSCoding>
 
+@property (strong, nonatomic) NSNumber *identifier;
 @property (assign, nonatomic) BOOL canBeContactedByOtherUsers;
 @property (assign, nonatomic) BOOL receivesNotificationOnComments;
 @property (assign, nonatomic) BOOL receivesNotificationOnMessages;
+
+- (NSDictionary *)toDictionary;
 
 @end

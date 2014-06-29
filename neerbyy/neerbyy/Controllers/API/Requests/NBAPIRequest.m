@@ -31,6 +31,7 @@ static NSString * const kNBAPIMainKeyReportComment = @"report_comment";
 static NSString * const kNBAPIMainKeyVote = @"vote";
 static NSString * const kNBAPIMainKeyComment = @"comment";
 static NSString * const kNBAPIMainKeyMessage = @"message";
+static NSString * const kNBAPIMainKeySettings = @"setting";
 
 static NSString * const kNBAPIParamKeyIdentifier = @"id";
 static NSString * const kNBAPIParamKeyPlaceIdentifier = @"place_id";
@@ -75,6 +76,7 @@ static NSString * const kNBAPIEndpointReportComments = @"report_comments";
 static NSString * const kNBAPIEndpointConversations = @"conversations";
 static NSString * const kNBAPIEndpointMessages = @"messages";
 static NSString * const kNBAPIEndpointCategories = @"categories";
+static NSString * const kNBAPIEndpointSettings = @"settings";
 
 #pragma mark -
 
@@ -655,16 +657,19 @@ static NSString * const kNBAPIEndpointCategories = @"categories";
     return operation;
 }
 
-+ (NBAPINetworkOperation *)fetchSettings
-{
-    NSAssert(NO, @"Not implemented yet");
-    return nil;
-}
-
 + (NBAPINetworkOperation *)updateSettings:(NBSettings *)settings
 {
-    NSAssert(NO, @"Not implemented yet");
-    return nil;
+    NSDictionary *parameters = [settings toDictionary];
+    NSNumber *endPointParam = settings.identifier;
+    NSString *endPoint = [NSString stringWithFormat:@"%@/%@", kNBAPIEndpointSettings, endPointParam];
+    
+    NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:endPoint
+                                                                      params:parameters
+                                                                     mainKey:kNBAPIMainKeySettings
+                                                                  httpMethod:kNBAPIHTTPMethodPUT];
+    
+    operation.APIResponseClass = [NBAPIResponse class];
+    return operation;
 }
 
 @end

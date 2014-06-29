@@ -97,6 +97,11 @@ static NSString * const kNBUSerKeySettings = @"settings";
     return settings;
 }
 
+- (void)setSettings:(NBSettings *)settings
+{
+    self.settingsDictionary = [settings toDictionary];
+}
+
 #pragma mark - Public methods
 
 - (BOOL)isEqualToUser:(NBUser *)user

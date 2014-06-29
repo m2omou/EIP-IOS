@@ -19,10 +19,11 @@
 @property (readonly, nonatomic) NSURL *avatarThumbnailURL;
 @property (strong, nonatomic) NSString *token;
 @property (strong, nonatomic) NSNumber *settingsID;
-@property (readonly, nonatomic) NBSettings *settings;
+@property (strong, nonatomic) NBSettings *settings;
 
 - (BOOL)isEqualToUser:(NBUser *)user;
 - (NSString *)completeName;
 - (BOOL)currentUserCanSendMessage;
+
 
 @end

@@ -68,7 +68,6 @@
 
 + (NBAPINetworkOperation *)fetchUserWithUsername:(NSString *)username;
 
-+ (NBAPINetworkOperation *)fetchSettings;
 + (NBAPINetworkOperation *)updateSettings:(NBSettings *)settings;
 
 @end

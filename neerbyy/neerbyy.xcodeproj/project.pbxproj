@@ -110,6 +110,7 @@
 		9CE45190194409FE00854117 /* NBTutorialDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4518F194409FE00854117 /* NBTutorialDataSource.m */; };
 		9CE4519219442FDF00854117 /* Tuto.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4519119442FDF00854117 /* Tuto.xcassets */; };
 		9CE84ACA1833882800691739 /* NBUserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE84AC91833882800691739 /* NBUserTest.m */; };
+		9CFAC09619602A3B003002C2 /* NBConfigurationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAC09519602A3B003002C2 /* NBConfigurationTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +300,8 @@
 		9CE4518F194409FE00854117 /* NBTutorialDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBTutorialDataSource.m; path = Tutorial/NBTutorialDataSource.m; sourceTree = "<group>"; };
 		9CE4519119442FDF00854117 /* Tuto.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Tuto.xcassets; sourceTree = "<group>"; };
 		9CE84AC91833882800691739 /* NBUserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBUserTest.m; path = neerbyyTests/NBUserTest.m; sourceTree = "<group>"; };
+		9CFAC09419602A3B003002C2 /* NBConfigurationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBConfigurationTableViewController.h; path = Configuration/NBConfigurationTableViewController.h; sourceTree = "<group>"; };
+		9CFAC09519602A3B003002C2 /* NBConfigurationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBConfigurationTableViewController.m; path = Configuration/NBConfigurationTableViewController.m; sourceTree = "<group>"; };
 		BD3798AB256C4580A0AF9F4F /* libPods-neerbyyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-neerbyyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0672FB447D845D9B0D2E0DB /* Pods-neerbyyTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neerbyyTests.xcconfig"; path = "Pods/Pods-neerbyyTests.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -692,6 +695,7 @@
 				9CBBC13E18DD9B97005C5D66 /* Place */,
 				9CBBC14218DDA245005C5D66 /* Publications */,
 				9CBBC16A18DDC530005C5D66 /* User */,
+				9CFAC09319602A10003002C2 /* Configuration */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -976,6 +980,15 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
+		9CFAC09319602A10003002C2 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				9CFAC09419602A3B003002C2 /* NBConfigurationTableViewController.h */,
+				9CFAC09519602A3B003002C2 /* NBConfigurationTableViewController.m */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1214,6 +1227,7 @@
 				9C0E6D56191F0B2300EE90CA /* NBVote.m in Sources */,
 				9CE45190194409FE00854117 /* NBTutorialDataSource.m in Sources */,
 				9CA4610918DD40E700A0DD44 /* UITextField+Required.m in Sources */,
+				9CFAC09619602A3B003002C2 /* NBConfigurationTableViewController.m in Sources */,
 				9CBBC15F18DDC4CE005C5D66 /* NBPublicationViewController.m in Sources */,
 				9C3EE6F4194FD94400F5566F /* NBReportViewController.m in Sources */,
 				9CA4616518DD40E700A0DD44 /* NBPlaceAnnotation.m in Sources */,
