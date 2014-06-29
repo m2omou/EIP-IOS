@@ -68,7 +68,7 @@
     BOOL commentNotif = self.commentNotificationSwitch.isOn;
     BOOL messageNotif = self.messageNotificationSwitch.isOn;
     
-    NBSettings *settings = [NBSettings new];
+    NBSettings *settings = [NBPersistanceManager sharedManager].currentUser.settings;
     settings.canBeContactedByOtherUsers = allowContact;
     settings.receivesNotificationOnComments = commentNotif;
     settings.receivesNotificationOnMessages = messageNotif;
