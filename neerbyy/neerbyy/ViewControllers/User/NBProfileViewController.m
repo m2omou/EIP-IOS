@@ -29,6 +29,8 @@
 
 @implementation NBProfileViewController
 
+#pragma mark - View life cycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,6 +40,8 @@
     [self fetchAvatar];
     [self fillFields];
 }
+
+#pragma mark - Theming
 
 - (void)themeDeleteAccountButton
 {
@@ -53,15 +57,10 @@
 {
     NBUser *user = self.persistanceManager.currentUser;
     
-    if (!user.avatarURL) {
-        [self updateImagesWithImage:[UIImage imageNamed:@"img-add-avatar"]];
-        return ;
-    }
-
     [[NBAPINetworkEngine engine] imageAtURL:user.avatarURL completionHandler:^(UIImage *fetchedImage, NSURL *url, BOOL isInCache) {
         [self updateImagesWithImage:fetchedImage];
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
-        [self updateImagesWithImage:[UIImage imageNamed:@"img-add-avatar"]];
+        [NBAPINetworkOperation defaultErrorHandler](nil, error);
     }];
 }
 
@@ -75,19 +74,35 @@
     self.usernameTextField.text = user.username;
 }
 
-- (void)updateImagesWithImage:(UIImage *)image
+#pragma mark - NBGenericFormViewController
+
+- (void)validateForm
 {
-    [UIView animateWithDuration:.3f animations:^{
-        [self.pickImageButton setImage:image forState:UIControlStateNormal];
-        self.backgroundView.image = image;
-    }];
+    [super validateForm];
+    
+    if ([self wantsToChangePassword] && [self currentPasswordMatches] == NO)
+    {
+        [self warnCurrentPasswordDoesntMatch];
+        return ;
+    }
+    
+    NSString *firstName = self.firstNameTextField.text;
+    NSString *lastName = self.lastNameTextField.text;
+    NSString *username = self.usernameTextField.text;
+    NSString *email = self.emailTextField.text;
+    NSString *password = self.updatedPasswordTextField.text;
+    UIImage *avatar = self.avatar;
+    
+    [self updateUserWithFirstName:firstName lastName:lastName username:username email:email password:password avatar:avatar];
 }
 
-- (void)updateProfilePicture:(UIImage *)image
+- (void)pickedImage:(UIImage *)image
 {
     self.avatar = image;
     [self updateImagesWithImage:image];
 }
+
+#pragma mark - User interactions
 
 - (IBAction)tappedPictureButton:(id)sender
 {
@@ -99,50 +114,14 @@
     [self validateForm];
 }
 
-- (void)validateForm
+#pragma mark - Convenience methods
+
+- (void)updateImagesWithImage:(UIImage *)image
 {
-    [super validateForm];
-    
-    if ([self wantsToChangePassword] && [self currentPasswordMatches] == NO)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Oups !"
-                                    message:@"Le mot de passe actuel semble invalide. Veuillez réessayer"
-                                   delegate:nil
-                          cancelButtonTitle:@"Annuler"
-                          otherButtonTitles:nil]
-         show];
-        return ;
-    }
-    
-    NSString *firstName = self.firstNameTextField.text;
-    NSString *lastName = self.lastNameTextField.text;
-    NSString *username = self.usernameTextField.text;
-    NSString *email = self.emailTextField.text;
-    NSString *password = self.updatedPasswordTextField.text;
-    UIImage *avatar = self.avatar;
-    
-    NBAPINetworkOperation *profileOperation = [NBAPIRequest updateFirstName:firstName lastName:lastName username:username
-                                                                      email:email password:password avatar:avatar];
-    [profileOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
-        [self enableValidationButtonIfNeeded];
-        self.currentPasswordTextField.text = self.updatedPasswordTextField.text = @"";
-        
-        NBAPIResponseUser *response = (NBAPIResponseUser *)operation.APIResponse;
-        NBUser *user = response.user;
-
-        if (!user)
-            return [NBAPINetworkOperation defaultErrorHandler](operation, nil);
-        
-        self.persistanceManager.currentUser = user;
-        if (password.length)
-            self.persistanceManager.currentUserPassword = password;
-    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
-        [NBAPINetworkOperation defaultErrorHandler](operation, error);
-        [self enableValidationButtonIfNeeded];
+    [UIView animateWithDuration:.3f animations:^{
+        [self.pickImageButton setImage:image forState:UIControlStateNormal];
+        self.backgroundView.image = image;
     }];
-
-    [self disableValidationButton];
-    [profileOperation enqueue];
 }
 
 - (BOOL)wantsToChangePassword
@@ -153,6 +132,54 @@
 - (BOOL)currentPasswordMatches
 {
     return [self.currentPasswordTextField.text isEqualToString:self.persistanceManager.currentUserPassword];
+}
+
+- (void)warnCurrentPasswordDoesntMatch
+{
+    [[[UIAlertView alloc] initWithTitle:@"Oups !"
+                                message:@"Le mot de passe actuel semble invalide. Veuillez réessayer"
+                               delegate:nil
+                      cancelButtonTitle:@"Annuler"
+                      otherButtonTitles:nil]
+     show];
+}
+
+- (void)resetForm
+{
+    [self enableValidationButtonIfNeeded];
+    self.currentPasswordTextField.text = self.updatedPasswordTextField.text = @"";
+}
+
+- (void)updateUserWithFirstName:(NSString *)firstName lastName:(NSString *)lastName username:(NSString *)username
+                          email:(NSString *)email password:(NSString *)password avatar:(UIImage *)avatar
+{
+    NBAPINetworkOperation *profileOperation = [NBAPIRequest updateFirstName:firstName lastName:lastName username:username
+                                                                      email:email password:password avatar:avatar];
+
+    [profileOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        [self resetForm];
+        
+        NBAPIResponseUser *response = (NBAPIResponseUser *)operation.APIResponse;
+        NBUser *user = response.user;
+        if (!user)
+            return [NBAPINetworkOperation defaultErrorHandler](operation, nil);
+        
+        [self updateCurrentUserWithUser:user password:self.updatedPasswordTextField.text];
+    } errorHandler:^(NBAPINetworkOperation *operation, NSError *error) {
+        [NBAPINetworkOperation defaultErrorHandler](operation, error);
+        [self resetForm];
+    }];
+    
+    [self disableValidationButton];
+    [profileOperation enqueue];
+}
+
+- (void)updateCurrentUserWithUser:(NBUser *)user password:(NSString *)password
+{
+    self.persistanceManager.currentUser = user;
+
+    if (password.length)
+        self.persistanceManager.currentUserPassword = password;
 }
 
 @end
