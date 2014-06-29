@@ -57,8 +57,10 @@
     NBPersistanceManager *persistanceManager = [NBPersistanceManager sharedManager];
     BOOL hasSeenTutorial = persistanceManager.hasSeenTutorial;
     
-//    if (hasSeenTutorial)
+    if (hasSeenTutorial)
         return ;
+    
+    persistanceManager.hasSeenTutorial = YES;
 
     NBTutorialViewController *tutorialViewController = [UIStoryboard tutorialViewController];
     [self presentLoginViewControllerOnViewController:self.window.rootViewController animated:NO completion:^{
