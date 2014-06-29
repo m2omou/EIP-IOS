@@ -66,7 +66,7 @@ static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
 {
     if ([identifier isEqualToString:kNBNewPublicationSegue])
     {
-        if (self.persistanceManager.isConnected && self.place.currentUserCanPublish)
+        if (self.place.currentUserCanPublish)
             return YES;
         else if (self.persistanceManager.isConnected)
         {

@@ -228,7 +228,8 @@ static NSString * const kNBAPIEndpointCategories = @"categories";
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPlaces
                                                                       params:parameters
                                                                      mainKey:nil
-                                                                  httpMethod:kNBAPIHTTPMethodGET];
+                                                                  httpMethod:kNBAPIHTTPMethodGET
+                                                                 addLocation:YES];
 
     operation.APIResponseClass = [NBAPIResponsePlaceList class];
     return operation;
