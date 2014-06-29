@@ -227,7 +227,7 @@ typedef enum : NSUInteger {
     NBAPINetworkOperation *publishOperation;
     if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentImage)
     {
-        UIImage *image = [self.image normalizedImage];
+        UIImage *image = self.image;
         publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withImage:image description:description];
     }
     else if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentLink)

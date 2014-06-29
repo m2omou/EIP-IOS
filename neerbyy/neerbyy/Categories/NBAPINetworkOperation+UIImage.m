@@ -7,6 +7,7 @@
 //
 
 #import "NBAPINetworkOperation+UIImage.h"
+#import "UIImage+Blur.h"
 
 @implementation NBAPINetworkOperation (UIImage)
 
@@ -18,7 +19,7 @@
     NSString *extension = @"png";
     NSString *mimeType = [@"image" stringByAppendingPathComponent:extension];
     NSString *fileName = [key stringByAppendingPathExtension:extension];
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImagePNGRepresentation([image normalizedImage]);
     [self addData:imageData forKey:key mimeType:mimeType fileName:fileName];
 }
 
