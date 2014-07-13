@@ -244,7 +244,8 @@ static NSString * const kNBAPIEndpointSettings = @"settings";
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointSearchPlaces
                                                                       params:parameters
                                                                      mainKey:nil
-                                                                  httpMethod:kNBAPIHTTPMethodGET];
+                                                                  httpMethod:kNBAPIHTTPMethodGET
+                                                                 addLocation:YES];
     
     operation.APIResponseClass = [NBAPIResponsePlaceList class];
     return operation;
