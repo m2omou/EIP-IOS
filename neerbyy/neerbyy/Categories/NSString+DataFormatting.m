@@ -15,17 +15,26 @@
     if (distance == CLLocationDistanceMax || distance == 0.0f)
         return @"Distance indéterminée";
     
-    NSString *distanceUnit;
-    if (distance > 1000)
-        distanceUnit = @"km";
-    else
-        distanceUnit = @"m";
-
     NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
     numberFormatter.minimumIntegerDigits = 1;
-    numberFormatter.minimumFractionDigits = 1;
-    numberFormatter.maximumFractionDigits = 2;
-    numberFormatter.decimalSeparator = @",";
+    numberFormatter.minimumFractionDigits = 0;
+    numberFormatter.maximumFractionDigits = 1;
+    numberFormatter.secondaryGroupingSize = 3;
+
+    NSString *distanceUnit;
+    if (distance > 1000)
+    {
+        if (distance > 1000000)
+            numberFormatter.maximumFractionDigits = 0;
+        
+        distance /= 1000;
+        distanceUnit = @"km";
+    }
+    else
+    {
+        distanceUnit = @"m";
+        numberFormatter.maximumFractionDigits = 0;
+    }
     
     NSString *distanceString = [numberFormatter stringFromNumber:@(distance)];
     return [NSString stringWithFormat:@"%@%@ %@", prefix, distanceString, distanceUnit];
