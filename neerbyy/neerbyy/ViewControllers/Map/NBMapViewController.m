@@ -45,11 +45,18 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *filterViewTopConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *filterViewHeightConstraint;
+@property (strong, nonatomic) IBOutlet UIView *placesSearchView;
+@property (strong, nonatomic) NBPlaceListViewController *searchedPlacesViewController;
+@property (strong, nonatomic) IBOutlet NBTextField *searchTextField;
+@property (strong, nonatomic) IBOutlet UIPickerView *categoryPickerView;
 
 @property (strong, nonatomic) CCHMapClusterController *mapClusterController;
 @property (strong, nonatomic) NSArray *savedAnnotations;
 
+@property (strong, nonatomic) NSArray *categories;
 @property (strong, nonatomic) NBPlaceCategory *selectedCategory;
+
+@property (strong, nonatomic) NBAPINetworkOperation *searchPlacesOperation;
 
 @end
 
@@ -64,9 +71,23 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     
     self.hidesNavigationBar = YES;
 
+    [self initCategories];
     [self initMapClusterController];
     [self themeFilterView];
     [self themeMapView];
+    [self hideCategoryPicker];
+    [self hidePlacesSearchView];
+}
+
+- (void)initCategories
+{
+    NBAPINetworkOperation *categoriesOperation = [NBAPIRequest fetchCategories];
+    [categoriesOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+        NBAPIResponseCategoryList *response = (NBAPIResponseCategoryList *)operation.APIResponse;
+        self.categories = response.categories;
+        [self.categoryPickerView reloadAllComponents];
+    } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+    [categoriesOperation enqueue];
 }
 
 - (void)initMapClusterController
@@ -90,6 +111,53 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 - (void)themeMapView
 {
     self.mapView.tintColor = self.theme.lightGreenColor;
+}
+
+#pragma mark - UIViewController
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    static NSString *kNBSearchedPlaceSegue = @"searchedPlaceViewController";
+    
+    if ([segue.identifier isEqualToString:kNBSearchedPlaceSegue])
+    {
+        self.searchedPlacesViewController = segue.destinationViewController;
+    }
+}
+
+- (BOOL)enableValidationButtonIfNeeded
+{
+    BOOL enable = [super enableValidationButtonIfNeeded];
+    
+    if (self.searchPlacesOperation.isCancelled == NO)
+        [self.searchPlacesOperation cancel];
+    
+    NSString *text = self.searchTextField.text;
+    if (text.length > 0)
+    {
+        
+        NBPlaceListViewController *placesListViewController = self.searchedPlacesViewController;
+        self.searchPlacesOperation = [NBAPIRequest fetchPlacesWithName:self.searchTextField.text];
+        [self.searchPlacesOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
+            NBAPIResponsePlaceList *response = (NBAPIResponsePlaceList *)operation.APIResponse;
+            placesListViewController.places = response.places;
+            
+        } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
+        [self.searchPlacesOperation enqueue];
+    }
+    
+    return enable;
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    [self showPlacesSearchView];
+}
+
+- (void)tappedMainView:(UITapGestureRecognizer *)gestureRecognizer
+{
+    [super tappedMainView:gestureRecognizer];
+    [self hidePlacesSearchView];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -155,11 +223,42 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     }
 }
 
+#pragma mark - UIPickerViewDataSource, UIPickerViewDelegate
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.categories.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NBPlaceCategory *category = self.categories[row];
+    return category.description;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    [self hideCategoryPicker];
+    [self removeAllAnnotationsWithCompletion:^{
+        [self loadPlacesInMap];
+    }];
+}
+
 #pragma mark - User interactions
 
 - (IBAction)pressedFilterButton:(id)sender
 {
+    [self tappedMainView:nil];
 
+    if (self.categories.count == 0)
+        return ;
+    
+    [self showCategoryPicker];
 }
 
 - (IBAction)pressedLocationButton:(id)sender
@@ -333,6 +432,35 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     placeViewController.place = annotation.place;
 
     return placeViewController;
+}
+
+- (void)removeAllAnnotationsWithCompletion:(void (^)(void))completion
+{
+    NSArray *annotations = self.mapClusterController.annotations.allObjects;
+    [self.mapClusterController removeAnnotations:annotations withCompletionHandler:^{
+        self.savedAnnotations = [NSArray array];
+        completion();
+    }];
+}
+
+- (void)showCategoryPicker
+{
+    self.categoryPickerView.hidden = NO;
+}
+
+- (void)hideCategoryPicker
+{
+    self.categoryPickerView.hidden = YES;
+}
+
+- (void)showPlacesSearchView
+{
+    self.placesSearchView.hidden = NO;
+}
+
+- (void)hidePlacesSearchView
+{
+    self.placesSearchView.hidden = YES;
 }
 
 @end
