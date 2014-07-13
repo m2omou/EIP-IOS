@@ -12,6 +12,7 @@
 
 #pragma mark - Constants
 
+static NSString * const kNBPlaceSegue = @"placeSegue";
 static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifier";
 
 #pragma mark -
@@ -41,13 +42,22 @@ static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifie
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    static NSString * const kNBPlaceSegue = @"placeSegue";
-    
     if ([segue.identifier isEqualToString:kNBPlaceSegue])
     {
         NBPlaceViewController *placeViewController = segue.destinationViewController;
         placeViewController.place = [self selectedPlace];
     }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if ([identifier isEqualToString:kNBPlaceSegue])
+    {
+        if (self.delegate == nil)
+            return YES;
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Properties
