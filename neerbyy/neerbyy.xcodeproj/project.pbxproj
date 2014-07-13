@@ -24,6 +24,7 @@
 		9C2C526C18FEA17900603A0A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2C526B18FEA17900603A0A /* SenTestingKit.framework */; };
 		9C2C526D18FEA1B000603A0A /* NBDictionaryDecoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC08618FE615F006FAE76 /* NBDictionaryDecoderTests.m */; };
 		9C2C527018FEA40200603A0A /* NBPersistanceManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */; };
+		9C33D60B1967B0E000189CEC /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C33D60D1967B0E000189CEC /* iPhoneStoryboard.storyboard */; };
 		9C3EE6F4194FD94400F5566F /* NBReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C3EE6F3194FD94400F5566F /* NBReportViewController.m */; };
 		9C4475D118F96B63006A9FD7 /* NBKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C4475D018F96B63006A9FD7 /* NBKeychain.m */; };
 		9C5BE940183219CB00CFA647 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5BE93F183219CB00CFA647 /* Foundation.framework */; };
@@ -41,7 +42,6 @@
 		9C5BE9A8183234A200CFA647 /* neerbyyTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9C5BE9A41832322D00CFA647 /* neerbyyTests-Info.plist */; };
 		9C651B3B195EEF7C006DCD6C /* NBProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C651B3A195EEF7C006DCD6C /* NBProfileViewController.m */; };
 		9C6A8D5A192B13A40026A80A /* NBNewCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C6A8D59192B13A40026A80A /* NBNewCommentViewController.m */; };
-		9C8085A618DD46D800D62D4B /* iPhoneStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */; };
 		9C8085A818DD474200D62D4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C8085A718DD474200D62D4B /* Images.xcassets */; };
 		9C8E2AEE18A2B2BC003FDA98 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */; };
 		9C98E76018FA44EF00141412 /* NBPublication.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C98E75F18FA44EF00141412 /* NBPublication.m */; };
@@ -152,6 +152,11 @@
 		9C29A66219567B000039BBE8 /* NBNewMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBNewMessageViewController.m; path = ViewControllers/Messaging/NBNewMessageViewController.m; sourceTree = "<group>"; };
 		9C2C526B18FEA17900603A0A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9C2C526F18FEA40200603A0A /* NBPersistanceManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBPersistanceManagerTests.m; path = neerbyyTests/NBPersistanceManagerTests.m; sourceTree = "<group>"; };
+		9C33D6091967B03200189CEC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9C33D60A1967B03200189CEC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9C33D60E1967B10E00189CEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
+		9C33D6101967B1DF00189CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/iPhoneStoryboard.strings; sourceTree = "<group>"; };
+		9C33D6121967B1F300189CEC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/iPhoneStoryboard.strings; sourceTree = "<group>"; };
 		9C3EE6F2194FD94400F5566F /* NBReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBReportViewController.h; path = Report/NBReportViewController.h; sourceTree = "<group>"; };
 		9C3EE6F3194FD94400F5566F /* NBReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReportViewController.m; path = Report/NBReportViewController.m; sourceTree = "<group>"; };
 		9C4475CF18F96B63006A9FD7 /* NBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBKeychain.h; sourceTree = "<group>"; };
@@ -173,7 +178,6 @@
 		9C651B3A195EEF7C006DCD6C /* NBProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBProfileViewController.m; path = User/NBProfileViewController.m; sourceTree = "<group>"; };
 		9C6A8D58192B13A40026A80A /* NBNewCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBNewCommentViewController.h; path = Publication/Comments/NBNewCommentViewController.h; sourceTree = "<group>"; };
 		9C6A8D59192B13A40026A80A /* NBNewCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBNewCommentViewController.m; path = Publication/Comments/NBNewCommentViewController.m; sourceTree = "<group>"; };
-		9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhoneStoryboard.storyboard; sourceTree = "<group>"; };
 		9C8085A718DD474200D62D4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9C8E2AED18A2B2BC003FDA98 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9C98E75E18FA44EF00141412 /* NBPublication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NBPublication.h; path = Publication/NBPublication.h; sourceTree = "<group>"; };
@@ -767,7 +771,7 @@
 		9CA460FE18DD40E700A0DD44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9C8085A518DD46D800D62D4B /* iPhoneStoryboard.storyboard */,
+				9C33D60D1967B0E000189CEC /* iPhoneStoryboard.storyboard */,
 				9CBBC13A18DD924D005C5D66 /* TableView Cells */,
 				9CA460FF18DD40E700A0DD44 /* Buttons */,
 				9CBBC14C18DDB3CC005C5D66 /* ImageView */,
@@ -1060,6 +1064,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
+				Base,
 			);
 			mainGroup = 9C5BE933183219CB00CFA647;
 			productRefGroup = 9C5BE93D183219CB00CFA647 /* Products */;
@@ -1087,7 +1093,7 @@
 				9C5BE9A0183231E600CFA647 /* Images.xcassets in Resources */,
 				9C8085A818DD474200D62D4B /* Images.xcassets in Resources */,
 				9CA4618218DD448900A0DD44 /* Map.xcassets in Resources */,
-				9C8085A618DD46D800D62D4B /* iPhoneStoryboard.storyboard in Resources */,
+				9C33D60B1967B0E000189CEC /* iPhoneStoryboard.storyboard in Resources */,
 				9CA4617E18DD440600A0DD44 /* Logos.xcassets in Resources */,
 				9CBBC13818DD919A005C5D66 /* GothamRnd-Light.otf in Resources */,
 				9CBBC13718DD919A005C5D66 /* GothamRnd-Book.otf in Resources */,
@@ -1270,10 +1276,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9C33D60D1967B0E000189CEC /* iPhoneStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C33D60E1967B10E00189CEC /* Base */,
+				9C33D6101967B1DF00189CEC /* en */,
+				9C33D6121967B1F300189CEC /* fr */,
+			);
+			name = iPhoneStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
 		9C5BE99C183231D000CFA647 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9C5BE99D183231D000CFA647 /* en */,
+				9C33D6091967B03200189CEC /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1282,6 +1299,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9C5BE9A31832322D00CFA647 /* en */,
+				9C33D60A1967B03200189CEC /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

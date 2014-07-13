@@ -1,0 +1,261 @@
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "0LQ-lB-ma4"; */
+"0LQ-lB-ma4.title" = "Valider";
+
+/* Class = "IBUIBarButtonItem"; title = "Annuler"; ObjectID = "1IZ-Hc-f1A"; */
+"1IZ-Hc-f1A.title" = "Annuler";
+
+/* Class = "IBUINavigationItem"; title = "Souvenir"; ObjectID = "1Tv-9T-xpa"; */
+"1Tv-9T-xpa.title" = "Souvenir";
+
+/* Class = "IBUILabel"; text = "Zizou"; ObjectID = "2K9-0n-9Yy"; */
+"2K9-0n-9Yy.text" = "Zizou";
+
+/* Class = "IBUILabel"; text = "Ville, à YY,Ykm"; ObjectID = "2UZ-SZ-dky"; */
+"2UZ-SZ-dky.text" = "Ville, à YY,Ykm";
+
+/* Class = "IBUILabel"; text = "Décrivez votre souvenir..."; ObjectID = "2qL-p6-0h5"; */
+"2qL-p6-0h5.text" = "Décrivez votre souvenir...";
+
+/* Class = "IBUITextField"; placeholder = "Prénom"; ObjectID = "37n-FE-EEO"; */
+"37n-FE-EEO.placeholder" = "Prénom";
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "3cW-Ou-dmQ"; */
+"3cW-Ou-dmQ.title" = "Valider";
+
+/* Class = "IBUINavigationItem"; title = "Mon flux"; ObjectID = "3gv-s3-UqA"; */
+"3gv-s3-UqA.title" = "Mon flux";
+
+/* Class = "IBUITextField"; placeholder = "Adresse email"; ObjectID = "3hv-LU-0qI"; */
+"3hv-LU-0qI.placeholder" = "Adresse email";
+
+/* Class = "IBUISegmentedControl"; 49N-EU-veW.segmentTitles[0] = "Image"; ObjectID = "49N-EU-veW"; */
+"49N-EU-veW.segmentTitles[0]" = "Image";
+
+/* Class = "IBUISegmentedControl"; 49N-EU-veW.segmentTitles[1] = "Texte"; ObjectID = "49N-EU-veW"; */
+"49N-EU-veW.segmentTitles[1]" = "Texte";
+
+/* Class = "IBUISegmentedControl"; 49N-EU-veW.segmentTitles[2] = "Lien"; ObjectID = "49N-EU-veW"; */
+"49N-EU-veW.segmentTitles[2]" = "Lien";
+
+/* Class = "IBUINavigationItem"; title = "Utilisateur"; ObjectID = "4A9-7a-Bap"; */
+"4A9-7a-Bap.title" = "Utilisateur";
+
+/* Class = "IBUINavigationItem"; title = "Nouveau message"; ObjectID = "4SS-kU-wuf"; */
+"4SS-kU-wuf.title" = "Nouveau message";
+
+/* Class = "IBUILabel"; text = "Notifications en cas de contact par messages privés"; ObjectID = "4Y3-JS-lax"; */
+"4Y3-JS-lax.text" = "Notifications en cas de contact par messages privés";
+
+/* Class = "IBUILabel"; text = "Utilisateur"; ObjectID = "4vL-z6-fmM"; */
+"4vL-z6-fmM.text" = "Utilisateur";
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "5Iv-7i-5yj"; */
+"5Iv-7i-5yj.title" = "Valider";
+
+/* Class = "IBUINavigationItem"; title = "Configuration"; ObjectID = "6PK-E7-kpn"; */
+"6PK-E7-kpn.title" = "Configuration";
+
+/* Class = "IBUILabel"; text = "Saisissez votre commentaire..."; ObjectID = "6hD-4C-q1f"; */
+"6hD-4C-q1f.text" = "Saisissez votre commentaire...";
+
+/* Class = "IBUILabel"; text = "Prévisualisation du dernier message. Lorem ipsum dolor sit amet, consectetur adipiscing."; ObjectID = "76j-b1-96N"; */
+"76j-b1-96N.text" = "Prévisualisation du dernier message. Lorem ipsum dolor sit amet, consectetur adipiscing.";
+
+/* Class = "IBUILabel"; text = "Description de la publication. Lorem ipsum dolor sit amet, consectetur adipiscing."; ObjectID = "8DP-7k-rlf"; */
+"8DP-7k-rlf.text" = "Description de la publication. Lorem ipsum dolor sit amet, consectetur adipiscing.";
+
+/* Class = "IBUILabel"; text = "Recevoir des notifications lorsqu'on commente l'une de mes publications"; ObjectID = "8NK-7p-NTy"; */
+"8NK-7p-NTy.text" = "Recevoir des notifications lorsqu'on commente l'une de mes publications";
+
+/* Class = "IBUILabel"; text = "Commentaire d'un utilisateur. Lorem ipsum dolor sit amet, consectetur adipiscing elit."; ObjectID = "9bz-Vi-BS4"; */
+"9bz-Vi-BS4.text" = "Commentaire d'un utilisateur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+
+/* Class = "IBUILabel"; text = "Distance"; ObjectID = "9zU-A5-c8e"; */
+"9zU-A5-c8e.text" = "Distance";
+
+/* Class = "IBUILabel"; text = "Zinédine Zidane"; ObjectID = "ADd-0U-ToP"; */
+"ADd-0U-ToP.text" = "Zinédine Zidane";
+
+/* Class = "IBUIButton"; normalTitle = "Supprimer mon compte"; ObjectID = "AWN-m8-b0D"; */
+"AWN-m8-b0D.normalTitle" = "Supprimer mon compte";
+
+/* Class = "IBUIButton"; normalTitle = "CONTINUER SANS COMPTE"; ObjectID = "Blj-1o-aNN"; */
+"Blj-1o-aNN.normalTitle" = "CONTINUER SANS COMPTE";
+
+/* Class = "IBUITextField"; placeholder = "Adresse email"; ObjectID = "Buh-v3-jqX"; */
+"Buh-v3-jqX.placeholder" = "Adresse email";
+
+/* Class = "IBUILabel"; text = "Utilisateur"; ObjectID = "CVE-SP-kYd"; */
+"CVE-SP-kYd.text" = "Utilisateur";
+
+/* Class = "IBUILabel"; text = "Messagerie"; ObjectID = "DaV-YU-UWG"; */
+"DaV-YU-UWG.text" = "Messagerie";
+
+/* Class = "IBUILabel"; text = "Autoriser les autres utilisateurs à me contacter"; ObjectID = "Dc2-g6-7Wr"; */
+"Dc2-g6-7Wr.text" = "Autoriser les autres utilisateurs à me contacter";
+
+/* Class = "IBUINavigationItem"; title = "Mon profil"; ObjectID = "Er8-oh-qfQ"; */
+"Er8-oh-qfQ.title" = "Mon profil";
+
+/* Class = "IBUILabel"; text = "Mon profil"; ObjectID = "Gdw-0N-cze"; */
+"Gdw-0N-cze.text" = "Mon profil";
+
+/* Class = "IBUINavigationItem"; title = "Lieux favoris"; ObjectID = "HJN-8Y-BbX"; */
+"HJN-8Y-BbX.title" = "Lieux favoris";
+
+/* Class = "IBUILabel"; text = "Mon flux"; ObjectID = "HOW-w4-mVV"; */
+"HOW-w4-mVV.text" = "Mon flux";
+
+/* Class = "IBUINavigationItem"; title = "Inscription"; ObjectID = "He7-54-JOX"; */
+"He7-54-JOX.title" = "Inscription";
+
+/* Class = "IBUILabel"; text = "Lieux favoris"; ObjectID = "I9c-1P-vXT"; */
+"I9c-1P-vXT.text" = "Lieux favoris";
+
+/* Class = "IBUISegmentedControl"; IHL-gd-Mi4.segmentTitles[0] = "Lieux"; ObjectID = "IHL-gd-Mi4"; */
+"IHL-gd-Mi4.segmentTitles[0]" = "Lieux";
+
+/* Class = "IBUISegmentedControl"; IHL-gd-Mi4.segmentTitles[1] = "Souvenirs"; ObjectID = "IHL-gd-Mi4"; */
+"IHL-gd-Mi4.segmentTitles[1]" = "Souvenirs";
+
+/* Class = "IBUITextField"; placeholder = "Nouveau mot de passe"; ObjectID = "JRS-5D-RVc"; */
+"JRS-5D-RVc.placeholder" = "Nouveau mot de passe";
+
+/* Class = "IBUIBarButtonItem"; title = "Annuler"; ObjectID = "LNE-BF-vVp"; */
+"LNE-BF-vVp.title" = "Annuler";
+
+/* Class = "IBUITextField"; placeholder = "Mot de passe"; ObjectID = "N4C-jx-moe"; */
+"N4C-jx-moe.placeholder" = "Mot de passe";
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "NxL-lD-apz"; */
+"NxL-lD-apz.title" = "Valider";
+
+/* Class = "IBUIButton"; normalTitle = "Filtres"; ObjectID = "OKE-0L-p80"; */
+"OKE-0L-p80.normalTitle" = "Filtres";
+
+/* Class = "IBUINavigationItem"; title = "Report"; ObjectID = "Ov6-hM-njU"; */
+"Ov6-hM-njU.title" = "Report";
+
+/* Class = "IBUITextField"; placeholder = "Adresse email"; ObjectID = "PNH-Zr-sYq"; */
+"PNH-Zr-sYq.placeholder" = "Adresse email";
+
+/* Class = "IBUIButton"; normalTitle = "CONNECTER"; ObjectID = "Pwv-e8-48y"; */
+"Pwv-e8-48y.normalTitle" = "CONNECTER";
+
+/* Class = "IBUIBarButtonItem"; title = "Annuler"; ObjectID = "QyN-au-rL1"; */
+"QyN-au-rL1.title" = "Annuler";
+
+/* Class = "IBUIButton"; normalTitle = "Raison"; ObjectID = "SrA-vM-eKM"; */
+"SrA-vM-eKM.normalTitle" = "Raison";
+
+/* Class = "IBUILabel"; text = "Saisissez votre message..."; ObjectID = "TXt-6a-Enq"; */
+"TXt-6a-Enq.text" = "Saisissez votre message...";
+
+/* Class = "IBUITextField"; placeholder = "Rechercher un lieu..."; ObjectID = "VBe-Ka-hd3"; */
+"VBe-Ka-hd3.placeholder" = "Rechercher un lieu...";
+
+/* Class = "IBUIButton"; normalTitle = "CONTINUER"; ObjectID = "VeE-C6-1OY"; */
+"VeE-C6-1OY.normalTitle" = "CONTINUER";
+
+/* Class = "IBUILabel"; text = "Nom du lieu"; ObjectID = "WQw-OA-vOc"; */
+"WQw-OA-vOc.text" = "Nom du lieu";
+
+/* Class = "IBUITextField"; placeholder = "Nom"; ObjectID = "WSQ-ME-nEe"; */
+"WSQ-ME-nEe.placeholder" = "Nom";
+
+/* Class = "IBUIBarButtonItem"; title = "Annuler"; ObjectID = "Yfp-sH-LGQ"; */
+"Yfp-sH-LGQ.title" = "Annuler";
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "Z1d-Zi-MIU"; */
+"Z1d-Zi-MIU.title" = "Valider";
+
+/* Class = "IBUILabel"; text = "Expliquez en quelques phrases pourquoi ce contenu est inapproprié..."; ObjectID = "Zo5-Yh-rSL"; */
+"Zo5-Yh-rSL.text" = "Expliquez en quelques phrases pourquoi ce contenu est inapproprié...";
+
+/* Class = "IBUINavigationItem"; title = "Lieu"; ObjectID = "bGZ-Mj-PLc"; */
+"bGZ-Mj-PLc.title" = "Lieu";
+
+/* Class = "IBUITextField"; placeholder = "Adresse email"; ObjectID = "bKy-gX-Zt3"; */
+"bKy-gX-Zt3.placeholder" = "Adresse email";
+
+/* Class = "IBUILabel"; text = "Message complet. Lorem ipsum dolor sit amet, consectetur adipiscing. Lorem ipsum dolor sit amet, consectetur adipiscing. Lorem ipsum dolor sit amet, consectetur adipiscing."; ObjectID = "ctJ-Fi-TnY"; */
+"ctJ-Fi-TnY.text" = "Message complet. Lorem ipsum dolor sit amet, consectetur adipiscing. Lorem ipsum dolor sit amet, consectetur adipiscing. Lorem ipsum dolor sit amet, consectetur adipiscing.";
+
+/* Class = "IBUINavigationItem"; title = "Conversation"; ObjectID = "cwr-MS-d7R"; */
+"cwr-MS-d7R.title" = "Conversation";
+
+/* Class = "IBUILabel"; text = "Configuration"; ObjectID = "czV-0p-j1N"; */
+"czV-0p-j1N.text" = "Configuration";
+
+/* Class = "IBUILabel"; text = "Une procédure pour réinitialiser votre mot de passe vous sera envoyée dans votre boite de réception. \n"; ObjectID = "dak-3d-hm5"; */
+"dak-3d-hm5.text" = "Une procédure pour réinitialiser votre mot de passe vous sera envoyée dans votre boite de réception. \n";
+
+/* Class = "IBUITextField"; placeholder = "Mot de passe actuel"; ObjectID = "g4m-Na-1sL"; */
+"g4m-Na-1sL.placeholder" = "Mot de passe actuel";
+
+/* Class = "IBUINavigationItem"; title = "Mot de passe oublié"; ObjectID = "gph-wM-Xqq"; */
+"gph-wM-Xqq.title" = "Mot de passe oublié";
+
+/* Class = "IBUINavigationItem"; title = "Neerbyy"; ObjectID = "gvQ-xK-Fa0"; */
+"gvQ-xK-Fa0.title" = "Neerbyy";
+
+/* Class = "IBUILabel"; text = "Utilisateur @Lieu"; ObjectID = "gxW-Ov-hRu"; */
+"gxW-Ov-hRu.text" = "Utilisateur @Lieu";
+
+/* Class = "IBUIButton"; normalTitle = "Contacter"; ObjectID = "hMr-pA-Xcl"; */
+"hMr-pA-Xcl.normalTitle" = "Contacter";
+
+/* Class = "IBUILabel"; text = "Autour de moi"; ObjectID = "iSC-6j-N5d"; */
+"iSC-6j-N5d.text" = "Autour de moi";
+
+/* Class = "IBUIViewController"; title = "Utilisateur"; ObjectID = "irS-DC-RTS"; */
+"irS-DC-RTS.title" = "Utilisateur";
+
+/* Class = "IBUILabel"; text = "Nom d'utilisateur."; ObjectID = "ivg-ip-qsf"; */
+"ivg-ip-qsf.text" = "Nom d'utilisateur.";
+
+/* Class = "IBUILabel"; text = "Date, heure"; ObjectID = "j4D-2O-eet"; */
+"j4D-2O-eet.text" = "Date, heure";
+
+/* Class = "IBUINavigationItem"; title = "Messagerie"; ObjectID = "jOD-gx-4AA"; */
+"jOD-gx-4AA.title" = "Messagerie";
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "jqA-9Y-bah"; */
+"jqA-9Y-bah.title" = "Valider";
+
+/* Class = "IBUINavigationItem"; title = "Nouveau commentaire"; ObjectID = "lXq-jK-eOe"; */
+"lXq-jK-eOe.title" = "Nouveau commentaire";
+
+/* Class = "IBUITextField"; placeholder = "Lien à partager"; ObjectID = "m0S-Nu-qJY"; */
+"m0S-Nu-qJY.placeholder" = "Lien à partager";
+
+/* Class = "IBUIViewController"; title = "Souvenir"; ObjectID = "mP4-bj-9qn"; */
+"mP4-bj-9qn.title" = "Souvenir";
+
+/* Class = "IBUILabel"; text = "XXXX souvenirs"; ObjectID = "n8Z-9R-EH1"; */
+"n8Z-9R-EH1.text" = "XXXX souvenirs";
+
+/* Class = "IBUIButton"; normalTitle = "CRÉER UN COMPTE"; ObjectID = "ouZ-Ud-Vyv"; */
+"ouZ-Ud-Vyv.normalTitle" = "CRÉER UN COMPTE";
+
+/* Class = "IBUITextField"; placeholder = "Mot de passe"; ObjectID = "rHV-iB-lxV"; */
+"rHV-iB-lxV.placeholder" = "Mot de passe";
+
+/* Class = "IBUINavigationItem"; title = "Nouveau souvenir"; ObjectID = "rHe-Ut-eGz"; */
+"rHe-Ut-eGz.title" = "Nouveau souvenir";
+
+/* Class = "IBUITextField"; placeholder = "Nom d'utilisateur"; ObjectID = "rtv-Zn-HGc"; */
+"rtv-Zn-HGc.placeholder" = "Nom d'utilisateur";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "svh-O6-uD0"; */
+"svh-O6-uD0.text" = "Label";
+
+/* Class = "IBUIBarButtonItem"; title = "Valider"; ObjectID = "z85-wC-4DV"; */
+"z85-wC-4DV.title" = "Valider";
+
+/* Class = "IBUIButton"; normalTitle = "MOT DE PASSE OUBLIÉ ?"; ObjectID = "zPL-Wk-1iO"; */
+"zPL-Wk-1iO.normalTitle" = "MOT DE PASSE OUBLIÉ ?";
+
+/* Class = "IBUITextField"; placeholder = "Nom d'utilisateur"; ObjectID = "zbf-QF-SiI"; */
+"zbf-QF-SiI.placeholder" = "Nom d'utilisateur";

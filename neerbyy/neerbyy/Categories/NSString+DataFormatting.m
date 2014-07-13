@@ -13,7 +13,7 @@
 + (NSString *)stringForDistance:(CLLocationDistance)distance prefix:(NSString *)prefix
 {
     if (distance == CLLocationDistanceMax || distance == 0.0f)
-        return @"Distance indéterminée";
+        return NSLocalizedString(@"Distance indéterminée", @"Distance indéterminée");
     
     NSString *distanceUnit;
     if (distance > 1000)
@@ -34,7 +34,7 @@
 + (NSString *)stringForDate:(NSDate *)date
 {
     if (date == nil)
-        return @"Date indéterminée";
+        return NSLocalizedString(@"Date indéterminée", @"Date indéterminée");
     
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.doesRelativeDateFormatting = YES;
