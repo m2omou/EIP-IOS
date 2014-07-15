@@ -17,8 +17,12 @@
 #pragma mark - Constants
 
 static NSString * const kNBAPIFormat = @".json";
-static NSString * const kNBAPIHostname = @"api.neerbyy.com";
 
+#ifdef DEBUG
+static NSString * const kNBAPIHostname = @"dev.neerbyy.com";
+#else
+static NSString * const kNBAPIHostname = @"api.neerbyy.com";
+#endif
 #pragma mark -
 
 static NBAPINetworkEngine *engine;
