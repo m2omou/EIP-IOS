@@ -81,7 +81,8 @@
 {
     [super validateForm];
     
-    if ([self wantsToChangePassword] && [self currentPasswordMatches] == NO)
+    if (([self wantsToChangePassword] || [self wantsToChangeEmail])
+        && [self currentPasswordMatches] == NO)
     {
         [self warnCurrentPasswordDoesntMatch];
         return ;
@@ -92,9 +93,10 @@
     NSString *username = self.usernameTextField.text;
     NSString *email = self.emailTextField.text;
     NSString *password = self.updatedPasswordTextField.text;
+    NSString *currentPassword = (self.currentPasswordTextField.text.length ? self.currentPasswordTextField.text : nil);
     UIImage *avatar = self.avatar;
     
-    [self updateUserWithFirstName:firstName lastName:lastName username:username email:email password:password avatar:avatar];
+    [self updateUserWithFirstName:firstName lastName:lastName username:username email:email password:password avatar:avatar currentPassword:currentPassword];
 }
 
 - (void)pickedImage:(UIImage *)image
@@ -145,6 +147,11 @@
     return self.updatedPasswordTextField.text.length > 0;
 }
 
+- (BOOL)wantsToChangeEmail
+{
+    return [self.emailTextField.text isEqualToString:self.persistanceManager.currentUser.email] == NO;
+}
+
 - (BOOL)currentPasswordMatches
 {
     return [self.currentPasswordTextField.text isEqualToString:self.persistanceManager.currentUserPassword];
@@ -168,9 +175,11 @@
 
 - (void)updateUserWithFirstName:(NSString *)firstName lastName:(NSString *)lastName username:(NSString *)username
                           email:(NSString *)email password:(NSString *)password avatar:(UIImage *)avatar
+                currentPassword:(NSString *)currentPassword
 {
     NBAPINetworkOperation *profileOperation = [NBAPIRequest updateFirstName:firstName lastName:lastName username:username
-                                                                      email:email password:password avatar:avatar];
+                                                                      email:email password:password avatar:avatar
+                                               currentPassword:currentPassword];
 
     [profileOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         [self resetForm];

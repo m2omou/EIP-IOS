@@ -57,6 +57,7 @@ static NSString * const kNBAPIParamKeyCategory = @"category_id";
 static NSString * const kNBAPIParamKeyQuery = @"query";
 static NSString * const kNBAPIParamKeyFirstname = @"firstname";
 static NSString * const kNBAPIParamKeyLastname = @"lastname";
+static NSString * const kNBAPIParamKeyCurrentPassword = @"current_password";
 
 static NSString * const kNBAPIEndpointLogin = @"sessions";
 static NSString * const kNBAPIEndpointLogout = @"log_out";
@@ -142,6 +143,7 @@ static NSString * const kNBAPIEndpointSettings = @"settings";
 
 + (NBAPINetworkOperation *)updateFirstName:(NSString *)firstName lastName:(NSString *)lastName username:(NSString *)username
                                      email:(NSString *)email password:(NSString *)password avatar:(UIImage *)avatar
+                           currentPassword:(NSString *)currentPassword
 {
     NSDictionary *parameters = @{kNBAPIParamKeyFirstname : firstName,
                                  kNBAPIParamKeyLastname : lastName,
@@ -153,6 +155,12 @@ static NSString * const kNBAPIEndpointSettings = @"settings";
     {
         NSMutableDictionary *mutableParameters = [parameters mutableCopy];
         mutableParameters[kNBAPIParamKeyPassword] = password;
+        parameters = [mutableParameters copy];
+    }
+    if (currentPassword.length)
+    {
+        NSMutableDictionary *mutableParameters = [parameters mutableCopy];
+        mutableParameters[kNBAPIParamKeyCurrentPassword] = currentPassword;
         parameters = [mutableParameters copy];
     }
 
