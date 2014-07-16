@@ -23,7 +23,7 @@ static NSString * const kNBUserKeyAvatar = @"avatar";
 static NSString * const kNBUserKeyAvatarThumbnail = @"avatar_thumb";
 static NSString * const kNBUserKeyToken = @"auth_token";
 static NSString * const kNBUserKeySettingsID = @"settings_id";
-static NSString * const kNBUSerKeySettings = @"settings";
+static NSString * const kNBUSerKeySettings = @"setting";
 
 #pragma mark -
 
