@@ -38,7 +38,7 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 #pragma mark -
 
 
-@interface NBMapViewController () <CCHMapClusterControllerDelegate>
+@interface NBMapViewController () <CCHMapClusterControllerDelegate, NBPlaceListViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UIView *filterView;
@@ -164,6 +164,7 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 {
     [super tappedMainView:gestureRecognizer];
     [self hidePlacesSearchView];
+    [self hideCategoryPicker];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -254,6 +255,37 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     [self removeAllAnnotationsWithCompletion:^{
         [self loadPlacesInMap];
     }];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    CGRect searchViewBounds = self.searchedPlacesViewController.view.bounds;
+    CGPoint locationInSearchView = [touch locationInView:self.searchedPlacesViewController.view];
+    
+    if (CGRectContainsPoint(searchViewBounds, locationInSearchView))
+        return NO;
+
+    return YES;
+}
+
+#pragma mark - NBPlaceListViewControllerDelegate
+
+- (void)placeListViewController:(NBPlaceListViewController *)placeListViewController didPickPlace:(NBPlace *)place
+{
+    MKMapView *mapView = self.mapView;
+    NBPlaceAnnotation *annotation = [[NBPlaceAnnotation alloc] initWithPlace:place];
+
+    [self removeAllAnnotationsWithCompletion:^{
+        [self.mapClusterController addAnnotations:@[annotation] withCompletionHandler:^{
+            MKCoordinateSpan regionSpan = MKCoordinateSpanMake(.02f, .02f);
+            MKCoordinateRegion placeRegion = MKCoordinateRegionMake(place.coordinate, regionSpan);
+            [mapView setRegion:placeRegion animated:YES];
+        }];
+    }];
+    [self hidePlacesSearchView];
+    [self tappedMainView:nil];
 }
 
 #pragma mark - User interactions

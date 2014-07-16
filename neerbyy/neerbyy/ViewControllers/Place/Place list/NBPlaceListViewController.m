@@ -55,6 +55,8 @@ static NSString * const kNBPlaceCellIdentifier = @"NBPlaceTableViewCellIdentifie
     {
         if (self.delegate == nil)
             return YES;
+        
+        [self.delegate placeListViewController:self didPickPlace:[self selectedPlace]];
         return NO;
     }
     return YES;

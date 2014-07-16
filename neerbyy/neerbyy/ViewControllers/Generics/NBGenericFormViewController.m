@@ -12,7 +12,7 @@
 typedef enum { kImagePickerIndexCamera, kImagePickerIndexLibrary } kImagePickerIndex;
 
 
-@interface NBGenericFormViewController () <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface NBGenericFormViewController () <UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapMainViewGestureRecognizer;
 
@@ -50,6 +50,7 @@ typedef enum { kImagePickerIndexCamera, kImagePickerIndexLibrary } kImagePickerI
 - (void)initTapGestureRecognizer
 {
     self.tapMainViewGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedMainView:)];
+    self.tapMainViewGestureRecognizer.delegate = self;
     [self.view addGestureRecognizer:self.tapMainViewGestureRecognizer];
 }
 
