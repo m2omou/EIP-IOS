@@ -84,7 +84,12 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     NBAPINetworkOperation *categoriesOperation = [NBAPIRequest fetchCategories];
     [categoriesOperation addCompletionHandler:^(NBAPINetworkOperation *operation) {
         NBAPIResponseCategoryList *response = (NBAPIResponseCategoryList *)operation.APIResponse;
-        self.categories = response.categories;
+        NSMutableArray *categories = [response.categories mutableCopy];
+        NBPlaceCategory *noCategory = [NBPlaceCategory new];
+        noCategory.identifier = nil;
+        noCategory.description = @"Aucune categorie";
+        [categories insertObject:noCategory atIndex:0];
+        self.categories = categories;
         [self.categoryPickerView reloadAllComponents];
     } errorHandler:[NBAPINetworkOperation defaultErrorHandler]];
     [categoriesOperation enqueue];
@@ -122,6 +127,7 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     if ([segue.identifier isEqualToString:kNBSearchedPlaceSegue])
     {
         self.searchedPlacesViewController = segue.destinationViewController;
+        self.searchedPlacesViewController.delegate = self;
     }
 }
 
@@ -243,6 +249,7 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    self.selectedCategory = self.categories[row];
     [self hideCategoryPicker];
     [self removeAllAnnotationsWithCompletion:^{
         [self loadPlacesInMap];

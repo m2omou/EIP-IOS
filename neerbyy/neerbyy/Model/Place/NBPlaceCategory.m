@@ -10,7 +10,7 @@
 
 #pragma mark - Constants
 
-static NSString * const kNBCategoryKeyIdentifier = @"identifier";
+static NSString * const kNBCategoryKeyIdentifier = @"id";
 static NSString * const kNBCategoryKeyDescription = @"name";
 
 #pragma mark -
