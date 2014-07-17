@@ -161,7 +161,7 @@
 		9C3EE6F3194FD94400F5566F /* NBReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NBReportViewController.m; path = Report/NBReportViewController.m; sourceTree = "<group>"; };
 		9C4475CF18F96B63006A9FD7 /* NBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBKeychain.h; sourceTree = "<group>"; };
 		9C4475D018F96B63006A9FD7 /* NBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBKeychain.m; sourceTree = "<group>"; };
-		9C5BE93C183219CB00CFA647 /* neerbyy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neerbyy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5BE93C183219CB00CFA647 /* Neerbyy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neerbyy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5BE93F183219CB00CFA647 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C5BE941183219CB00CFA647 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C5BE943183219CB00CFA647 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -416,7 +416,7 @@
 		9C5BE93D183219CB00CFA647 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C5BE93C183219CB00CFA647 /* neerbyy.app */,
+				9C5BE93C183219CB00CFA647 /* Neerbyy.app */,
 				9C5BE95C183219CB00CFA647 /* neerbyyTests.xctest */,
 			);
 			name = Products;
@@ -996,9 +996,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C5BE93B183219CB00CFA647 /* neerbyy */ = {
+		9C5BE93B183219CB00CFA647 /* Neerbyy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C5BE96E183219CB00CFA647 /* Build configuration list for PBXNativeTarget "neerbyy" */;
+			buildConfigurationList = 9C5BE96E183219CB00CFA647 /* Build configuration list for PBXNativeTarget "Neerbyy" */;
 			buildPhases = (
 				E8CEE95F28FF44EC85862189 /* Check Pods Manifest.lock */,
 				9C5BE938183219CB00CFA647 /* Sources */,
@@ -1010,9 +1010,9 @@
 			);
 			dependencies = (
 			);
-			name = neerbyy;
+			name = Neerbyy;
 			productName = neerbyy;
-			productReference = 9C5BE93C183219CB00CFA647 /* neerbyy.app */;
+			productReference = 9C5BE93C183219CB00CFA647 /* Neerbyy.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9C5BE95B183219CB00CFA647 /* neerbyyTests */ = {
@@ -1072,7 +1072,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C5BE93B183219CB00CFA647 /* neerbyy */,
+				9C5BE93B183219CB00CFA647 /* Neerbyy */,
 				9C5BE95B183219CB00CFA647 /* neerbyyTests */,
 			);
 		};
@@ -1270,7 +1270,7 @@
 /* Begin PBXTargetDependency section */
 		9C5BE963183219CB00CFA647 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C5BE93B183219CB00CFA647 /* neerbyy */;
+			target = 9C5BE93B183219CB00CFA647 /* Neerbyy */;
 			targetProxy = 9C5BE962183219CB00CFA647 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1489,7 +1489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C5BE96E183219CB00CFA647 /* Build configuration list for PBXNativeTarget "neerbyy" */ = {
+		9C5BE96E183219CB00CFA647 /* Build configuration list for PBXNativeTarget "Neerbyy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C5BE96F183219CB00CFA647 /* Debug */,

@@ -243,7 +243,7 @@
 "rHV-iB-lxV.placeholder" = "Password";
 
 /* Class = "IBUINavigationItem"; title = "Nouveau souvenir"; ObjectID = "rHe-Ut-eGz"; */
-"rHe-Ut-eGz.title" = "New password";
+"rHe-Ut-eGz.title" = "New souvenir";
 
 /* Class = "IBUITextField"; placeholder = "Nom d'utilisateur"; ObjectID = "rtv-Zn-HGc"; */
 "rtv-Zn-HGc.placeholder" = "Username";
