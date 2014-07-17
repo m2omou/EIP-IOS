@@ -53,6 +53,9 @@ static NSString * const kNBPersistanceTutorialKey = @"seenTutorial";
     {
         self.locationManager = [CLLocationManager new];
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
     }
     
     return self;
