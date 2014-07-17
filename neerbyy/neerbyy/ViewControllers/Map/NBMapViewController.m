@@ -242,10 +242,13 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     return self.categories.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NBPlaceCategory *category = self.categories[row];
-    return category.description;
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:category.description
+                                                                          attributes:@{NSFontAttributeName: self.theme.font,
+                                                                                       NSForegroundColorAttributeName: self.theme.whiteColor}];
+    return attributedTitle;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
