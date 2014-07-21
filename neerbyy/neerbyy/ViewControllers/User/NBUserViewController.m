@@ -26,6 +26,8 @@ static NSString * const kNBNewMessageSegue = @"newMessageSegue";
 @property (strong, nonatomic) IBOutlet NBLabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet NBLabel *realNameLabel;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (strong, nonatomic) IBOutlet UIView *placeView;
+@property (strong, nonatomic) IBOutlet UIView *publicationsView;
 
 @end
 
@@ -42,6 +44,7 @@ static NSString * const kNBNewMessageSegue = @"newMessageSegue";
     if ([self.user currentUserCanSendMessage] == NO) {
         self.navigationItem.rightBarButtonItems = @[];
     }
+    [self changedTab:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -95,6 +98,16 @@ static NSString * const kNBNewMessageSegue = @"newMessageSegue";
         }
     }
     return YES;
+}
+
+- (IBAction)changedTab:(id)sender {
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        self.placeView.hidden = NO;
+        self.publicationsView.hidden = YES;
+    } else {
+        self.placeView.hidden = YES;
+        self.publicationsView.hidden = NO;
+    }
 }
 
 - (void)loadSouvenirs

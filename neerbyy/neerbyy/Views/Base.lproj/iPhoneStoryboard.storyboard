@@ -1400,6 +1400,9 @@
                                     <segment title="Lieux"/>
                                     <segment title="Souvenirs"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changedTab:" destination="irS-DC-RTS" eventType="valueChanged" id="dFd-3a-aas"/>
+                                </connections>
                             </segmentedControl>
                             <containerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLV-mJ-EgL">
                                 <rect key="frame" x="0.0" y="203" width="320" height="365"/>
@@ -1475,8 +1478,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="avatarImageView" destination="hkH-t3-Nx5" id="sjv-U5-shc"/>
+                        <outlet property="placeView" destination="cLV-mJ-EgL" id="EXm-KA-HVA"/>
+                        <outlet property="publicationsView" destination="R7p-Li-Vwx" id="gsJ-CF-QsK"/>
                         <outlet property="realNameLabel" destination="ADd-0U-ToP" id="aCz-eM-Hx0"/>
-                        <outlet property="segmentedControl" destination="IHL-gd-Mi4" id="LgU-PY-fsg"/>
+                        <outlet property="segmentedControl" destination="IHL-gd-Mi4" id="YE6-y1-GnB"/>
                         <outlet property="usernameLabel" destination="2K9-0n-9Yy" id="Nd5-Z5-fk6"/>
                     </connections>
                 </viewController>
