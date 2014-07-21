@@ -33,6 +33,9 @@
 + (NBAPINetworkOperation *)fetchFollowedPlaces;
 + (NBAPINetworkOperation *)fetchFollowedPlacesSinceId:(NSNumber *)sinceId;
 + (NBAPINetworkOperation *)fetchFollowedPlacesAfterId:(NSNumber *)afterId;
++ (NBAPINetworkOperation *)fetchFollowedPlacesForUser:(NSNumber *)userId;
++ (NBAPINetworkOperation *)fetchFollowedPlacesForUser:(NSNumber *)userId sinceId:(NSString *)sinceId;
++ (NBAPINetworkOperation *)fetchFollowedPlacesForUser:(NSNumber *)userId afterId:(NSString *)afterId;
 + (NBAPINetworkOperation *)followPlace:(NSString *)placeId;
 + (NBAPINetworkOperation *)unfollowPlace:(NSNumber *)followingId;
 
@@ -44,6 +47,10 @@
 + (NBAPINetworkOperation *)createPublicationOnPlace:(NSString *)placeIdentifier withDescription:(NSString *)description;
 + (NBAPINetworkOperation *)deletePublication:(NSNumber *)publicationId;
 + (NBAPINetworkOperation *)reportPublication:(NSNumber *)publicationId withDescription:(NSString *)description forReason:(NSNumber *)reason;
+
++ (NBAPINetworkOperation *)fetchPublicationsForUser:(NSNumber *)userIdentifier;
++ (NBAPINetworkOperation *)fetchPublicationsForUser:(NSNumber *)userIdentifier sinceId:(NSNumber *)sinceId;
++ (NBAPINetworkOperation *)fetchPublicationsForUser:(NSNumber *)userIdentifier afterId:(NSNumber *)afterId;
 
 + (NBAPINetworkOperation *)fetchFlow;
 + (NBAPINetworkOperation *)fetchFlowSinceId:(NSNumber *)sinceId;

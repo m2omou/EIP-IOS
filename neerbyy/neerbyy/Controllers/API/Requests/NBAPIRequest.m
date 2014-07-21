@@ -38,6 +38,7 @@ static NSString * const kNBAPIParamKeyPlaceIdentifier = @"place_id";
 static NSString * const kNBAPIParamKeyPublicationIdentifier = @"publication_id";
 static NSString * const kNBAPIParamKeyCommentIdentifier = @"comment_id";
 static NSString * const kNBAPIParamKeyUsername = @"username";
+static NSString * const kNBAPIParamKeyUserIdentifier = @"user_id";
 static NSString * const kNBAPIParamKeyEmail = @"email";
 static NSString * const kNBAPIParamKeyPassword = @"password";
 static NSString * const kNBAPIParamKeyAvatar = @"avatar";
@@ -277,6 +278,26 @@ static NSString * const kNBAPIEndpointSettings = @"settings";
     return [self fetchFollowedPlacesWithParams:parameters];
 }
 
++ (NBAPINetworkOperation *)fetchFollowedPlacesForUser:(NSNumber *)userId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyUserIdentifier: userId};
+    return [self fetchFollowedPlacesWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchFollowedPlacesForUser:(NSNumber *)userId sinceId:(NSString *)sinceId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyUserIdentifier: userId,
+                                 kNBAPIParamKeySince: sinceId};
+    return [self fetchFollowedPlacesWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchFollowedPlacesForUser:(NSNumber *)userId afterId:(NSString *)afterId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyUserIdentifier: userId,
+                                 kNBAPIParamKeyAfter: afterId};
+    return [self fetchFollowedPlacesWithParams:parameters];
+}
+
 + (NBAPINetworkOperation *)fetchFollowedPlacesWithParams:(NSDictionary *)parameters
 {
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointFollowedPlaces
@@ -340,8 +361,31 @@ static NSString * const kNBAPIEndpointSettings = @"settings";
     return [self fetchPublicationsWithParams:parameters];
 }
 
++ (NBAPINetworkOperation *)fetchPublicationsForUser:(NSNumber *)userIdentifier
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyUserIdentifier: userIdentifier};
+    return [self fetchPublicationsWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchPublicationsForUser:(NSNumber *)userIdentifier sinceId:(NSNumber *)sinceId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyUserIdentifier: userIdentifier,
+                                 kNBAPIParamKeySince: sinceId};
+    return [self fetchPublicationsWithParams:parameters];
+}
+
++ (NBAPINetworkOperation *)fetchPublicationsForUser:(NSNumber *)userIdentifier afterId:(NSNumber *)afterId
+{
+    NSDictionary *parameters = @{kNBAPIParamKeyUserIdentifier: userIdentifier,
+                                 kNBAPIParamKeyAfter: afterId};
+    return [self fetchPublicationsWithParams:parameters];
+}
+
 + (NBAPINetworkOperation *)fetchPublicationsWithParams:(NSDictionary *)parameters
 {
+    NSMutableDictionary *params = [parameters mutableCopy];
+    params[@"count"] = @1;
+    parameters = [params copy];
     NBAPINetworkOperation *operation = [NBAPINetworkEngine operationWithPath:kNBAPIEndpointPublications
                                                                       params:parameters
                                                                      mainKey:nil

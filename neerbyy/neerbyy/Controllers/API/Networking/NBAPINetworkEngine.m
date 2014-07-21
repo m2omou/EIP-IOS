@@ -19,7 +19,7 @@
 static NSString * const kNBAPIFormat = @".json";
 
 #ifdef DEBUG
-static NSString * const kNBAPIHostname = @"dev.neerbyy.com";
+static NSString * const kNBAPIHostname = @"api.neerbyy.com";
 #else
 static NSString * const kNBAPIHostname = @"api.neerbyy.com";
 #endif
