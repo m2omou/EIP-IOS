@@ -65,10 +65,16 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 
 #pragma mark - View lifecycle
 
+- (void)dealloc
+{
+    [self unregisterForLoginNotifications];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self registerForLoginNotifications];
     self.hidesNavigationBar = YES;
 
     [self initCategories];
@@ -506,6 +512,27 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 - (void)hidePlacesSearchView
 {
     self.placesSearchView.hidden = YES;
+}
+
+
+- (void)registerForLoginNotifications
+{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(receivedUserStatusNotification:) name:kNBNotificationUserLoggedIn object:nil];
+    [notificationCenter addObserver:self selector:@selector(receivedUserStatusNotification:) name:kNBNotificationUserLoggedOut object:nil];
+}
+
+- (void)unregisterForLoginNotifications
+{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self];
+}
+
+- (void)receivedUserStatusNotification:(NSNotification *)notification
+{
+    [self removeAllAnnotationsWithCompletion:^{
+        [self loadPlacesInMap];
+    }];
 }
 
 @end
