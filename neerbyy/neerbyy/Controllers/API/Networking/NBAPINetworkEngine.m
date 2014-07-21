@@ -37,10 +37,7 @@ static NBAPINetworkEngine *engine;
     
     dispatch_once(&once_token, ^{
         [self resetEngine];
-        
-        MKNetworkEngine *imageEngine = [MKNetworkEngine new];
-        [imageEngine useCache];
-        [UIImageView setDefaultEngine:imageEngine];
+        [UIImageView setDefaultEngine:engine];
     });
     
     return engine;
