@@ -461,6 +461,9 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     NSMutableArray *places = [NSMutableArray array];
     for (NBPlaceAnnotation *placeAnnotation in annotations)
         [places addObject:placeAnnotation.place];
+    places = [[places sortedArrayUsingComparator:^NSComparisonResult(NBPlace *obj1, NBPlace *obj2) {
+        return [obj1.name compare:obj2.name];
+    }] mutableCopy];
 
     NBPlaceListViewController *placeListViewController = [UIStoryboard placeListViewController];
     placeListViewController.places = [places copy];
