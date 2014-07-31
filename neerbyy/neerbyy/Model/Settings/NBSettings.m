@@ -10,7 +10,7 @@
 
 #pragma mark - Constants
 
-static NSString * const kNBSettingsKeyIdentifier = @"identifier";
+static NSString * const kNBSettingsKeyIdentifier = @"id";
 static NSString * const kNBSettingsKeyAllowMessages = @"allow_messages";
 static NSString * const kNBSettingsKeyNotificationOnComments = @"send_notification_for_comments";
 static NSString * const kNBSettingsKeyNotificationOnMessages = @"send_notification_for_messages";
