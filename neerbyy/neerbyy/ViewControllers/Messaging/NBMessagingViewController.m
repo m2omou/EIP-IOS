@@ -10,6 +10,9 @@
 #import "NBConversationListViewController.h"
 #import "NBConversation.h"
 #import "NBMessage.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 
 @interface NBMessagingViewController ()
@@ -22,6 +25,15 @@
 @implementation NBMessagingViewController
 
 #pragma mark - UIViewController
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"List of conversation"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

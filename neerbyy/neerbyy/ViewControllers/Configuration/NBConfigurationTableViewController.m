@@ -12,6 +12,10 @@
 #import "NBPersistanceManager.h"
 #import "NBUser.h"
 #import "NBTheme.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 @interface NBConfigurationTableViewController ()
 
@@ -29,6 +33,15 @@
 
     [self themeSwitches];
     [self updateSwitches];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Configuration"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)themeSwitches

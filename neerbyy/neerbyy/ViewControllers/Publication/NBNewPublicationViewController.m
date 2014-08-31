@@ -11,6 +11,10 @@
 #import "UIImage+Blur.h"
 #import "NBLabel.h"
 #import "NBUser.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 typedef enum : NSUInteger {
     kNBPublicationSegmentImage,
@@ -55,6 +59,16 @@ typedef enum : NSUInteger {
     [self themeDescriptionTextView];
     [self changedSegmentedControlIndex:nil];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"New publication"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
 
 #pragma mark - Theming
 

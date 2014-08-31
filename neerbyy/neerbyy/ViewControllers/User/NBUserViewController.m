@@ -15,6 +15,10 @@
 #import "NBPublication.h"
 #import "NBAppDelegate.h"
 #import "NBPlace.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 static NSString * const kNBNewMessageSegue = @"newMessageSegue";
 
@@ -45,6 +49,15 @@ static NSString * const kNBNewMessageSegue = @"newMessageSegue";
         self.navigationItem.rightBarButtonItems = @[];
     }
     [self changedTab:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Some User"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

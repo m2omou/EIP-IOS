@@ -9,6 +9,9 @@
 #import "NBFavoritesViewController.h"
 #import "NBPlaceListViewController.h"
 #import "NBPlace.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 @interface NBFavoritesViewController ()
 
@@ -34,6 +37,16 @@
 - (void)dealloc
 {
     [self unregisterForNotifications];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Favourite places"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - UIViewController

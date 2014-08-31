@@ -9,6 +9,9 @@
 #import "NBTutorialViewController.h"
 #import "NBTutorialDataSource.h"
 #import "NBTutorialCell.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 static NSString * const kNBTutorialCell = @"tutorialCell";
 static CGFloat const kNBTutorialParallaxRatio = 1.3f;
@@ -46,6 +49,15 @@ static CGFloat const kNBTutorialParallaxRatio = 1.3f;
     
     [self addBackground];
     [self showContinueButtonIfNeeded];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Tutorial"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Initialisations

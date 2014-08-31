@@ -11,6 +11,9 @@
 #import "UIStoryboard+NBAdditions.h"
 #import "NBMenuTableViewController.h"
 #import "NBUser.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 
 @interface NBMenuViewController () <NBMenuTableViewControllerDelegate>
@@ -43,6 +46,15 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Menu"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
 - (void)dealloc
 {
     [self unregisterForLoginNotifications];
@@ -55,6 +67,7 @@
     [self themeView];
     [self themeNavigationBarInformations];
 }
+
 
 #pragma mark - Theming
 

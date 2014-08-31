@@ -8,6 +8,10 @@
 
 #import "NBNewMessageViewController.h"
 #import "NBLabel.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 @interface NBNewMessageViewController ()
 
@@ -37,6 +41,10 @@
     [super viewDidAppear:animated];
     
     [self.descriptionTextView becomeFirstResponder];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"New message"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming

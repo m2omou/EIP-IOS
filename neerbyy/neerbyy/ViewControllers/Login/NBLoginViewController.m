@@ -8,6 +8,9 @@
 
 #import "NBLoginViewController.h"
 #import "NBUser.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 
 @interface NBLoginViewController ()
@@ -42,6 +45,15 @@
     
     if (self.persistanceManager.isConnected)
         [self fillFormWithCurrentUserAndTryToConnect];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Login"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming

@@ -11,6 +11,10 @@
 #import "NBBlurredZoomedImageView.h"
 #import "NBUser.h"
 #import "NBAppDelegate.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 @interface NBProfileViewController () <UIAlertViewDelegate>
 
@@ -40,6 +44,15 @@
     [self themeDeleteAccountButton];
     [self fetchAvatar];
     [self fillFields];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"My profile"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming

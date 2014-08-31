@@ -8,6 +8,10 @@
 
 #import "NBNewCommentViewController.h"
 #import "NBLabel.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 @interface NBNewCommentViewController ()
 
@@ -36,6 +40,9 @@
     [super viewDidAppear:animated];
     
     [self.descriptionTextView becomeFirstResponder];
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"New comment"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming

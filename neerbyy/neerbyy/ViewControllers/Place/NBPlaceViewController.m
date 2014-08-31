@@ -13,6 +13,9 @@
 #import "NBPlace.h"
 #import "NSString+DataFormatting.h"
 #import "NBAppDelegate.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
 
@@ -35,6 +38,16 @@ static NSString * const kNBNewPublicationSegue = @"ModalPublishSegue";
 
     [self updateUI];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Some place"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
 
 #pragma mark - UIViewController
 

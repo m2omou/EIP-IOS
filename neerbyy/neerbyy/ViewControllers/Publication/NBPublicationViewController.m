@@ -20,6 +20,10 @@
 #import "NBUser.h"
 #import "NBUserViewController.h"
 #import "UIStoryboard+NBAdditions.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+
 
 static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
 
@@ -52,6 +56,16 @@ static NSString * const kNBNewCommentsSegue = @"newCommentSegue";
     [self configureUserButtonItem];
     [self configureLikesAndDislikesWithVote:vote publication:publication];
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Some publication"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
 
 #pragma mark - UIViewController
 

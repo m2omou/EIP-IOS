@@ -10,6 +10,9 @@
 #import "NBReportViewController.h"
 #import "NBReport.h"
 #import "NBLabel.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 @interface NBReportViewController ()
 
@@ -36,6 +39,15 @@
             return NO;
         return YES;
     };
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Report"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming

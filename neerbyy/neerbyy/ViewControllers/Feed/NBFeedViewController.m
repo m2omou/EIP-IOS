@@ -10,6 +10,9 @@
 #import "NBPublicationListViewController.h"
 #import "NBPublication.h"
 #import "NBPlace.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 @interface NBFeedViewController ()
 
@@ -36,6 +39,16 @@
 - (void)dealloc
 {
     [self unregisterForNotifications];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Feed"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - UIViewController

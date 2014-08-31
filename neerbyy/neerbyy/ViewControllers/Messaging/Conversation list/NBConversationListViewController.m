@@ -10,7 +10,6 @@
 #import "NBConversationTableViewCell.h"
 #import "NBConversationViewController.h"
 
-
 #pragma mark - Constants
 
 static NSString * const kNBConversationCellIdentifier = @"NBConversationTableViewCellIdentifier";
@@ -37,6 +36,7 @@ static NSString * const kNBConversationCellIdentifier = @"NBConversationTableVie
         [cell configureWithConversation:associatedConversation];
     };
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

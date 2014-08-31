@@ -9,7 +9,9 @@
 #import "NBConversationViewController.h"
 #import "NBMessageListViewController.h"
 #import "NBNewMessageViewController.h"
-
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 @interface NBConversationViewController () <NBNewMessageViewControllerDelegate>
 
@@ -28,6 +30,15 @@
     if ([self.conversation.recipient currentUserCanSendMessage] == NO) {
         self.navigationItem.rightBarButtonItems = @[];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Convrsation with someone"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

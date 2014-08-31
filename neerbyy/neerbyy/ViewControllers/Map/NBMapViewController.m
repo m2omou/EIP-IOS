@@ -18,6 +18,9 @@
 #import "NBPlaceAnnotation.h"
 #import "NBPlace.h"
 #import "NBPlaceCategory.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 
 #pragma mark - Constants
@@ -83,6 +86,15 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
     [self themeMapView];
     [self hideCategoryPicker];
     [self hidePlacesSearchView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Map"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)initCategories

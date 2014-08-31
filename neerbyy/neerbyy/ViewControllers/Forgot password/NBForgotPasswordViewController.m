@@ -7,6 +7,9 @@
 //
 
 #import "NBForgotPasswordViewController.h"
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 
 @interface NBForgotPasswordViewController ()
@@ -26,6 +29,15 @@
     [super viewDidLoad];
     
     [self themeEmailTextField];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Forgot password"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming

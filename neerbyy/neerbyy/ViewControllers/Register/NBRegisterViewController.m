@@ -9,7 +9,9 @@
 #import "NBRegisterViewController.h"
 #import "NBLoginViewController.h"
 #import "NBUser.h"
-
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 
 @interface NBRegisterViewController ()
 
@@ -33,6 +35,15 @@
 
     [self themePickImageButton];
     [self themeTextFields];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName value:@"Register"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 #pragma mark - Theming
