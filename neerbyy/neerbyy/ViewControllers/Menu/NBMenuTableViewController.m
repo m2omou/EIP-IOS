@@ -83,7 +83,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedIndexPath = indexPath;
+    if (indexPath.row == ([self.tableView numberOfRowsInSection:0] - 1)) {
+        NSString *mailTo = @"mailto:support@neerbyy.com?subject=Question sur Neerbyy&body=Merci de prendre le temps de contacter l'équipe de Neerbyy !";
+        NSURL *url = [NSURL URLWithString:[mailTo stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [[UIApplication sharedApplication] openURL:url];
+    } else {
+        self.selectedIndexPath = indexPath;
+    }
 }
 
 #pragma mark - Convenience methods
