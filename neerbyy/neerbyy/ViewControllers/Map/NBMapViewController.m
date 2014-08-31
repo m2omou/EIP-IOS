@@ -93,7 +93,7 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
         NSMutableArray *categories = [response.categories mutableCopy];
         NBPlaceCategory *noCategory = [NBPlaceCategory new];
         noCategory.identifier = nil;
-        noCategory.description = @"Aucune categorie";
+        noCategory.name = @"Aucune categorie";
         [categories insertObject:noCategory atIndex:0];
         self.categories = categories;
         [self.categoryPickerView reloadAllComponents];
@@ -251,7 +251,7 @@ static NSUInteger const kNBMapMaxAnnotationsToDisplay = 50;
 - (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     NBPlaceCategory *category = self.categories[row];
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:category.description
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:category.name
                                                                           attributes:@{NSFontAttributeName: self.theme.font,
                                                                                        NSForegroundColorAttributeName: self.theme.whiteColor}];
     return attributedTitle;
