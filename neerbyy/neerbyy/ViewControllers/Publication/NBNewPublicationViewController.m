@@ -228,7 +228,8 @@ typedef enum : NSUInteger {
     if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentImage)
     {
         UIImage *image = self.image;
-        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withImage:image description:description];
+        UIImage *reducedImage = [UIImage imageWithCGImage:image.CGImage scale:0.50 orientation:image.imageOrientation];
+        publishOperation = [NBAPIRequest createPublicationOnPlace:placeIdentifier withImage:reducedImage description:description];
     }
     else if (self.typeSegmentedControl.selectedSegmentIndex == kNBPublicationSegmentLink)
     {
