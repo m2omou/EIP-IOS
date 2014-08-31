@@ -6,6 +6,7 @@ pod 'ECSlidingViewController'
 pod 'CCHMapClusterController'
 pod 'JTSImageViewController'
 pod 'TOWebViewController'
+pod 'GoogleAnalytics-iOS-SDK'
 
 target :neerbyyTests, :exclusive => true do
     pod 'Kiwi/XCTest'
