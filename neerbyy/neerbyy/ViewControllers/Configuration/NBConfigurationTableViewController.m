@@ -36,6 +36,12 @@
     self.commentNotificationSwitch.onTintColor =
     self.allowContactSwitch.onTintColor =
     self.messageNotificationSwitch.onTintColor = [NBTheme sharedTheme].lightGreenColor;
+    
+    self.commentNotificationSwitch.on =
+    self.messageNotificationSwitch.on = NO;
+    
+    self.commentNotificationSwitch.enabled =
+    self.messageNotificationSwitch.enabled = NO;
 }
 
 - (void)updateSwitches
