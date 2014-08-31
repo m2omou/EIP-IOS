@@ -11,6 +11,6 @@
 @interface NBPlaceCategory : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *identifier;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *name;
 
 @end

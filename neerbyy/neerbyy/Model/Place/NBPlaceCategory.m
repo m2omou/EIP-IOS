@@ -26,7 +26,7 @@ static NSString * const kNBCategoryKeyDescription = @"name";
     if (self)
     {
         self.identifier = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBCategoryKeyIdentifier];
-        self.description = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBCategoryKeyDescription];
+        self.name = [aDecoder decodeObjectOfClass:[NSString class] forKey:kNBCategoryKeyDescription];
     }
     
     return self;
@@ -35,7 +35,7 @@ static NSString * const kNBCategoryKeyDescription = @"name";
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.identifier forKey:kNBCategoryKeyIdentifier];
-    [aCoder encodeObject:self.description forKey:kNBCategoryKeyDescription];
+    [aCoder encodeObject:self.name forKey:kNBCategoryKeyDescription];
 }
 
 @end
