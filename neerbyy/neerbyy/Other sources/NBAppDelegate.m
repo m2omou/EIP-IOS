@@ -8,6 +8,7 @@
 
 #import "NBAppDelegate.h"
 #import <UIViewController+ECSlidingViewController.h>
+#import <GAI.h>
 #import "NBTheme.h"
 #import "NBPersistanceManager.h"
 #import "NBLoginViewController.h"
@@ -26,6 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setupAnalytics];
     [self themeAppearance];
     [self.window makeKeyAndVisible];
     [self presentTutorialIfNeeded];
@@ -33,6 +35,13 @@
 }
 
 #pragma mark - Convenience methods
+
+- (void)setupAnalytics
+{
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-44631088-2"];
+}
 
 - (void)themeAppearance
 {

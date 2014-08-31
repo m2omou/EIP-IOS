@@ -1,6 +1,7 @@
 PODS:
   - CCHMapClusterController (1.5.0)
   - ECSlidingViewController (2.0.1)
+  - GoogleAnalytics-iOS-SDK (3.0.9)
   - JTSImageViewController (1.1.1)
   - Kiwi/ARC (2.2.4)
   - Kiwi/NonARC (2.2.4)
@@ -15,6 +16,7 @@ PODS:
 DEPENDENCIES:
   - CCHMapClusterController
   - ECSlidingViewController
+  - GoogleAnalytics-iOS-SDK
   - JTSImageViewController
   - Kiwi/XCTest
   - MKNetworkKit (HEAD)
@@ -23,6 +25,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   CCHMapClusterController: 6477e5f621fac2f7b1fa99fb438453d5167991d7
   ECSlidingViewController: e93ab7e075fc9a99a874fa050ce3b2a64026eb85
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   JTSImageViewController: e8167cffe5ffdb9203a8931d41ba5a4dd5ac5f5a
   Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
   MKNetworkKit: 83e6296a8d42e98a71880424a889773654846d74
